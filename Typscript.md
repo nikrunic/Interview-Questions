@@ -5,12 +5,22 @@ This document contains a comprehensive list of 100 TypeScript interview question
 ## Basic (20 Questions)
 
 ### 1. What is TypeScript?
-**Answer:** A strongly typed, object-oriented, compiled language built on top of JavaScript. It is a strict syntactical superset of JS developed by Microsoft.
+**Answer:** 
+**The Core Concept:**
+A strongly typed, object-oriented, compiled language built on top of JavaScript.
+
+**Key Details:**
+- It is a strict syntactical superset of JS developed by Microsoft.
 **Example:** `let isDone: boolean = false;`
 **Reference:** [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
 
 ### 2. What are the main benefits of TypeScript?
-**Answer:** Static typing catches errors at compile-time instead of runtime. It provides better IDE support (autocomplete, refactoring), improves readability, and supports newer ECMAScript features.
+**Answer:** 
+**The Core Concept:**
+Static typing catches errors at compile-time instead of runtime.
+
+**Key Details:**
+- It provides better IDE support (autocomplete, refactoring), improves readability, and supports newer ECMAScript features.
 **Example:** N/A
 **Reference:** [Why TypeScript](https://www.typescriptlang.org/docs/handbook/intro.html)
 
@@ -20,17 +30,33 @@ This document contains a comprehensive list of 100 TypeScript interview question
 **Reference:** [Basic Types](https://www.typescriptlang.org/docs/handbook/basic-types.html)
 
 ### 4. What is the `any` type?
-**Answer:** A type that opts out of type checking. It allows any value and property access, essentially turning TypeScript back into raw JavaScript. Should be used sparingly.
+**Answer:** 
+**The Core Concept:**
+A type that opts out of type checking.
+
+**Key Details:**
+- It allows any value and property access, essentially turning TypeScript back into raw JavaScript.
+- Should be used sparingly.
 **Example:** `let obj: any = { x: 0 }; obj.foo(); // No error`
 **Reference:** [Any Type](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#any)
 
 ### 5. What is the difference between `any` and `unknown`?
-**Answer:** Both accept any value. However, `unknown` forces you to perform a type check before performing operations on the value, making it much safer than `any`.
+**Answer:** 
+**The Core Concept:**
+Both accept any value.
+
+**Key Details:**
+- However, `unknown` forces you to perform a type check before performing operations on the value, making it much safer than `any`.
 **Example:** `let u: unknown = "hello"; if (typeof u === "string") console.log(u.length);`
 **Reference:** [Unknown Type](https://www.typescriptlang.org/docs/handbook/2/functions.html#unknown)
 
 ### 6. What are Arrays in TypeScript?
-**Answer:** Types denoting a list of elements. Can be written in two ways: `type[]` or `Array<type>`.
+**Answer:** 
+**The Core Concept:**
+Types denoting a list of elements.
+
+**Key Details:**
+- Can be written in two ways: `type[]` or `Array<type>`.
 **Example:** `let list: number[] = [1, 2, 3];`
 **Reference:** [Arrays](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#arrays)
 
@@ -50,7 +76,12 @@ This document contains a comprehensive list of 100 TypeScript interview question
 **Reference:** [Void Type](https://www.typescriptlang.org/docs/handbook/2/functions.html#void)
 
 ### 10. What is the `never` type?
-**Answer:** Represents the type of values that never occur. It is the return type for functions that always throw an exception or never return (infinite loop).
+**Answer:** 
+**The Core Concept:**
+Represents the type of values that never occur.
+
+**Key Details:**
+- It is the return type for functions that always throw an exception or never return (infinite loop).
 **Example:** `function error(msg: string): never { throw new Error(msg); }`
 **Reference:** [Never Type](https://www.typescriptlang.org/docs/handbook/2/functions.html#never)
 
@@ -70,7 +101,12 @@ This document contains a comprehensive list of 100 TypeScript interview question
 **Reference:** [Function Types](https://www.typescriptlang.org/docs/handbook/2/functions.html#function-type-expressions)
 
 ### 14. What are Optional Parameters?
-**Answer:** In TypeScript, every parameter is required by default. You can make a parameter optional by appending a `?` to its name.
+**Answer:** 
+**The Core Concept:**
+In TypeScript, every parameter is required by default.
+
+**Key Details:**
+- You can make a parameter optional by appending a `?` to its name.
 **Example:** `function buildName(first: string, last?: string) { ... }`
 **Reference:** [Optional Parameters](https://www.typescriptlang.org/docs/handbook/2/functions.html#optional-parameters)
 
@@ -80,7 +116,12 @@ This document contains a comprehensive list of 100 TypeScript interview question
 **Reference:** [Default Parameters](https://www.typescriptlang.org/docs/handbook/2/functions.html#optional-parameters-in-callbacks)
 
 ### 16. What is an Interface?
-**Answer:** A syntactic contract that an entity should conform to. Used primarily to name object types.
+**Answer:** 
+**The Core Concept:**
+A syntactic contract that an entity should conform to.
+
+**Key Details:**
+- Used primarily to name object types.
 **Example:** `interface LabeledValue { label: string; }`
 **Reference:** [Interfaces](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#interfaces)
 
@@ -113,17 +154,32 @@ This document contains a comprehensive list of 100 TypeScript interview question
 **Reference:** [Union Types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#union-types)
 
 ### 22. What is an Intersection Type?
-**Answer:** A type that combines multiple types into one. An object of an intersection type must have *all* properties of all intersected types.
+**Answer:** 
+**The Core Concept:**
+A type that combines multiple types into one.
+
+**Key Details:**
+- An object of an intersection type must have *all* properties of all intersected types.
 **Example:** `type ColoredCircle = Color & Circle;`
 **Reference:** [Intersection Types](https://www.typescriptlang.org/docs/handbook/2/objects.html#intersection-types)
 
 ### 23. What is the difference between `interface` and `type` alias?
-**Answer:** Interfaces are open and can be extended by declaring them multiple times (Declaration Merging). Types cannot be re-opened but can represent primitives, unions, and tuples.
+**Answer:** 
+**The Core Concept:**
+Interfaces are open and can be extended by declaring them multiple times (Declaration Merging).
+
+**Key Details:**
+- Types cannot be re-opened but can represent primitives, unions, and tuples.
 **Example:** `type ID = number | string; interface Person { name: string; }`
 **Reference:** [Differences Between Type Aliases and Interfaces](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces)
 
 ### 24. What are Type Guards?
-**Answer:** Expressions that perform a runtime check that guarantees the type in some scope. Includes `typeof`, `instanceof`, and custom type predicates.
+**Answer:** 
+**The Core Concept:**
+Expressions that perform a runtime check that guarantees the type in some scope.
+
+**Key Details:**
+- Includes `typeof`, `instanceof`, and custom type predicates.
 **Example:** `if (typeof padding === "number") { return padding + 1; }`
 **Reference:** [Type Guards](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#typeof-type-guards)
 
@@ -143,12 +199,22 @@ This document contains a comprehensive list of 100 TypeScript interview question
 **Reference:** [Generic Constraints](https://www.typescriptlang.org/docs/handbook/2/generics.html#generic-constraints)
 
 ### 28. What are Access Modifiers?
-**Answer:** Keywords (`public`, `private`, `protected`) in classes that control the visibility of class members. Default is `public`.
+**Answer:** 
+**The Core Concept:**
+Keywords (`public`, `private`, `protected`) in classes that control the visibility of class members.
+
+**Key Details:**
+- Default is `public`.
 **Example:** `class Animal { private name: string; }`
 **Reference:** [Member Visibility](https://www.typescriptlang.org/docs/handbook/2/classes.html#member-visibility)
 
 ### 29. What is the difference between `private` and `protected`?
-**Answer:** `private` members can only be accessed within the defining class. `protected` members can be accessed within the defining class AND subclasses.
+**Answer:** 
+**The Core Concept:**
+`private` members can only be accessed within the defining class.
+
+**Key Details:**
+- `protected` members can be accessed within the defining class AND subclasses.
 **Example:** `class Dog extends Animal { bark() { console.log(this.name); } } // OK if name is protected, Error if private.`
 **Reference:** [protected](https://www.typescriptlang.org/docs/handbook/2/classes.html#protected)
 
@@ -193,12 +259,22 @@ This document contains a comprehensive list of 100 TypeScript interview question
 **Reference:** [Pick](https://www.typescriptlang.org/docs/handbook/utility-types.html#picktype-keys)
 
 ### 38. Explain `Record<K, T>`.
-**Answer:** Constructs an object type whose property keys are `K` and whose property values are `T`. Great for dictionaries.
+**Answer:** 
+**The Core Concept:**
+Constructs an object type whose property keys are `K` and whose property values are `T`.
+
+**Key Details:**
+- Great for dictionaries.
 **Example:** `const cats: Record<string, CatInfo> = { miffy: { age: 10 } };`
 **Reference:** [Record](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)
 
 ### 39. What is a Namespace?
-**Answer:** An internal TypeScript mechanism for organizing code and preventing global scope pollution. Primarily used before ES Modules became standard.
+**Answer:** 
+**The Core Concept:**
+An internal TypeScript mechanism for organizing code and preventing global scope pollution.
+
+**Key Details:**
+- Primarily used before ES Modules became standard.
 **Example:** `namespace Validation { export const lettersRegexp = /^[A-Za-z]+$/; }`
 **Reference:** [Namespaces](https://www.typescriptlang.org/docs/handbook/namespaces.html)
 
@@ -211,17 +287,32 @@ This document contains a comprehensive list of 100 TypeScript interview question
 ## Hard (50 Questions)
 
 ### 41. What is Declaration Merging?
-**Answer:** When the TypeScript compiler merges two or more separate declarations declared with the same name into a single definition. This works for Interfaces and Namespaces, but not Types.
+**Answer:** 
+**The Core Concept:**
+When the TypeScript compiler merges two or more separate declarations declared with the same name into a single definition.
+
+**Key Details:**
+- This works for Interfaces and Namespaces, but not Types.
 **Example:** `interface Box { height: number; } interface Box { width: number; }` results in one Box with both.
 **Reference:** [Declaration Merging](https://www.typescriptlang.org/docs/handbook/declaration-merging.html)
 
 ### 42. What are Decorators?
-**Answer:** A special kind of declaration that can be attached to a class declaration, method, accessor, property, or parameter, allowing meta-programming syntax. Requires `experimentalDecorators`.
+**Answer:** 
+**The Core Concept:**
+A special kind of declaration that can be attached to a class declaration, method, accessor, property, or parameter, allowing meta-programming syntax.
+
+**Key Details:**
+- Requires `experimentalDecorators`.
 **Example:** `@sealed class Greeter {}`
 **Reference:** [Decorators](https://www.typescriptlang.org/docs/handbook/decorators.html)
 
 ### 43. Explain Mapped Types.
-**Answer:** A generic type which uses a union of `keyof` to iterate through keys to create a new type based on an existing one. Built-in utilities like `Partial` use this.
+**Answer:** 
+**The Core Concept:**
+A generic type which uses a union of `keyof` to iterate through keys to create a new type based on an existing one.
+
+**Key Details:**
+- Built-in utilities like `Partial` use this.
 **Example:** `type OptionsFlags<Type> = { [Property in keyof Type]: boolean; };`
 **Reference:** [Mapped Types](https://www.typescriptlang.org/docs/handbook/2/mapped-types.html)
 
@@ -256,7 +347,12 @@ This document contains a comprehensive list of 100 TypeScript interview question
 **Reference:** [Ambient Declarations](https://www.typescriptlang.org/docs/handbook/modules.html#ambient-modules)
 
 ### 50. What is a `.d.ts` file?
-**Answer:** A Declaration File. It only contains type information (interfaces, signatures) without any implementation logic, used to describe the shape of existing JavaScript code.
+**Answer:** 
+**The Core Concept:**
+A Declaration File.
+
+**Key Details:**
+- It only contains type information (interfaces, signatures) without any implementation logic, used to describe the shape of existing JavaScript code.
 **Example:** DefintelyTyped (`@types/react`).
 **Reference:** [Declaration Files](https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html)
 

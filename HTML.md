@@ -20,7 +20,12 @@ This document contains a comprehensive list of 100 HTML interview questions, cat
 **Reference:** [MDN Attribute](https://developer.mozilla.org/en-US/docs/Glossary/Attribute)
 
 ### 4. What is the `<!DOCTYPE html>` declaration?
-**Answer:** It tells the browser what version of HTML the page is written in. `<!DOCTYPE html>` specifies HTML5.
+**Answer:** 
+**The Core Concept:**
+It tells the browser what version of HTML the page is written in.
+
+**Key Details:**
+- `<!DOCTYPE html>` specifies HTML5.
 **Example:** At the very top of an HTML document.
 **Reference:** [MDN Doctype](https://developer.mozilla.org/en-US/docs/Glossary/Doctype)
 
@@ -35,7 +40,12 @@ This document contains a comprehensive list of 100 HTML interview questions, cat
 **Reference:** [MDN Semantics](https://developer.mozilla.org/en-US/docs/Glossary/Semantics)
 
 ### 7. What is the difference between inline and block-level elements?
-**Answer:** Block elements start on a new line and take full width. Inline elements don't start on a new line and only take necessary width.
+**Answer:** 
+**The Core Concept:**
+Block elements start on a new line and take full width.
+
+**Key Details:**
+- Inline elements don't start on a new line and only take necessary width.
 **Example:** Block: `<div>`. Inline: `<span>`.
 **Reference:** [MDN Block-level elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Block-level_elements)
 
@@ -60,7 +70,13 @@ This document contains a comprehensive list of 100 HTML interview questions, cat
 **Reference:** [MDN table](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table)
 
 ### 12. What are ordered and unordered lists?
-**Answer:** Ordered lists (`<ol>`) are numbered. Unordered lists (`<ul>`) are bulleted. Both contain list items (`<li>`).
+**Answer:** 
+**The Core Concept:**
+Ordered lists (`<ol>`) are numbered.
+
+**Key Details:**
+- Unordered lists (`<ul>`) are bulleted.
+- Both contain list items (`<li>`).
 **Example:** `<ul><li>Item</li></ul>`
 **Reference:** [MDN Lists](https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/HTML_text_fundamentals#lists)
 
@@ -70,12 +86,23 @@ This document contains a comprehensive list of 100 HTML interview questions, cat
 **Reference:** [MDN iframe](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe)
 
 ### 14. What is the difference between `head` and `body`?
-**Answer:** `<head>` contains metadata, title, and links to scripts/styles. `<body>` contains the visible content of the page.
+**Answer:** 
+**The Core Concept:**
+`<head>` contains metadata, title, and links to scripts/styles.
+
+**Key Details:**
+- `<body>` contains the visible content of the page.
 **Example:** `<head><title>Doc</title></head><body>Content</body>`
 **Reference:** [MDN Document structure](https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/Document_and_website_structure)
 
 ### 15. How do you make text bold or italic?
-**Answer:** Bold: `<strong>` or `<b>`. Italic: `<em>` or `<i>`. `strong` and `em` are preferred for semantic meaning.
+**Answer:** 
+**The Core Concept:**
+Bold: `<strong>` or `<b>`.
+
+**Key Details:**
+- Italic: `<em>` or `<i>`.
+- `strong` and `em` are preferred for semantic meaning.
 **Example:** `<strong>Important</strong>`
 **Reference:** [MDN Text formatting](https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/HTML_text_fundamentals)
 
@@ -90,7 +117,12 @@ This document contains a comprehensive list of 100 HTML interview questions, cat
 **Reference:** [MDN Input types](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input)
 
 ### 18. What does `<br>` do?
-**Answer:** Inserts a single line break. It is an empty element (no closing tag).
+**Answer:** 
+**The Core Concept:**
+Inserts a single line break.
+
+**Key Details:**
+- It is an empty element (no closing tag).
 **Example:** `Line 1<br>Line 2`
 **Reference:** [MDN br](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/br)
 
@@ -123,7 +155,12 @@ This document contains a comprehensive list of 100 HTML interview questions, cat
 **Reference:** [MDN Data attributes](https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes)
 
 ### 24. What is the difference between `id` and `class`?
-**Answer:** An `id` must be unique on the page and identifies a single element. A `class` can be reused on multiple elements.
+**Answer:** 
+**The Core Concept:**
+An `id` must be unique on the page and identifies a single element.
+
+**Key Details:**
+- A `class` can be reused on multiple elements.
 **Example:** `<div id="header" class="dark-theme">`
 **Reference:** [MDN id](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id)
 
@@ -153,17 +190,34 @@ This document contains a comprehensive list of 100 HTML interview questions, cat
 **Reference:** [MDN canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API)
 
 ### 30. What is SVG?
-**Answer:** Scalable Vector Graphics. Used to define vector-based graphics for the web. Unlike raster images, SVGs don't lose quality when zoomed.
+**Answer:** 
+**The Core Concept:**
+Scalable Vector Graphics.
+
+**Key Details:**
+- Used to define vector-based graphics for the web.
+- Unlike raster images, SVGs don't lose quality when zoomed.
 **Example:** `<svg><circle r="50"/></svg>`
 **Reference:** [MDN SVG](https://developer.mozilla.org/en-US/docs/Web/SVG)
 
 ### 31. What is the difference between `<script>`, `<script defer>`, and `<script async>`?
-**Answer:** Normal script blocks parsing. `async` downloads in parallel and executes immediately. `defer` downloads in parallel but executes after parsing finishes.
+**Answer:** 
+**The Core Concept:**
+Normal script blocks parsing.
+
+**Key Details:**
+- `async` downloads in parallel and executes immediately.
+- `defer` downloads in parallel but executes after parsing finishes.
 **Example:** `<script src="app.js" defer></script>`
 **Reference:** [MDN script](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script)
 
 ### 32. What is the `target` attribute on a link?
-**Answer:** Specifies where to open the linked document. `target="_blank"` opens in a new tab.
+**Answer:** 
+**The Core Concept:**
+Specifies where to open the linked document.
+
+**Key Details:**
+- `target="_blank"` opens in a new tab.
 **Example:** `<a target="_blank">`
 **Reference:** [MDN a target](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target)
 
@@ -198,7 +252,12 @@ This document contains a comprehensive list of 100 HTML interview questions, cat
 **Reference:** [MDN tabindex](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex)
 
 ### 39. Explain the `<label>` element.
-**Answer:** Represents a caption for an item in a user interface. Clicking it focuses the associated input.
+**Answer:** 
+**The Core Concept:**
+Represents a caption for an item in a user interface.
+
+**Key Details:**
+- Clicking it focuses the associated input.
 **Example:** `<label for="email">Email</label><input id="email">`
 **Reference:** [MDN label](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label)
 
@@ -218,7 +277,12 @@ This document contains a comprehensive list of 100 HTML interview questions, cat
 **Reference:** [MDN nav](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav)
 
 ### 43. What is the `<main>` tag?
-**Answer:** A semantic tag representing the dominant content of the `<body>`. There should be only one visible `<main>` per page.
+**Answer:** 
+**The Core Concept:**
+A semantic tag representing the dominant content of the `<body>`.
+
+**Key Details:**
+- There should be only one visible `<main>` per page.
 **Example:** `<main><h1>Title</h1>...</main>`
 **Reference:** [MDN main](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/main)
 
@@ -228,7 +292,12 @@ This document contains a comprehensive list of 100 HTML interview questions, cat
 **Reference:** [MDN footer](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/footer)
 
 ### 45. What is the difference between `section` and `article`?
-**Answer:** `<article>` is for standalone, distributable content (like a blog post). `<section>` is for a thematic grouping of content, typically with a heading.
+**Answer:** 
+**The Core Concept:**
+`<article>` is for standalone, distributable content (like a blog post).
+
+**Key Details:**
+- `<section>` is for a thematic grouping of content, typically with a heading.
 **Example:** `<article>Blog post content</article>`
 **Reference:** [MDN article](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/article)
 
@@ -238,12 +307,22 @@ This document contains a comprehensive list of 100 HTML interview questions, cat
 **Reference:** [MDN base](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base)
 
 ### 47. How do you create a disabled input?
-**Answer:** Use the `disabled` attribute. The input cannot be interacted with and its value won't be submitted.
+**Answer:** 
+**The Core Concept:**
+Use the `disabled` attribute.
+
+**Key Details:**
+- The input cannot be interacted with and its value won't be submitted.
 **Example:** `<input type="text" disabled>`
 **Reference:** [MDN disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled)
 
 ### 48. What is the difference between `readonly` and `disabled`?
-**Answer:** `readonly` inputs cannot be edited but can be focused and *will* be submitted. `disabled` inputs cannot be focused and *will not* be submitted.
+**Answer:** 
+**The Core Concept:**
+`readonly` inputs cannot be edited but can be focused and *will* be submitted.
+
+**Key Details:**
+- `disabled` inputs cannot be focused and *will not* be submitted.
 **Example:** `<input readonly>`
 **Reference:** [MDN readonly](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly)
 
@@ -261,7 +340,12 @@ This document contains a comprehensive list of 100 HTML interview questions, cat
 ## Hard (50 Questions)
 
 ### 51. Explain the HTML parsing process.
-**Answer:** Bytes -> Characters -> Tokens (Tokenization) -> Nodes -> DOM Tree. HTML parser builds the DOM and handles errors gracefully.
+**Answer:** 
+**The Core Concept:**
+Bytes -> Characters -> Tokens (Tokenization) -> Nodes -> DOM Tree.
+
+**Key Details:**
+- HTML parser builds the DOM and handles errors gracefully.
 **Example:** `<b>text</i>` is autocorrected in the DOM.
 **Reference:** [MDN Parsing](https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work#parsing)
 
@@ -291,7 +375,12 @@ This document contains a comprehensive list of 100 HTML interview questions, cat
 **Reference:** [MDN SSE](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events)
 
 ### 57. What are the Accessibility Tree and ARIA?
-**Answer:** The accessibility tree is derived from the DOM and used by screen readers. ARIA (Accessible Rich Internet Applications) attributes modify this tree to provide semantics for complex widgets.
+**Answer:** 
+**The Core Concept:**
+The accessibility tree is derived from the DOM and used by screen readers.
+
+**Key Details:**
+- ARIA (Accessible Rich Internet Applications) attributes modify this tree to provide semantics for complex widgets.
 **Example:** `role="progressbar"`
 **Reference:** [MDN Accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Accessibility_tree)
 
@@ -301,7 +390,12 @@ This document contains a comprehensive list of 100 HTML interview questions, cat
 **Reference:** [MDN aria-hidden](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-hidden)
 
 ### 59. Explain `role="presentation"`.
-**Answer:** Removes the semantic meaning of an element from the accessibility tree. For example, making a `<table>` used for layout be ignored as a data table.
+**Answer:** 
+**The Core Concept:**
+Removes the semantic meaning of an element from the accessibility tree.
+
+**Key Details:**
+- For example, making a `<table>` used for layout be ignored as a data table.
 **Example:** `<table role="presentation">`
 **Reference:** [MDN role presentation](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/presentation_role)
 
@@ -311,7 +405,13 @@ This document contains a comprehensive list of 100 HTML interview questions, cat
 **Reference:** [MDN Preload](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel/preload)
 
 ### 61. What is the difference between `preload`, `prefetch`, and `preconnect`?
-**Answer:** `preload`: fetch early for *this* page. `prefetch`: fetch idle for a *future* page. `preconnect`: establish early network connection (DNS/TCP/TLS) to an origin.
+**Answer:** 
+**The Core Concept:**
+`preload`: fetch early for *this* page.
+
+**Key Details:**
+- `prefetch`: fetch idle for a *future* page.
+- `preconnect`: establish early network connection (DNS/TCP/TLS) to an origin.
 **Example:** `<link rel="preconnect" href="https://api.example.com">`
 **Reference:** [Web.dev Resource Hints](https://web.dev/preconnect-and-dns-prefetch/)
 
@@ -331,27 +431,53 @@ This document contains a comprehensive list of 100 HTML interview questions, cat
 **Reference:** [MDN translate](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/translate)
 
 ### 65. What is the `contenteditable` attribute?
-**Answer:** A global attribute indicating if the element should be editable by the user. Used to build rich text editors.
+**Answer:** 
+**The Core Concept:**
+A global attribute indicating if the element should be editable by the user.
+
+**Key Details:**
+- Used to build rich text editors.
 **Example:** `<div contenteditable="true">Edit me</div>`
 **Reference:** [MDN contenteditable](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable)
 
 ### 66. How does the browser determine Document Mode (Quirks vs Standard)?
-**Answer:** Based on the presence and format of the `<!DOCTYPE>`. Without a proper DOCTYPE, browsers render in Quirks mode (emulating IE5 bugs).
+**Answer:** 
+**The Core Concept:**
+Based on the presence and format of the `<!DOCTYPE>`.
+
+**Key Details:**
+- Without a proper DOCTYPE, browsers render in Quirks mode (emulating IE5 bugs).
 **Example:** Omit DOCTYPE -> Quirks Mode.
 **Reference:** [MDN Quirks Mode](https://developer.mozilla.org/en-US/docs/Web/HTML/Quirks_Mode_and_Standards_Mode)
 
 ### 67. Explain HTML form encoding types (`enctype`).
-**Answer:** `application/x-www-form-urlencoded` (default, keys/values URL encoded). `multipart/form-data` (required for file uploads). `text/plain` (rarely used, raw text).
+**Answer:** 
+**The Core Concept:**
+`application/x-www-form-urlencoded` (default, keys/values URL encoded).
+
+**Key Details:**
+- `multipart/form-data` (required for file uploads).
+- `text/plain` (rarely used, raw text).
 **Example:** `<form enctype="multipart/form-data">`
 **Reference:** [MDN enctype](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#enctype)
 
 ### 68. What are Custom Elements?
-**Answer:** Part of Web Components. They allow developers to define their own HTML tags and their associated behavior via JavaScript classes extending `HTMLElement`.
+**Answer:** 
+**The Core Concept:**
+Part of Web Components.
+
+**Key Details:**
+- They allow developers to define their own HTML tags and their associated behavior via JavaScript classes extending `HTMLElement`.
 **Example:** `customElements.define('word-count', WordCount);`
 **Reference:** [MDN Custom Elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements)
 
 ### 69. How does `autocomplete` work on forms?
-**Answer:** It tells the browser whether to autofill fields based on previously entered data. Using specific tokens like `cc-name` helps browsers fill specific data (credit cards).
+**Answer:** 
+**The Core Concept:**
+It tells the browser whether to autofill fields based on previously entered data.
+
+**Key Details:**
+- Using specific tokens like `cc-name` helps browsers fill specific data (credit cards).
 **Example:** `<input type="text" autocomplete="cc-name">`
 **Reference:** [MDN autocomplete](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete)
 
@@ -361,17 +487,32 @@ This document contains a comprehensive list of 100 HTML interview questions, cat
 **Reference:** [MDN Microdata](https://developer.mozilla.org/en-US/docs/Web/HTML/Microdata)
 
 ### 71. Why has strict adherence to Semantic HTML become increasingly critical in modern web development?
-**Answer:** While visual styling can be handled by CSS, Semantic HTML (`<header>`, `<main>`, `<article>`, etc.) is heavily relied upon by search engines (SEO), accessibility tools (screen readers), AI crawlers, and modern frameworks (like React Server Components) to automatically parse and understand content. Poor semantics now carry much heavier penalties.
+**Answer:** 
+**The Core Concept:**
+While visual styling can be handled by CSS, Semantic HTML (`<header>`, `<main>`, `<article>`, etc.) is heavily relied upon by search engines (SEO), accessibility tools (screen readers), AI crawlers, and modern frameworks (like React Server Components) to automatically parse and understand content.
+
+**Key Details:**
+- Poor semantics now carry much heavier penalties.
 **Example:** Using `<nav>` instead of `<div class="navigation">`.
 **Reference:** [MDN Semantics](https://developer.mozilla.org/en-US/docs/Glossary/Semantics)
 
 ### 72. How does the native `<dialog>` API improve accessibility and architecture over custom JS modals?
-**Answer:** The native `<dialog>` element provides built-in accessibility, focus-trapping, keyboard navigation (Escape to close), and proper layering in the browser's top layer. This completely eliminates the need for massive third-party modal libraries and complex `z-index` management.
+**Answer:** 
+**The Core Concept:**
+The native `<dialog>` element provides built-in accessibility, focus-trapping, keyboard navigation (Escape to close), and proper layering in the browser's top layer.
+
+**Key Details:**
+- This completely eliminates the need for massive third-party modal libraries and complex `z-index` management.
 **Example:** `<dialog id="myModal">Hello</dialog>` opened via `document.getElementById('myModal').showModal();`
 **Reference:** [MDN dialog](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog)
 
 ### 73. What is the Popover API and how does it simplify UI development?
-**Answer:** The Popover API provides native browser management for tooltips, dropdowns, and flyouts. It automatically handles positioning, light dismiss (clicking outside to close), and keyboard accessibility without needing heavy JavaScript positioning engines or complex event listeners.
+**Answer:** 
+**The Core Concept:**
+The Popover API provides native browser management for tooltips, dropdowns, and flyouts.
+
+**Key Details:**
+- It automatically handles positioning, light dismiss (clicking outside to close), and keyboard accessibility without needing heavy JavaScript positioning engines or complex event listeners.
 **Example:** `<button popovertarget="menu">Menu</button> <div id="menu" popover>Content</div>`
 **Reference:** [MDN Popover API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API)
 
@@ -379,3 +520,211 @@ This document contains a comprehensive list of 100 HTML interview questions, cat
 **Answer:** The View Transitions API enables native, smooth visual transitions between different DOM states or pages (SPA-like navigation) directly within the browser engine, eliminating the need for complex, heavy JS animation libraries to cross-fade UI states.
 **Example:** `document.startViewTransition(() => updateDOM());`
 **Reference:** [MDN View Transitions](https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API)
+
+### 75. Explain the Critical Rendering Path (CRP).
+**Answer:** 
+**The Core Concept:**
+The sequence of steps the browser goes through to convert HTML, CSS, and JS into pixels on the screen.
+
+**Key Details:**
+- It involves building the DOM, building the CSSOM, combining them into the Render Tree, calculating Layout, and finally Painting.
+**Example:** Optimizing CRP by minifying CSS and deferring non-critical JS.
+**Reference:** [MDN CRP](https://developer.mozilla.org/en-US/docs/Web/Performance/Critical_rendering_path)
+
+### 76. What is the DOM (Document Object Model)?
+**Answer:** 
+**The Core Concept:**
+An object-oriented representation of the web page, which can be modified with a scripting language such as JavaScript.
+
+**Key Details:**
+- It represents the document as nodes and objects.
+**Example:** `document.getElementById('app')` interacts with the DOM.
+**Reference:** [MDN DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)
+
+### 77. How does the browser handle the `<!DOCTYPE html>` declaration?
+**Answer:** 
+**The Core Concept:**
+The doctype declaration tells the browser which version of HTML the document is written in.
+
+**Key Details:**
+- `<!DOCTYPE html>` triggers HTML5 standard mode.
+- Without it, the browser falls into Quirks mode, mimicking older browsers' bugs for backwards compatibility.
+**Example:** Always place `<!DOCTYPE html>` at the very top of the file.
+**Reference:** [MDN Doctype](https://developer.mozilla.org/en-US/docs/Glossary/Doctype)
+
+### 78. What are `data-*` attributes and when should they be used?
+**Answer:** 
+**The Core Concept:**
+They allow you to store extra, custom information on standard, semantic HTML elements without resorting to non-standard attributes or extra DOM properties.
+
+**Key Details:**
+- Accessible via JavaScript `dataset`.
+**Example:** `<article data-author-id="123">`
+**Reference:** [MDN Data Attributes](https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes)
+
+### 79. Explain the use of the `<colgroup>` element.
+**Answer:** Used within a `<table>` to specify common styles for an entire column or group of columns, preventing the need to repeat styling on every `<td>` within that column.
+**Example:** `<colgroup><col style="background-color: red;"></colgroup>`
+**Reference:** [MDN colgroup](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/colgroup)
+
+### 80. What is the `scope` attribute in tables?
+**Answer:** 
+**The Core Concept:**
+Used on `<th>` elements to define whether the header cell relates to a row, column, rowgroup, or colgroup.
+
+**Key Details:**
+- It is essential for screen readers to interpret complex tabular data correctly.
+**Example:** `<th scope="col">Name</th>`
+**Reference:** [MDN scope attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/th#scope)
+
+### 81. How does the HTML5 native validation API work?
+**Answer:** 
+**The Core Concept:**
+HTML5 introduced attributes like `required`, `pattern`, `min`, `max`, and specific `type`s (like email).
+
+**Key Details:**
+- The browser handles validation automatically before form submission, and exposes the `ValidityState` API to JavaScript for custom validation messaging.
+**Example:** `<input type="email" required pattern=".*@example\.com">`
+**Reference:** [MDN Form Validation](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation)
+
+### 82. What is the difference between `<meter>` and `<progress>`?
+**Answer:** 
+**The Core Concept:**
+`<progress>` represents the completion progress of a task (like a download).
+
+**Key Details:**
+- `<meter>` represents a scalar measurement within a known range, or a fractional value (like disk usage or a gauge).
+**Example:** `<progress value="70" max="100">` vs `<meter value="0.6">`
+**Reference:** [MDN meter](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meter)
+
+### 83. Explain the `<time>` element and its `datetime` attribute.
+**Answer:** 
+**The Core Concept:**
+Represents a specific period in time.
+
+**Key Details:**
+- The `datetime` attribute allows you to format the time in a machine-readable format while displaying a human-readable format, improving SEO and calendar integrations.
+**Example:** `<time datetime="2023-01-01">New Year's Day</time>`
+**Reference:** [MDN time](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time)
+
+### 84. What is `<noscript>` used for?
+**Answer:** Defines an alternate content section to be displayed to users that have disabled scripts in their browser or have a browser that doesn't support scripts.
+**Example:** `<noscript>Please enable JavaScript to use this site.</noscript>`
+**Reference:** [MDN noscript](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/noscript)
+
+### 85. What are the SEO implications of heading hierarchy (`<h1>` to `<h6>`)?
+**Answer:** 
+**The Core Concept:**
+Search engines use heading tags to understand the structure and context of the content.
+
+**Key Details:**
+- A logical hierarchy (one `<h1>` per page, followed by `<h2>`, `<h3>` etc.
+- without skipping levels) drastically improves indexability and accessibility.
+**Example:** `<h1>Title</h1> <h2>Subtitle</h2>`
+**Reference:** [MDN Headings](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements)
+
+### 86. How do you embed an SVG directly into HTML?
+**Answer:** 
+**The Core Concept:**
+You can write the `<svg>` tag directly into the HTML document.
+
+**Key Details:**
+- Inline SVGs do not require an extra HTTP request, can be styled with CSS (e.g., changing `fill`), and animated with JavaScript.
+**Example:** `<svg width="100"><circle cx="50" cy="50" r="40" fill="red" /></svg>`
+**Reference:** [MDN SVG in HTML](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Adding_vector_graphics_to_the_Web)
+
+### 87. What is the `<output>` element?
+**Answer:** Represents the result of a calculation or user action, typically associated with a `<form>` and dynamically updated via JavaScript.
+**Example:** `<output name="result" for="a b"></output>`
+**Reference:** [MDN output](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/output)
+
+### 88. Explain the `ping` attribute on anchors.
+**Answer:** 
+**The Core Concept:**
+A space-separated list of URLs to which the browser will send `POST` requests in the background when the user clicks the hyperlink.
+
+**Key Details:**
+- Often used for analytics tracking without JavaScript redirects.
+**Example:** `<a href="page.html" ping="tracker.php">Link</a>`
+**Reference:** [MDN ping attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#ping)
+
+### 89. What is a "Skip to Content" link?
+**Answer:** An accessibility best practice where the very first focusable element on the page is an anchor link that jumps over repetitive navigation menus directly to the `<main>` content, aiding keyboard users.
+**Example:** `<a href="#main" class="sr-only focus:not-sr-only">Skip to content</a>`
+**Reference:** [WebAim Skip Navigation](https://webaim.org/techniques/skipnav/)
+
+### 90. Explain the `role="alert"` ARIA attribute.
+**Answer:** Used to communicate an important, time-sensitive message to the user visually and via screen readers (creates a live region that interrupts the screen reader).
+**Example:** `<div role="alert">Your session has expired.</div>`
+**Reference:** [MDN role="alert"](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/alert_role)
+
+### 91. What is the `<kbd>` element?
+**Answer:** Represents inline text denoting user input from a keyboard, voice input, or any other text entry device.
+**Example:** `Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to copy.`
+**Reference:** [MDN kbd](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/kbd)
+
+### 92. What is the `translate` attribute?
+**Answer:** Specifies whether the content of an element should be translated when the page is localized (e.g., using Google Translate).
+**Example:** `<span translate="no">BrandName</span>`
+**Reference:** [MDN translate](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/translate)
+
+### 93. Explain the `<bdi>` element.
+**Answer:** 
+**The Core Concept:**
+Bidirectional Isolation.
+
+**Key Details:**
+- It isolates a span of text that might be formatted in a different direction (RTL vs LTR) from other text outside it, preventing layout scrambling in mixed-language content.
+**Example:** `<bdi>مستخدم</bdi>: 3 posts`
+**Reference:** [MDN bdi](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/bdi)
+
+### 94. What is the `<ruby>` element?
+**Answer:** Used to provide pronunciation, translation, or transliteration annotations alongside base text (common in East Asian typography).
+**Example:** `<ruby>漢<rt>kan</rt>字<rt>ji</rt></ruby>`
+**Reference:** [MDN ruby](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ruby)
+
+### 95. What are the `defer` and `async` script attributes?
+**Answer:** 
+**The Core Concept:**
+Both download scripts without blocking HTML parsing.
+
+**Key Details:**
+- `async` executes immediately after download (breaking execution order).
+- `defer` executes in order right before the `DOMContentLoaded` event.
+**Example:** `<script src="analytics.js" async></script>`
+**Reference:** [MDN Script attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script)
+
+### 96. What is the `download` attribute on an anchor tag?
+**Answer:** Instructs the browser to download a URL instead of navigating to it, prompting the user to save it as a local file.
+**Example:** `<a href="file.pdf" download="report.pdf">Download</a>`
+**Reference:** [MDN anchor download](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#download)
+
+### 97. Explain the `<wbr>` element.
+**Answer:** 
+**The Core Concept:**
+Word Break Opportunity.
+
+**Key Details:**
+- It specifies where in a text it would be ok to add a line-break, useful for extremely long URLs or strings without spaces to prevent layout overflow.
+**Example:** `https://www.example<wbr>.com/very<wbr>long<wbr>url`
+**Reference:** [MDN wbr](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/wbr)
+
+### 98. What is the purpose of the `<object>` element?
+**Answer:** Used to embed external resources like PDFs, Flash (historically), or even other HTML documents inside the current document.
+**Example:** `<object data="file.pdf" type="application/pdf"></object>`
+**Reference:** [MDN object](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/object)
+
+### 99. How does `loading="lazy"` work on images?
+**Answer:** 
+**The Core Concept:**
+Instructs the browser to defer loading of the image until it reaches a calculated distance from the viewport.
+
+**Key Details:**
+- This significantly saves bandwidth and speeds up the initial page load.
+**Example:** `<img src="heavy.jpg" loading="lazy">`
+**Reference:** [MDN Lazy Loading](https://developer.mozilla.org/en-US/docs/Web/Performance/Lazy_loading)
+
+### 100. What is an iframe sandbox?
+**Answer:** The `sandbox` attribute restricts the actions that the embedded iframe content can perform (like executing scripts, submitting forms, or opening popups), heavily improving security against malicious third-party embeds.
+**Example:** `<iframe sandbox="allow-scripts" src="..."></iframe>`
+**Reference:** [MDN iframe sandbox](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#sandbox)

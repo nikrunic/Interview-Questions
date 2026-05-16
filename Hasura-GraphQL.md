@@ -10,17 +10,32 @@ This document contains a comprehensive list of 100 Hasura and GraphQL interview 
 **Reference:** [GraphQL Org](https://graphql.org/)
 
 ### 2. How does GraphQL differ from REST?
-**Answer:** REST uses multiple endpoints returning fixed data structures. GraphQL uses a single endpoint where the client specifies exactly what data it needs, avoiding over-fetching and under-fetching.
+**Answer:** 
+**The Core Concept:**
+REST uses multiple endpoints returning fixed data structures.
+
+**Key Details:**
+- GraphQL uses a single endpoint where the client specifies exactly what data it needs, avoiding over-fetching and under-fetching.
 **Example:** Single `/graphql` endpoint vs `/users`, `/posts`.
 **Reference:** [GraphQL vs REST](https://graphql.org/faq/#how-is-graphql-different-from-rest)
 
 ### 3. What is a Query in GraphQL?
-**Answer:** A read-only operation requested by a client to fetch data from the server. Equivalent to a GET request in REST.
+**Answer:** 
+**The Core Concept:**
+A read-only operation requested by a client to fetch data from the server.
+
+**Key Details:**
+- Equivalent to a GET request in REST.
 **Example:** `query GetUsers { users { id } }`
 **Reference:** [Queries](https://graphql.org/learn/queries/)
 
 ### 4. What is a Mutation in GraphQL?
-**Answer:** An operation used to modify server-side data (create, update, delete) and return a value. Equivalent to POST, PUT, DELETE in REST.
+**Answer:** 
+**The Core Concept:**
+An operation used to modify server-side data (create, update, delete) and return a value.
+
+**Key Details:**
+- Equivalent to POST, PUT, DELETE in REST.
 **Example:** `mutation AddUser { insert_user(name: "John") { id } }`
 **Reference:** [Mutations](https://graphql.org/learn/queries/#mutations)
 
@@ -35,12 +50,22 @@ This document contains a comprehensive list of 100 Hasura and GraphQL interview 
 **Reference:** [Schema](https://graphql.org/learn/schema/)
 
 ### 7. What are Scalar Types in GraphQL?
-**Answer:** The base primitive types that resolve to concrete data. Default scalars are `Int`, `Float`, `String`, `Boolean`, and `ID`.
+**Answer:** 
+**The Core Concept:**
+The base primitive types that resolve to concrete data.
+
+**Key Details:**
+- Default scalars are `Int`, `Float`, `String`, `Boolean`, and `ID`.
 **Example:** `age: Int`
 **Reference:** [Scalar Types](https://graphql.org/learn/schema/#scalar-types)
 
 ### 8. What does the `!` symbol mean in a Schema?
-**Answer:** It indicates that the field is Non-Null (required). The server will always return a value for it, and it cannot be null.
+**Answer:** 
+**The Core Concept:**
+It indicates that the field is Non-Null (required).
+
+**Key Details:**
+- The server will always return a value for it, and it cannot be null.
 **Example:** `email: String!`
 **Reference:** [Lists and Non-Null](https://graphql.org/learn/schema/#lists-and-non-null)
 
@@ -60,7 +85,12 @@ This document contains a comprehensive list of 100 Hasura and GraphQL interview 
 **Reference:** [Supported Databases](https://hasura.io/docs/latest/databases/overview/)
 
 ### 12. What is GraphiQL?
-**Answer:** An in-browser IDE for exploring GraphQL APIs, writing queries with autocomplete, and viewing the schema documentation. Hasura includes this in its console.
+**Answer:** 
+**The Core Concept:**
+An in-browser IDE for exploring GraphQL APIs, writing queries with autocomplete, and viewing the schema documentation.
+
+**Key Details:**
+- Hasura includes this in its console.
 **Example:** Using GraphiQL to test a `users` query.
 **Reference:** [GraphiQL](https://github.com/graphql/graphiQL)
 
@@ -80,7 +110,12 @@ This document contains a comprehensive list of 100 Hasura and GraphQL interview 
 **Reference:** [Fragments](https://graphql.org/learn/queries/#fragments)
 
 ### 16. What is the `ID` type?
-**Answer:** A scalar type representing a unique identifier, often used to refetch an object or as a cache key. It serializes the same way as a String.
+**Answer:** 
+**The Core Concept:**
+A scalar type representing a unique identifier, often used to refetch an object or as a cache key.
+
+**Key Details:**
+- It serializes the same way as a String.
 **Example:** `id: ID!`
 **Reference:** [ID Type](https://graphql.org/learn/schema/#scalar-types)
 
@@ -108,17 +143,32 @@ This document contains a comprehensive list of 100 Hasura and GraphQL interview 
 ## Medium (30 Questions)
 
 ### 21. How do you handle relationships in Hasura?
-**Answer:** By defining Object Relationships (1-to-1 or Many-to-1) and Array Relationships (1-to-Many). Hasura automatically suggests these based on database Foreign Keys.
+**Answer:** 
+**The Core Concept:**
+By defining Object Relationships (1-to-1 or Many-to-1) and Array Relationships (1-to-Many).
+
+**Key Details:**
+- Hasura automatically suggests these based on database Foreign Keys.
 **Example:** A User has many Posts (Array Relationship).
 **Reference:** [Relationships](https://hasura.io/docs/latest/schema/postgres/table-relationships/index/)
 
 ### 22. What are Hasura Roles?
-**Answer:** Roles (e.g., `admin`, `user`, `anonymous`) define what a user is allowed to do. Hasura's authorization engine uses the `X-Hasura-Role` header to apply role-based access control.
+**Answer:** 
+**The Core Concept:**
+Roles (e.g., `admin`, `user`, `anonymous`) define what a user is allowed to do.
+
+**Key Details:**
+- Hasura's authorization engine uses the `X-Hasura-Role` header to apply role-based access control.
 **Example:** `X-Hasura-Role: user`
 **Reference:** [Authorization](https://hasura.io/docs/latest/auth/authorization/index/)
 
 ### 23. How does Row-Level Security work in Hasura?
-**Answer:** You define permission rules using boolean expressions. Hasura injects these rules directly into the SQL query it sends to the database, ensuring users only retrieve rows they own.
+**Answer:** 
+**The Core Concept:**
+You define permission rules using boolean expressions.
+
+**Key Details:**
+- Hasura injects these rules directly into the SQL query it sends to the database, ensuring users only retrieve rows they own.
 **Example:** `{"user_id": {"_eq": "X-Hasura-User-Id"}}`
 **Reference:** [Row-level permissions](https://hasura.io/docs/latest/auth/authorization/permissions/)
 
@@ -128,7 +178,12 @@ This document contains a comprehensive list of 100 Hasura and GraphQL interview 
 **Reference:** [Column-level permissions](https://hasura.io/docs/latest/auth/authorization/permissions/)
 
 ### 25. What are Hasura Actions?
-**Answer:** A way to extend the Hasura GraphQL schema with custom REST APIs (business logic). You define a GraphQL Mutation/Query, and Hasura proxies the request to your external webhook.
+**Answer:** 
+**The Core Concept:**
+A way to extend the Hasura GraphQL schema with custom REST APIs (business logic).
+
+**Key Details:**
+- You define a GraphQL Mutation/Query, and Hasura proxies the request to your external webhook.
 **Example:** Implementing a `register_user` custom action.
 **Reference:** [Actions](https://hasura.io/docs/latest/actions/overview/)
 
@@ -138,7 +193,12 @@ This document contains a comprehensive list of 100 Hasura and GraphQL interview 
 **Reference:** [Remote Schemas](https://hasura.io/docs/latest/remote-schemas/overview/)
 
 ### 27. What are Hasura Event Triggers?
-**Answer:** Webhooks triggered asynchronously by database events (INSERT, UPDATE, DELETE). Hasura guarantees at-least-once delivery of the payload to your external server.
+**Answer:** 
+**The Core Concept:**
+Webhooks triggered asynchronously by database events (INSERT, UPDATE, DELETE).
+
+**Key Details:**
+- Hasura guarantees at-least-once delivery of the payload to your external server.
 **Example:** Sending a welcome email when a row is inserted into `users`.
 **Reference:** [Event Triggers](https://hasura.io/docs/latest/event-triggers/overview/)
 
@@ -148,12 +208,22 @@ This document contains a comprehensive list of 100 Hasura and GraphQL interview 
 **Reference:** [Scheduled Triggers](https://hasura.io/docs/latest/scheduled-triggers/overview/)
 
 ### 29. What is a Resolver in traditional GraphQL?
-**Answer:** A function responsible for populating the data for a single field in a GraphQL schema. (Note: Hasura compiles GraphQL directly to SQL and doesn't use traditional JS resolvers).
+**Answer:** 
+**The Core Concept:**
+A function responsible for populating the data for a single field in a GraphQL schema.
+
+**Key Details:**
+- (Note: Hasura compiles GraphQL directly to SQL and doesn't use traditional JS resolvers).
 **Example:** `Query: { user: (parent, args, context) => fetchUser(args.id) }`
 **Reference:** [Resolvers](https://graphql.org/learn/execution/)
 
 ### 30. How does Hasura avoid the N+1 Query Problem?
-**Answer:** Traditional GraphQL servers run a resolver for each field, causing N+1 database queries. Hasura acts as a compiler, converting the entire GraphQL query into a single, highly optimized SQL query.
+**Answer:** 
+**The Core Concept:**
+Traditional GraphQL servers run a resolver for each field, causing N+1 database queries.
+
+**Key Details:**
+- Hasura acts as a compiler, converting the entire GraphQL query into a single, highly optimized SQL query.
 **Example:** A query for 10 users and their posts is 1 SQL query, not 11.
 **Reference:** [Architecture](https://hasura.io/blog/architecture-of-a-high-performance-graphql-to-sql-server/)
 
@@ -168,17 +238,32 @@ This document contains a comprehensive list of 100 Hasura and GraphQL interview 
 **Reference:** [Variables](https://graphql.org/learn/queries/#variables)
 
 ### 33. What are Directives in GraphQL?
-**Answer:** Identifiers preceded by an `@` character used to alter the execution or type validation behavior of GraphQL. Core directives include `@include(if: Boolean)` and `@skip(if: Boolean)`.
+**Answer:** 
+**The Core Concept:**
+Identifiers preceded by an `@` character used to alter the execution or type validation behavior of GraphQL.
+
+**Key Details:**
+- Core directives include `@include(if: Boolean)` and `@skip(if: Boolean)`.
 **Example:** `query { user { name @include(if: $showName) } }`
 **Reference:** [Directives](https://graphql.org/learn/queries/#directives)
 
 ### 34. How does Hasura handle JWT Authentication?
-**Answer:** Hasura verifies the JWT provided in the `Authorization` header using a configured secret/JWK. It then extracts custom claims (like `x-hasura-role` and `x-hasura-user-id`) from the token to resolve permissions.
+**Answer:** 
+**The Core Concept:**
+Hasura verifies the JWT provided in the `Authorization` header using a configured secret/JWK.
+
+**Key Details:**
+- It then extracts custom claims (like `x-hasura-role` and `x-hasura-user-id`) from the token to resolve permissions.
 **Example:** `{ "https://hasura.io/jwt/claims": { "x-hasura-role": "user" } }`
 **Reference:** [JWT Auth](https://hasura.io/docs/latest/auth/authentication/jwt/)
 
 ### 35. How does Hasura handle Webhook Authentication?
-**Answer:** Instead of verifying a JWT, Hasura makes a GET request to a custom webhook you provide, forwarding the client's headers. Your webhook returns the `x-hasura-*` variables in JSON.
+**Answer:** 
+**The Core Concept:**
+Instead of verifying a JWT, Hasura makes a GET request to a custom webhook you provide, forwarding the client's headers.
+
+**Key Details:**
+- Your webhook returns the `x-hasura-*` variables in JSON.
 **Example:** Useful for integrating legacy session-based auth.
 **Reference:** [Webhook Auth](https://hasura.io/docs/latest/auth/authentication/webhook/)
 
@@ -198,7 +283,12 @@ This document contains a comprehensive list of 100 Hasura and GraphQL interview 
 **Reference:** [Sorting](https://hasura.io/docs/latest/queries/postgres/sorting/)
 
 ### 39. What is GraphQLError?
-**Answer:** The standard format for errors in GraphQL. It always includes a `message`, and optionally `locations` (where the error occurred) and `path` (the field that failed).
+**Answer:** 
+**The Core Concept:**
+The standard format for errors in GraphQL.
+
+**Key Details:**
+- It always includes a `message`, and optionally `locations` (where the error occurred) and `path` (the field that failed).
 **Example:** `"errors": [ { "message": "Field not found" } ]`
 **Reference:** [Errors](https://graphql.org/learn/execution/#errors)
 
@@ -211,32 +301,64 @@ This document contains a comprehensive list of 100 Hasura and GraphQL interview 
 ## Hard (50 Questions)
 
 ### 41. Explain the Hasura Metadata.
-**Answer:** Hasura stores its configuration (tracked tables, relationships, permissions, actions) as JSON metadata. This allows Hasura to be stateless; the state is defined entirely by the metadata and the underlying DB schema.
+**Answer:** 
+**The Core Concept:**
+Hasura stores its configuration (tracked tables, relationships, permissions, actions) as JSON metadata.
+
+**Key Details:**
+- This allows Hasura to be stateless; the state is defined entirely by the metadata and the underlying DB schema.
 **Example:** `metadata/tables.yaml` in Hasura CLI.
 **Reference:** [Metadata](https://hasura.io/docs/latest/migrations-metadata-seeds/manage-metadata/)
 
 ### 42. How does Hasura CLI manage Migrations?
-**Answer:** Hasura tracks changes made to the database schema via the Console and generates SQL migration files. These files, along with Metadata YAML files, can be committed to Git for CI/CD.
+**Answer:** 
+**The Core Concept:**
+Hasura tracks changes made to the database schema via the Console and generates SQL migration files.
+
+**Key Details:**
+- These files, along with Metadata YAML files, can be committed to Git for CI/CD.
 **Example:** `hasura migrate apply`
 **Reference:** [Migrations](https://hasura.io/docs/latest/migrations-metadata-seeds/manage-migrations/)
 
 ### 43. What is Schema Stitching vs Apollo Federation?
-**Answer:** Stitching manually combines multiple GraphQL APIs via custom code. Federation is Apollo's declarative architecture where microservices expose parts of a graph, and a Gateway automatically composes them. Hasura acts as a gateway via Remote Schemas.
+**Answer:** 
+**The Core Concept:**
+Stitching manually combines multiple GraphQL APIs via custom code.
+
+**Key Details:**
+- Federation is Apollo's declarative architecture where microservices expose parts of a graph, and a Gateway automatically composes them.
+- Hasura acts as a gateway via Remote Schemas.
 **Example:** `extend type User @key(fields: "id")` in Federation.
 **Reference:** [Apollo Federation](https://www.apollographql.com/docs/federation/)
 
 ### 44. How does Hasura compile GraphQL to SQL?
-**Answer:** Hasura parses the GraphQL AST, looks up the metadata mappings, and generates a single monolithic AST for the database dialect (e.g., PostgreSQL). It translates GraphQL joins into SQL `LEFT OUTER JOIN`s or `LATERAL` joins, retrieving all data in JSON format directly from the DB.
+**Answer:** 
+**The Core Concept:**
+Hasura parses the GraphQL AST, looks up the metadata mappings, and generates a single monolithic AST for the database dialect (e.g., PostgreSQL).
+
+**Key Details:**
+- It translates GraphQL joins into SQL `LEFT OUTER JOIN`s or `LATERAL` joins, retrieving all data in JSON format directly from the DB.
 **Example:** `SELECT json_agg(...)` is used heavily by Hasura.
 **Reference:** [Architecture Deep Dive](https://hasura.io/blog/architecture-of-a-high-performance-graphql-to-sql-server/)
 
 ### 45. Explain how Hasura handles Subscriptions under the hood.
-**Answer:** Hasura doesn't poll for every user. It groups identical subscription queries with different variables into a single parameterized SQL query. It multiplexes the results and pushes updates via WebSockets only when the data changes.
+**Answer:** 
+**The Core Concept:**
+Hasura doesn't poll for every user.
+
+**Key Details:**
+- It groups identical subscription queries with different variables into a single parameterized SQL query.
+- It multiplexes the results and pushes updates via WebSockets only when the data changes.
 **Example:** Live Queries architecture.
 **Reference:** [Subscriptions Architecture](https://hasura.io/blog/scaling-graphql-subscriptions-with-postgres-and-hasura/)
 
 ### 46. What are Computed Fields in Hasura?
-**Answer:** Virtual fields in the GraphQL schema defined via Postgres SQL functions. They allow you to expose business logic or complex calculations directly in the API without storing the data.
+**Answer:** 
+**The Core Concept:**
+Virtual fields in the GraphQL schema defined via Postgres SQL functions.
+
+**Key Details:**
+- They allow you to expose business logic or complex calculations directly in the API without storing the data.
 **Example:** A `full_name` computed field combining `first_name` and `last_name`.
 **Reference:** [Computed Fields](https://hasura.io/docs/latest/schema/postgres/computed-fields/)
 
@@ -251,12 +373,22 @@ This document contains a comprehensive list of 100 Hasura and GraphQL interview 
 **Reference:** [API Limits](https://hasura.io/docs/latest/security/api-limits/)
 
 ### 49. What is an Allow-list in Hasura?
-**Answer:** A security feature where you define exactly which GraphQL query strings are permitted in production. Hasura will reject any query not on the list, effectively locking down the API to only your app's queries.
+**Answer:** 
+**The Core Concept:**
+A security feature where you define exactly which GraphQL query strings are permitted in production.
+
+**Key Details:**
+- Hasura will reject any query not on the list, effectively locking down the API to only your app's queries.
 **Example:** Adding `GetUsers` to the Allow-list.
 **Reference:** [Allow-list](https://hasura.io/docs/latest/security/allow-list/)
 
 ### 50. How do you implement GraphQL Caching?
-**Answer:** GraphQL is POST-based, making HTTP/CDN caching hard. Caching is usually done client-side (Apollo Cache), via Server Response Caching (Hasura `@cached` directive backed by Redis), or Persistent Queries.
+**Answer:** 
+**The Core Concept:**
+GraphQL is POST-based, making HTTP/CDN caching hard.
+
+**Key Details:**
+- Caching is usually done client-side (Apollo Cache), via Server Response Caching (Hasura `@cached` directive backed by Redis), or Persistent Queries.
 **Example:** `query MyCachedQuery @cached(ttl: 120) { ... }`
 **Reference:** [Hasura Caching](https://hasura.io/docs/latest/caching/overview/)
 

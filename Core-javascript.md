@@ -10,12 +10,22 @@ This document contains a comprehensive list of 100 Core JavaScript interview que
 **Reference:** [MDN Data structures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures)
 
 ### 2. Is JavaScript a compiled or interpreted language?
-**Answer:** Modern JavaScript engines (like V8) use Just-In-Time (JIT) compilation. It parses and compiles JS to machine code on the fly immediately prior to executing it.
+**Answer:** 
+**The Core Concept:**
+Modern JavaScript engines (like V8) use Just-In-Time (JIT) compilation.
+
+**Key Details:**
+- It parses and compiles JS to machine code on the fly immediately prior to executing it.
 **Example:** V8 Ignition and TurboFan.
 **Reference:** [MDN JS Overview](https://developer.mozilla.org/en-US/docs/Web/JavaScript/About_JavaScript)
 
 ### 3. What is the difference between `null` and `undefined`?
-**Answer:** `undefined` means a variable has been declared but not assigned a value. `null` is an assignment value representing an intentional absence of any object value.
+**Answer:** 
+**The Core Concept:**
+`undefined` means a variable has been declared but not assigned a value.
+
+**Key Details:**
+- `null` is an assignment value representing an intentional absence of any object value.
 **Example:** `let a; typeof a === 'undefined'`
 **Reference:** [MDN Null](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null)
 
@@ -25,7 +35,12 @@ This document contains a comprehensive list of 100 Core JavaScript interview que
 **Reference:** [MDN Hoisting](https://developer.mozilla.org/en-US/docs/Glossary/Hoisting)
 
 ### 5. Are `let` and `const` hoisted?
-**Answer:** Yes, but they are not initialized. Accessing them before initialization results in a `ReferenceError` due to the Temporal Dead Zone (TDZ).
+**Answer:** 
+**The Core Concept:**
+Yes, but they are not initialized.
+
+**Key Details:**
+- Accessing them before initialization results in a `ReferenceError` due to the Temporal Dead Zone (TDZ).
 **Example:** `console.log(a); let a = 5; // ReferenceError`
 **Reference:** [MDN let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)
 
@@ -35,17 +50,32 @@ This document contains a comprehensive list of 100 Core JavaScript interview que
 **Reference:** [MDN Closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures)
 
 ### 7. What is the scope chain?
-**Answer:** The hierarchy of scopes used to resolve variable references. If a variable is not found in the current scope, JS looks in the outer scope, continuing up to the global scope.
+**Answer:** 
+**The Core Concept:**
+The hierarchy of scopes used to resolve variable references.
+
+**Key Details:**
+- If a variable is not found in the current scope, JS looks in the outer scope, continuing up to the global scope.
 **Example:** Lexical scoping.
 **Reference:** [Scope Chain](https://developer.mozilla.org/en-US/docs/Glossary/Scope)
 
 ### 8. What is the `this` keyword?
-**Answer:** `this` refers to the object that is executing the current function. Its value depends entirely on how the function is invoked.
+**Answer:** 
+**The Core Concept:**
+`this` refers to the object that is executing the current function.
+
+**Key Details:**
+- Its value depends entirely on how the function is invoked.
 **Example:** `obj.method()` (this = obj), `func()` (this = window/global).
 **Reference:** [MDN this](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this)
 
 ### 9. How do Arrow Functions affect `this`?
-**Answer:** Arrow functions do not have their own `this` binding. They inherit `this` from the enclosing lexical context at the time they are defined.
+**Answer:** 
+**The Core Concept:**
+Arrow functions do not have their own `this` binding.
+
+**Key Details:**
+- They inherit `this` from the enclosing lexical context at the time they are defined.
 **Example:** `const obj = { arr: () => console.log(this) }; // this = window`
 **Reference:** [MDN Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 
@@ -75,7 +105,12 @@ This document contains a comprehensive list of 100 Core JavaScript interview que
 **Reference:** [MDN Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
 ### 15. What does `isNaN()` do?
-**Answer:** Determines whether a value is NaN (Not-a-Number). Note: The global `isNaN()` coerces values to numbers first, while `Number.isNaN()` does not.
+**Answer:** 
+**The Core Concept:**
+Determines whether a value is NaN (Not-a-Number).
+
+**Key Details:**
+- Note: The global `isNaN()` coerces values to numbers first, while `Number.isNaN()` does not.
 **Example:** `isNaN("hello") // true`
 **Reference:** [MDN isNaN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isNaN)
 
@@ -95,7 +130,13 @@ This document contains a comprehensive list of 100 Core JavaScript interview que
 **Reference:** [MDN Destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
 
 ### 19. What is the difference between `var`, `let`, and `const`?
-**Answer:** `var` is function-scoped and hoisted with `undefined`. `let` is block-scoped and uninitialized (TDZ). `const` is block-scoped and cannot be reassigned.
+**Answer:** 
+**The Core Concept:**
+`var` is function-scoped and hoisted with `undefined`.
+
+**Key Details:**
+- `let` is block-scoped and uninitialized (TDZ).
+- `const` is block-scoped and cannot be reassigned.
 **Example:** `const PI = 3.14;`
 **Reference:** [MDN let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)
 
@@ -108,17 +149,33 @@ This document contains a comprehensive list of 100 Core JavaScript interview que
 ## Medium (30 Questions)
 
 ### 21. Explain Prototypal Inheritance.
-**Answer:** JavaScript objects inherit properties and methods from a prototype object. Every object has a hidden `[[Prototype]]` property (accessible via `__proto__`) linking to another object.
+**Answer:** 
+**The Core Concept:**
+JavaScript objects inherit properties and methods from a prototype object.
+
+**Key Details:**
+- Every object has a hidden `[[Prototype]]` property (accessible via `__proto__`) linking to another object.
 **Example:** `Array.prototype` inherits from `Object.prototype`.
 **Reference:** [MDN Inheritance](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain)
 
 ### 22. What is the Event Loop?
-**Answer:** The mechanism JS uses to handle concurrency. It continuously checks the Call Stack. If empty, it pushes the first task from the Callback Queue onto the stack.
+**Answer:** 
+**The Core Concept:**
+The mechanism JS uses to handle concurrency.
+
+**Key Details:**
+- It continuously checks the Call Stack.
+- If empty, it pushes the first task from the Callback Queue onto the stack.
 **Example:** `setTimeout` callbacks sit in the queue.
 **Reference:** [MDN Event loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop)
 
 ### 23. What are Microtasks and Macrotasks?
-**Answer:** Macrotasks (`setTimeout`, UI rendering) are queued in the task queue. Microtasks (Promises, `MutationObserver`) are queued in the microtask queue, which has higher priority and executes immediately after the current script/stack finishes.
+**Answer:** 
+**The Core Concept:**
+Macrotasks (`setTimeout`, UI rendering) are queued in the task queue.
+
+**Key Details:**
+- Microtasks (Promises, `MutationObserver`) are queued in the microtask queue, which has higher priority and executes immediately after the current script/stack finishes.
 **Example:** Promises resolve before `setTimeout`.
 **Reference:** [Microtasks](https://javascript.info/microtask-queue)
 
@@ -128,12 +185,22 @@ This document contains a comprehensive list of 100 Core JavaScript interview que
 **Reference:** [MDN Object.create](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create)
 
 ### 25. What is the difference between `==` and `===`?
-**Answer:** `==` (loose equality) performs type coercion before comparing. `===` (strict equality) requires both value and type to be identical.
+**Answer:** 
+**The Core Concept:**
+`==` (loose equality) performs type coercion before comparing.
+
+**Key Details:**
+- `===` (strict equality) requires both value and type to be identical.
 **Example:** `0 == false` (true), `0 === false` (false).
 **Reference:** [MDN Equality](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness)
 
 ### 26. What is `typeof null`?
-**Answer:** `"object"`. This is a known, unfixable bug in JavaScript dating back to the first version.
+**Answer:** 
+**The Core Concept:**
+`"object"`.
+
+**Key Details:**
+- This is a known, unfixable bug in JavaScript dating back to the first version.
 **Example:** `typeof null === 'object'`
 **Reference:** [MDN typeof](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof)
 
@@ -143,7 +210,13 @@ This document contains a comprehensive list of 100 Core JavaScript interview que
 **Reference:** [MDN bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)
 
 ### 28. What is the difference between `call` and `apply`?
-**Answer:** Both execute a function with a specific `this` context. `call` accepts a comma-separated list of arguments. `apply` accepts an array of arguments.
+**Answer:** 
+**The Core Concept:**
+Both execute a function with a specific `this` context.
+
+**Key Details:**
+- `call` accepts a comma-separated list of arguments.
+- `apply` accepts an array of arguments.
 **Example:** `func.call(this, 1, 2)` vs `func.apply(this, [1, 2])`.
 **Reference:** [MDN call](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call)
 
@@ -158,7 +231,12 @@ This document contains a comprehensive list of 100 Core JavaScript interview que
 **Reference:** [MDN WeakMap](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap)
 
 ### 31. Explain `Symbol` type.
-**Answer:** A primitive data type whose instances are unique and immutable. Often used as object property keys to avoid naming collisions.
+**Answer:** 
+**The Core Concept:**
+A primitive data type whose instances are unique and immutable.
+
+**Key Details:**
+- Often used as object property keys to avoid naming collisions.
 **Example:** `const sym = Symbol('foo');`
 **Reference:** [MDN Symbol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol)
 
@@ -178,22 +256,42 @@ This document contains a comprehensive list of 100 Core JavaScript interview que
 **Reference:** [MDN Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
 
 ### 35. Explain `Reflect` API.
-**Answer:** A built-in object that provides methods for interceptable JavaScript operations. Its methods correspond exactly to Proxy handlers.
+**Answer:** 
+**The Core Concept:**
+A built-in object that provides methods for interceptable JavaScript operations.
+
+**Key Details:**
+- Its methods correspond exactly to Proxy handlers.
 **Example:** `Reflect.get(target, 'prop')`
 **Reference:** [MDN Reflect](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect)
 
 ### 36. How do you freeze an object?
-**Answer:** `Object.freeze(obj)`. It prevents adding, removing, or modifying properties on an object.
+**Answer:** 
+**The Core Concept:**
+`Object.freeze(obj)`.
+
+**Key Details:**
+- It prevents adding, removing, or modifying properties on an object.
 **Example:** `Object.freeze({ a: 1 })`
 **Reference:** [MDN Object.freeze](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze)
 
 ### 37. What is the difference between `Object.freeze` and `Object.seal`?
-**Answer:** `freeze` makes properties immutable. `seal` prevents adding/removing properties but allows modifying existing ones.
+**Answer:** 
+**The Core Concept:**
+`freeze` makes properties immutable.
+
+**Key Details:**
+- `seal` prevents adding/removing properties but allows modifying existing ones.
 **Example:** `Object.seal(obj)`
 **Reference:** [MDN Object.seal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/seal)
 
 ### 38. How do you implement a deep clone?
-**Answer:** Native way: `structuredClone(obj)`. Old way: `JSON.parse(JSON.stringify(obj))` (fails on functions/undefined).
+**Answer:** 
+**The Core Concept:**
+Native way: `structuredClone(obj)`.
+
+**Key Details:**
+- Old way: `JSON.parse(JSON.stringify(obj))` (fails on functions/undefined).
 **Example:** `const deep = structuredClone(original);`
 **Reference:** [MDN structuredClone](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone)
 
@@ -211,22 +309,49 @@ This document contains a comprehensive list of 100 Core JavaScript interview que
 ## Hard (50 Questions)
 
 ### 41. Describe V8 Garbage Collection mechanics.
-**Answer:** V8 uses a generational Mark-and-Sweep algorithm. New objects go to "Young Generation" (Scavenger). If they survive, they move to "Old Generation" (Mark-Sweep-Compact), preventing fragmentation.
+**Answer:** 
+**The Core Concept:**
+V8 uses a generational Mark-and-Sweep algorithm.
+
+**Key Details:**
+- New objects go to "Young Generation" (Scavenger).
+- If they survive, they move to "Old Generation" (Mark-Sweep-Compact), preventing fragmentation.
 **Example:** Memory leak investigation.
 **Reference:** [V8 Memory Management](https://v8.dev/blog/trash-talk)
 
 ### 42. Explain Tail Call Optimization (TCO).
-**Answer:** An ES6 feature where recursive function calls at the tail position reuse the current stack frame, preventing Stack Overflow. Note: only implemented in WebKit/Safari.
+**Answer:** 
+**The Core Concept:**
+An ES6 feature where recursive function calls at the tail position reuse the current stack frame, preventing Stack Overflow.
+
+**Key Details:**
+- Note: only implemented in WebKit/Safari.
 **Example:** `return fact(n-1, acc * n)`
 **Reference:** [TCO](https://webkit.org/blog/6240/ecmascript-6-proper-tail-calls-in-webkit/)
 
 ### 43. What is the Execution Context?
-**Answer:** An abstract concept of an environment where the JS code is evaluated and executed. Contains Variable Environment, Lexical Environment, and `this` binding.
+**Answer:** 
+**The Core Concept:**
+An abstract concept of an environment where the JS code is evaluated and executed.
+
+**Key Details:**
+- Contains Variable Environment, Lexical Environment, and `this` binding.
 **Example:** Global Execution Context, Function Execution Context.
 **Reference:** [Execution Context](https://tc39.es/ecma262/#sec-execution-contexts)
 
 ### 44. What happens when a function is called with `new`?
-**Answer:** 1. A new empty object is created. 2. `this` is bound to it. 3. The object's `__proto__` is linked to the function's `prototype`. 4. The object is returned automatically (if the function doesn't return an object).
+**Answer:** 
+**The Core Concept:**
+1.
+
+**Key Details:**
+- A new empty object is created.
+- 2.
+- `this` is bound to it.
+- 3.
+- The object's `__proto__` is linked to the function's `prototype`.
+- 4.
+- The object is returned automatically (if the function doesn't return an object).
 **Example:** `const p = new Person();`
 **Reference:** [MDN new operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new)
 
@@ -259,7 +384,12 @@ Array.prototype.myReduce = function(cb, initial) {
 **Reference:** [Module Pattern](https://addyosmani.com/resources/essentialjsdesignpatterns/book/#modulepatternjavascript)
 
 ### 49. How does JS handle Floating Point numbers?
-**Answer:** Using IEEE 754 double-precision 64-bit format. This inherently causes precision issues with decimals (`0.1 + 0.2 !== 0.3`).
+**Answer:** 
+**The Core Concept:**
+Using IEEE 754 double-precision 64-bit format.
+
+**Key Details:**
+- This inherently causes precision issues with decimals (`0.1 + 0.2 !== 0.3`).
 **Example:** Solved by `Math.round((0.1+0.2)*100)/100`.
 **Reference:** [MDN Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 
@@ -269,22 +399,45 @@ Array.prototype.myReduce = function(cb, initial) {
 **Reference:** [Memoization](https://en.wikipedia.org/wiki/Memoization)
 
 ### 51. Memory Management: How do closures lead to memory leaks in React, and how does useEffect cleanup mitigate this?
-**Answer:** Closures capture variables from their outer scope. If an asynchronous callback (like an event listener or interval) forms a closure over a component's state, the garbage collector cannot free that memory even after the component unmounts. The `useEffect` cleanup function removes these listeners, severing the reference and allowing memory to be freed.
+**Answer:** 
+**The Core Concept:**
+Closures capture variables from their outer scope.
+
+**Key Details:**
+- If an asynchronous callback (like an event listener or interval) forms a closure over a component's state, the garbage collector cannot free that memory even after the component unmounts.
+- The `useEffect` cleanup function removes these listeners, severing the reference and allowing memory to be freed.
 **Example:** `useEffect(() => { window.addEventListener('resize', handler); return () => window.removeEventListener('resize', handler); }, []);`
 **Reference:** [MDN Memory Management](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management)
 
 ### 52. Event Loop & Microtasks: Detail how Promises interact with the microtask queue compared to setTimeout.
-**Answer:** The Event Loop prioritizes the Microtask Queue (Promises, `queueMicrotask`) over the Macrotask Queue (`setTimeout`, `setInterval`). When the current synchronous code finishes, the engine will completely drain the Microtask Queue before it takes a single task from the Macrotask Queue.
+**Answer:** 
+**The Core Concept:**
+The Event Loop prioritizes the Microtask Queue (Promises, `queueMicrotask`) over the Macrotask Queue (`setTimeout`, `setInterval`).
+
+**Key Details:**
+- When the current synchronous code finishes, the engine will completely drain the Microtask Queue before it takes a single task from the Macrotask Queue.
 **Example:** A resolved Promise will execute its `.then()` callback before a `setTimeout` with a 0ms delay.
 **Reference:** [MDN Event Loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Event_loop)
 
 ### 53. Prototypal Inheritance: Explain the difference between Prototypal and Classical Inheritance.
-**Answer:** In Classical Inheritance, classes are blueprints, and objects are instances of those blueprints. In Prototypal Inheritance, objects inherit directly from other objects via a prototype chain. Modern JS `class` syntax is merely syntactic sugar over prototypal inheritance; understanding it is critical for performance and dynamic object extension.
+**Answer:** 
+**The Core Concept:**
+In Classical Inheritance, classes are blueprints, and objects are instances of those blueprints.
+
+**Key Details:**
+- In Prototypal Inheritance, objects inherit directly from other objects via a prototype chain.
+- Modern JS `class` syntax is merely syntactic sugar over prototypal inheritance; understanding it is critical for performance and dynamic object extension.
 **Example:** `Object.create(protoObject)` directly creates a new object inheriting from `protoObject`.
 **Reference:** [MDN Inheritance and the prototype chain](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain)
 
 ### 54. Strict vs. Loose Equality: Why does null == undefined return true?
-**Answer:** Loose equality (`==`) performs Implicit Type Coercion if the types differ. The JS specification explicitly defines that `null` and `undefined` loosely equal each other (and nothing else). Strict equality (`===`) checks both value and type, preventing unexpected coercion bugs.
+**Answer:** 
+**The Core Concept:**
+Loose equality (`==`) performs Implicit Type Coercion if the types differ.
+
+**Key Details:**
+- The JS specification explicitly defines that `null` and `undefined` loosely equal each other (and nothing else).
+- Strict equality (`===`) checks both value and type, preventing unexpected coercion bugs.
 **Example:** `null == undefined` is `true`, but `null === undefined` is `false`.
 **Reference:** [MDN Equality comparisons](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness)
 

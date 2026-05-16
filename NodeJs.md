@@ -15,7 +15,12 @@ This document contains a comprehensive list of 100 Node.js interview questions, 
 **Reference:** [Event Loop Timers and NextTick](https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/)
 
 ### 3. What is NPM?
-**Answer:** Node Package Manager. It is both a CLI tool for installing packages and an online repository of open-source JS projects.
+**Answer:** 
+**The Core Concept:**
+Node Package Manager.
+
+**Key Details:**
+- It is both a CLI tool for installing packages and an online repository of open-source JS projects.
 **Example:** `npm install express`
 **Reference:** [NPM Docs](https://docs.npmjs.com/)
 
@@ -25,12 +30,22 @@ This document contains a comprehensive list of 100 Node.js interview questions, 
 **Reference:** [package.json](https://docs.npmjs.com/cli/v9/configuring-npm/package-json)
 
 ### 5. What are modules in Node.js?
-**Answer:** Reusable blocks of code. Node supports CommonJS (`require()`) and ES Modules (`import()`).
+**Answer:** 
+**The Core Concept:**
+Reusable blocks of code.
+
+**Key Details:**
+- Node supports CommonJS (`require()`) and ES Modules (`import()`).
 **Example:** `const fs = require('fs');`
 **Reference:** [Node Modules](https://nodejs.org/api/modules.html)
 
 ### 6. What is the difference between `require()` and `import()`?
-**Answer:** `require` is synchronous and part of CommonJS. `import` is asynchronous, statically analyzed, and part of the ES6 standard.
+**Answer:** 
+**The Core Concept:**
+`require` is synchronous and part of CommonJS.
+
+**Key Details:**
+- `import` is asynchronous, statically analyzed, and part of the ES6 standard.
 **Example:** `require('http')` vs `import http from 'http'`.
 **Reference:** [ES Modules](https://nodejs.org/api/esm.html)
 
@@ -40,7 +55,12 @@ This document contains a comprehensive list of 100 Node.js interview questions, 
 **Reference:** [Events](https://nodejs.org/api/events.html)
 
 ### 8. What is REPL?
-**Answer:** Read, Eval, Print, Loop. It's a virtual environment like a console/terminal where you can run Node.js code instantly.
+**Answer:** 
+**The Core Concept:**
+Read, Eval, Print, Loop.
+
+**Key Details:**
+- It's a virtual environment like a console/terminal where you can run Node.js code instantly.
 **Example:** Typing `node` in the terminal starts the REPL.
 **Reference:** [REPL](https://nodejs.org/api/repl.html)
 
@@ -70,22 +90,42 @@ This document contains a comprehensive list of 100 Node.js interview questions, 
 **Reference:** [HTTP](https://nodejs.org/api/http.html)
 
 ### 14. What is `global` in Node.js?
-**Answer:** An object that provides variables and functions available everywhere. It is the Node.js equivalent of the `window` object in browsers.
+**Answer:** 
+**The Core Concept:**
+An object that provides variables and functions available everywhere.
+
+**Key Details:**
+- It is the Node.js equivalent of the `window` object in browsers.
 **Example:** `global.setTimeout`, `global.console`.
 **Reference:** [Globals](https://nodejs.org/api/globals.html)
 
 ### 15. What are `__dirname` and `__filename`?
-**Answer:** `__dirname` is the absolute path to the directory of the current module. `__filename` is the absolute path to the current module file itself.
+**Answer:** 
+**The Core Concept:**
+`__dirname` is the absolute path to the directory of the current module.
+
+**Key Details:**
+- `__filename` is the absolute path to the current module file itself.
 **Example:** `console.log(__dirname);`
 **Reference:** [Modules Globals](https://nodejs.org/api/modules.html#modules_dirname)
 
 ### 16. What is `process.env`?
-**Answer:** An object containing the user environment variables. Often used to store sensitive configuration like API keys or ports.
+**Answer:** 
+**The Core Concept:**
+An object containing the user environment variables.
+
+**Key Details:**
+- Often used to store sensitive configuration like API keys or ports.
 **Example:** `const port = process.env.PORT || 3000;`
 **Reference:** [process.env](https://nodejs.org/api/process.html#process_process_env)
 
 ### 17. How do you exit a Node.js process?
-**Answer:** By calling `process.exit(code)`. 0 means success, any non-zero number means failure.
+**Answer:** 
+**The Core Concept:**
+By calling `process.exit(code)`.
+
+**Key Details:**
+- 0 means success, any non-zero number means failure.
 **Example:** `process.exit(1);`
 **Reference:** [process.exit](https://nodejs.org/api/process.html#process_process_exit_code)
 
@@ -100,7 +140,12 @@ This document contains a comprehensive list of 100 Node.js interview questions, 
 **Reference:** [Express Middleware](https://expressjs.com/en/guide/using-middleware.html)
 
 ### 20. What is `package-lock.json`?
-**Answer:** A file that is automatically generated when `package.json` changes. It locks the versions of installed dependencies to ensure consistent installs across machines.
+**Answer:** 
+**The Core Concept:**
+A file that is automatically generated when `package.json` changes.
+
+**Key Details:**
+- It locks the versions of installed dependencies to ensure consistent installs across machines.
 **Example:** Always commit `package-lock.json` to source control.
 **Reference:** [package-lock.json](https://docs.npmjs.com/cli/v9/configuring-npm/package-lock-json)
 
@@ -113,7 +158,12 @@ This document contains a comprehensive list of 100 Node.js interview questions, 
 **Reference:** [Event Loop](https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/)
 
 ### 22. What is `setImmediate()` vs `setTimeout()`?
-**Answer:** `setTimeout(cb, 0)` schedules execution after a minimum delay. `setImmediate(cb)` schedules execution to occur on the *Check* phase of the event loop, immediately after the Poll phase.
+**Answer:** 
+**The Core Concept:**
+`setTimeout(cb, 0)` schedules execution after a minimum delay.
+
+**Key Details:**
+- `setImmediate(cb)` schedules execution to occur on the *Check* phase of the event loop, immediately after the Poll phase.
 **Example:** Inside an I/O cycle, `setImmediate` always fires before `setTimeout`.
 **Reference:** [setImmediate vs setTimeout](https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/#setimmediate-vs-settimeout)
 
@@ -148,7 +198,12 @@ This document contains a comprehensive list of 100 Node.js interview questions, 
 **Reference:** [Child Process](https://nodejs.org/api/child_process.html)
 
 ### 29. What is the difference between `spawn()` and `exec()`?
-**Answer:** `exec` buffers the command's output entirely into memory and returns it at the end. `spawn` streams the output as it happens, making it better for large data returns.
+**Answer:** 
+**The Core Concept:**
+`exec` buffers the command's output entirely into memory and returns it at the end.
+
+**Key Details:**
+- `spawn` streams the output as it happens, making it better for large data returns.
 **Example:** Use `spawn` for long-running scripts, `exec` for quick bash commands.
 **Reference:** [spawn vs exec](https://nodejs.org/api/child_process.html)
 
@@ -158,17 +213,32 @@ This document contains a comprehensive list of 100 Node.js interview questions, 
 **Reference:** [Cluster](https://nodejs.org/api/cluster.html)
 
 ### 31. Explain CORS.
-**Answer:** Cross-Origin Resource Sharing. A mechanism that uses HTTP headers to tell browsers to give a web application running at one origin access to selected resources from a different origin.
+**Answer:** 
+**The Core Concept:**
+Cross-Origin Resource Sharing.
+
+**Key Details:**
+- A mechanism that uses HTTP headers to tell browsers to give a web application running at one origin access to selected resources from a different origin.
 **Example:** `app.use(cors())` in Express.
 **Reference:** [MDN CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
 
 ### 32. How do you handle routing in Express.js?
-**Answer:** By using the `app.get()`, `app.post()`, etc. methods, or by using the `express.Router` class to create modular, mountable route handlers.
+**Answer:** 
+**The Core Concept:**
+By using the `app.get()`, `app.post()`, etc.
+
+**Key Details:**
+- methods, or by using the `express.Router` class to create modular, mountable route handlers.
 **Example:** `const router = express.Router(); router.get('/', ...); app.use('/users', router);`
 **Reference:** [Express Routing](https://expressjs.com/en/guide/routing.html)
 
 ### 33. What is the purpose of `module.exports`?
-**Answer:** It is the object that is actually returned as the result of a `require` call. It allows you to expose functions, objects, or values from a module.
+**Answer:** 
+**The Core Concept:**
+It is the object that is actually returned as the result of a `require` call.
+
+**Key Details:**
+- It allows you to expose functions, objects, or values from a module.
 **Example:** `module.exports = { myFunction };`
 **Reference:** [Modules](https://nodejs.org/api/modules.html)
 
@@ -178,7 +248,12 @@ This document contains a comprehensive list of 100 Node.js interview questions, 
 **Reference:** [JWT](https://jwt.io/introduction)
 
 ### 35. How do you hash passwords in Node.js?
-**Answer:** Do not store plain text. Use a library like `bcrypt` or `argon2` to hash and salt the passwords before saving them to the database.
+**Answer:** 
+**The Core Concept:**
+Do not store plain text.
+
+**Key Details:**
+- Use a library like `bcrypt` or `argon2` to hash and salt the passwords before saving them to the database.
 **Example:** `bcrypt.hash(password, 10);`
 **Reference:** [Bcrypt on NPM](https://www.npmjs.com/package/bcrypt)
 
@@ -188,17 +263,32 @@ This document contains a comprehensive list of 100 Node.js interview questions, 
 **Reference:** [Path](https://nodejs.org/api/path.html)
 
 ### 37. What is PM2?
-**Answer:** A production process manager for Node.js applications with a built-in load balancer. It keeps applications alive forever, reloads them without downtime, and manages logs.
+**Answer:** 
+**The Core Concept:**
+A production process manager for Node.js applications with a built-in load balancer.
+
+**Key Details:**
+- It keeps applications alive forever, reloads them without downtime, and manages logs.
 **Example:** `pm2 start app.js`
 **Reference:** [PM2](https://pm2.keymetrics.io/)
 
 ### 38. What are environmental variables in Node.js?
-**Answer:** Key-value pairs stored in the OS environment, accessible via `process.env`. The `dotenv` package is commonly used to load them from a `.env` file during development.
+**Answer:** 
+**The Core Concept:**
+Key-value pairs stored in the OS environment, accessible via `process.env`.
+
+**Key Details:**
+- The `dotenv` package is commonly used to load them from a `.env` file during development.
 **Example:** `require('dotenv').config();`
 **Reference:** [Dotenv](https://www.npmjs.com/package/dotenv)
 
 ### 39. What is a RESTful API?
-**Answer:** Representational State Transfer. An architectural style for designing networked applications using standard HTTP methods (GET, POST, PUT, DELETE) and stateless communication.
+**Answer:** 
+**The Core Concept:**
+Representational State Transfer.
+
+**Key Details:**
+- An architectural style for designing networked applications using standard HTTP methods (GET, POST, PUT, DELETE) and stateless communication.
 **Example:** `GET /users`, `POST /users`.
 **Reference:** [REST APIs](https://restfulapi.net/)
 
@@ -211,52 +301,106 @@ This document contains a comprehensive list of 100 Node.js interview questions, 
 ## Hard (50 Questions)
 
 ### 41. Explain Libuv in detail.
-**Answer:** A multi-platform C library that provides support for asynchronous I/O based on event loops. It handles the Thread Pool (for file system/DNS operations) and the Event Loop architecture for Node.js.
+**Answer:** 
+**The Core Concept:**
+A multi-platform C library that provides support for asynchronous I/O based on event loops.
+
+**Key Details:**
+- It handles the Thread Pool (for file system/DNS operations) and the Event Loop architecture for Node.js.
 **Example:** fs operations use libuv's thread pool.
 **Reference:** [Libuv Design](http://docs.libuv.org/en/v1.x/design.html)
 
 ### 42. How does Node.js resolve modules?
-**Answer:** 1. Core modules. 2. File modules (relative/absolute paths). 3. `node_modules` (traverses up the directory tree looking for `node_modules`).
+**Answer:** 
+**The Core Concept:**
+1.
+
+**Key Details:**
+- Core modules.
+- 2.
+- File modules (relative/absolute paths).
+- 3.
+- `node_modules` (traverses up the directory tree looking for `node_modules`).
 **Example:** `require('express')` checks `node_modules`.
 **Reference:** [Module Resolution](https://nodejs.org/api/modules.html#modules_all_together)
 
 ### 43. Explain the architecture of the V8 Engine.
-**Answer:** Google's open-source high-performance JS and WebAssembly engine, written in C++. It compiles JS directly to native machine code before executing it, using JIT (Just-In-Time) compilation (Ignition interpreter and TurboFan compiler).
+**Answer:** 
+**The Core Concept:**
+Google's open-source high-performance JS and WebAssembly engine, written in C++.
+
+**Key Details:**
+- It compiles JS directly to native machine code before executing it, using JIT (Just-In-Time) compilation (Ignition interpreter and TurboFan compiler).
 **Example:** V8 powers Chrome and Node.js.
 **Reference:** [V8 Docs](https://v8.dev/)
 
 ### 44. What are Worker Threads?
-**Answer:** A module (`worker_threads`) that allows you to use threads to execute JS in parallel. Useful for CPU-intensive JavaScript operations, solving the single-threaded CPU bottleneck.
+**Answer:** 
+**The Core Concept:**
+A module (`worker_threads`) that allows you to use threads to execute JS in parallel.
+
+**Key Details:**
+- Useful for CPU-intensive JavaScript operations, solving the single-threaded CPU bottleneck.
 **Example:** `const { Worker } = require('worker_threads');`
 **Reference:** [Worker Threads](https://nodejs.org/api/worker_threads.html)
 
 ### 45. What is the difference between Cluster and Worker Threads?
-**Answer:** Cluster spins up entire new Node.js processes (heavy memory usage) that can share ports. Worker threads run inside a single process, share memory via `SharedArrayBuffer`, and are lighter, but cannot share server ports directly.
+**Answer:** 
+**The Core Concept:**
+Cluster spins up entire new Node.js processes (heavy memory usage) that can share ports.
+
+**Key Details:**
+- Worker threads run inside a single process, share memory via `SharedArrayBuffer`, and are lighter, but cannot share server ports directly.
 **Example:** Cluster for web servers, Workers for math computations.
 **Reference:** [Workers vs Cluster](https://nodejs.org/api/worker_threads.html)
 
 ### 46. What is Memory Leak in Node.js and how do you profile it?
-**Answer:** Occurs when objects are no longer needed but are still referenced by the root, preventing garbage collection. Profiled using tools like Chrome DevTools (via `node --inspect`), heap snapshots, and analyzing memory increases over time.
+**Answer:** 
+**The Core Concept:**
+Occurs when objects are no longer needed but are still referenced by the root, preventing garbage collection.
+
+**Key Details:**
+- Profiled using tools like Chrome DevTools (via `node --inspect`), heap snapshots, and analyzing memory increases over time.
 **Example:** Global variables caching data infinitely.
 **Reference:** [Debugging Memory Leaks](https://nodejs.org/en/docs/guides/diagnostics/memory/)
 
 ### 47. Explain Garbage Collection in V8.
-**Answer:** V8 uses a generational garbage collector (Scavenger for new space/young generation, Mark-Sweep/Mark-Compact for old space). It periodically frees memory occupied by objects that are no longer reachable from the root.
+**Answer:** 
+**The Core Concept:**
+V8 uses a generational garbage collector (Scavenger for new space/young generation, Mark-Sweep/Mark-Compact for old space).
+
+**Key Details:**
+- It periodically frees memory occupied by objects that are no longer reachable from the root.
 **Example:** `--max-old-space-size=4096` alters GC behavior.
 **Reference:** [V8 Garbage Collection](https://v8.dev/blog/trash-talk)
 
 ### 48. How do you implement WebSockets in Node.js?
-**Answer:** Using libraries like `ws` or `socket.io`. WebSockets provide full-duplex, persistent communication over a single TCP connection, bypassing the HTTP request/response overhead for real-time apps.
+**Answer:** 
+**The Core Concept:**
+Using libraries like `ws` or `socket.io`.
+
+**Key Details:**
+- WebSockets provide full-duplex, persistent communication over a single TCP connection, bypassing the HTTP request/response overhead for real-time apps.
 **Example:** `const io = require('socket.io')(server);`
 **Reference:** [Socket.io](https://socket.io/)
 
 ### 49. What is Backpressure in Node.js Streams?
-**Answer:** When data is being read from a readable stream faster than it can be written to the writable stream, backpressure builds up. `stream.pipe()` automatically handles this by pausing the readable stream until the writable stream drains.
+**Answer:** 
+**The Core Concept:**
+When data is being read from a readable stream faster than it can be written to the writable stream, backpressure builds up.
+
+**Key Details:**
+- `stream.pipe()` automatically handles this by pausing the readable stream until the writable stream drains.
 **Example:** Writing a massive file to a slow network connection.
 **Reference:** [Backpressure Guide](https://nodejs.org/en/docs/guides/backpressuring-in-streams/)
 
 ### 50. How does Node.js handle unhandled promise rejections?
-**Answer:** In newer versions, it crashes the Node.js process with a non-zero exit code. You should handle them using `.catch()` or the `process.on('unhandledRejection')` event to log and gracefully shut down.
+**Answer:** 
+**The Core Concept:**
+In newer versions, it crashes the Node.js process with a non-zero exit code.
+
+**Key Details:**
+- You should handle them using `.catch()` or the `process.on('unhandledRejection')` event to log and gracefully shut down.
 **Example:** `process.on('unhandledRejection', (reason) => { ... });`
 **Reference:** [unhandledRejection](https://nodejs.org/api/process.html#process_event_unhandledrejection)
 

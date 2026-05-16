@@ -30,22 +30,42 @@ This document contains a comprehensive list of 100 LESS (Leaner Style Sheets) in
 **Reference:** [Nesting](https://lesscss.org/features/#nesting-feature)
 
 ### 6. What does the `&` (ampersand) do in LESS?
-**Answer:** The `&` operator represents the parent selector of a nested rule. It's often used for pseudo-classes or modifying classes.
+**Answer:** 
+**The Core Concept:**
+The `&` operator represents the parent selector of a nested rule.
+
+**Key Details:**
+- It's often used for pseudo-classes or modifying classes.
 **Example:** `a { color: blue; &:hover { color: green; } }`
 **Reference:** [Parent Selectors](https://lesscss.org/features/#parent-selectors-feature)
 
 ### 7. How do you write comments in LESS?
-**Answer:** LESS supports both single-line (`//`) and multi-line (`/* */`) comments. Single-line comments are stripped upon compilation.
+**Answer:** 
+**The Core Concept:**
+LESS supports both single-line (`//`) and multi-line (`/* */`) comments.
+
+**Key Details:**
+- Single-line comments are stripped upon compilation.
 **Example:** `// This comment will not be in the CSS`
 **Reference:** [Comments](https://lesscss.org/features/#comments-feature)
 
 ### 8. What is escaping in LESS?
-**Answer:** Escaping allows you to use any arbitrary string as a property or variable value without LESS compiling it. Used with `~"string"`.
+**Answer:** 
+**The Core Concept:**
+Escaping allows you to use any arbitrary string as a property or variable value without LESS compiling it.
+
+**Key Details:**
+- Used with `~"string"`.
 **Example:** `.class { filter: ~"ms:alwaysHasItsOwnSyntax.For.Stuff()"; }`
 **Reference:** [Escaping](https://lesscss.org/features/#escaping-feature)
 
 ### 9. Can LESS be compiled in the browser?
-**Answer:** Yes, by including the `less.js` script in your HTML, LESS can be compiled in the browser dynamically. However, it is not recommended for production due to performance.
+**Answer:** 
+**The Core Concept:**
+Yes, by including the `less.js` script in your HTML, LESS can be compiled in the browser dynamically.
+
+**Key Details:**
+- However, it is not recommended for production due to performance.
 **Example:** `<script src="less.js"></script>`
 **Reference:** [Browser usage](https://lesscss.org/usage/#using-less-in-the-browser)
 
@@ -60,12 +80,22 @@ This document contains a comprehensive list of 100 LESS (Leaner Style Sheets) in
 **Reference:** [Operations](https://lesscss.org/features/#operations-feature)
 
 ### 12. How does LESS handle color operations?
-**Answer:** LESS can perform math on colors. It operates on the red, green, and blue components individually.
+**Answer:** 
+**The Core Concept:**
+LESS can perform math on colors.
+
+**Key Details:**
+- It operates on the red, green, and blue components individually.
 **Example:** `@color: #111; .class { color: @color * 2; } // Outputs #222`
 **Reference:** [Color Operations](https://lesscss.org/features/#operations-feature-color-operations)
 
 ### 13. What is the `@import` directive?
-**Answer:** Used to import other `.less` files into a main LESS file. Variables and mixins from the imported files are available to the main file.
+**Answer:** 
+**The Core Concept:**
+Used to import other `.less` files into a main LESS file.
+
+**Key Details:**
+- Variables and mixins from the imported files are available to the main file.
 **Example:** `@import "library.less";`
 **Reference:** [Import At-Rules](https://lesscss.org/features/#import-atrules-feature)
 
@@ -90,7 +120,12 @@ This document contains a comprehensive list of 100 LESS (Leaner Style Sheets) in
 **Reference:** [Variable Interpolation](https://lesscss.org/features/#variables-feature-variable-interpolation)
 
 ### 18. What are lazy evaluated variables?
-**Answer:** Variables do not have to be declared before they are used. LESS evaluates them lazily, meaning you can define them anywhere.
+**Answer:** 
+**The Core Concept:**
+Variables do not have to be declared before they are used.
+
+**Key Details:**
+- LESS evaluates them lazily, meaning you can define them anywhere.
 **Example:** `body { color: @color; } @color: red;`
 **Reference:** [Lazy Evaluation](https://lesscss.org/features/#variables-feature-lazy-evaluation)
 
@@ -108,17 +143,32 @@ This document contains a comprehensive list of 100 LESS (Leaner Style Sheets) in
 ## Medium (30 Questions)
 
 ### 21. What is the `@arguments` variable in mixins?
-**Answer:** A special variable that contains all the arguments passed to a mixin. Useful when you don't want to deal with individual parameters.
+**Answer:** 
+**The Core Concept:**
+A special variable that contains all the arguments passed to a mixin.
+
+**Key Details:**
+- Useful when you don't want to deal with individual parameters.
 **Example:** `.box-shadow(@x, @y, @blur, @color) { box-shadow: @arguments; }`
 **Reference:** [The @arguments variable](https://lesscss.org/features/#mixins-parametric-feature-the-arguments-variable)
 
 ### 22. What is pattern-matching in mixins?
-**Answer:** You can define multiple mixins with the same name but different fixed arguments. LESS will use the mixin whose parameters match the argument you pass.
+**Answer:** 
+**The Core Concept:**
+You can define multiple mixins with the same name but different fixed arguments.
+
+**Key Details:**
+- LESS will use the mixin whose parameters match the argument you pass.
 **Example:** `.mixin(dark, @color) { color: darken(@color, 10%); }`
 **Reference:** [Pattern-matching](https://lesscss.org/features/#mixins-parametric-feature-pattern-matching)
 
 ### 23. What are Mixin Guards?
-**Answer:** Guards allow you to apply logical conditions to mixins (like an `if` statement). The mixin is only applied if the condition evaluates to true.
+**Answer:** 
+**The Core Concept:**
+Guards allow you to apply logical conditions to mixins (like an `if` statement).
+
+**Key Details:**
+- The mixin is only applied if the condition evaluates to true.
 **Example:** `.mixin (@a) when (@a > 10) { ... }`
 **Reference:** [Mixin Guards](https://lesscss.org/features/#mixin-guards-feature)
 
@@ -128,12 +178,23 @@ This document contains a comprehensive list of 100 LESS (Leaner Style Sheets) in
 **Reference:** [CSS Guards](https://lesscss.org/features/#css-guards-feature)
 
 ### 25. Which comparison operators are available in Guards?
-**Answer:** `>`, `>=`, `=`, `=<`, `<`. Also, keyword `true` is the only truthy value.
+**Answer:** 
+**The Core Concept:**
+`>`, `>=`, `=`, `=<`, `<`.
+
+**Key Details:**
+- Also, keyword `true` is the only truthy value.
 **Example:** `when (@a >= @b)`
 **Reference:** [Guard Comparison Operators](https://lesscss.org/features/#mixin-guards-feature-guard-comparison-operators)
 
 ### 26. How do you implement "AND" and "OR" logic in Guards?
-**Answer:** Use `and` for AND logic. Use a comma `,` for OR logic. Use `not` for negation.
+**Answer:** 
+**The Core Concept:**
+Use `and` for AND logic.
+
+**Key Details:**
+- Use a comma `,` for OR logic.
+- Use `not` for negation.
 **Example:** `.mixin (@a) when (@a > 10) and (@a < 20) { ... }`
 **Reference:** [Logical Operators](https://lesscss.org/features/#mixin-guards-feature-logical-operators)
 
@@ -143,7 +204,12 @@ This document contains a comprehensive list of 100 LESS (Leaner Style Sheets) in
 **Reference:** [Extend](https://lesscss.org/features/#extend-feature)
 
 ### 28. What is the difference between Mixin and Extend?
-**Answer:** A mixin copies the styles into the calling selector, resulting in duplicate CSS. `extend` groups selectors together, resulting in less CSS bloat.
+**Answer:** 
+**The Core Concept:**
+A mixin copies the styles into the calling selector, resulting in duplicate CSS.
+
+**Key Details:**
+- `extend` groups selectors together, resulting in less CSS bloat.
 **Example:** `.a, .b { color: red; }` (Extend output).
 **Reference:** [Extend vs Mixin](https://lesscss.org/features/#extend-feature-extend-vs-mixin)
 
@@ -158,12 +224,22 @@ This document contains a comprehensive list of 100 LESS (Leaner Style Sheets) in
 **Reference:** [Detached Rulesets](https://lesscss.org/features/#detached-rulesets-feature)
 
 ### 31. How do you create loops in LESS?
-**Answer:** LESS does not have a standard `@for` loop. Instead, you use recursive mixins (a mixin that calls itself) along with guards.
+**Answer:** 
+**The Core Concept:**
+LESS does not have a standard `@for` loop.
+
+**Key Details:**
+- Instead, you use recursive mixins (a mixin that calls itself) along with guards.
 **Example:** `.loop(@i) when (@i > 0) { .col-@{i} { width: 10px * @i; } .loop(@i - 1); } .loop(3);`
 **Reference:** [Loops](https://lesscss.org/features/#loops-feature)
 
 ### 32. What is the `fade()` function?
-**Answer:** Sets the absolute opacity of a color. Can be applied to colors whether they already have an opacity value or not.
+**Answer:** 
+**The Core Concept:**
+Sets the absolute opacity of a color.
+
+**Key Details:**
+- Can be applied to colors whether they already have an opacity value or not.
 **Example:** `fade(#000000, 50%) // outputs rgba(0, 0, 0, 0.5)`
 **Reference:** [Color Operations - fade](https://lesscss.org/functions/#color-operations-fade)
 
@@ -193,7 +269,12 @@ This document contains a comprehensive list of 100 LESS (Leaner Style Sheets) in
 **Reference:** [Import Options](https://lesscss.org/features/#import-atrules-feature-import-options)
 
 ### 38. What is `@import (inline)`?
-**Answer:** Includes the external file but does not process it. Useful for including plain CSS files that contain syntax LESS doesn't support.
+**Answer:** 
+**The Core Concept:**
+Includes the external file but does not process it.
+
+**Key Details:**
+- Useful for including plain CSS files that contain syntax LESS doesn't support.
 **Example:** `@import (inline) "fonts.css";`
 **Reference:** [Import Options](https://lesscss.org/features/#import-atrules-feature-import-options)
 
@@ -203,7 +284,13 @@ This document contains a comprehensive list of 100 LESS (Leaner Style Sheets) in
 **Reference:** [Import Options](https://lesscss.org/features/#import-atrules-feature-import-options)
 
 ### 40. What is variable overriding in LESS?
-**Answer:** LESS variables are technically "constants" per scope. If defined twice in the same scope, the *last* definition wins. This is useful when overriding library defaults.
+**Answer:** 
+**The Core Concept:**
+LESS variables are technically "constants" per scope.
+
+**Key Details:**
+- If defined twice in the same scope, the *last* definition wins.
+- This is useful when overriding library defaults.
 **Example:** `@color: red; @color: blue;` (color is blue).
 **Reference:** [Variables - Lazy Evaluation](https://lesscss.org/features/#variables-feature-lazy-evaluation)
 
@@ -211,12 +298,22 @@ This document contains a comprehensive list of 100 LESS (Leaner Style Sheets) in
 ## Hard (50 Questions)
 
 ### 41. How does variable scope work in LESS?
-**Answer:** Scope works similarly to CSS. Variables and mixins are first looked up locally; if not found, it inherits from the parent scope.
+**Answer:** 
+**The Core Concept:**
+Scope works similarly to CSS.
+
+**Key Details:**
+- Variables and mixins are first looked up locally; if not found, it inherits from the parent scope.
 **Example:** `body { @c: red; a { color: @c; } }`
 **Reference:** [Scope](https://lesscss.org/features/#scope-feature)
 
 ### 42. How does LESS compile `&` when nested deeply?
-**Answer:** The `&` represents all parent selectors combined. If deeply nested, it combines them all.
+**Answer:** 
+**The Core Concept:**
+The `&` represents all parent selectors combined.
+
+**Key Details:**
+- If deeply nested, it combines them all.
 **Example:** `.a { .b { & > .c { } } }` becomes `.a .b > .c`.
 **Reference:** [Parent Selectors](https://lesscss.org/features/#parent-selectors-feature)
 
@@ -231,7 +328,13 @@ This document contains a comprehensive list of 100 LESS (Leaner Style Sheets) in
 **Reference:** [Misc Functions](https://lesscss.org/functions/#misc-functions)
 
 ### 45. Can you use JavaScript directly inside LESS?
-**Answer:** Historically yes, via backticks (`` `Math.random()` ``). However, this was deprecated in 3.0. Now, you must use Javascript evaluation plugins.
+**Answer:** 
+**The Core Concept:**
+Historically yes, via backticks (`` `Math.random()` ``).
+
+**Key Details:**
+- However, this was deprecated in 3.0.
+- Now, you must use Javascript evaluation plugins.
 **Example:** `@plugin "my-plugin";`
 **Reference:** [JavaScript evaluation](https://lesscss.org/usage/#plugin-usage)
 
@@ -251,7 +354,14 @@ This document contains a comprehensive list of 100 LESS (Leaner Style Sheets) in
 **Reference:** [Misc Functions - data-uri](https://lesscss.org/functions/#misc-functions-data-uri)
 
 ### 49. What is the difference between LESS and Sass (SCSS)?
-**Answer:** Both are highly similar preprocessors. Historically, Sass was Ruby-based and LESS was Node/JS-based. Sass uses `@` for control directives (`@if`, `@for`) and `$` for variables, while LESS uses Guards for logic and `@` for variables. Sass is generally considered more feature-rich today (especially Dart Sass).
+**Answer:** 
+**The Core Concept:**
+Both are highly similar preprocessors.
+
+**Key Details:**
+- Historically, Sass was Ruby-based and LESS was Node/JS-based.
+- Sass uses `@` for control directives (`@if`, `@for`) and `$` for variables, while LESS uses Guards for logic and `@` for variables.
+- Sass is generally considered more feature-rich today (especially Dart Sass).
 **Example:** Sass `@for` vs LESS recursive guards.
 **Reference:** [LESS vs Sass](https://css-tricks.com/sass-vs-less/)
 

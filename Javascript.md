@@ -20,17 +20,32 @@ This document contains a comprehensive list of 100 JavaScript interview question
 **Reference:** [MDN Function.prototype.bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)
 
 ### 4. What is JSON and its common operations?
-**Answer:** JavaScript Object Notation. Common operations are `JSON.parse()` (string to object) and `JSON.stringify()` (object to string).
+**Answer:** 
+**The Core Concept:**
+JavaScript Object Notation.
+
+**Key Details:**
+- Common operations are `JSON.parse()` (string to object) and `JSON.stringify()` (object to string).
 **Example:** `const obj = JSON.parse('{"a":1}');`
 **Reference:** [MDN JSON](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON)
 
 ### 5. What is the difference between `slice` and `splice`?
-**Answer:** `slice` returns a shallow copy of a portion of an array without modifying it. `splice` changes the contents of an array by removing or replacing existing elements.
+**Answer:** 
+**The Core Concept:**
+`slice` returns a shallow copy of a portion of an array without modifying it.
+
+**Key Details:**
+- `splice` changes the contents of an array by removing or replacing existing elements.
 **Example:** `arr.slice(1, 3); arr.splice(1, 1, 'new');`
 **Reference:** [MDN Array.prototype.splice](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice)
 
 ### 6. What is the difference between `==` and `===`?
-**Answer:** `==` compares values with type coercion. `===` compares values and types strictly without coercion.
+**Answer:** 
+**The Core Concept:**
+`==` compares values with type coercion.
+
+**Key Details:**
+- `===` compares values and types strictly without coercion.
 **Example:** `1 == '1'` is true, `1 === '1'` is false.
 **Reference:** [MDN Equality](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Strict_equality)
 
@@ -40,7 +55,12 @@ This document contains a comprehensive list of 100 JavaScript interview question
 **Reference:** [MDN Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 
 ### 8. What is a first-class function?
-**Answer:** Functions in JS are treated like any other variable. They can be passed as arguments, returned, or assigned.
+**Answer:** 
+**The Core Concept:**
+Functions in JS are treated like any other variable.
+
+**Key Details:**
+- They can be passed as arguments, returned, or assigned.
 **Example:** `const greet = function() { console.log('Hi'); };`
 **Reference:** [MDN First-class Function](https://developer.mozilla.org/en-US/docs/Glossary/First-class_Function)
 
@@ -55,7 +75,12 @@ This document contains a comprehensive list of 100 JavaScript interview question
 **Reference:** [Wikipedia Pure function](https://en.wikipedia.org/wiki/Pure_function)
 
 ### 11. What is the difference between `let` and `var`?
-**Answer:** `let` is block-scoped and doesn't create global object properties. `var` is function-scoped and hoisted.
+**Answer:** 
+**The Core Concept:**
+`let` is block-scoped and doesn't create global object properties.
+
+**Key Details:**
+- `var` is function-scoped and hoisted.
 **Example:** `if(true) { let x = 1; var y = 2; }` (`x` is unavailable outside, `y` is available).
 **Reference:** [MDN let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)
 
@@ -65,7 +90,12 @@ This document contains a comprehensive list of 100 JavaScript interview question
 **Reference:** [MDN TDZ](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let#temporal_dead_zone_tdz)
 
 ### 13. What is an IIFE?
-**Answer:** Immediately Invoked Function Expression. A function that runs as soon as it is defined.
+**Answer:** 
+**The Core Concept:**
+Immediately Invoked Function Expression.
+
+**Key Details:**
+- A function that runs as soon as it is defined.
 **Example:** `(function() { console.log('Ran'); })();`
 **Reference:** [MDN IIFE](https://developer.mozilla.org/en-US/docs/Glossary/IIFE)
 
@@ -80,7 +110,12 @@ This document contains a comprehensive list of 100 JavaScript interview question
 **Reference:** [MDN Closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures)
 
 ### 16. What is the DOM?
-**Answer:** Document Object Model. A programming interface for web documents.
+**Answer:** 
+**The Core Concept:**
+Document Object Model.
+
+**Key Details:**
+- A programming interface for web documents.
 **Example:** `document.getElementById('app')`
 **Reference:** [MDN DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)
 
@@ -108,7 +143,13 @@ This document contains a comprehensive list of 100 JavaScript interview question
 ## Medium (30 Questions)
 
 ### 21. What is the difference between `localStorage`, `sessionStorage`, and `cookies`?
-**Answer:** `localStorage` persists across sessions. `sessionStorage` clears on tab close. `Cookies` are sent to the server with every request and have small size limits (4KB).
+**Answer:** 
+**The Core Concept:**
+`localStorage` persists across sessions.
+
+**Key Details:**
+- `sessionStorage` clears on tab close.
+- `Cookies` are sent to the server with every request and have small size limits (4KB).
 **Example:** `localStorage.setItem()`, `document.cookie`.
 **Reference:** [MDN Web Storage](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API)
 
@@ -118,7 +159,12 @@ This document contains a comprehensive list of 100 JavaScript interview question
 **Reference:** [MDN Event bubbling](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#event_bubbling)
 
 ### 23. What is Event Capturing?
-**Answer:** The opposite of bubbling. The event starts from the outermost element and propagates inwards to the target element.
+**Answer:** 
+**The Core Concept:**
+The opposite of bubbling.
+
+**Key Details:**
+- The event starts from the outermost element and propagates inwards to the target element.
 **Example:** `element.addEventListener('click', handler, true);` (true enables capturing).
 **Reference:** [MDN Event capturing](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#event_capturing)
 
@@ -138,17 +184,32 @@ This document contains a comprehensive list of 100 JavaScript interview question
 **Reference:** [MDN instanceof](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof)
 
 ### 27. What is NaN?
-**Answer:** "Not-a-Number". A global property representing a value that is not a valid number.
+**Answer:** 
+**The Core Concept:**
+"Not-a-Number".
+
+**Key Details:**
+- A global property representing a value that is not a valid number.
 **Example:** `parseInt("abc") // NaN`
 **Reference:** [MDN NaN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN)
 
 ### 28. How do you check if a value is NaN?
-**Answer:** Using `Number.isNaN()` or `isNaN()`. `Number.isNaN()` is safer as it doesn't coerce values.
+**Answer:** 
+**The Core Concept:**
+Using `Number.isNaN()` or `isNaN()`.
+
+**Key Details:**
+- `Number.isNaN()` is safer as it doesn't coerce values.
 **Example:** `Number.isNaN(NaN) // true`
 **Reference:** [MDN Number.isNaN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isNaN)
 
 ### 29. What is `undefined` vs `null`?
-**Answer:** `undefined` means a variable has been declared but not assigned. `null` is an intentional absence of any object value.
+**Answer:** 
+**The Core Concept:**
+`undefined` means a variable has been declared but not assigned.
+
+**Key Details:**
+- `null` is an intentional absence of any object value.
 **Example:** `let a; // undefined`, `let b = null; // null`
 **Reference:** [MDN null](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null)
 
@@ -158,7 +219,12 @@ This document contains a comprehensive list of 100 JavaScript interview question
 **Reference:** [MDN structuredClone](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone)
 
 ### 31. What are promises in JS and what are their states?
-**Answer:** A Promise represents an asynchronous operation. States: Pending, Fulfilled, Rejected.
+**Answer:** 
+**The Core Concept:**
+A Promise represents an asynchronous operation.
+
+**Key Details:**
+- States: Pending, Fulfilled, Rejected.
 **Example:** `const p = new Promise((resolve) => resolve());`
 **Reference:** [MDN Promise states](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
@@ -183,7 +249,12 @@ This document contains a comprehensive list of 100 JavaScript interview question
 **Reference:** [MDN Event loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop)
 
 ### 36. What is a generator function?
-**Answer:** A function that can pause its execution and yield multiple values. Declared with `function*`.
+**Answer:** 
+**The Core Concept:**
+A function that can pause its execution and yield multiple values.
+
+**Key Details:**
+- Declared with `function*`.
 **Example:** `function* gen() { yield 1; yield 2; }`
 **Reference:** [MDN function*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*)
 
@@ -228,7 +299,12 @@ This document contains a comprehensive list of 100 JavaScript interview question
 **Reference:** [JavaScript.info Currying](https://javascript.info/currying-partials)
 
 ### 45. What is the `Map` object?
-**Answer:** Holds key-value pairs and remembers the original insertion order. Any value can be used as either a key or a value.
+**Answer:** 
+**The Core Concept:**
+Holds key-value pairs and remembers the original insertion order.
+
+**Key Details:**
+- Any value can be used as either a key or a value.
 **Example:** `const map = new Map(); map.set('key', 'value');`
 **Reference:** [MDN Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
 
@@ -243,7 +319,12 @@ This document contains a comprehensive list of 100 JavaScript interview question
 **Reference:** [MDN Array.reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce)
 
 ### 48. What is the `this` keyword?
-**Answer:** Refers to the object that is currently executing the code. Its value depends on how the function is called.
+**Answer:** 
+**The Core Concept:**
+Refers to the object that is currently executing the code.
+
+**Key Details:**
+- Its value depends on how the function is called.
 **Example:** `console.log(this); // window globally`
 **Reference:** [MDN this](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this)
 
@@ -261,17 +342,33 @@ This document contains a comprehensive list of 100 JavaScript interview question
 ## Hard (50 Questions)
 
 ### 51. Explain the mechanism of Garbage Collection in JavaScript.
-**Answer:** JS uses a "mark-and-sweep" algorithm. Periodically, the garbage collector starts at the roots (global variables), finds all references from roots, and marks them reachable. It then sweeps (deletes) unreachable objects to free memory.
+**Answer:** 
+**The Core Concept:**
+JS uses a "mark-and-sweep" algorithm.
+
+**Key Details:**
+- Periodically, the garbage collector starts at the roots (global variables), finds all references from roots, and marks them reachable.
+- It then sweeps (deletes) unreachable objects to free memory.
 **Example:** An object detached from the global scope is swept.
 **Reference:** [MDN Memory Management](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management)
 
 ### 52. What are memory leaks and how do you prevent them?
-**Answer:** A memory leak is a piece of memory that is no longer needed but is not released. Prevent them by clearing timers (`clearInterval`), removing unused event listeners, and avoiding accidental global variables.
+**Answer:** 
+**The Core Concept:**
+A memory leak is a piece of memory that is no longer needed but is not released.
+
+**Key Details:**
+- Prevent them by clearing timers (`clearInterval`), removing unused event listeners, and avoiding accidental global variables.
 **Example:** Forgetting to run `removeEventListener` when a component unmounts.
 **Reference:** [MDN Memory Management](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management)
 
 ### 53. What is the difference between Macrotasks and Microtasks?
-**Answer:** Microtasks (Promises, `queueMicrotask`) execute immediately after the current script and before any rendering. Macrotasks (`setTimeout`, `setInterval`, UI events) execute in subsequent turns of the event loop.
+**Answer:** 
+**The Core Concept:**
+Microtasks (Promises, `queueMicrotask`) execute immediately after the current script and before any rendering.
+
+**Key Details:**
+- Macrotasks (`setTimeout`, `setInterval`, UI events) execute in subsequent turns of the event loop.
 **Example:** Promise handlers run before `setTimeout`.
 **Reference:** [JavaScript.info Microtasks](https://javascript.info/microtask-queue)
 
@@ -286,7 +383,12 @@ This document contains a comprehensive list of 100 JavaScript interview question
 **Reference:** [MDN Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
 
 ### 56. What is `Reflect` in JavaScript?
-**Answer:** `Reflect` is a built-in object that provides methods for interceptable JavaScript operations. The methods are the same as those of proxy handlers.
+**Answer:** 
+**The Core Concept:**
+`Reflect` is a built-in object that provides methods for interceptable JavaScript operations.
+
+**Key Details:**
+- The methods are the same as those of proxy handlers.
 **Example:** `Reflect.has(obj, 'prop');` (similar to `'prop' in obj`).
 **Reference:** [MDN Reflect](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect)
 
@@ -296,7 +398,12 @@ This document contains a comprehensive list of 100 JavaScript interview question
 **Reference:** [MDN Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API)
 
 ### 58. What is the difference between a Service Worker and a Web Worker?
-**Answer:** Web Workers are for executing heavy computations in a background thread to prevent UI blocking. Service Workers act as a network proxy and are designed for offline experiences and caching.
+**Answer:** 
+**The Core Concept:**
+Web Workers are for executing heavy computations in a background thread to prevent UI blocking.
+
+**Key Details:**
+- Service Workers act as a network proxy and are designed for offline experiences and caching.
 **Example:** `new Worker('script.js')` vs `navigator.serviceWorker.register(...)`.
 **Reference:** [MDN Web Workers API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API)
 
@@ -311,12 +418,22 @@ This document contains a comprehensive list of 100 JavaScript interview question
 **Reference:** [WebKit TCO](https://webkit.org/blog/6240/ecmascript-6-proper-tail-calls-in-webkit/)
 
 ### 61. Explain how prototypal inheritance works under the hood.
-**Answer:** When accessing a property on an object, JS looks at the object itself. If not found, it checks `obj.__proto__`, then `obj.__proto__.__proto__`, until it finds the property or reaches `null`.
+**Answer:** 
+**The Core Concept:**
+When accessing a property on an object, JS looks at the object itself.
+
+**Key Details:**
+- If not found, it checks `obj.__proto__`, then `obj.__proto__.__proto__`, until it finds the property or reaches `null`.
 **Example:** `arr.push()` works because `Array.prototype.push` is in `arr`'s chain.
 **Reference:** [MDN Inheritance](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain)
 
 ### 62. What is the difference between `Object.create(null)` and `{}`?
-**Answer:** `{}` inherits from `Object.prototype` (has `toString`, etc.). `Object.create(null)` creates an object with no prototype chain, making it a pure dictionary.
+**Answer:** 
+**The Core Concept:**
+`{}` inherits from `Object.prototype` (has `toString`, etc.).
+
+**Key Details:**
+- `Object.create(null)` creates an object with no prototype chain, making it a pure dictionary.
 **Example:** `Object.create(null).toString // undefined`
 **Reference:** [MDN Object.create](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create)
 
@@ -363,22 +480,42 @@ Function.prototype.myBind = function(context, ...args1) {
 **Reference:** [MDN bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)
 
 ### 66. How does JS handle floating-point precision?
-**Answer:** JS uses the IEEE 754 standard (double precision 64-bit float). This causes precision issues with decimals.
+**Answer:** 
+**The Core Concept:**
+JS uses the IEEE 754 standard (double precision 64-bit float).
+
+**Key Details:**
+- This causes precision issues with decimals.
 **Example:** `0.1 + 0.2 === 0.3 // false`
 **Reference:** [MDN Numbers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#number_type)
 
 ### 67. How can you reliably fix floating-point issues?
-**Answer:** Multiply to integers, add, then divide back. Or use `Number.EPSILON` for comparison, or use a library like `decimal.js`.
+**Answer:** 
+**The Core Concept:**
+Multiply to integers, add, then divide back.
+
+**Key Details:**
+- Or use `Number.EPSILON` for comparison, or use a library like `decimal.js`.
 **Example:** `Math.abs((0.1 + 0.2) - 0.3) < Number.EPSILON`
 **Reference:** [MDN Number.EPSILON](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/EPSILON)
 
 ### 68. What are tagged template literals?
-**Answer:** A way to parse template literals with a function. The first argument contains an array of string values, and the remaining arguments are the evaluated expressions.
+**Answer:** 
+**The Core Concept:**
+A way to parse template literals with a function.
+
+**Key Details:**
+- The first argument contains an array of string values, and the remaining arguments are the evaluated expressions.
 **Example:** `function tag(strings, ...values) { return strings[0] + values[0]; } tag\`Hello ${name}\``
 **Reference:** [MDN Tagged templates](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates)
 
 ### 69. What is `Object.seal()` vs `Object.freeze()`?
-**Answer:** `freeze()` makes an object completely read-only. `seal()` prevents adding/deleting properties but allows modifying existing ones.
+**Answer:** 
+**The Core Concept:**
+`freeze()` makes an object completely read-only.
+
+**Key Details:**
+- `seal()` prevents adding/deleting properties but allows modifying existing ones.
 **Example:** `Object.seal(obj); obj.a = 2; // works`
 **Reference:** [MDN Object.seal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/seal)
 
@@ -444,17 +581,32 @@ const module = (function() {
 **Reference:** [Redux Compose](https://redux.js.org/api/compose)
 
 ### 81. What is the difference between `function` and `class` declarations?
-**Answer:** Functions are hoisted and can be called before declaration. Classes are not hoisted (they are in TDZ) and require the `new` keyword to be invoked.
+**Answer:** 
+**The Core Concept:**
+Functions are hoisted and can be called before declaration.
+
+**Key Details:**
+- Classes are not hoisted (they are in TDZ) and require the `new` keyword to be invoked.
 **Example:** `new MyClass(); class MyClass {}`
 **Reference:** [MDN Classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
 
 ### 82. What is `Object.assign()`?
-**Answer:** Copies all enumerable own properties from one or more source objects to a target object. It performs a shallow copy.
+**Answer:** 
+**The Core Concept:**
+Copies all enumerable own properties from one or more source objects to a target object.
+
+**Key Details:**
+- It performs a shallow copy.
 **Example:** `const copy = Object.assign({}, obj);`
 **Reference:** [MDN Object.assign](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
 
 ### 83. What is the execution context?
-**Answer:** The environment in which JS code is evaluated and executed. It contains the Variable Environment, Lexical Environment, and `this` binding.
+**Answer:** 
+**The Core Concept:**
+The environment in which JS code is evaluated and executed.
+
+**Key Details:**
+- It contains the Variable Environment, Lexical Environment, and `this` binding.
 **Example:** Global Execution Context is the default.
 **Reference:** [ECMAScript Execution Contexts](https://tc39.es/ecma262/#sec-execution-contexts)
 
@@ -484,12 +636,22 @@ const module = (function() {
 **Reference:** [MDN AbortController](https://developer.mozilla.org/en-US/docs/Web/API/AbortController)
 
 ### 89. What is Cross-Site Scripting (XSS)?
-**Answer:** A vulnerability where an attacker injects malicious scripts into web pages viewed by other users. Prevented by escaping user input.
+**Answer:** 
+**The Core Concept:**
+A vulnerability where an attacker injects malicious scripts into web pages viewed by other users.
+
+**Key Details:**
+- Prevented by escaping user input.
 **Example:** Injecting `<script>stealCookies()</script>` into a comment field.
 **Reference:** [MDN XSS](https://developer.mozilla.org/en-US/docs/Glossary/Cross-site_scripting)
 
 ### 90. What is Cross-Site Request Forgery (CSRF)?
-**Answer:** An attack that forces an end user to execute unwanted actions on a web application in which they're currently authenticated. Prevented by Anti-CSRF tokens.
+**Answer:** 
+**The Core Concept:**
+An attack that forces an end user to execute unwanted actions on a web application in which they're currently authenticated.
+
+**Key Details:**
+- Prevented by Anti-CSRF tokens.
 **Example:** A malicious site submitting a form to your bank.
 **Reference:** [MDN CSRF](https://developer.mozilla.org/en-US/docs/Glossary/CSRF)
 
@@ -499,7 +661,12 @@ const module = (function() {
 **Reference:** [MDN MutationObserver](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver)
 
 ### 92. What are iterators and iterables?
-**Answer:** An iterable is an object with a `Symbol.iterator` method. An iterator is an object returned by that method, providing a `next()` method that returns `{value, done}`.
+**Answer:** 
+**The Core Concept:**
+An iterable is an object with a `Symbol.iterator` method.
+
+**Key Details:**
+- An iterator is an object returned by that method, providing a `next()` method that returns `{value, done}`.
 **Example:** Arrays, Strings, Sets, and Maps are iterables.
 **Reference:** [MDN Iterators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators)
 
@@ -514,7 +681,12 @@ const module = (function() {
 **Reference:** [MDN Memory model](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management)
 
 ### 95. What is the Call Stack?
-**Answer:** A LIFO (Last In, First Out) data structure that stores the execution context of functions. It keeps track of where the program is in its execution.
+**Answer:** 
+**The Core Concept:**
+A LIFO (Last In, First Out) data structure that stores the execution context of functions.
+
+**Key Details:**
+- It keeps track of where the program is in its execution.
 **Example:** When a function completes, it is popped off the stack.
 **Reference:** [MDN Call stack](https://developer.mozilla.org/en-US/docs/Glossary/Call_stack)
 
@@ -524,12 +696,22 @@ const module = (function() {
 **Reference:** [MDN Symbol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol)
 
 ### 97. How does `Array.prototype.sort()` behave by default?
-**Answer:** It converts elements to strings and sorts them according to their UTF-16 code unit values. This is why `[10, 2].sort()` results in `[10, 2]`.
+**Answer:** 
+**The Core Concept:**
+It converts elements to strings and sorts them according to their UTF-16 code unit values.
+
+**Key Details:**
+- This is why `[10, 2].sort()` results in `[10, 2]`.
 **Example:** `[10, 2].sort((a,b) => a - b); // [2, 10]`
 **Reference:** [MDN Array.sort](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
 
 ### 98. What is `Object.getPrototypeOf()`?
-**Answer:** Returns the prototype (i.e. the value of the internal `[[Prototype]]` property) of the specified object.
+**Answer:** 
+**The Core Concept:**
+Returns the prototype (i.e.
+
+**Key Details:**
+- the value of the internal `[[Prototype]]` property) of the specified object.
 **Example:** `Object.getPrototypeOf([]) === Array.prototype // true`
 **Reference:** [MDN Object.getPrototypeOf](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf)
 
@@ -539,141 +721,297 @@ const module = (function() {
 **Reference:** [MDN Typed Arrays](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays)
 
 ### 100. Explain WebAssembly (Wasm) and its relationship to JS.
-**Answer:** A binary instruction format that runs alongside JS at near-native speed. JS can compile, instantiate, and communicate with Wasm modules.
+**Answer:** 
+**The Core Concept:**
+A binary instruction format that runs alongside JS at near-native speed.
+
+**Key Details:**
+- JS can compile, instantiate, and communicate with Wasm modules.
 **Example:** `WebAssembly.instantiateStreaming(fetch('module.wasm'));`
 **Reference:** [MDN WebAssembly](https://developer.mozilla.org/en-US/docs/WebAssembly)
 
 ### 101. What’s the difference between deep copy and shallow copy, and when can it break your code?
-**Answer:** A shallow copy only copies the top-level properties; nested objects share the same reference. A deep copy creates entirely new copies of all nested objects. A shallow copy breaks code when you mutate a nested object, accidentally modifying the original object as well.
+**Answer:** 
+**The Core Concept:**
+A shallow copy only copies the top-level properties; nested objects share the same reference.
+
+**Key Details:**
+- A deep copy creates entirely new copies of all nested objects.
+- A shallow copy breaks code when you mutate a nested object, accidentally modifying the original object as well.
 **Example:** `const shallow = { ...obj };` vs `const deep = structuredClone(obj);`
 **Reference:** [MDN Deep copy](https://developer.mozilla.org/en-US/docs/Glossary/Deep_copy)
 
 ### 102. Explain how closures work in a real-world use case — for example, maintaining a counter state without global variables.
-**Answer:** A closure gives a function access to its outer scope even after the outer function has returned. It is used to encapsulate state, like a counter, preventing external code from directly modifying it.
+**Answer:** 
+**The Core Concept:**
+A closure gives a function access to its outer scope even after the outer function has returned.
+
+**Key Details:**
+- It is used to encapsulate state, like a counter, preventing external code from directly modifying it.
 **Example:** `function createCounter() { let count = 0; return () => ++count; } const counter = createCounter();`
 **Reference:** [MDN Closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures)
 
 ### 103. How would you implement debouncing or throttling for an API call triggered by user input?
-**Answer:** Debouncing delays function execution until a pause in events (e.g., waiting 300ms after the last keystroke). Throttling limits execution to once every X milliseconds (e.g., scroll events). Use `setTimeout` and `clearTimeout` to implement them.
+**Answer:** 
+**The Core Concept:**
+Debouncing delays function execution until a pause in events (e.g., waiting 300ms after the last keystroke).
+
+**Key Details:**
+- Throttling limits execution to once every X milliseconds (e.g., scroll events).
+- Use `setTimeout` and `clearTimeout` to implement them.
 **Example:** `function debounce(fn, delay) { let timer; return (...args) => { clearTimeout(timer); timer = setTimeout(() => fn(...args), delay); }}`
 **Reference:** [Debounce vs Throttle](https://css-tricks.com/debouncing-throttling-explained-examples/)
 
 ### 104. In an async scenario, what happens if one of your Promise.all() calls fails? How would you handle that gracefully?
-**Answer:** If one promise in `Promise.all()` rejects, the entire `Promise.all` immediately rejects with that error, ignoring the successful ones. To handle gracefully, use `Promise.allSettled()`, which waits for all to finish and returns an array of their status (fulfilled/rejected).
+**Answer:** 
+**The Core Concept:**
+If one promise in `Promise.all()` rejects, the entire `Promise.all` immediately rejects with that error, ignoring the successful ones.
+
+**Key Details:**
+- To handle gracefully, use `Promise.allSettled()`, which waits for all to finish and returns an array of their status (fulfilled/rejected).
 **Example:** `const results = await Promise.allSettled([p1, p2]);`
 **Reference:** [MDN Promise.allSettled](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled)
 
 ### 105. How do you manage state persistence in localStorage vs sessionStorage with security in mind?
-**Answer:** `localStorage` persists across sessions until explicitly cleared. `sessionStorage` clears when the tab closes. Neither is secure against XSS attacks, so never store sensitive data like raw JWTs or passwords in them. Always validate and sanitize data before reading it back.
+**Answer:** 
+**The Core Concept:**
+`localStorage` persists across sessions until explicitly cleared.
+
+**Key Details:**
+- `sessionStorage` clears when the tab closes.
+- Neither is secure against XSS attacks, so never store sensitive data like raw JWTs or passwords in them.
+- Always validate and sanitize data before reading it back.
 **Example:** Store UI themes in `localStorage`, but use HTTP-only cookies for authentication tokens.
 **Reference:** [Web Storage API Security](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API)
 
 ### 106. What is the difference between undefined and null?
-**Answer:** `undefined` means a variable has been declared but not assigned a value yet. `null` is an intentional assignment representing "no value" or an empty object reference. `typeof undefined` is `"undefined"`, whereas `typeof null` is `"object"` (a legacy JS bug).
+**Answer:** 
+**The Core Concept:**
+`undefined` means a variable has been declared but not assigned a value yet.
+
+**Key Details:**
+- `null` is an intentional assignment representing "no value" or an empty object reference.
+- `typeof undefined` is `"undefined"`, whereas `typeof null` is `"object"` (a legacy JS bug).
 **Example:** `let x; console.log(x); // undefined`, `let y = null; // null`
 **Reference:** [MDN Null and Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null)
 
 ### 107. What is hoisting, and how does it interact with var, let, and const?
-**Answer:** Hoisting is a JavaScript mechanism where variable and function declarations are moved to the top of their scope before execution. `var` is hoisted and initialized with `undefined`. `let` and `const` are hoisted but *not* initialized, placing them in a "Temporal Dead Zone" (TDZ) where accessing them throws a `ReferenceError`.
+**Answer:** 
+**The Core Concept:**
+Hoisting is a JavaScript mechanism where variable and function declarations are moved to the top of their scope before execution.
+
+**Key Details:**
+- `var` is hoisted and initialized with `undefined`.
+- `let` and `const` are hoisted but *not* initialized, placing them in a "Temporal Dead Zone" (TDZ) where accessing them throws a `ReferenceError`.
 **Example:** `console.log(a); var a = 5; // undefined`, `console.log(b); let b = 5; // ReferenceError`
 **Reference:** [MDN Hoisting](https://developer.mozilla.org/en-US/docs/Glossary/Hoisting)
 
 ### 108. What is the rest parameter and how does it differ from the spread operator?
-**Answer:** The rest parameter (`...`) collects multiple individual arguments passed to a function into a single array. It must be the last parameter. The spread operator (`...`) does the exact opposite: it expands an iterable (like an array or object) into individual elements.
+**Answer:** 
+**The Core Concept:**
+The rest parameter (`...`) collects multiple individual arguments passed to a function into a single array.
+
+**Key Details:**
+- It must be the last parameter.
+- The spread operator (`...`) does the exact opposite: it expands an iterable (like an array or object) into individual elements.
 **Example:** Rest: `function sum(...numbers) {}`. Spread: `const merged = [...arr1, ...arr2];`
 **Reference:** [MDN Rest parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters)
 
 ### 109. What is a Higher-Order Function vs a Callback Function?
-**Answer:** A callback function is a function passed *into* another function as an argument to be executed later. A Higher-Order Function is the function that *receives* a callback function as an argument, or *returns* a function as its result.
+**Answer:** 
+**The Core Concept:**
+A callback function is a function passed *into* another function as an argument to be executed later.
+
+**Key Details:**
+- A Higher-Order Function is the function that *receives* a callback function as an argument, or *returns* a function as its result.
 **Example:** `[1, 2].map(num => num * 2)`: `map` is the Higher-Order Function, the arrow function is the callback.
 **Reference:** [MDN First-class Function](https://developer.mozilla.org/en-US/docs/Glossary/First-class_Function)
 
 ### 110. What is the difference between a ReferenceError and a SyntaxError?
-**Answer:** A `SyntaxError` occurs when the code violates the grammatical rules of JavaScript, preventing the code from parsing or running entirely (e.g., missing a closing brace). A `ReferenceError` occurs at runtime when the code attempts to access a variable or function that hasn't been declared in the current scope.
+**Answer:** 
+**The Core Concept:**
+A `SyntaxError` occurs when the code violates the grammatical rules of JavaScript, preventing the code from parsing or running entirely (e.g., missing a closing brace).
+
+**Key Details:**
+- A `ReferenceError` occurs at runtime when the code attempts to access a variable or function that hasn't been declared in the current scope.
 **Example:** `console.log("hello" // SyntaxError`, `console.log(undeclaredVar); // ReferenceError`
 **Reference:** [MDN Errors](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
 
 ### 111. What is the purpose of the debounce function in JavaScript, and how does it optimize performance?
-**Answer:** A debounce function creates a closure that maintains a timeout variable. When invoked, it clears any existing timeout and sets a new one to execute the target function after a specified delay. This optimizes performance by ensuring the target function is called only once after a pause in rapid sequential events (like typing in a search input or scrolling).
+**Answer:** 
+**The Core Concept:**
+A debounce function creates a closure that maintains a timeout variable.
+
+**Key Details:**
+- When invoked, it clears any existing timeout and sets a new one to execute the target function after a specified delay.
+- This optimizes performance by ensuring the target function is called only once after a pause in rapid sequential events (like typing in a search input or scrolling).
 **Example:** `const debouncedSearch = debounce(searchApi, 300);`
 **Reference:** [CodeSignal JavaScript Interview Questions](https://codesignal.com/blog/25-javascript-interview-questions-and-answers-from-basic-to-senior-level/)
 
 ### 112. How would you architect a large-scale, cross-platform application using JavaScript to ensure maintainability, scalability, and high performance?
-**Answer:** Key strategies include utilizing a component-based frontend framework (React/Angular), a robust backend (Node.js/Express), and cross-platform tools like React Native or Electron. Additionally, implementing a scalable state management library (Redux), adopting a microservices architecture, using GraphQL/REST APIs, optimizing performance with code splitting and SSR, and enforcing CI/CD pipelines with comprehensive testing.
+**Answer:** 
+**The Core Concept:**
+Key strategies include utilizing a component-based frontend framework (React/Angular), a robust backend (Node.js/Express), and cross-platform tools like React Native or Electron.
+
+**Key Details:**
+- Additionally, implementing a scalable state management library (Redux), adopting a microservices architecture, using GraphQL/REST APIs, optimizing performance with code splitting and SSR, and enforcing CI/CD pipelines with comprehensive testing.
 **Example:** Combining React for the frontend, Redux for state, Node.js microservices for backend, and Docker for containerization.
 **Reference:** [CodeSignal JavaScript Interview Questions](https://codesignal.com/blog/25-javascript-interview-questions-and-answers-from-basic-to-senior-level/)
 
 ### 113. What strategies would you employ to optimize the performance of a legacy JavaScript application?
-**Answer:** Strategies include conducting a code audit to refactor high technical debt, profiling performance using tools like Chrome DevTools/Lighthouse, optimizing asset delivery (minification/compression), and implementing lazy loading. Caching mechanisms, database query optimizations, and asynchronous operations (Promises/async/await) also prevent thread blocking.
+**Answer:** 
+**The Core Concept:**
+Strategies include conducting a code audit to refactor high technical debt, profiling performance using tools like Chrome DevTools/Lighthouse, optimizing asset delivery (minification/compression), and implementing lazy loading.
+
+**Key Details:**
+- Caching mechanisms, database query optimizations, and asynchronous operations (Promises/async/await) also prevent thread blocking.
 **Example:** Using Webpack for code splitting and adopting async/await to replace blocking synchronous callbacks.
 **Reference:** [CodeSignal JavaScript Interview Questions](https://codesignal.com/blog/25-javascript-interview-questions-and-answers-from-basic-to-senior-level/)
 
 ### 114. How do you prevent Cross-Site Scripting (XSS) attacks when handling form submissions?
-**Answer:** To prevent XSS attacks, you must sanitize user input on both the client and server sides. On the client side, this involves escaping potentially malicious code (e.g., creating a div and setting its `textContent` to the input). On the server side, utilize libraries like `xss-filters` to strip or escape dangerous HTML tags before storing or rendering the data.
+**Answer:** 
+**The Core Concept:**
+To prevent XSS attacks, you must sanitize user input on both the client and server sides.
+
+**Key Details:**
+- On the client side, this involves escaping potentially malicious code (e.g., creating a div and setting its `textContent` to the input).
+- On the server side, utilize libraries like `xss-filters` to strip or escape dangerous HTML tags before storing or rendering the data.
 **Example:** Client-side sanitization: `element.textContent = input; return element.innerHTML;`
 **Reference:** [CodeSignal JavaScript Interview Questions](https://codesignal.com/blog/25-javascript-interview-questions-and-answers-from-basic-to-senior-level/)
 
 ### 115. What is event delegation in JavaScript and why is it useful?
-**Answer:** Event delegation is a technique where a single event listener is attached to a parent element instead of individual child elements. It leverages event bubbling to handle events triggered by children. This improves performance and memory usage by reducing the number of event listeners, especially for dynamically created elements.
+**Answer:** 
+**The Core Concept:**
+Event delegation is a technique where a single event listener is attached to a parent element instead of individual child elements.
+
+**Key Details:**
+- It leverages event bubbling to handle events triggered by children.
+- This improves performance and memory usage by reducing the number of event listeners, especially for dynamically created elements.
 **Example:** Attaching a click listener to a `<ul>` to handle clicks on dynamically added `<li>` children using `event.target.nodeName === 'LI'`.
 **Reference:** [CodeSignal JavaScript Interview Questions](https://codesignal.com/blog/25-javascript-interview-questions-and-answers-from-basic-to-senior-level/)
 
 ### 116. What is `Object.groupBy` (and `Map.groupBy`) introduced in modern JavaScript?
-**Answer:** `Object.groupBy` is a modern JavaScript utility that groups iterable elements into an object based on a callback function. It simplifies the common task of bucketing data arrays by a specific property without needing custom `reduce` logic. `Map.groupBy` does the same but returns a `Map`, allowing object keys instead of string/symbol keys.
+**Answer:** 
+**The Core Concept:**
+`Object.groupBy` is a modern JavaScript utility that groups iterable elements into an object based on a callback function.
+
+**Key Details:**
+- It simplifies the common task of bucketing data arrays by a specific property without needing custom `reduce` logic.
+- `Map.groupBy` does the same but returns a `Map`, allowing object keys instead of string/symbol keys.
 **Example:** `const grouped = Object.groupBy(inventory, ({ type }) => type);`
 **Reference:** [MDN Object.groupBy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/groupBy)
 
 ### 117. How do the newer Array methods (`toSorted`, `toReversed`, `toSpliced`, `with`) differ from previous array methods?
-**Answer:** These newer array methods perform the same operations as their traditional counterparts (`sort`, `reverse`, `splice`) but they return a *new* array instead of mutating the original array. This is especially useful in functional programming paradigms and frameworks like React where state immutability is crucial.
+**Answer:** 
+**The Core Concept:**
+These newer array methods perform the same operations as their traditional counterparts (`sort`, `reverse`, `splice`) but they return a *new* array instead of mutating the original array.
+
+**Key Details:**
+- This is especially useful in functional programming paradigms and frameworks like React where state immutability is crucial.
 **Example:** `const newArr = oldArr.toSorted(); // oldArr remains unchanged`
 **Reference:** [MDN Array.prototype.toSorted](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toSorted)
 
 ### 118. What is `Promise.withResolvers()`?
-**Answer:** Introduced in modern JavaScript, `Promise.withResolvers()` is a factory method that returns an object containing a new Promise along with its `resolve` and `reject` functions. This eliminates the need to extract them manually inside the Promise executor, which is particularly useful for event-based or stream-based architectures.
+**Answer:** 
+**The Core Concept:**
+Introduced in modern JavaScript, `Promise.withResolvers()` is a factory method that returns an object containing a new Promise along with its `resolve` and `reject` functions.
+
+**Key Details:**
+- This eliminates the need to extract them manually inside the Promise executor, which is particularly useful for event-based or stream-based architectures.
 **Example:** `const { promise, resolve, reject } = Promise.withResolvers();`
 **Reference:** [MDN Promise.withResolvers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/withResolvers)
 
 ### 119. How do JavaScript Sets natively support mathematical operations in ES2024+?
-**Answer:** Modern JavaScript introduces native Set methods like `intersection`, `union`, `difference`, `symmetricDifference`, `isSubsetOf`, and `isSupersetOf`. These methods allow developers to perform standard mathematical set operations directly without converting Sets to arrays and writing custom loops.
+**Answer:** 
+**The Core Concept:**
+Modern JavaScript introduces native Set methods like `intersection`, `union`, `difference`, `symmetricDifference`, `isSubsetOf`, and `isSupersetOf`.
+
+**Key Details:**
+- These methods allow developers to perform standard mathematical set operations directly without converting Sets to arrays and writing custom loops.
 **Example:** `const commonElements = setA.intersection(setB);`
 **Reference:** [MDN Set.prototype.intersection](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/intersection)
 
 ### 120. How does Top-Level `await` change module execution in modern JavaScript?
-**Answer:** Top-Level `await` allows developers to use the `await` keyword outside of `async` functions at the top level of ES modules. This causes the module to act as a large async function, meaning modules that import it will wait for the top-level await to resolve before executing their own code, simplifying async initializations without IIFEs.
+**Answer:** 
+**The Core Concept:**
+Top-Level `await` allows developers to use the `await` keyword outside of `async` functions at the top level of ES modules.
+
+**Key Details:**
+- This causes the module to act as a large async function, meaning modules that import it will wait for the top-level await to resolve before executing their own code, simplifying async initializations without IIFEs.
 **Example:** `const data = await fetch('https://api.example.com/config').then(r => r.json()); export { data };`
 **Reference:** [MDN Top-level await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await#top_level_await)
 
 ### 121. How has the JavaScript runtime landscape evolved beyond Node.js in recent years?
-**Answer:** Node.js is no longer the sole dominant runtime. **Deno** emerged focusing on secure-by-default execution, Web API compatibility, and TypeScript-first support. **Bun** exploded in popularity by offering extreme speed and a completely integrated toolchain (runtime, bundler, test runner, package manager all in one), heavily pressuring Node.js to modernize its APIs.
+**Answer:** 
+**The Core Concept:**
+Node.js is no longer the sole dominant runtime.
+
+**Key Details:**
+- **Deno** emerged focusing on secure-by-default execution, Web API compatibility, and TypeScript-first support.
+- **Bun** exploded in popularity by offering extreme speed and a completely integrated toolchain (runtime, bundler, test runner, package manager all in one), heavily pressuring Node.js to modernize its APIs.
 **Example:** Running a TypeScript file instantly without configuration using `bun run index.ts`.
 **Reference:** [Bun vs Node](https://bun.sh/)
 
 ### 122. What drove the JavaScript build tooling revolution away from traditional tools like Webpack?
-**Answer:** Large JavaScript applications suffered from minute-long builds and poor developer experience (DX) due to heavy node-based bundlers. This drove the adoption of ultra-fast, native-compiled tools written in languages like Go and Rust. **Vite** (using esbuild for dev) and **Turbopack** / **SWC** (Rust-based) replaced complex Webpack configs, drastically improving compilation times and HMR speed.
+**Answer:** 
+**The Core Concept:**
+Large JavaScript applications suffered from minute-long builds and poor developer experience (DX) due to heavy node-based bundlers.
+
+**Key Details:**
+- This drove the adoption of ultra-fast, native-compiled tools written in languages like Go and Rust.
+- **Vite** (using esbuild for dev) and **Turbopack** / **SWC** (Rust-based) replaced complex Webpack configs, drastically improving compilation times and HMR speed.
 **Example:** Replacing `babel-loader` with `swc-loader` for 20x faster transpilation.
 **Reference:** [Vite Motivation](https://vitejs.dev/guide/why.html)
 
 ### 123. How does Edge Computing architecture differ from traditional Node.js backend architecture?
-**Answer:** Traditional architecture routes requests to a centralized server. Edge execution (e.g., Cloudflare Workers, Vercel Edge) runs JavaScript geographically near the user on lightweight V8 isolates. It offers ultra-low latency, global scalability, and fast SSR, but operates under strict constraints like stateless execution, smaller bundle limits, and limited access to native Node APIs.
+**Answer:** 
+**The Core Concept:**
+Traditional architecture routes requests to a centralized server.
+
+**Key Details:**
+- Edge execution (e.g., Cloudflare Workers, Vercel Edge) runs JavaScript geographically near the user on lightweight V8 isolates.
+- It offers ultra-low latency, global scalability, and fast SSR, but operates under strict constraints like stateless execution, smaller bundle limits, and limited access to native Node APIs.
 **Example:** Deploying a middleware function to an Edge Worker to intercept and rewrite URLs globally with 0ms cold starts.
 **Reference:** [Cloudflare Workers Architecture](https://developers.cloudflare.com/workers/)
 
 ### 124. What is the Temporal API proposed for modern ECMAScript?
-**Answer:** The `Temporal` API is a massive upcoming overhaul to JavaScript date/time handling designed to fix the deeply flawed legacy `Date` object. It provides immutable objects, distinct types for timezones, absolute vs. plain wall-clock time, and precise arithmetic, eliminating mutation bugs and parsing inconsistencies.
+**Answer:** 
+**The Core Concept:**
+The `Temporal` API is a massive upcoming overhaul to JavaScript date/time handling designed to fix the deeply flawed legacy `Date` object.
+
+**Key Details:**
+- It provides immutable objects, distinct types for timezones, absolute vs.
+- plain wall-clock time, and precise arithmetic, eliminating mutation bugs and parsing inconsistencies.
 **Example:** `Temporal.Now.instant()` creates a precise timestamp, while `Temporal.PlainDate.from('2026-05-17')` represents a calendar date.
 **Reference:** [TC39 Temporal Proposal](https://tc39.es/proposal-temporal/docs/)
 
 ### 125. What are Records and Tuples in modern JavaScript proposals?
-**Answer:** Records (objects) and Tuples (arrays) introduce deeply immutable data structures to JavaScript. They are compared by structural equality rather than object identity (reference). This means two identical Records are strictly equal (`===`), simplifying state management and reducing bugs in frameworks like React.
+**Answer:** 
+**The Core Concept:**
+Records (objects) and Tuples (arrays) introduce deeply immutable data structures to JavaScript.
+
+**Key Details:**
+- They are compared by structural equality rather than object identity (reference).
+- This means two identical Records are strictly equal (`===`), simplifying state management and reducing bugs in frameworks like React.
 **Example:** `#{ a: 1 } === #{ a: 1 }` evaluates to `true`, unlike `{ a: 1 } === `{ a: 1 }`.
 **Reference:** [TC39 Records & Tuples](https://github.com/tc39/proposal-record-tuple)
 
 ### 126. Why has TypeScript transitioned from an optional tool to an effectively mandatory interface for modern JavaScript?
-**Answer:** As JavaScript applications became massive, distributed, and asynchronous, plain JavaScript struggled with refactoring safety and API contracts. TypeScript didn't replace JS; instead, it provided the essential static typing, IDE tooling intelligence, and architectural safety net required to maintain modern full-stack codebases and complex framework APIs.
+**Answer:** 
+**The Core Concept:**
+As JavaScript applications became massive, distributed, and asynchronous, plain JavaScript struggled with refactoring safety and API contracts.
+
+**Key Details:**
+- TypeScript didn't replace JS; instead, it provided the essential static typing, IDE tooling intelligence, and architectural safety net required to maintain modern full-stack codebases and complex framework APIs.
 **Example:** Defining strict I/O contracts using generic types for a cross-platform TRPC router.
 **Reference:** [TypeScript Handbook](https://www.typescriptlang.org/docs/)
 
 ### 127. How has the widespread adoption of ES Modules (ESM) impacted the JS ecosystem?
-**Answer:** ESM (`import`/`export`) became the universal standard, replacing Node's CommonJS (`require`). While it unified the syntax between the browser and the server, the transition caused severe fragmentation ("transition pain") regarding CJS/ESM interoperability, package resolution, and tooling configurations.
+**Answer:** 
+**The Core Concept:**
+ESM (`import`/`export`) became the universal standard, replacing Node's CommonJS (`require`).
+
+**Key Details:**
+- While it unified the syntax between the browser and the server, the transition caused severe fragmentation ("transition pain") regarding CJS/ESM interoperability, package resolution, and tooling configurations.
 **Example:** Migrating a Node backend to use `"type": "module"` in `package.json` to allow top-level await and native Web API imports.
 **Reference:** [Node.js ESM Docs](https://nodejs.org/api/esm.html)

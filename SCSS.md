@@ -5,7 +5,13 @@ This document contains a comprehensive list of 100 SCSS (Sassy CSS) interview qu
 ## Basic (20 Questions)
 
 ### 1. What is Sass and what is SCSS?
-**Answer:** Sass (Syntactically Awesome Style Sheets) is a CSS preprocessor. SCSS (Sassy CSS) is the newer, most common syntax for Sass. SCSS is a superset of CSS.
+**Answer:** 
+**The Core Concept:**
+Sass (Syntactically Awesome Style Sheets) is a CSS preprocessor.
+
+**Key Details:**
+- SCSS (Sassy CSS) is the newer, most common syntax for Sass.
+- SCSS is a superset of CSS.
 **Example:** Standard CSS brackets `{}` are used in SCSS, unlike older Sass.
 **Reference:** [Sass Basics](https://sass-lang.com/guide)
 
@@ -30,7 +36,12 @@ This document contains a comprehensive list of 100 SCSS (Sassy CSS) interview qu
 **Reference:** [Sass Comments](https://sass-lang.com/documentation/syntax/comments)
 
 ### 6. What is a mixin in SCSS?
-**Answer:** A mixin lets you make groups of CSS declarations that you want to reuse throughout your site. Defined with `@mixin` and included with `@include`.
+**Answer:** 
+**The Core Concept:**
+A mixin lets you make groups of CSS declarations that you want to reuse throughout your site.
+
+**Key Details:**
+- Defined with `@mixin` and included with `@include`.
 **Example:** `@mixin center { margin: 0 auto; } .box { @include center; }`
 **Reference:** [Sass Mixins](https://sass-lang.com/documentation/at-rules/mixin)
 
@@ -40,22 +51,42 @@ This document contains a comprehensive list of 100 SCSS (Sassy CSS) interview qu
 **Reference:** [Sass Extend](https://sass-lang.com/documentation/at-rules/extend)
 
 ### 8. What is a placeholder selector (`%`)?
-**Answer:** A special type of selector that behaves like a class but is not output in the compiled CSS on its own. Meant strictly to be extended.
+**Answer:** 
+**The Core Concept:**
+A special type of selector that behaves like a class but is not output in the compiled CSS on its own.
+
+**Key Details:**
+- Meant strictly to be extended.
 **Example:** `%btn-base { display: inline-block; } .btn { @extend %btn-base; }`
 **Reference:** [Sass Placeholder Selectors](https://sass-lang.com/documentation/style-rules/placeholder-selectors)
 
 ### 9. What does the `@import` directive do in SCSS?
-**Answer:** Allows you to split SCSS into multiple files and combine them. Note: The Sass team is deprecating `@import` in favor of `@use`.
+**Answer:** 
+**The Core Concept:**
+Allows you to split SCSS into multiple files and combine them.
+
+**Key Details:**
+- Note: The Sass team is deprecating `@import` in favor of `@use`.
 **Example:** `@import 'reset';`
 **Reference:** [Sass Import](https://sass-lang.com/documentation/at-rules/import)
 
 ### 10. Explain the new `@use` directive.
-**Answer:** `@use` replaces `@import`. It loads mixins, functions, and variables from other stylesheets, grouping them in namespaces to prevent clashes.
+**Answer:** 
+**The Core Concept:**
+`@use` replaces `@import`.
+
+**Key Details:**
+- It loads mixins, functions, and variables from other stylesheets, grouping them in namespaces to prevent clashes.
 **Example:** `@use 'colors'; .box { color: colors.$primary; }`
 **Reference:** [Sass Use](https://sass-lang.com/documentation/at-rules/use)
 
 ### 11. What is Dart Sass?
-**Answer:** The primary implementation of Sass, replacing Ruby Sass and LibSass. Fast, easy to install, compiles to pure JS or runs on the Dart VM.
+**Answer:** 
+**The Core Concept:**
+The primary implementation of Sass, replacing Ruby Sass and LibSass.
+
+**Key Details:**
+- Fast, easy to install, compiles to pure JS or runs on the Dart VM.
 **Example:** `npm install -g sass`
 **Reference:** [Dart Sass](https://sass-lang.com/dart-sass)
 
@@ -70,12 +101,22 @@ This document contains a comprehensive list of 100 SCSS (Sassy CSS) interview qu
 **Reference:** [Sass Operations](https://sass-lang.com/documentation/operators/numeric)
 
 ### 14. What happens when you divide in SCSS?
-**Answer:** Division is tricky because `/` is also a CSS separator (e.g., `font: 12px/1.5`). In modern Sass, use `math.div()` instead of `/` for division.
+**Answer:** 
+**The Core Concept:**
+Division is tricky because `/` is also a CSS separator (e.g., `font: 12px/1.5`).
+
+**Key Details:**
+- In modern Sass, use `math.div()` instead of `/` for division.
 **Example:** `@use "sass:math"; width: math.div(600px, 3);`
 **Reference:** [Sass math.div](https://sass-lang.com/documentation/modules/math#div)
 
 ### 15. What are SCSS partials?
-**Answer:** Files named with a leading underscore (e.g., `_colors.scss`). The underscore tells Sass not to compile it into a standalone CSS file.
+**Answer:** 
+**The Core Concept:**
+Files named with a leading underscore (e.g., `_colors.scss`).
+
+**Key Details:**
+- The underscore tells Sass not to compile it into a standalone CSS file.
 **Example:** `@use 'colors';` (imports `_colors.scss`).
 **Reference:** [Sass Partials](https://sass-lang.com/guide#partials)
 
@@ -90,12 +131,22 @@ This document contains a comprehensive list of 100 SCSS (Sassy CSS) interview qu
 **Reference:** [Sass Default Arguments](https://sass-lang.com/documentation/at-rules/mixin#optional-arguments)
 
 ### 18. What is variable scoping in SCSS?
-**Answer:** Variables declared outside any rule are global. Variables declared inside a rule are local and only accessible within that block.
+**Answer:** 
+**The Core Concept:**
+Variables declared outside any rule are global.
+
+**Key Details:**
+- Variables declared inside a rule are local and only accessible within that block.
 **Example:** `.box { $local: red; }`
 **Reference:** [Sass Scope](https://sass-lang.com/documentation/variables#scope)
 
 ### 19. How do you override a global variable locally?
-**Answer:** Just declare it inside a block. If you want a local variable change to affect the global scope, use the `!global` flag.
+**Answer:** 
+**The Core Concept:**
+Just declare it inside a block.
+
+**Key Details:**
+- If you want a local variable change to affect the global scope, use the `!global` flag.
 **Example:** `$var: 1; .box { $var: 2 !global; }`
 **Reference:** [Sass !global](https://sass-lang.com/documentation/variables#global-variables)
 
@@ -113,7 +164,12 @@ This document contains a comprehensive list of 100 SCSS (Sassy CSS) interview qu
 **Reference:** [Sass Control Directives](https://sass-lang.com/documentation/at-rules/control/for)
 
 ### 22. What is the difference between `@for ... through` and `@for ... to`?
-**Answer:** `through` includes the end number. `to` excludes the end number.
+**Answer:** 
+**The Core Concept:**
+`through` includes the end number.
+
+**Key Details:**
+- `to` excludes the end number.
 **Example:** `from 1 through 3` (1,2,3). `from 1 to 3` (1,2).
 **Reference:** [Sass @for](https://sass-lang.com/documentation/at-rules/control/for)
 
@@ -138,17 +194,32 @@ This document contains a comprehensive list of 100 SCSS (Sassy CSS) interview qu
 **Reference:** [Sass @each](https://sass-lang.com/documentation/at-rules/control/each)
 
 ### 27. What is a `@function` and how is it different from a `@mixin`?
-**Answer:** A `@function` computes and returns a single value. A `@mixin` outputs blocks of CSS declarations.
+**Answer:** 
+**The Core Concept:**
+A `@function` computes and returns a single value.
+
+**Key Details:**
+- A `@mixin` outputs blocks of CSS declarations.
 **Example:** `@function half($val) { @return $val / 2; }`
 **Reference:** [Sass Functions](https://sass-lang.com/documentation/at-rules/function)
 
 ### 28. How does the `!default` flag work?
-**Answer:** Assigns a value to a variable *only* if that variable isn't already assigned. Essential for writing libraries.
+**Answer:** 
+**The Core Concept:**
+Assigns a value to a variable *only* if that variable isn't already assigned.
+
+**Key Details:**
+- Essential for writing libraries.
 **Example:** `$primary: blue !default;`
 **Reference:** [Sass !default](https://sass-lang.com/documentation/variables#default-values)
 
 ### 29. What is the `@forward` rule?
-**Answer:** Loads a Sass stylesheet and makes its mixins, functions, and variables available when your stylesheet is loaded with `@use`. Groups files into a single entry point.
+**Answer:** 
+**The Core Concept:**
+Loads a Sass stylesheet and makes its mixins, functions, and variables available when your stylesheet is loaded with `@use`.
+
+**Key Details:**
+- Groups files into a single entry point.
 **Example:** `@forward "variables";` in `_index.scss`.
 **Reference:** [Sass Forward](https://sass-lang.com/documentation/at-rules/forward)
 
@@ -163,7 +234,12 @@ This document contains a comprehensive list of 100 SCSS (Sassy CSS) interview qu
 **Reference:** [Sass color](https://sass-lang.com/documentation/modules/color)
 
 ### 32. What is the `@error` directive?
-**Answer:** Throws a fatal error with the provided message and stops compilation. Useful for parameter validation in mixins.
+**Answer:** 
+**The Core Concept:**
+Throws a fatal error with the provided message and stops compilation.
+
+**Key Details:**
+- Useful for parameter validation in mixins.
 **Example:** `@error "Invalid color value";`
 **Reference:** [Sass @error](https://sass-lang.com/documentation/at-rules/error)
 
@@ -183,7 +259,12 @@ This document contains a comprehensive list of 100 SCSS (Sassy CSS) interview qu
 **Reference:** [Sass @at-root](https://sass-lang.com/documentation/at-rules/at-root)
 
 ### 36. How do you handle media queries inside nested rules?
-**Answer:** You can nest `@media` queries inside selectors. Sass will compile it by lifting the media query to the top level and wrapping the selector inside it.
+**Answer:** 
+**The Core Concept:**
+You can nest `@media` queries inside selectors.
+
+**Key Details:**
+- Sass will compile it by lifting the media query to the top level and wrapping the selector inside it.
 **Example:** `.box { @media (max-width: 600px) { width: 100%; } }`
 **Reference:** [Sass Media Queries](https://sass-lang.com/documentation/at-rules/css#media)
 
@@ -198,7 +279,12 @@ This document contains a comprehensive list of 100 SCSS (Sassy CSS) interview qu
 **Reference:** [Sass meta](https://sass-lang.com/documentation/modules/meta#type-of)
 
 ### 39. What is a CSS module vs a Sass module?
-**Answer:** A Sass module (`@use`) encapsulates Sass variables/mixins at compile time. CSS Modules encapsulate CSS class names at build time (Webpack) to prevent global conflicts.
+**Answer:** 
+**The Core Concept:**
+A Sass module (`@use`) encapsulates Sass variables/mixins at compile time.
+
+**Key Details:**
+- CSS Modules encapsulate CSS class names at build time (Webpack) to prevent global conflicts.
 **Example:** They are different concepts entirely.
 **Reference:** [Sass Modules](https://sass-lang.com/documentation/at-rules/use)
 
@@ -211,7 +297,12 @@ This document contains a comprehensive list of 100 SCSS (Sassy CSS) interview qu
 ## Hard (50 Questions)
 
 ### 41. How does Sass compile the `&` when combining selectors?
-**Answer:** If you use `&` next to a string (like `&-suffix`), Sass concatenates the parent selector string with the suffix, creating a single new class name. Very useful for BEM.
+**Answer:** 
+**The Core Concept:**
+If you use `&` next to a string (like `&-suffix`), Sass concatenates the parent selector string with the suffix, creating a single new class name.
+
+**Key Details:**
+- Very useful for BEM.
 **Example:** `.block { &__element { ... } }` compiles to `.block__element`.
 **Reference:** [Sass Parent Selector](https://sass-lang.com/documentation/style-rules/parent-selector#adding-suffixes)
 
@@ -226,7 +317,12 @@ This document contains a comprehensive list of 100 SCSS (Sassy CSS) interview qu
 **Reference:** [Sass Loops](https://sass-lang.com/documentation/at-rules/control/for)
 
 ### 44. Explain the `@content` directive.
-**Answer:** Allows a mixin to take a block of styles passed to it and insert them where the `@content` directive is located. Essential for creating media query mixins.
+**Answer:** 
+**The Core Concept:**
+Allows a mixin to take a block of styles passed to it and insert them where the `@content` directive is located.
+
+**Key Details:**
+- Essential for creating media query mixins.
 **Example:** `@mixin mobile { @media (max-width: 600px) { @content; } } .box { @include mobile { width: 100%; } }`
 **Reference:** [Sass @content](https://sass-lang.com/documentation/at-rules/mixin#passing-content-blocks)
 
@@ -256,7 +352,12 @@ This document contains a comprehensive list of 100 SCSS (Sassy CSS) interview qu
 **Reference:** [Sass Configuration](https://sass-lang.com/documentation/at-rules/use#configuration)
 
 ### 50. What is the difference between `@use` and `@forward`?
-**Answer:** `@use` makes the module's members available only in the *current* file. `@forward` exposes the module's members as if they were defined in the current file, passing them to whichever file `@use`s the current one.
+**Answer:** 
+**The Core Concept:**
+`@use` makes the module's members available only in the *current* file.
+
+**Key Details:**
+- `@forward` exposes the module's members as if they were defined in the current file, passing them to whichever file `@use`s the current one.
 **Example:** Used to build a central `_index.scss` for a UI library.
 **Reference:** [Sass Forward](https://sass-lang.com/documentation/at-rules/forward)
 
