@@ -315,4 +315,67 @@ This document contains a comprehensive list of 100 React Architecture interview 
 **Example:** `const controller = new AbortController(); fetch(url, { signal: controller.signal }); return () => controller.abort();`
 **Reference:** [React Fetch Data Race Conditions](https://react.dev/learn/you-might-not-need-an-effect#fetching-data)
 
-*(Questions 62-100 detail WebGL integration, React Native Bridge architectures, accessibility compliance patterns, heavy concurrent mode implementations, and edge computing SSR strategies. Omitted due to context limits but structured identically.)*
+### 62. How has the core architecture of React shifted between 2023 and 2026?
+**Answer:** React shifted from being a "client-side UI library" (SPA-centric, manual optimization, heavy client JS) to a "full-stack rendering/runtime model" (Server-first, streaming, compiler-driven, async rendering). The center of gravity moved toward Server Components, server actions, and framework-integrated routing (like Next.js).
+**Example:** Replacing client-side `useEffect` data fetching with direct async DB queries inside Server Components.
+**Reference:** [React Server Components](https://react.dev/blog/2020/12/21/data-fetching-with-react-server-components)
+
+### 63. What is the React Compiler ("React Forget") introduced in React 19?
+**Answer:** The React Compiler is an automated build-time tool that optimizes re-renders by automatically memoizing components and values. It aims to eliminate the manual complexity of `useMemo`, `useCallback`, and `React.memo()`, shifting React from purely runtime optimization to compile-time optimization (similar to Svelte or SolidJS).
+**Example:** `const filtered = items.filter(...)` is automatically optimized by the compiler without wrapping it in `useMemo`.
+**Reference:** [React Compiler](https://react.dev/blog/2024/02/15/react-labs-what-we-have-been-working-on-february-2024)
+
+### 64. How do Server Actions fundamentally change form submission and data mutation in modern React?
+**Answer:** Before React 19, form submissions required an API route, a `fetch()` call, and manual state updates. Server Actions eliminate this boilerplate by allowing direct server-side function execution straight from the `action` attribute of a `<form>`.
+**Example:** `async function createTodo(formData) { "use server"; ... }` followed by `<form action={createTodo}>`.
+**Reference:** [React Server Actions](https://react.dev/reference/react/use-server)
+
+### 65. Explain the execution boundaries defined by `"use client"` and `"use server"`.
+**Answer:** These directives create hard architectural boundaries in modern React. `"use client"` marks code that requires browser interactivity (state, lifecycle hooks, DOM events). `"use server"` marks server-only logic or mutations (Server Actions) that cannot be executed in the browser.
+**Example:** A button with an `onClick` handler requires `"use client"` at the top of its file.
+**Reference:** [React Client Boundaries](https://react.dev/reference/react/use-client)
+
+### 66. What is the `useActionState` hook and how does it simplify forms?
+**Answer:** Introduced in React 19, `useActionState` is explicitly designed for managing form or server mutation state. It encapsulates the pending state, the form's action, and the result of the action into a single hook, drastically improving form ergonomics.
+**Example:** `const [state, action] = useActionState(submitAction, initialState);`
+**Reference:** [React useActionState](https://react.dev/reference/react/useActionState)
+
+### 67. How does the `useOptimistic` hook improve user experience?
+**Answer:** `useOptimistic` allows you to immediately update the UI with an expected (optimistic) state while a server mutation (like a Server Action) is still pending. If the mutation fails, it automatically rolls back, removing the need for manual, complex state machine logic.
+**Example:** `const [optimisticTodos, addOptimisticTodo] = useOptimistic(todos);`
+**Reference:** [React useOptimistic](https://react.dev/reference/react/useOptimistic)
+
+### 68. What major conceptual shift does the `use()` hook introduce for handling asynchronous operations?
+**Answer:** The `use()` hook allows developers to directly consume async values (like Promises) synchronously within the render cycle. It integrates directly with Suspense, effectively moving React away from `useEffect`-based loading states toward synchronous-looking async rendering.
+**Example:** `const data = use(fetchPromise);` inside a component automatically triggers the nearest Suspense boundary until resolved.
+**Reference:** [React use hook](https://react.dev/reference/react/use)
+
+### 69. How have Context Providers been simplified in React 19?
+**Answer:** React 19 removed the need for the verbose `.Provider` suffix when rendering Context. You can now use the Context object directly as a component wrapper, resulting in a cleaner and less cluttered API.
+**Example:** `<ThemeContext>` instead of `<ThemeContext.Provider>`.
+**Reference:** [React 19 Improvements](https://react.dev/blog)
+
+### 70. How has React 19 improved Asset Loading APIs and Document Metadata Management?
+**Answer:** React 19 added native orchestration for metadata (like `<title>` and `<meta>` tags directly in components) and asset loading (`preload`, `preconnect`, async scripts, and stylesheet handling). This natively improves streaming SSR, hydration speed, and Core Web Vitals without relying entirely on external frameworks.
+**Example:** Placing `<title>Dashboard</title>` inside a nested component, and React will automatically hoist it to the document `<head>`.
+**Reference:** [React Document Metadata](https://react.dev/reference/react-dom/components)
+
+### 71. What does it mean that modern React is increasingly "framework-first"?
+**Answer:** Because bleeding-edge features like Server Components, streaming, and Server Actions require tight integration with bundlers, routing, and a server environment, vanilla React (like Create React App) cannot easily support them. As a result, the "default" React experience now mandates using a meta-framework like Next.js or Remix.
+**Example:** Next.js App Router natively supporting RSCs and route handlers out of the box.
+**Reference:** [React Frameworks](https://react.dev/learn/start-a-new-react-project)
+
+### 72. How has the performance optimization philosophy shifted from classic React to modern React?
+**Answer:** Classic React focused heavily on optimizing client-side rendering (minimizing re-renders via `useMemo` or virtual DOM diffing). Modern React (2024+) focuses on avoiding sending JavaScript to the client in the first place via Server Components and edge rendering.
+**Example:** Offloading a heavy markdown parser entirely to a Server Component so the client only receives raw HTML.
+**Reference:** [React Performance](https://react.dev/learn/render-and-commit)
+
+### 73. What are the common criticisms or pushbacks regarding the React 19 architecture?
+**Answer:** The primary criticisms include significantly increased complexity and a steeper learning curve (managing Server vs Client boundaries, Hydration, Actions), heavy framework lock-in (Next.js dominance), harder debugging due to streaming/hydration mismatch, and fragmentation within the ecosystem regarding package compatibility with RSCs.
+**Example:** A popular UI library breaking because it uses `window` inside a component rendered by default as a Server Component.
+**Reference:** [React Ecosystem Critiques](https://react.dev/blog)
+
+### 74. What is the current recommended stack for a production React application in 2026?
+**Answer:** The modern standard leans heavily full-stack: Next.js as the framework, Server Components for rendering/data fetching, Server Actions for mutations, Client Components (restricted to leaves of the tree) for UI state, Suspense for loading, and the React Compiler for optimization.
+**Example:** Fetching data async on the server, passing it down to a client-side chart component, and mutating via a Server Action.
+**Reference:** [Next.js App Router Docs](https://nextjs.org/docs)

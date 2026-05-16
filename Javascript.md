@@ -642,3 +642,38 @@ const module = (function() {
 **Answer:** Top-Level `await` allows developers to use the `await` keyword outside of `async` functions at the top level of ES modules. This causes the module to act as a large async function, meaning modules that import it will wait for the top-level await to resolve before executing their own code, simplifying async initializations without IIFEs.
 **Example:** `const data = await fetch('https://api.example.com/config').then(r => r.json()); export { data };`
 **Reference:** [MDN Top-level await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await#top_level_await)
+
+### 121. How has the JavaScript runtime landscape evolved beyond Node.js in recent years?
+**Answer:** Node.js is no longer the sole dominant runtime. **Deno** emerged focusing on secure-by-default execution, Web API compatibility, and TypeScript-first support. **Bun** exploded in popularity by offering extreme speed and a completely integrated toolchain (runtime, bundler, test runner, package manager all in one), heavily pressuring Node.js to modernize its APIs.
+**Example:** Running a TypeScript file instantly without configuration using `bun run index.ts`.
+**Reference:** [Bun vs Node](https://bun.sh/)
+
+### 122. What drove the JavaScript build tooling revolution away from traditional tools like Webpack?
+**Answer:** Large JavaScript applications suffered from minute-long builds and poor developer experience (DX) due to heavy node-based bundlers. This drove the adoption of ultra-fast, native-compiled tools written in languages like Go and Rust. **Vite** (using esbuild for dev) and **Turbopack** / **SWC** (Rust-based) replaced complex Webpack configs, drastically improving compilation times and HMR speed.
+**Example:** Replacing `babel-loader` with `swc-loader` for 20x faster transpilation.
+**Reference:** [Vite Motivation](https://vitejs.dev/guide/why.html)
+
+### 123. How does Edge Computing architecture differ from traditional Node.js backend architecture?
+**Answer:** Traditional architecture routes requests to a centralized server. Edge execution (e.g., Cloudflare Workers, Vercel Edge) runs JavaScript geographically near the user on lightweight V8 isolates. It offers ultra-low latency, global scalability, and fast SSR, but operates under strict constraints like stateless execution, smaller bundle limits, and limited access to native Node APIs.
+**Example:** Deploying a middleware function to an Edge Worker to intercept and rewrite URLs globally with 0ms cold starts.
+**Reference:** [Cloudflare Workers Architecture](https://developers.cloudflare.com/workers/)
+
+### 124. What is the Temporal API proposed for modern ECMAScript?
+**Answer:** The `Temporal` API is a massive upcoming overhaul to JavaScript date/time handling designed to fix the deeply flawed legacy `Date` object. It provides immutable objects, distinct types for timezones, absolute vs. plain wall-clock time, and precise arithmetic, eliminating mutation bugs and parsing inconsistencies.
+**Example:** `Temporal.Now.instant()` creates a precise timestamp, while `Temporal.PlainDate.from('2026-05-17')` represents a calendar date.
+**Reference:** [TC39 Temporal Proposal](https://tc39.es/proposal-temporal/docs/)
+
+### 125. What are Records and Tuples in modern JavaScript proposals?
+**Answer:** Records (objects) and Tuples (arrays) introduce deeply immutable data structures to JavaScript. They are compared by structural equality rather than object identity (reference). This means two identical Records are strictly equal (`===`), simplifying state management and reducing bugs in frameworks like React.
+**Example:** `#{ a: 1 } === #{ a: 1 }` evaluates to `true`, unlike `{ a: 1 } === `{ a: 1 }`.
+**Reference:** [TC39 Records & Tuples](https://github.com/tc39/proposal-record-tuple)
+
+### 126. Why has TypeScript transitioned from an optional tool to an effectively mandatory interface for modern JavaScript?
+**Answer:** As JavaScript applications became massive, distributed, and asynchronous, plain JavaScript struggled with refactoring safety and API contracts. TypeScript didn't replace JS; instead, it provided the essential static typing, IDE tooling intelligence, and architectural safety net required to maintain modern full-stack codebases and complex framework APIs.
+**Example:** Defining strict I/O contracts using generic types for a cross-platform TRPC router.
+**Reference:** [TypeScript Handbook](https://www.typescriptlang.org/docs/)
+
+### 127. How has the widespread adoption of ES Modules (ESM) impacted the JS ecosystem?
+**Answer:** ESM (`import`/`export`) became the universal standard, replacing Node's CommonJS (`require`). While it unified the syntax between the browser and the server, the transition caused severe fragmentation ("transition pain") regarding CJS/ESM interoperability, package resolution, and tooling configurations.
+**Example:** Migrating a Node backend to use `"type": "module"` in `package.json` to allow top-level await and native Web API imports.
+**Reference:** [Node.js ESM Docs](https://nodejs.org/api/esm.html)

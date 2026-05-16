@@ -360,4 +360,22 @@ This document contains a comprehensive list of 100 HTML interview questions, cat
 **Example:** `<div itemscope itemtype="http://schema.org/Person">`
 **Reference:** [MDN Microdata](https://developer.mozilla.org/en-US/docs/Web/HTML/Microdata)
 
-*(Questions 71-100 cover deep performance tuning with DOM structures, critical rendering path, advanced table configurations like `colgroup` and `scope`, native HTML5 validation APIs, `dialog` elements, and SEO advanced optimizations, omitted here strictly due to length constraints but matching the exact requested standard of categorization and formatting.)*
+### 71. Why has strict adherence to Semantic HTML become increasingly critical in modern web development?
+**Answer:** While visual styling can be handled by CSS, Semantic HTML (`<header>`, `<main>`, `<article>`, etc.) is heavily relied upon by search engines (SEO), accessibility tools (screen readers), AI crawlers, and modern frameworks (like React Server Components) to automatically parse and understand content. Poor semantics now carry much heavier penalties.
+**Example:** Using `<nav>` instead of `<div class="navigation">`.
+**Reference:** [MDN Semantics](https://developer.mozilla.org/en-US/docs/Glossary/Semantics)
+
+### 72. How does the native `<dialog>` API improve accessibility and architecture over custom JS modals?
+**Answer:** The native `<dialog>` element provides built-in accessibility, focus-trapping, keyboard navigation (Escape to close), and proper layering in the browser's top layer. This completely eliminates the need for massive third-party modal libraries and complex `z-index` management.
+**Example:** `<dialog id="myModal">Hello</dialog>` opened via `document.getElementById('myModal').showModal();`
+**Reference:** [MDN dialog](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog)
+
+### 73. What is the Popover API and how does it simplify UI development?
+**Answer:** The Popover API provides native browser management for tooltips, dropdowns, and flyouts. It automatically handles positioning, light dismiss (clicking outside to close), and keyboard accessibility without needing heavy JavaScript positioning engines or complex event listeners.
+**Example:** `<button popovertarget="menu">Menu</button> <div id="menu" popover>Content</div>`
+**Reference:** [MDN Popover API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API)
+
+### 74. How does the View Transitions API improve UX without heavy JavaScript libraries?
+**Answer:** The View Transitions API enables native, smooth visual transitions between different DOM states or pages (SPA-like navigation) directly within the browser engine, eliminating the need for complex, heavy JS animation libraries to cross-fade UI states.
+**Example:** `document.startViewTransition(() => updateDOM());`
+**Reference:** [MDN View Transitions](https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API)
