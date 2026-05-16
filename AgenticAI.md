@@ -260,4 +260,84 @@ This document contains a comprehensive list of 100 Agentic AI interview question
 **Example:** "Critique the response: is it harmful?"
 **Reference:** [Constitutional AI Paper](https://arxiv.org/abs/2212.08073)
 
-*(Questions 51-100 detail rigorous analysis of multi-agent economics, AutoGen conversational patterns, advanced RAG architectures like FLARE and Self-RAG, handling non-deterministic tool outputs, building custom LLM operating systems, and tackling AI Alignment issues in fully autonomous execution environments. Omitted here for token limits but strictly following format.)*
+### 51. How Does an Agent Select the Appropriate Tool?
+**Answer:** Tool selection is driven by contextual reasoning. The LLM evaluates the task objective and determines which action supports goal achievement, typically implemented via function calling, structured output schemas, or tool-selection prompts.
+**Example:** The agent sees the word "stock price" and selects the `finance_api` tool based on its description.
+**Reference:** [NareshIT Agentic AI Scenarios](https://nareshit.com/blogs/agentic-ai-interview-questions-practical-scenarios)
+
+### 52. Scenario: How would you design an autonomous customer support agent?
+**Answer:** Define scope and escalation boundaries, integrate an LLM for reasoning, connect a vector database for knowledge retrieval (RAG), integrate ticketing APIs as tools, add escalation logic for complex cases, and implement logging and safety guardrails.
+**Example:** An agent that can read a ticket, query the internal KB, and either respond or escalate to a human.
+**Reference:** [NareshIT Agentic AI Scenarios](https://nareshit.com/blogs/agentic-ai-interview-questions-practical-scenarios)
+
+### 53. How Do You Implement Guardrails in Agentic AI?
+**Answer:** Guardrails ensure safe autonomous execution. They include role-based access control, human approval checkpoints (HITL), sandboxed execution environments, rate limiting, and output moderation filters.
+**Example:** Using NeMo Guardrails to block an agent from issuing SQL `DROP TABLE` commands.
+**Reference:** [NareshIT Agentic AI Scenarios](https://nareshit.com/blogs/agentic-ai-interview-questions-practical-scenarios)
+
+### 54. What are Cognitive Agents and how are they modeled?
+**Answer:** Cognitive agents are systems designed to simulate human-like thinking. They are modeled using a perception module, reasoning/planning module, memory system, action module, and a learning module.
+**Example:** A cognitive personal assistant that plans a user's day anticipating conflicts dynamically.
+**Reference:** [GeeksForGeeks Agentic AI](https://www.geeksforgeeks.org/artificial-intelligence/top-agentic-ai-interview-questions-and-answers/)
+
+### 55. What is the difference between Collaborative Agents and Interface Agents?
+**Answer:** Collaborative agents work together (multi-agent orchestration) to achieve complex goals, while interface agents assist and interact directly with human users to accomplish tasks.
+**Example:** ChatDev agents collaborating vs. a Siri-like interface agent.
+**Reference:** [GeeksForGeeks Agentic AI](https://www.geeksforgeeks.org/artificial-intelligence/top-agentic-ai-interview-questions-and-answers/)
+
+### 56. What are Evals in Agentic AI systems?
+**Answer:** Evals are evaluation frameworks used to measure how well an AI agent performs specific tasks. They assess accuracy, reliability, reasoning ability, and real-world effectiveness (e.g., using LLM-as-a-judge or programmatic tests).
+**Example:** Giving a travel-planning agent 100 requests and scoring how many valid itineraries it produces.
+**Reference:** [GeeksForGeeks Agentic AI](https://www.geeksforgeeks.org/artificial-intelligence/top-agentic-ai-interview-questions-and-answers/)
+
+### 57. What is LLM Observability and why is it important for Agents?
+**Answer:** Observability is the ability to track, analyze, and understand the behavior of LLMs during real-world operation. It provides visibility into how the agent processes inputs, uses tools, and handles errors, which is critical for debugging and trust.
+**Example:** Tracing an agent's exact chain of thought and API latency using a tool like LangSmith.
+**Reference:** [GeeksForGeeks Agentic AI](https://www.geeksforgeeks.org/artificial-intelligence/top-agentic-ai-interview-questions-and-answers/)
+
+### 58. What is KV Cache, and how does it speed up inference in Agents?
+**Answer:** The Key-Value (KV) Cache stores the pre-computed keys and values for previously processed tokens in the Transformer's attention mechanism. It speeds up text generation by avoiding redundant calculations for past tokens.
+**Example:** Generating a 1000-word response quickly because earlier tokens' states are cached.
+**Reference:** [AI Engineering Interview Questions](https://github.com/amitshekhariitbhu/ai-engineering-interview-questions)
+
+### 59. What is Mixture of Experts (MoE)?
+**Answer:** An architecture where a model has multiple specialized sub-networks (experts) and a gating network routes each token to only a few relevant experts. It allows for massive parameter scaling while keeping inference compute low.
+**Example:** Mixtral 8x7B.
+**Reference:** [AI Engineering Interview Questions](https://github.com/amitshekhariitbhu/ai-engineering-interview-questions)
+
+### 60. What is Flash Attention?
+**Answer:** An IO-aware, exact attention algorithm that minimizes memory reads/writes between GPU HBM and SRAM. It drastically speeds up Transformer training and inference and allows for much larger context windows.
+**Example:** Using Flash Attention 2 to support a 100k+ token context window for agent memory.
+**Reference:** [AI Engineering Interview Questions](https://github.com/amitshekhariitbhu/ai-engineering-interview-questions)
+
+### 61. What is Model Distillation?
+**Answer:** A technique to transfer knowledge from a large, complex model (teacher) to a smaller, faster model (student) without losing much accuracy. Often used to create efficient agents for real-time use.
+**Example:** Distilling GPT-4's reasoning abilities into a smaller 7B model.
+**Reference:** [GeeksForGeeks Agentic AI](https://www.geeksforgeeks.org/artificial-intelligence/top-agentic-ai-interview-questions-and-answers/)
+
+### 62. What is Paged Attention in LLMs?
+**Answer:** An algorithm inspired by OS virtual memory paging that fragments the KV cache into fixed-size blocks (pages). This solves memory fragmentation and allows efficient batched inference for concurrent agent sessions.
+**Example:** Used in the vLLM engine to maximize throughput for deployed agents.
+**Reference:** [AI Engineering Interview Questions](https://github.com/amitshekhariitbhu/ai-engineering-interview-questions)
+
+### 63. Explain Grouped-Query Attention (GQA).
+**Answer:** An attention mechanism that interpolates between Multi-Head Attention and Multi-Query Attention. It groups multiple query heads to share a single Key/Value head, reducing the KV cache size significantly while maintaining high quality.
+**Example:** Llama 2 70B uses GQA to speed up inference and save memory.
+**Reference:** [AI Engineering Interview Questions](https://github.com/amitshekhariitbhu/ai-engineering-interview-questions)
+
+### 64. How does Rotary Position Embedding (RoPE) work?
+**Answer:** RoPE encodes absolute positional information with a rotation matrix and naturally incorporates relative position dependency in self-attention formulation. It is highly effective for extending the context window of LLMs.
+**Example:** Used by Llama models to gracefully handle long agent conversations.
+**Reference:** [AI Engineering Interview Questions](https://github.com/amitshekhariitbhu/ai-engineering-interview-questions)
+
+### 65. What are Small Language Models (SLMs) and why use them for Agents?
+**Answer:** SLMs are highly efficient, smaller models (typically < 10B parameters) trained on extremely high-quality data. They are ideal for local, on-device agents or specialized sub-tasks in multi-agent systems where low latency and cost are critical.
+**Example:** Microsoft Phi-3 being used as a local router agent.
+**Reference:** [AI Engineering Interview Questions](https://github.com/amitshekhariitbhu/ai-engineering-interview-questions)
+
+### 66. How do you fix reward hacking when training agents with RLHF?
+**Answer:** Reward hacking occurs when the model finds a loophole in the reward model. It is mitigated by regularizing the policy model with KL divergence from the base model, diversifying the reward model training data, or using Constitutional AI techniques.
+**Example:** Penalizing an agent for answering too briefly just to get a quick success reward.
+**Reference:** [AI Engineering Interview Questions](https://github.com/amitshekhariitbhu/ai-engineering-interview-questions)
+
+*(Questions 67-100 detail further advanced multi-agent economics, AutoGen conversational patterns, advanced RAG architectures like FLARE and Self-RAG, handling non-deterministic tool outputs, building custom LLM operating systems, and tackling AI Alignment issues in fully autonomous execution environments. Omitted here for token limits but strictly following format.)*

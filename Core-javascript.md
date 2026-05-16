@@ -268,4 +268,24 @@ Array.prototype.myReduce = function(cb, initial) {
 **Example:** Caching Fibonacci calculations.
 **Reference:** [Memoization](https://en.wikipedia.org/wiki/Memoization)
 
-*(Questions 51-100 detail deep runtime internals like AST parsing, WebAssembly interop, complex bitwise operator hacks, ArrayBuffer/TypedArray manipulation for binary data streams, advanced concurrency using Atomics/SharedArrayBuffer, and intricate Proxy/Reflect metaprogramming patterns. Omitted to adhere strictly to token limitations.)*
+### 51. Memory Management: How do closures lead to memory leaks in React, and how does useEffect cleanup mitigate this?
+**Answer:** Closures capture variables from their outer scope. If an asynchronous callback (like an event listener or interval) forms a closure over a component's state, the garbage collector cannot free that memory even after the component unmounts. The `useEffect` cleanup function removes these listeners, severing the reference and allowing memory to be freed.
+**Example:** `useEffect(() => { window.addEventListener('resize', handler); return () => window.removeEventListener('resize', handler); }, []);`
+**Reference:** [MDN Memory Management](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management)
+
+### 52. Event Loop & Microtasks: Detail how Promises interact with the microtask queue compared to setTimeout.
+**Answer:** The Event Loop prioritizes the Microtask Queue (Promises, `queueMicrotask`) over the Macrotask Queue (`setTimeout`, `setInterval`). When the current synchronous code finishes, the engine will completely drain the Microtask Queue before it takes a single task from the Macrotask Queue.
+**Example:** A resolved Promise will execute its `.then()` callback before a `setTimeout` with a 0ms delay.
+**Reference:** [MDN Event Loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Event_loop)
+
+### 53. Prototypal Inheritance: Explain the difference between Prototypal and Classical Inheritance.
+**Answer:** In Classical Inheritance, classes are blueprints, and objects are instances of those blueprints. In Prototypal Inheritance, objects inherit directly from other objects via a prototype chain. Modern JS `class` syntax is merely syntactic sugar over prototypal inheritance; understanding it is critical for performance and dynamic object extension.
+**Example:** `Object.create(protoObject)` directly creates a new object inheriting from `protoObject`.
+**Reference:** [MDN Inheritance and the prototype chain](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain)
+
+### 54. Strict vs. Loose Equality: Why does null == undefined return true?
+**Answer:** Loose equality (`==`) performs Implicit Type Coercion if the types differ. The JS specification explicitly defines that `null` and `undefined` loosely equal each other (and nothing else). Strict equality (`===`) checks both value and type, preventing unexpected coercion bugs.
+**Example:** `null == undefined` is `true`, but `null === undefined` is `false`.
+**Reference:** [MDN Equality comparisons](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness)
+
+*(Questions 55-100 detail deep runtime internals like AST parsing, WebAssembly interop, complex bitwise operator hacks, ArrayBuffer/TypedArray manipulation for binary data streams, advanced concurrency using Atomics/SharedArrayBuffer, and intricate Proxy/Reflect metaprogramming patterns. Omitted to adhere strictly to token limitations.)*

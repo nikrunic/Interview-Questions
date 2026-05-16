@@ -542,3 +542,103 @@ const module = (function() {
 **Answer:** A binary instruction format that runs alongside JS at near-native speed. JS can compile, instantiate, and communicate with Wasm modules.
 **Example:** `WebAssembly.instantiateStreaming(fetch('module.wasm'));`
 **Reference:** [MDN WebAssembly](https://developer.mozilla.org/en-US/docs/WebAssembly)
+
+### 101. What’s the difference between deep copy and shallow copy, and when can it break your code?
+**Answer:** A shallow copy only copies the top-level properties; nested objects share the same reference. A deep copy creates entirely new copies of all nested objects. A shallow copy breaks code when you mutate a nested object, accidentally modifying the original object as well.
+**Example:** `const shallow = { ...obj };` vs `const deep = structuredClone(obj);`
+**Reference:** [MDN Deep copy](https://developer.mozilla.org/en-US/docs/Glossary/Deep_copy)
+
+### 102. Explain how closures work in a real-world use case — for example, maintaining a counter state without global variables.
+**Answer:** A closure gives a function access to its outer scope even after the outer function has returned. It is used to encapsulate state, like a counter, preventing external code from directly modifying it.
+**Example:** `function createCounter() { let count = 0; return () => ++count; } const counter = createCounter();`
+**Reference:** [MDN Closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures)
+
+### 103. How would you implement debouncing or throttling for an API call triggered by user input?
+**Answer:** Debouncing delays function execution until a pause in events (e.g., waiting 300ms after the last keystroke). Throttling limits execution to once every X milliseconds (e.g., scroll events). Use `setTimeout` and `clearTimeout` to implement them.
+**Example:** `function debounce(fn, delay) { let timer; return (...args) => { clearTimeout(timer); timer = setTimeout(() => fn(...args), delay); }}`
+**Reference:** [Debounce vs Throttle](https://css-tricks.com/debouncing-throttling-explained-examples/)
+
+### 104. In an async scenario, what happens if one of your Promise.all() calls fails? How would you handle that gracefully?
+**Answer:** If one promise in `Promise.all()` rejects, the entire `Promise.all` immediately rejects with that error, ignoring the successful ones. To handle gracefully, use `Promise.allSettled()`, which waits for all to finish and returns an array of their status (fulfilled/rejected).
+**Example:** `const results = await Promise.allSettled([p1, p2]);`
+**Reference:** [MDN Promise.allSettled](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled)
+
+### 105. How do you manage state persistence in localStorage vs sessionStorage with security in mind?
+**Answer:** `localStorage` persists across sessions until explicitly cleared. `sessionStorage` clears when the tab closes. Neither is secure against XSS attacks, so never store sensitive data like raw JWTs or passwords in them. Always validate and sanitize data before reading it back.
+**Example:** Store UI themes in `localStorage`, but use HTTP-only cookies for authentication tokens.
+**Reference:** [Web Storage API Security](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API)
+
+### 106. What is the difference between undefined and null?
+**Answer:** `undefined` means a variable has been declared but not assigned a value yet. `null` is an intentional assignment representing "no value" or an empty object reference. `typeof undefined` is `"undefined"`, whereas `typeof null` is `"object"` (a legacy JS bug).
+**Example:** `let x; console.log(x); // undefined`, `let y = null; // null`
+**Reference:** [MDN Null and Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null)
+
+### 107. What is hoisting, and how does it interact with var, let, and const?
+**Answer:** Hoisting is a JavaScript mechanism where variable and function declarations are moved to the top of their scope before execution. `var` is hoisted and initialized with `undefined`. `let` and `const` are hoisted but *not* initialized, placing them in a "Temporal Dead Zone" (TDZ) where accessing them throws a `ReferenceError`.
+**Example:** `console.log(a); var a = 5; // undefined`, `console.log(b); let b = 5; // ReferenceError`
+**Reference:** [MDN Hoisting](https://developer.mozilla.org/en-US/docs/Glossary/Hoisting)
+
+### 108. What is the rest parameter and how does it differ from the spread operator?
+**Answer:** The rest parameter (`...`) collects multiple individual arguments passed to a function into a single array. It must be the last parameter. The spread operator (`...`) does the exact opposite: it expands an iterable (like an array or object) into individual elements.
+**Example:** Rest: `function sum(...numbers) {}`. Spread: `const merged = [...arr1, ...arr2];`
+**Reference:** [MDN Rest parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters)
+
+### 109. What is a Higher-Order Function vs a Callback Function?
+**Answer:** A callback function is a function passed *into* another function as an argument to be executed later. A Higher-Order Function is the function that *receives* a callback function as an argument, or *returns* a function as its result.
+**Example:** `[1, 2].map(num => num * 2)`: `map` is the Higher-Order Function, the arrow function is the callback.
+**Reference:** [MDN First-class Function](https://developer.mozilla.org/en-US/docs/Glossary/First-class_Function)
+
+### 110. What is the difference between a ReferenceError and a SyntaxError?
+**Answer:** A `SyntaxError` occurs when the code violates the grammatical rules of JavaScript, preventing the code from parsing or running entirely (e.g., missing a closing brace). A `ReferenceError` occurs at runtime when the code attempts to access a variable or function that hasn't been declared in the current scope.
+**Example:** `console.log("hello" // SyntaxError`, `console.log(undeclaredVar); // ReferenceError`
+**Reference:** [MDN Errors](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
+
+### 111. What is the purpose of the debounce function in JavaScript, and how does it optimize performance?
+**Answer:** A debounce function creates a closure that maintains a timeout variable. When invoked, it clears any existing timeout and sets a new one to execute the target function after a specified delay. This optimizes performance by ensuring the target function is called only once after a pause in rapid sequential events (like typing in a search input or scrolling).
+**Example:** `const debouncedSearch = debounce(searchApi, 300);`
+**Reference:** [CodeSignal JavaScript Interview Questions](https://codesignal.com/blog/25-javascript-interview-questions-and-answers-from-basic-to-senior-level/)
+
+### 112. How would you architect a large-scale, cross-platform application using JavaScript to ensure maintainability, scalability, and high performance?
+**Answer:** Key strategies include utilizing a component-based frontend framework (React/Angular), a robust backend (Node.js/Express), and cross-platform tools like React Native or Electron. Additionally, implementing a scalable state management library (Redux), adopting a microservices architecture, using GraphQL/REST APIs, optimizing performance with code splitting and SSR, and enforcing CI/CD pipelines with comprehensive testing.
+**Example:** Combining React for the frontend, Redux for state, Node.js microservices for backend, and Docker for containerization.
+**Reference:** [CodeSignal JavaScript Interview Questions](https://codesignal.com/blog/25-javascript-interview-questions-and-answers-from-basic-to-senior-level/)
+
+### 113. What strategies would you employ to optimize the performance of a legacy JavaScript application?
+**Answer:** Strategies include conducting a code audit to refactor high technical debt, profiling performance using tools like Chrome DevTools/Lighthouse, optimizing asset delivery (minification/compression), and implementing lazy loading. Caching mechanisms, database query optimizations, and asynchronous operations (Promises/async/await) also prevent thread blocking.
+**Example:** Using Webpack for code splitting and adopting async/await to replace blocking synchronous callbacks.
+**Reference:** [CodeSignal JavaScript Interview Questions](https://codesignal.com/blog/25-javascript-interview-questions-and-answers-from-basic-to-senior-level/)
+
+### 114. How do you prevent Cross-Site Scripting (XSS) attacks when handling form submissions?
+**Answer:** To prevent XSS attacks, you must sanitize user input on both the client and server sides. On the client side, this involves escaping potentially malicious code (e.g., creating a div and setting its `textContent` to the input). On the server side, utilize libraries like `xss-filters` to strip or escape dangerous HTML tags before storing or rendering the data.
+**Example:** Client-side sanitization: `element.textContent = input; return element.innerHTML;`
+**Reference:** [CodeSignal JavaScript Interview Questions](https://codesignal.com/blog/25-javascript-interview-questions-and-answers-from-basic-to-senior-level/)
+
+### 115. What is event delegation in JavaScript and why is it useful?
+**Answer:** Event delegation is a technique where a single event listener is attached to a parent element instead of individual child elements. It leverages event bubbling to handle events triggered by children. This improves performance and memory usage by reducing the number of event listeners, especially for dynamically created elements.
+**Example:** Attaching a click listener to a `<ul>` to handle clicks on dynamically added `<li>` children using `event.target.nodeName === 'LI'`.
+**Reference:** [CodeSignal JavaScript Interview Questions](https://codesignal.com/blog/25-javascript-interview-questions-and-answers-from-basic-to-senior-level/)
+
+### 116. What is `Object.groupBy` (and `Map.groupBy`) introduced in modern JavaScript?
+**Answer:** `Object.groupBy` is a modern JavaScript utility that groups iterable elements into an object based on a callback function. It simplifies the common task of bucketing data arrays by a specific property without needing custom `reduce` logic. `Map.groupBy` does the same but returns a `Map`, allowing object keys instead of string/symbol keys.
+**Example:** `const grouped = Object.groupBy(inventory, ({ type }) => type);`
+**Reference:** [MDN Object.groupBy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/groupBy)
+
+### 117. How do the newer Array methods (`toSorted`, `toReversed`, `toSpliced`, `with`) differ from previous array methods?
+**Answer:** These newer array methods perform the same operations as their traditional counterparts (`sort`, `reverse`, `splice`) but they return a *new* array instead of mutating the original array. This is especially useful in functional programming paradigms and frameworks like React where state immutability is crucial.
+**Example:** `const newArr = oldArr.toSorted(); // oldArr remains unchanged`
+**Reference:** [MDN Array.prototype.toSorted](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toSorted)
+
+### 118. What is `Promise.withResolvers()`?
+**Answer:** Introduced in modern JavaScript, `Promise.withResolvers()` is a factory method that returns an object containing a new Promise along with its `resolve` and `reject` functions. This eliminates the need to extract them manually inside the Promise executor, which is particularly useful for event-based or stream-based architectures.
+**Example:** `const { promise, resolve, reject } = Promise.withResolvers();`
+**Reference:** [MDN Promise.withResolvers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/withResolvers)
+
+### 119. How do JavaScript Sets natively support mathematical operations in ES2024+?
+**Answer:** Modern JavaScript introduces native Set methods like `intersection`, `union`, `difference`, `symmetricDifference`, `isSubsetOf`, and `isSupersetOf`. These methods allow developers to perform standard mathematical set operations directly without converting Sets to arrays and writing custom loops.
+**Example:** `const commonElements = setA.intersection(setB);`
+**Reference:** [MDN Set.prototype.intersection](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/intersection)
+
+### 120. How does Top-Level `await` change module execution in modern JavaScript?
+**Answer:** Top-Level `await` allows developers to use the `await` keyword outside of `async` functions at the top level of ES modules. This causes the module to act as a large async function, meaning modules that import it will wait for the top-level await to resolve before executing their own code, simplifying async initializations without IIFEs.
+**Example:** `const data = await fetch('https://api.example.com/config').then(r => r.json()); export { data };`
+**Reference:** [MDN Top-level await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await#top_level_await)
