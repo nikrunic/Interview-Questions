@@ -11,18 +11,23 @@ Each file contains a minimum of 100 questions categorized by difficulty:
 
 * [Agentic AI](./AgenticAI.md)
 * [Angular](./Angular.md)
+* [C#](./CSharp.md)
 * [Core Javascript](./Core-javascript.md)
 * [CSS3](./CSS3.md)
+* [.NET](./DotNet.md)
 * [Hasura GraphQL](./Hasura-GraphQL.md)
 * [HTML](./HTML.md)
 * [Javascript](./Javascript.md)
 * [LESS](./LESS.md)
+* [MS SQL Server](./MSSQL.md)
+* [MySQL](./MySQL.md)
 * [Node.js](./NodeJs.md)
 * [React Architecture](./ReactArchiteture.md)
 * [React.js](./Reactjs.md)
 * [REST API](./RestAPI.md)
 * [SCSS](./SCSS.md)
 * [TypeScript](./Typscript.md)
+
 
 ---
 *Note: Questions include examples where applicable and reference links for further reading.*
