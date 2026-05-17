@@ -15,6 +15,8 @@ This document contains a comprehensive list of .NET framework and .NET Core inte
 **Example:** Building ASP.NET web APIs or MAUI mobile apps.
 **Reference:** [What is .NET?](https://dotnet.microsoft.com/en-us/learn/dotnet/what-is-dotnet)
 
+---
+
 ### 2. What is the CLR (Common Language Runtime)?
 **Answer:** 
 **The Core Concept:**
@@ -25,6 +27,8 @@ The CLR is the virtual machine component of .NET that manages the execution of .
 - It executes Intermediate Language (IL) code via Just-In-Time (JIT) compilation.
 **Example:** N/A (Internal architecture).
 **Reference:** [CLR Overview](https://learn.microsoft.com/en-us/dotnet/standard/clr)
+
+---
 
 ### 3. What is IL (Intermediate Language) and JIT (Just-In-Time) compilation?
 **Answer:** 
@@ -37,6 +41,8 @@ IL is a CPU-independent instruction set. JIT compiles this IL into native machin
 **Example:** `csc.exe` produces IL; the CLR runs the JIT.
 **Reference:** [Managed Code](https://learn.microsoft.com/en-us/dotnet/standard/managed-code)
 
+---
+
 ### 4. What is the BCL (Base Class Library)?
 **Answer:** 
 **The Core Concept:**
@@ -46,6 +52,8 @@ The BCL is a foundational set of assemblies that provide common functionality fo
 - It includes classes for collections, IO operations, thread management, database access, and more.
 **Example:** The `System` namespace containing `String`, `Int32`, `Console`.
 **Reference:** [BCL](https://learn.microsoft.com/en-us/dotnet/standard/class-library)
+
+---
 
 ### 5. What is the difference between .NET Framework, .NET Core, and .NET Standard?
 **Answer:** 
@@ -59,6 +67,8 @@ They represent the evolution of the .NET ecosystem.
 **Example:** Targeting `netstandard2.0` to share code between old Framework apps and new Core apps.
 **Reference:** [.NET Standard](https://learn.microsoft.com/en-us/dotnet/standard/net-standard)
 
+---
+
 ### 6. What is NuGet?
 **Answer:** 
 **The Core Concept:**
@@ -69,6 +79,8 @@ NuGet is the package manager for .NET.
 **Example:** Running `dotnet add package Newtonsoft.Json`.
 **Reference:** [NuGet](https://learn.microsoft.com/en-us/nuget/what-is-nuget)
 
+---
+
 ### 7. What is ASP.NET Core?
 **Answer:** 
 **The Core Concept:**
@@ -78,6 +90,8 @@ ASP.NET Core is the cross-platform, high-performance, open-source framework for 
 - It features a unified story for building web UI and web APIs, built-in dependency injection, and a lightweight modular HTTP request pipeline.
 **Example:** Creating a REST API using `ControllerBase`.
 **Reference:** [ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/)
+
+---
 
 ### 8. Explain the `Program.cs` and `Startup.cs` files in ASP.NET Core.
 **Answer:** 
@@ -90,6 +104,8 @@ They are the entry points of an application.
 **Example:** `var builder = WebApplication.CreateBuilder(args);`
 **Reference:** [App Startup](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/startup)
 
+---
+
 ### 9. What is Middleware in ASP.NET Core?
 **Answer:** 
 **The Core Concept:**
@@ -100,6 +116,8 @@ Middleware is software assembled into an app pipeline to handle requests and res
 **Example:** Authentication middleware, Routing middleware, Error Handling middleware.
 **Reference:** [Middleware](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/)
 
+---
+
 ### 10. What is Entity Framework Core (EF Core)?
 **Answer:** 
 **The Core Concept:**
@@ -109,6 +127,8 @@ EF Core is a lightweight, extensible, open-source Object-Relational Mapper (O/RM
 - It enables developers to work with a database using .NET objects, eliminating the need for most of the data-access code that typically needs to be written.
 **Example:** `context.Users.Add(newUser); context.SaveChanges();`
 **Reference:** [EF Core](https://learn.microsoft.com/en-us/ef/core/)
+
+---
 
 ## Medium (10 Questions)
 
@@ -124,6 +144,8 @@ DI manages object lifespans in the built-in container.
 **Example:** `builder.Services.AddScoped<IMyService, MyService>();`
 **Reference:** [DI Lifetimes](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection#service-lifetimes)
 
+---
+
 ### 12. What is Kestrel?
 **Answer:** 
 **The Core Concept:**
@@ -133,6 +155,8 @@ Kestrel is the cross-platform, default web server included by default in ASP.NET
 - It is highly optimized and incredibly fast. It can be used alone as an edge server or placed behind a reverse proxy server (like IIS, Nginx, or Apache).
 **Example:** Kestrel listening on `http://localhost:5000`.
 **Reference:** [Kestrel](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel)
+
+---
 
 ### 13. How does routing work in ASP.NET Core?
 **Answer:** 
@@ -144,6 +168,8 @@ Routing is responsible for matching incoming HTTP requests and dispatching those
 **Example:** `[Route("api/[controller]")]`
 **Reference:** [Routing](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/routing)
 
+---
+
 ### 14. What are Action Filters in ASP.NET Core?
 **Answer:** 
 **The Core Concept:**
@@ -154,6 +180,8 @@ Filters allow code to run before or after specific stages in the request process
 **Example:** `[Authorize]`, `[ValidateModelState]`
 **Reference:** [Filters](https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/filters)
 
+---
+
 ### 15. What is the `appsettings.json` file?
 **Answer:** 
 **The Core Concept:**
@@ -163,6 +191,8 @@ It is the standard configuration file in ASP.NET Core, storing application setti
 - It replaces the old `web.config`. Settings can be strongly typed using the Options pattern (`IOptions<T>`) and overridden by environment variables.
 **Example:** Storing Database Connection Strings.
 **Reference:** [Configuration](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration/)
+
+---
 
 ### 16. What is the difference between `AddMvc()`, `AddControllers()`, and `AddControllersWithViews()`?
 **Answer:** 
@@ -176,6 +206,8 @@ They configure the necessary services for different architectural needs to optim
 **Example:** Use `AddControllers()` for a pure backend API.
 **Reference:** [MVC Services](https://learn.microsoft.com/en-us/aspnet/core/mvc/overview)
 
+---
+
 ### 17. How does JWT Authentication work in .NET Core?
 **Answer:** 
 **The Core Concept:**
@@ -185,6 +217,8 @@ JSON Web Tokens provide a stateless authentication mechanism.
 - The server validates credentials and issues a signed JWT. The client sends this token in the `Authorization` header (`Bearer <token>`). The .NET middleware validates the signature to authorize the request without querying a database.
 **Example:** `services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)`
 **Reference:** [JWT in ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/jwt-authn)
+
+---
 
 ### 18. What is Code-First vs Database-First in EF Core?
 **Answer:** 
@@ -197,6 +231,8 @@ Two approaches to mapping databases to objects.
 **Example:** `dotnet ef migrations add InitialCreate` (Code-First)
 **Reference:** [EF Core Approaches](https://learn.microsoft.com/en-us/ef/core/managing-schemas/)
 
+---
+
 ### 19. What are EF Core Migrations?
 **Answer:** 
 **The Core Concept:**
@@ -207,6 +243,8 @@ Migrations are a way to keep the database schema in sync with the EF Core model 
 **Example:** `Update-Database` in Package Manager Console.
 **Reference:** [Migrations](https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/)
 
+---
+
 ### 20. What is Blazor?
 **Answer:** 
 **The Core Concept:**
@@ -216,6 +254,8 @@ Blazor is a framework for building interactive client-side web UI with .NET/C# i
 - It runs either on a server (Blazor Server via WebSockets/SignalR) or directly in the browser using WebAssembly (Blazor WebAssembly).
 **Example:** Writing an `<input @onclick="HandleClick" />` component.
 **Reference:** [Blazor](https://learn.microsoft.com/en-us/aspnet/core/blazor/)
+
+---
 
 ## Hard (10 Questions)
 
@@ -229,6 +269,8 @@ Using `IAsyncEnumerable<T>` introduced in C# 8, allowing you to consume a stream
 **Example:** `await foreach (var item in GetDataAsync()) { ... }`
 **Reference:** [Async Streams](https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/generate-consume-asynchronous-stream)
 
+---
+
 ### 22. Explain the Garbage Collection Large Object Heap (LOH).
 **Answer:** 
 **The Core Concept:**
@@ -240,6 +282,8 @@ The GC segregates objects by size. Objects larger than ~85,000 bytes go to the L
 **Example:** Large byte arrays or large strings.
 **Reference:** [Large Object Heap](https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/large-object-heap)
 
+---
+
 ### 23. What is the Options pattern in ASP.NET Core?
 **Answer:** 
 **The Core Concept:**
@@ -249,6 +293,8 @@ It uses classes to provide strongly typed access to groups of related settings f
 - It promotes encapsulation and separation of concerns. It uses `IOptions<T>` (singleton), `IOptionsSnapshot<T>` (scoped, reloads on change), or `IOptionsMonitor<T>` (singleton, dynamic reloads).
 **Example:** `public MyService(IOptions<MySettings> options)`
 **Reference:** [Options Pattern](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration/options)
+
+---
 
 ### 24. How do you prevent thread starvation in ASP.NET Core?
 **Answer:** 
@@ -261,6 +307,8 @@ Thread starvation occurs when the ThreadPool is exhausted, causing the app to fr
 **Example:** Avoid `var data = GetDataAsync().Result;`
 **Reference:** [Async Guidance](https://github.com/davidfowl/AspNetCoreDiagnosticScenarios/blob/master/AsyncGuidance.md)
 
+---
+
 ### 25. Explain minimal APIs introduced in .NET 6.
 **Answer:** 
 **The Core Concept:**
@@ -270,6 +318,8 @@ Minimal APIs are designed to create HTTP APIs with minimal dependencies and boil
 - They remove the need for Controllers, allowing you to define endpoints directly in `Program.cs` using simple lambdas. Highly performant for microservices.
 **Example:** `app.MapGet("/hello", () => "Hello World!");`
 **Reference:** [Minimal APIs](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis)
+
+---
 
 ### 26. What is the N+1 query problem in EF Core and how do you solve it?
 **Answer:** 
@@ -282,6 +332,8 @@ It occurs when EF Core executes one query to get a list of parents, and then N a
 **Example:** `context.Authors.Include(a => a.Books).ToList();`
 **Reference:** [Loading Related Data](https://learn.microsoft.com/en-us/ef/core/querying/related-data)
 
+---
+
 ### 27. How does SignalR work under the hood?
 **Answer:** 
 **The Core Concept:**
@@ -292,6 +344,8 @@ SignalR simplifies adding real-time web functionality to apps.
 **Example:** Real-time chat applications or live dashboards.
 **Reference:** [SignalR](https://learn.microsoft.com/en-us/aspnet/core/signalr/introduction)
 
+---
+
 ### 28. What is AOT (Ahead-Of-Time) Compilation in modern .NET?
 **Answer:** 
 **The Core Concept:**
@@ -301,6 +355,8 @@ Native AOT compiles the .NET code directly into native machine code at build tim
 - It drastically reduces startup time (cold starts) and memory usage, ideal for AWS Lambdas/Azure Functions or microservices. The tradeoff is it restricts dynamic capabilities like Reflection.
 **Example:** Setting `<PublishAot>true</PublishAot>` in the `.csproj`.
 **Reference:** [Native AOT](https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/)
+
+---
 
 ### 29. How do you implement global exception handling in ASP.NET Core?
 **Answer:** 
@@ -313,6 +369,8 @@ Catching unhandled exceptions globally to prevent server crashes and return stan
 **Example:** `app.UseExceptionHandler("/error");`
 **Reference:** [Error Handling](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling)
 
+---
+
 ### 30. Explain concurrency control in EF Core.
 **Answer:** 
 **The Core Concept:**
@@ -322,6 +380,8 @@ Preventing data loss when multiple users attempt to update the same row simultan
 - EF Core supports Optimistic Concurrency. You configure a concurrency token (usually a `RowVersion` column). If User A and User B read the same row, and User A saves, User B's save will throw a `DbUpdateConcurrencyException` because the token in the DB no longer matches their local token.
 **Example:** `[Timestamp] public byte[] RowVersion { get; set; }`
 **Reference:** [Concurrency](https://learn.microsoft.com/en-us/ef/core/saving/concurrency)
+
+---
 
 
 ### 31. What is the difference between `IApplicationBuilder.Use` and `IApplicationBuilder.Run`?
@@ -335,6 +395,8 @@ They define how middleware operates in the request pipeline.
 **Example:** `app.Use(async (context, next) => { ... await next(); });`
 **Reference:** [Middleware pipeline](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/)
 
+---
+
 ### 32. What is `appsettings.Development.json`?
 **Answer:** 
 **The Core Concept:**
@@ -344,6 +406,8 @@ Environment-specific configuration file.
 - ASP.NET Core natively supports Multiple Environments (Development, Staging, Production). The host automatically merges `appsettings.json` with `appsettings.{Environment}.json`, allowing you to override database strings or API keys based on the server environment.
 **Example:** Setting `ASPNETCORE_ENVIRONMENT=Development`.
 **Reference:** [Multiple environments](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/environments)
+
+---
 
 ### 33. How does Dependency Injection handle `IDisposable` objects?
 **Answer:** 
@@ -355,6 +419,8 @@ The DI container automatically manages the lifecycle of the objects it creates.
 **Example:** `using` statements are not needed for injected EF Core contexts.
 **Reference:** [DI Guidelines](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection-guidelines)
 
+---
+
 ### 34. What is the `[FromServices]` attribute?
 **Answer:** 
 **The Core Concept:**
@@ -364,6 +430,8 @@ Injects a dependency directly into a controller action method.
 - Instead of injecting a service into the Controller's constructor (which instantiates it for every endpoint), `[FromServices]` injects it only into the specific action that needs it, optimizing memory if the controller is massive.
 **Example:** `public IActionResult Get([FromServices] IMyService service)`
 **Reference:** [Method Injection](https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/dependency-injection#action-injection-with-fromservices)
+
+---
 
 ### 35. What is the `IHttpClientFactory`?
 **Answer:** 
@@ -376,6 +444,8 @@ The recommended way to create `HttpClient` instances in .NET Core.
 **Example:** `services.AddHttpClient("GitHub", c => c.BaseAddress = new Uri("https://api.github.com/"));`
 **Reference:** [IHttpClientFactory](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests)
 
+---
+
 ### 36. Explain Cross-Origin Resource Sharing (CORS) in ASP.NET Core.
 **Answer:** 
 **The Core Concept:**
@@ -385,6 +455,8 @@ A browser security feature restricting web pages from making requests to a diffe
 - ASP.NET Core provides CORS middleware (`app.UseCors()`) to explicitly allow specific domains, HTTP methods, and headers to interact with the API, preventing browser blocking.
 **Example:** `builder.Services.AddCors(options => { options.AddPolicy("AllowAll", ...); });`
 **Reference:** [Enable CORS](https://learn.microsoft.com/en-us/aspnet/core/security/cors)
+
+---
 
 ### 37. What is Data Protection in ASP.NET Core?
 **Answer:** 
@@ -396,6 +468,8 @@ The cryptographic API used to protect data like cookies, anti-CSRF tokens, and p
 **Example:** `services.AddDataProtection().PersistKeysToAzureBlobStorage(...)`
 **Reference:** [Data Protection](https://learn.microsoft.com/en-us/aspnet/core/security/data-protection/introduction)
 
+---
+
 ### 38. What is the API Gateway pattern?
 **Answer:** 
 **The Core Concept:**
@@ -405,6 +479,8 @@ A design pattern where a single entry point sits in front of multiple microservi
 - In the .NET ecosystem, libraries like Ocelot or YARP (Yet Another Reverse Proxy) act as the gateway, handling routing, rate limiting, and authentication before forwarding requests to internal APIs.
 **Example:** Routing `/api/users` to the User Microservice and `/api/orders` to the Order Microservice.
 **Reference:** [API Gateway](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/architect-microservice-container-applications/direct-client-to-microservice-communication-versus-the-api-gateway-pattern)
+
+---
 
 ### 39. What is Health Checks in ASP.NET Core?
 **Answer:** 
@@ -416,6 +492,8 @@ A built-in middleware mechanism to expose the status of the app to external moni
 **Example:** `services.AddHealthChecks().AddSqlServer(connectionString);`
 **Reference:** [Health checks](https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks)
 
+---
+
 ### 40. What is Hosted Services (Background Tasks)?
 **Answer:** 
 **The Core Concept:**
@@ -425,6 +503,8 @@ A way to run background tasks completely independently of the HTTP request pipel
 - Implementing the `IHostedService` interface (usually inheriting `BackgroundService`) allows you to run long-running tasks like processing message queues, polling a database, or cleaning up files in the background while the web server serves UI.
 **Example:** `services.AddHostedService<MyQueueProcessor>();`
 **Reference:** [Background tasks](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services)
+
+---
 
 ### 41. How does Content Negotiation work in ASP.NET Core?
 **Answer:** 
@@ -436,6 +516,8 @@ The process of selecting the best response format (JSON, XML) based on what the 
 **Example:** `services.AddControllers().AddXmlSerializerFormatters();`
 **Reference:** [Formatting response data](https://learn.microsoft.com/en-us/aspnet/core/web-api/advanced/formatting)
 
+---
+
 ### 42. What is Response Caching?
 **Answer:** 
 **The Core Concept:**
@@ -445,6 +527,8 @@ Reduces server load by caching the output of a controller action.
 - The `[ResponseCache]` attribute sets cache-related HTTP headers (like `Cache-Control`). It instructs the client browser or intermediate proxy servers to store the response, drastically speeding up subsequent identical requests.
 **Example:** `[ResponseCache(Duration = 60)]`
 **Reference:** [Response caching](https://learn.microsoft.com/en-us/aspnet/core/performance/caching/response)
+
+---
 
 ### 43. What is Distributed Caching?
 **Answer:** 
@@ -456,6 +540,8 @@ A cache shared by multiple app servers, usually maintained as an external servic
 **Example:** `services.AddStackExchangeRedisCache(...)`
 **Reference:** [Distributed caching](https://learn.microsoft.com/en-us/aspnet/core/performance/caching/distributed)
 
+---
+
 ### 44. Explain the Repository Pattern in .NET.
 **Answer:** 
 **The Core Concept:**
@@ -465,6 +551,8 @@ An abstraction layer between the Data Access Layer (EF Core) and the Business Lo
 - It encapsulates the logic required to access data sources. While highly debated (as EF Core `DbSet` is already a repository), it makes unit testing easier by allowing you to mock the `IUserRepository` instead of mocking the massive EF Core context.
 **Example:** `public class UserRepository : IUserRepository { ... }`
 **Reference:** [Repository Pattern](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design)
+
+---
 
 ### 45. What is the Unit of Work pattern?
 **Answer:** 
@@ -476,6 +564,8 @@ A pattern used to group multiple database operations into a single transaction.
 **Example:** `await _context.SaveChangesAsync();`
 **Reference:** [Unit of Work](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-implementation-entity-framework-core)
 
+---
+
 ### 46. What is AutoMapper?
 **Answer:** 
 **The Core Concept:**
@@ -485,6 +575,8 @@ A popular 3rd-party library used for object-to-object mapping.
 - It eliminates the tedious, error-prone boilerplate code required to map properties from a Database Entity class to a DTO class (`dto.Name = entity.Name`).
 **Example:** `_mapper.Map<UserDto>(userEntity);`
 **Reference:** [AutoMapper](https://automapper.org/)
+
+---
 
 ### 47. What is Serilog?
 **Answer:** 
@@ -496,6 +588,8 @@ A highly popular 3rd-party logging framework for .NET.
 **Example:** `Log.Information("User {UserId} logged in", user.Id);`
 **Reference:** [Serilog](https://serilog.net/)
 
+---
+
 ### 48. What is Polly?
 **Answer:** 
 **The Core Concept:**
@@ -505,6 +599,8 @@ A resilience and transient-fault-handling library.
 - If your API makes a request to a 3rd-party API and it fails due to a micro-network blip, Polly automatically retries the request a defined number of times. It supports Retry, Circuit Breaker, Timeout, and Fallback policies.
 **Example:** `.AddTransientHttpErrorPolicy(policy => policy.WaitAndRetryAsync(3, ...))`
 **Reference:** [Polly](https://github.com/App-vNext/Polly)
+
+---
 
 ### 49. What is xUnit vs NUnit vs MSTest?
 **Answer:** 
@@ -518,6 +614,8 @@ They are the three primary Unit Testing frameworks in the .NET ecosystem.
 **Example:** `[Fact]` in xUnit vs `[Test]` in NUnit.
 **Reference:** [Unit testing](https://learn.microsoft.com/en-us/dotnet/core/testing/)
 
+---
+
 ### 50. Explain the CQRS Pattern.
 **Answer:** 
 **The Core Concept:**
@@ -529,6 +627,8 @@ Command and Query Responsibility Segregation.
 **Example:** `mediator.Send(new CreateUserCommand(data))`
 **Reference:** [CQRS](https://learn.microsoft.com/en-us/azure/architecture/patterns/cqrs)
 
+---
+
 ### 51. What is MediatR?
 **Answer:** 
 **The Core Concept:**
@@ -539,6 +639,8 @@ A popular in-process messaging library that implements the Mediator pattern.
 **Example:** `public class CreateUserHandler : IRequestHandler<CreateUserCommand, User>`
 **Reference:** [MediatR GitHub](https://github.com/jbogard/MediatR)
 
+---
+
 ### 52. What is FluentValidation?
 **Answer:** 
 **The Core Concept:**
@@ -548,6 +650,8 @@ A 3rd-party library for building strongly-typed validation rules.
 - It replaces C# Data Annotations (`[Required]`, `[MaxLength]`) on models, keeping the models clean. Validation logic is moved to dedicated Validator classes utilizing a fluent, chainable API.
 **Example:** `RuleFor(x => x.Email).NotEmpty().EmailAddress();`
 **Reference:** [FluentValidation](https://docs.fluentvalidation.net/)
+
+---
 
 ### 53. How do you secure sensitive data (secrets) during development?
 **Answer:** 
@@ -560,6 +664,8 @@ Never store API keys or connection strings in source code or `appsettings.json` 
 **Example:** `dotnet user-secrets set "DbPassword" "123"`
 **Reference:** [Safe storage of app secrets](https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets)
 
+---
+
 ### 54. What is the `[ApiController]` attribute?
 **Answer:** 
 **The Core Concept:**
@@ -571,6 +677,8 @@ An attribute that applies highly opinionated, API-specific behaviors to controll
 **Example:** `[ApiController] [Route("[controller]")] public class WeatherController`
 **Reference:** [ApiController Attribute](https://learn.microsoft.com/en-us/aspnet/core/web-api/#apicontroller-attribute)
 
+---
+
 ### 55. What is `IActionResult` vs `ActionResult<T>`?
 **Answer:** 
 **The Core Concept:**
@@ -581,6 +689,8 @@ Return types for API controller methods.
 - `ActionResult<T>` introduced in .NET Core 2.1, retains the flexibility of HTTP status returns but explicitly declares the return type, enabling automatic API documentation generation.
 **Example:** `public ActionResult<User> GetUser() { return NotFound(); }`
 **Reference:** [Controller action return types](https://learn.microsoft.com/en-us/aspnet/core/web-api/action-return-types)
+
+---
 
 ### 56. Explain the difference between `AddTransient`, `AddScoped`, and `AddSingleton`.
 **Answer:** 
@@ -594,6 +704,8 @@ They define the lifetime of a Dependency Injection service.
 **Example:** `services.AddScoped<IUserRepository, UserRepository>();`
 **Reference:** [Service lifetimes](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection#service-lifetimes)
 
+---
+
 ### 57. What is Kestrel vs IIS?
 **Answer:** 
 **The Core Concept:**
@@ -605,6 +717,8 @@ Kestrel is the native cross-platform web server for .NET. IIS is the Windows web
 **Example:** Hosting on Windows via IIS reverse proxy.
 **Reference:** [Host and deploy](https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/)
 
+---
+
 ### 58. What is the Global Exception Handler in .NET 8?
 **Answer:** 
 **The Core Concept:**
@@ -614,6 +728,8 @@ A standardized way to handle exceptions globally without writing custom middlewa
 - You implement the `IExceptionHandler` interface to process exceptions and register it via `builder.Services.AddExceptionHandler<MyHandler>()`. It cleanly separates exception processing from pipeline routing.
 **Example:** Catching a `DbException` and returning a formatted JSON `ProblemDetails` response.
 **Reference:** [IExceptionHandler](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling)
+
+---
 
 ### 59. What is `ProblemDetails`?
 **Answer:** 
@@ -625,6 +741,8 @@ A machine-readable format for specifying errors in HTTP API responses.
 **Example:** `{ "type": "...", "title": "Not Found", "status": 404 }`
 **Reference:** [ProblemDetails](https://learn.microsoft.com/en-us/aspnet/core/web-api/handle-errors)
 
+---
+
 ### 60. How does Swagger/OpenAPI integrate into .NET?
 **Answer:** 
 **The Core Concept:**
@@ -634,6 +752,8 @@ Swagger automatically generates interactive API documentation.
 - Provided by the `Swashbuckle.AspNetCore` package (or natively in .NET 8/9). It inspects your controllers, routes, and `ActionResult<T>` signatures via Reflection to build a visual UI for testing the API.
 **Example:** `app.UseSwaggerUI();`
 **Reference:** [Swagger](https://learn.microsoft.com/en-us/aspnet/core/tutorials/web-api-help-pages-using-swagger)
+
+---
 
 ### 61. What are Action Results like `Ok()`, `BadRequest()`, and `NotFound()`?
 **Answer:** 
@@ -645,6 +765,8 @@ Helper methods that return formatted HTTP status codes.
 **Example:** `return BadRequest("Invalid ID");` (Returns HTTP 400).
 **Reference:** [ControllerBase Methods](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.controllerbase)
 
+---
+
 ### 62. Explain the concept of Shadow Properties in EF Core.
 **Answer:** 
 **The Core Concept:**
@@ -654,6 +776,8 @@ Properties that exist in the EF Core model but do not exist in the C# entity cla
 - They are stored entirely inside the `DbContext` change tracker and the database schema. Highly useful for audit trails (like `LastModifiedDate`) where you don't want to clutter your Domain Models with infrastructure data.
 **Example:** `modelBuilder.Entity<Blog>().Property<DateTime>("LastUpdated");`
 **Reference:** [Shadow Properties](https://learn.microsoft.com/en-us/ef/core/modeling/shadow-properties)
+
+---
 
 ### 63. What is Eager Loading vs Lazy Loading vs Explicit Loading?
 **Answer:** 
@@ -667,6 +791,8 @@ Ways EF Core loads related database tables (navigation properties).
 **Example:** Always default to Eager Loading for performance.
 **Reference:** [Loading Related Data](https://learn.microsoft.com/en-us/ef/core/querying/related-data)
 
+---
+
 ### 64. What is the `AsNoTracking()` method in EF Core?
 **Answer:** 
 **The Core Concept:**
@@ -678,6 +804,8 @@ A massive performance optimization for read-only queries.
 **Example:** `context.Users.AsNoTracking().ToList();`
 **Reference:** [Tracking vs. No-Tracking Queries](https://learn.microsoft.com/en-us/ef/core/querying/tracking)
 
+---
+
 ### 65. What is Entity Framework Core Migrations?
 **Answer:** 
 **The Core Concept:**
@@ -687,6 +815,8 @@ A feature that applies schema changes from C# models to the database.
 - Instead of writing raw `ALTER TABLE` SQL scripts, developers modify the C# classes. EF Core calculates the difference and generates a Migration file. This ensures version control over database schemas.
 **Example:** `dotnet ef migrations add AddEmailColumn`
 **Reference:** [Migrations](https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/)
+
+---
 
 ### 66. How does .NET handle Cross-Site Request Forgery (CSRF)?
 **Answer:** 
@@ -698,6 +828,8 @@ A security attack where a malicious site tricks a user's browser into making an 
 **Example:** Using `@Html.AntiForgeryToken()` in MVC Razor views.
 **Reference:** [Prevent CSRF](https://learn.microsoft.com/en-us/aspnet/core/security/anti-request-forgery)
 
+---
+
 ### 67. Explain Output Caching introduced in .NET 7.
 **Answer:** 
 **The Core Concept:**
@@ -707,6 +839,8 @@ A highly advanced, built-in caching middleware.
 - Unlike traditional Response Caching (which relies on HTTP headers and the client's browser), Output Caching is entirely server-side. It intercepts the request pipeline, caches the raw output bytes, and serves them to all subsequent users globally. It supports tag-based invalidation.
 **Example:** `app.UseOutputCache();`
 **Reference:** [Output caching](https://learn.microsoft.com/en-us/aspnet/core/performance/caching/output)
+
+---
 
 ### 68. What are Endpoint Filters in Minimal APIs?
 **Answer:** 
@@ -718,6 +852,8 @@ The Minimal API equivalent to MVC Action Filters.
 **Example:** `app.MapGet("/").AddEndpointFilter<MyValidationFilter>();`
 **Reference:** [Endpoint filters](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/responses)
 
+---
+
 ### 69. What is Keyed Dependency Injection?
 **Answer:** 
 **The Core Concept:**
@@ -728,6 +864,8 @@ Introduced in .NET 8, it allows registering multiple implementations of the exac
 **Example:** `builder.Services.AddKeyedScoped<ICache, RedisCache>("redis");`
 **Reference:** [Keyed services](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection#keyed-services)
 
+---
+
 ### 70. What are Worker Services in .NET?
 **Answer:** 
 **The Core Concept:**
@@ -737,6 +875,8 @@ A specialized project template designed for creating long-running background pro
 - It uses the standard .NET Generic Host (`IHost`) to provide Dependency Injection, Logging, and Configuration, but strips out all the web server (Kestrel/HTTP) overhead. Perfect for message queue consumers.
 **Example:** `dotnet new worker`
 **Reference:** [Worker Services](https://learn.microsoft.com/en-us/dotnet/core/extensions/workers)
+
+---
 
 ### 71. What is gRPC in .NET?
 **Answer:** 
@@ -749,6 +889,8 @@ A modern, open-source, high-performance Remote Procedure Call (RPC) framework.
 **Example:** Defining services in a `.proto` file.
 **Reference:** [gRPC on .NET](https://learn.microsoft.com/en-us/aspnet/core/grpc/)
 
+---
+
 ### 72. Explain the concept of Channel in .NET.
 **Answer:** 
 **The Core Concept:**
@@ -759,6 +901,8 @@ A thread-safe data structure introduced for high-performance producer/consumer s
 - Producers write data asynchronously, and consumers read it asynchronously. It prevents thread blocking and memory exhaustion (via bounded channels).
 **Example:** `var channel = Channel.CreateUnbounded<string>();`
 **Reference:** [Channels](https://learn.microsoft.com/en-us/dotnet/core/extensions/channels)
+
+---
 
 ### 73. What is `IAsyncDisposable`?
 **Answer:** 
@@ -771,6 +915,8 @@ The asynchronous equivalent of `IDisposable`.
 **Example:** `await using (var stream = new FileStream(...)) { }`
 **Reference:** [IAsyncDisposable](https://learn.microsoft.com/en-us/dotnet/api/system.iasyncdisposable)
 
+---
+
 ### 74. What is the Generic Host (`IHostBuilder`)?
 **Answer:** 
 **The Core Concept:**
@@ -781,6 +927,8 @@ The core foundation of modern .NET apps that configures app startup, DI, logging
 **Example:** `Host.CreateDefaultBuilder(args)`
 **Reference:** [Generic Host](https://learn.microsoft.com/en-us/dotnet/core/extensions/generic-host)
 
+---
+
 ### 75. Explain ASP.NET Core Rate Limiting.
 **Answer:** 
 **The Core Concept:**
@@ -790,6 +938,8 @@ A native middleware introduced in .NET 7 to control the rate of incoming request
 - It protects servers from Denial of Service (DoS) attacks or brute force attacks. Supports algorithms like Fixed Window, Sliding Window, Token Bucket, and Concurrency limiting.
 **Example:** `app.UseRateLimiter();`
 **Reference:** [Rate limiting](https://learn.microsoft.com/en-us/aspnet/core/performance/rate-limit)
+
+---
 
 ### 76. What is `IOptionsSnapshot<T>` vs `IOptionsMonitor<T>`?
 **Answer:** 
@@ -802,6 +952,8 @@ They handle hot-reloading of configuration data (`appsettings.json`) without res
 **Example:** Injecting `IOptionsSnapshot<MySettings>` into a controller.
 **Reference:** [Options Pattern](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration/options)
 
+---
+
 ### 77. What is JWT Refresh Tokens architecture?
 **Answer:** 
 **The Core Concept:**
@@ -811,6 +963,8 @@ A mechanism to maintain secure, long-lived user sessions.
 - JWTs should have a short lifespan (e.g., 15 mins) for security. When it expires, the client sends a separate, long-lived "Refresh Token" (stored securely in the DB) to a specific endpoint to receive a new JWT without forcing the user to log in again.
 **Example:** If the Refresh Token is revoked in the DB, the user loses access after 15 mins.
 **Reference:** [Refresh Tokens](https://auth0.com/blog/refresh-tokens-what-are-they-and-when-to-use-them/)
+
+---
 
 ### 78. What is Azure App Configuration?
 **Answer:** 
@@ -822,6 +976,8 @@ A managed service that centrally manages application settings and feature flags.
 **Example:** `builder.Configuration.AddAzureAppConfiguration(...)`
 **Reference:** [Azure App Configuration](https://learn.microsoft.com/en-us/azure/azure-app-configuration/overview)
 
+---
+
 ### 79. Explain EF Core Value Conversions.
 **Answer:** 
 **The Core Concept:**
@@ -831,6 +987,8 @@ Allows mapping a property type in the C# domain model to a different data type i
 - Example: Storing a C# `Enum` as a string (`VARCHAR`) in the database instead of an integer. Or storing a complex `List<string>` as a serialized JSON string in a single DB column.
 **Example:** `builder.Property(e => e.Status).HasConversion<string>();`
 **Reference:** [Value Conversions](https://learn.microsoft.com/en-us/ef/core/modeling/value-conversions)
+
+---
 
 ### 80. What are Global Query Filters in EF Core?
 **Answer:** 
@@ -842,6 +1000,8 @@ LINQ query predicates automatically applied to entity queries.
 **Example:** `modelBuilder.Entity<Post>().HasQueryFilter(p => !p.IsDeleted);`
 **Reference:** [Global Query Filters](https://learn.microsoft.com/en-us/ef/core/querying/filters)
 
+---
+
 ### 81. How does ASP.NET Core Handle File Uploads safely?
 **Answer:** 
 **The Core Concept:**
@@ -851,6 +1011,8 @@ Handling `IFormFile` from multipart/form-data requests.
 - Never trust the user's file name or extension. Always validate the magic numbers (file signatures) of the raw bytes to ensure an `.exe` isn't disguised as a `.png`. Buffer large files to disk/cloud storage immediately to prevent exhausting server RAM.
 **Example:** Uploading a profile picture to Azure Blob Storage.
 **Reference:** [File uploads](https://learn.microsoft.com/en-us/aspnet/core/mvc/models/file-uploads)
+
+---
 
 ### 82. What is an `ActionFilterAttribute`?
 **Answer:** 
@@ -862,6 +1024,8 @@ A custom class that inherits from `ActionFilterAttribute` to create reusable pip
 **Example:** Creating an `[AuditLog]` attribute.
 **Reference:** [Filters](https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/filters)
 
+---
+
 ### 83. What is the purpose of `IDistributedCache` interface?
 **Answer:** 
 **The Core Concept:**
@@ -872,6 +1036,8 @@ An abstraction over distributed caching implementations.
 **Example:** `await _cache.SetStringAsync(key, data);`
 **Reference:** [IDistributedCache](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.caching.distributed.idistributedcache)
 
+---
+
 ### 84. Explain the Circuit Breaker Pattern (via Polly).
 **Answer:** 
 **The Core Concept:**
@@ -881,6 +1047,8 @@ Prevents an application from repeatedly trying to execute an operation that's li
 - If a 3rd-party API goes down, sending 1000 retries will overwhelm both systems. A circuit breaker "trips" (opens) after X failures, instantly rejecting all new requests for a cooldown period, giving the failing system time to recover.
 **Example:** Polly `CircuitBreakerAsync(exceptionsAllowedBeforeBreaking: 3, durationOfBreak: TimeSpan.FromSeconds(30))`
 **Reference:** [Circuit Breaker](https://learn.microsoft.com/en-us/azure/architecture/patterns/circuit-breaker)
+
+---
 
 ### 85. What is the Outbox Pattern?
 **Answer:** 
@@ -893,6 +1061,8 @@ A microservices pattern for reliable messaging.
 **Example:** Implementing reliable domain events.
 **Reference:** [Outbox Pattern](https://microservices.io/patterns/data/transactional-outbox.html)
 
+---
+
 ### 86. How do you implement Semantic Logging in .NET?
 **Answer:** 
 **The Core Concept:**
@@ -902,6 +1072,8 @@ Using strongly-typed log events instead of string concatenation.
 - Instead of `Logger.Log($"User {id} failed login")`, use `Logger.Log("User {UserId} failed login", id)`. The logging framework (like Serilog) captures `UserId` as a distinct searchable column in the database/Elasticsearch, rather than just raw text.
 **Example:** High-performance logging using `LoggerMessage` delegates.
 **Reference:** [High-performance logging](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logger-message)
+
+---
 
 ### 87. What are C# 12 Primary Constructors?
 **Answer:** 
@@ -913,6 +1085,8 @@ A concise syntax to declare constructors directly on the class declaration.
 **Example:** `public class UserService(IUserRepository repo) { ... }`
 **Reference:** [Primary constructors](https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12#primary-constructors)
 
+---
+
 ### 88. What is `Task.FromResult<T>`?
 **Answer:** 
 **The Core Concept:**
@@ -922,6 +1096,8 @@ Creates a `Task` that has already completed successfully with the specified resu
 - Useful when implementing an interface that requires returning a `Task`, but your specific implementation executes synchronously (e.g., retrieving data from an in-memory dictionary instead of a database).
 **Example:** `public Task<string> GetName() { return Task.FromResult("John"); }`
 **Reference:** [Task.FromResult](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.fromresult)
+
+---
 
 ### 89. What is the `.NET GC Server vs Workstation` mode?
 **Answer:** 
@@ -934,6 +1110,8 @@ The CLR Garbage Collector has two distinct modes optimized for different workloa
 **Example:** Configured via `<ServerGarbageCollection>true</ServerGarbageCollection>`.
 **Reference:** [Workstation and server garbage collection](https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/workstation-server-gc)
 
+---
+
 ### 90. Explain `ValueTask<T>`.
 **Answer:** 
 **The Core Concept:**
@@ -945,6 +1123,8 @@ A lightweight alternative to `Task<T>`.
 **Example:** `public async ValueTask<int> GetValueAsync()`
 **Reference:** [ValueTask](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.valuetask-1)
 
+---
+
 ### 91. What is the Options Validation feature in ASP.NET Core?
 **Answer:** 
 **The Core Concept:**
@@ -954,6 +1134,8 @@ Ensuring that configuration data loaded from `appsettings.json` is valid before 
 - You can use Data Annotations (`[Required]`, `[Range]`) on your settings classes. By appending `.ValidateDataAnnotations()` during DI registration, the app will refuse to boot up if critical configuration (like a connection string) is missing or malformed.
 **Example:** `services.AddOptions<MyConfig>().BindConfiguration("Config").ValidateDataAnnotations();`
 **Reference:** [Options validation](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration/options#options-validation)
+
+---
 
 ### 92. What are .NET Runtime Diagnostics (dotnet-counters, dotnet-trace)?
 **Answer:** 
@@ -967,6 +1149,8 @@ A suite of CLI tools for monitoring .NET performance in production.
 **Example:** Running `dotnet-counters monitor -p 1234` on a Linux server.
 **Reference:** [Diagnostic tools](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/)
 
+---
+
 ### 93. Explain the Out-of-Process vs In-Process hosting models.
 **Answer:** 
 **The Core Concept:**
@@ -978,6 +1162,8 @@ How ASP.NET Core apps run when placed behind IIS.
 **Example:** Configured via `<AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>`.
 **Reference:** [In-process hosting](https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/in-process-hosting)
 
+---
+
 ### 94. What is the `.AddDbContextPool()` method?
 **Answer:** 
 **The Core Concept:**
@@ -988,6 +1174,8 @@ A performance optimization for EF Core.
 **Example:** `services.AddDbContextPool<MyContext>(options => ...);`
 **Reference:** [DbContext pooling](https://learn.microsoft.com/en-us/ef/core/performance/advanced-performance-topics#dbcontext-pooling)
 
+---
+
 ### 95. What are Resilient Connections in EF Core?
 **Answer:** 
 **The Core Concept:**
@@ -997,6 +1185,8 @@ Handling transient database connection failures automatically.
 - In cloud environments (like Azure SQL), connections are occasionally dropped for load balancing. EF Core provides an `EnableRetryOnFailure()` execution strategy that automatically catches connection exceptions and safely retries the query.
 **Example:** `options.UseSqlServer(str, sql => sql.EnableRetryOnFailure());`
 **Reference:** [Connection resiliency](https://learn.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency)
+
+---
 
 ### 96. What is the `IHttpContextAccessor`?
 **Answer:** 
@@ -1009,6 +1199,8 @@ A service used to access the current `HttpContext` from outside a controller.
 **Example:** `services.AddHttpContextAccessor();`
 **Reference:** [Access HttpContext](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/http-context)
 
+---
+
 ### 97. What is API Versioning?
 **Answer:** 
 **The Core Concept:**
@@ -1018,6 +1210,8 @@ Managing breaking changes by supporting multiple versions of an API concurrently
 - .NET supports this via `Asp.Versioning.Mvc`. Versions can be passed via URL path (`/api/v1/users`), Query String (`?api-version=1.0`), or HTTP Headers (`x-api-version`).
 **Example:** `[ApiVersion("1.0")] [Route("api/v{version:apiVersion}/[controller]")]`
 **Reference:** [API Versioning](https://github.com/dotnet/aspnet-api-versioning)
+
+---
 
 ### 98. How does `User.Claims` work for Authorization?
 **Answer:** 
@@ -1029,6 +1223,8 @@ Claims-based authorization evaluates the specific properties (claims) attached t
 **Example:** `[Authorize(Policy = "MustBeOver18")]`
 **Reference:** [Claims-based authorization](https://learn.microsoft.com/en-us/aspnet/core/security/authorization/claims)
 
+---
+
 ### 99. What are Endpoint Routing and `MapControllers()`?
 **Answer:** 
 **The Core Concept:**
@@ -1039,6 +1235,8 @@ The routing architecture introduced in ASP.NET Core 3.0.
 **Example:** `app.UseRouting(); app.UseAuthorization(); app.MapControllers();`
 **Reference:** [Routing](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/routing)
 
+---
+
 ### 100. Explain OpenTelemetry integration in .NET.
 **Answer:** 
 **The Core Concept:**
@@ -1048,3 +1246,21 @@ The modern standard for distributed tracing and observability.
 - .NET 8 has massive native support for OpenTelemetry. It automatically instruments HTTP requests, EF Core queries, and gRPC calls, exporting the tracing data (spans and metrics) to tools like Jaeger, Prometheus, or Datadog, providing full visibility across microservices.
 **Example:** `builder.Services.AddOpenTelemetry().WithTracing(...)`
 **Reference:** [OpenTelemetry in .NET](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/observability-with-opentelemetry)
+
+---
+\n## Additional Depth (Architectural Focus)\n
+### 101. What are Minimal APIs in .NET?
+**Answer:** 
+**The Core Concept:**
+Minimal APIs were introduced in .NET 6 to create HTTP APIs with significantly less boilerplate code than traditional MVC controllers. They allow developers to configure routes and endpoints directly in the `Program.cs` file using concise lambda expressions.
+
+**Key Details:**
+- They use the same underlying ASP.NET Core primitives (routing, model binding, dependency injection) but eliminate the need for class-based controllers and attributes.
+- They are highly optimized for microservices and cloud-native applications, offering lower memory allocation and faster startup times.
+
+**Example:** 
+`app.MapGet("/hello", () => "Hello World!");`
+
+**Reference:** [Documentation](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis)
+
+---

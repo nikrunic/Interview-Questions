@@ -15,6 +15,8 @@ C# (pronounced "C-Sharp") is a modern, object-oriented, and type-safe programmin
 **Example:** `Console.WriteLine("Hello World");`
 **Reference:** [C# Docs](https://learn.microsoft.com/en-us/dotnet/csharp/)
 
+---
+
 ### 2. What is the difference between a class and a struct in C#?
 **Answer:** 
 **The Core Concept:**
@@ -27,6 +29,8 @@ A `class` is a reference type, while a `struct` is a value type.
 **Example:** `public class MyClass {}` vs `public struct MyStruct {}`
 **Reference:** [Classes and Structs](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/classes)
 
+---
+
 ### 3. What are Value Types and Reference Types?
 **Answer:** 
 **The Core Concept:**
@@ -37,6 +41,8 @@ Value types directly contain their data, while reference types store a reference
 - Reference types (string, class, array, delegate) are stored on the heap.
 **Example:** `int a = 5;` (Value) vs `string b = "Hello";` (Reference)
 **Reference:** [Value Types vs Reference Types](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types)
+
+---
 
 ### 4. What is the difference between `ref` and `out` keywords?
 **Answer:** 
@@ -49,6 +55,8 @@ Both are used to pass arguments by reference rather than by value.
 **Example:** `public void Calculate(out int result)`
 **Reference:** [ref and out](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/ref)
 
+---
+
 ### 5. What are Properties in C#?
 **Answer:** 
 **The Core Concept:**
@@ -59,6 +67,8 @@ Properties are members that provide a flexible mechanism to read, write, or comp
 **Example:** `public int Age { get; set; }`
 **Reference:** [Properties](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/properties)
 
+---
+
 ### 6. What is the purpose of the `using` statement?
 **Answer:** 
 **The Core Concept:**
@@ -68,6 +78,8 @@ It ensures that unmanaged resources are correctly and immediately disposed of wh
 - It is syntactic sugar for a `try-finally` block that calls the `Dispose()` method of objects implementing `IDisposable`.
 **Example:** `using (var reader = new StreamReader("file.txt")) { ... }`
 **Reference:** [using Statement](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/using)
+
+---
 
 ### 7. What is an Interface?
 **Answer:** 
@@ -80,6 +92,8 @@ An interface contains only the signatures of methods, properties, events, or ind
 **Example:** `public interface IAnimal { void Speak(); }`
 **Reference:** [Interfaces](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/interfaces)
 
+---
+
 ### 8. What is Enum in C#?
 **Answer:** 
 **The Core Concept:**
@@ -90,6 +104,8 @@ An enumeration (`enum`) is a distinct value type consisting of a set of named co
 - They make code more readable by replacing magic numbers with meaningful names.
 **Example:** `public enum Days { Monday, Tuesday, Wednesday }`
 **Reference:** [Enums](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/enum)
+
+---
 
 ### 9. What is a Namespace?
 **Answer:** 
@@ -102,6 +118,8 @@ A namespace is used to organize code and prevent naming conflicts.
 **Example:** `namespace MyApplication { class Program {} }`
 **Reference:** [Namespaces](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/namespaces)
 
+---
+
 ### 10. Explain the `static` keyword.
 **Answer:** 
 **The Core Concept:**
@@ -112,6 +130,8 @@ The `static` modifier declares a member that belongs to the type itself rather t
 - A static class cannot be instantiated at all.
 **Example:** `Math.Round(3.14);`
 **Reference:** [Static Classes and Members](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/static-classes-and-static-class-members)
+
+---
 
 ## Medium (10 Questions)
 
@@ -126,6 +146,8 @@ Boxing is the process of converting a value type to the `object` reference type.
 **Example:** `int i = 123; object o = i; // Boxing`
 **Reference:** [Boxing and Unboxing](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/types/boxing-and-unboxing)
 
+---
+
 ### 12. What are Delegates?
 **Answer:** 
 **The Core Concept:**
@@ -136,6 +158,8 @@ A delegate is a type that represents references to methods with a particular par
 - Used extensively for defining callback methods and handling events.
 **Example:** `public delegate void MyDelegate(string msg);`
 **Reference:** [Delegates](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/delegates/)
+
+---
 
 ### 13. What is the difference between `String` and `StringBuilder`?
 **Answer:** 
@@ -148,6 +172,8 @@ A delegate is a type that represents references to methods with a particular par
 **Example:** `StringBuilder sb = new StringBuilder(); sb.Append("Hello");`
 **Reference:** [StringBuilder Class](https://learn.microsoft.com/en-us/dotnet/api/system.text.stringbuilder)
 
+---
+
 ### 14. What are Generics in C#?
 **Answer:** 
 **The Core Concept:**
@@ -157,6 +183,8 @@ Generics allow you to design classes and methods that defer the specification of
 - They maximize code reuse, type safety, and performance by preventing boxing/unboxing operations for value types.
 **Example:** `List<int> numbers = new List<int>();`
 **Reference:** [Generics](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/generics)
+
+---
 
 ### 15. What is LINQ?
 **Answer:** 
@@ -168,6 +196,8 @@ Language Integrated Query (LINQ) provides a consistent querying syntax directly 
 **Example:** `var adults = users.Where(u => u.Age >= 18);`
 **Reference:** [LINQ](https://learn.microsoft.com/en-us/dotnet/csharp/linq/)
 
+---
+
 ### 16. What is an Extension Method?
 **Answer:** 
 **The Core Concept:**
@@ -178,6 +208,8 @@ Extension methods allow you to "add" methods to existing types without creating 
 **Example:** `public static int WordCount(this string str) { ... }`
 **Reference:** [Extension Methods](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods)
 
+---
+
 ### 17. What is the `virtual` keyword?
 **Answer:** 
 **The Core Concept:**
@@ -187,6 +219,8 @@ The `virtual` keyword is used to modify a method, property, or event declaration
 - Unlike abstract methods, virtual methods must have a default implementation.
 **Example:** `public virtual void Draw() { }`
 **Reference:** [Virtual](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/virtual)
+
+---
 
 ### 18. What is the difference between `abstract` class and `interface`?
 **Answer:** 
@@ -199,6 +233,8 @@ An interface is an empty contract, while an abstract class can provide some base
 **Example:** `public abstract class Shape { }`
 **Reference:** [Abstract vs Interface](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/abstract-and-sealed-classes-and-class-members)
 
+---
+
 ### 19. What is Reflection in C#?
 **Answer:** 
 **The Core Concept:**
@@ -210,6 +246,8 @@ Reflection is the ability of managed code to read its own metadata to find assem
 **Example:** `Type t = typeof(MyClass);`
 **Reference:** [Reflection](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/reflection)
 
+---
+
 ### 20. Explain `async` and `await`.
 **Answer:** 
 **The Core Concept:**
@@ -219,6 +257,8 @@ These keywords are used for asynchronous programming, allowing the main thread (
 - `async` marks a method as asynchronous, and `await` pauses the execution of that method until the awaited task finishes, returning control to the caller.
 **Example:** `public async Task<string> GetDataAsync() { return await httpClient.GetStringAsync(url); }`
 **Reference:** [Asynchronous Programming](https://learn.microsoft.com/en-us/dotnet/csharp/async)
+
+---
 
 ## Hard (10 Questions)
 
@@ -233,6 +273,8 @@ The GC manages the allocation and release of memory for an application automatic
 **Example:** `GC.Collect(); // Forces collection (not recommended)`
 **Reference:** [Garbage Collection](https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/)
 
+---
+
 ### 22. What is the difference between `Task` and `Thread`?
 **Answer:** 
 **The Core Concept:**
@@ -243,6 +285,8 @@ A `Thread` is a low-level OS construct, while a `Task` is a higher-level abstrac
 - Tasks are more efficient because they reuse threads from the ThreadPool rather than incurring the heavy cost of creating a new OS thread.
 **Example:** `Task.Run(() => DoWork());`
 **Reference:** [Task vs Thread](https://learn.microsoft.com/en-us/dotnet/standard/parallel-programming/task-parallel-library-tpl)
+
+---
 
 ### 23. What is the `yield` keyword?
 **Answer:** 
@@ -255,6 +299,8 @@ The `yield` keyword is used to perform custom, stateful iteration over a collect
 **Example:** `IEnumerable<int> GetNumbers() { yield return 1; yield return 2; }`
 **Reference:** [yield](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/yield)
 
+---
+
 ### 24. Explain Dependency Injection (DI) in C#.
 **Answer:** 
 **The Core Concept:**
@@ -265,6 +311,8 @@ DI is a design pattern used to implement Inversion of Control (IoC), allowing th
 - Standard in ASP.NET Core, configured via `IServiceCollection` (AddTransient, AddScoped, AddSingleton).
 **Example:** `public MyController(ILogger logger) { _logger = logger; }`
 **Reference:** [Dependency Injection](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection)
+
+---
 
 ### 25. What is the difference between `IQueryable` and `IEnumerable`?
 **Answer:** 
@@ -277,6 +325,8 @@ Both are interfaces for iterating collections, but `IQueryable` is specifically 
 **Example:** Entity Framework `DbSet` implements `IQueryable`.
 **Reference:** [IEnumerable vs IQueryable](https://learn.microsoft.com/en-us/dotnet/api/system.linq.iqueryable)
 
+---
+
 ### 26. What are Expression Trees?
 **Answer:** 
 **The Core Concept:**
@@ -286,6 +336,8 @@ Expression trees represent code in a tree-like data structure, where each node i
 - Instead of compiling code into executable IL immediately, it compiles it into a data structure that can be inspected, modified, or translated into another language (like SQL via Entity Framework) at runtime.
 **Example:** `Expression<Func<int, bool>> expr = num => num < 5;`
 **Reference:** [Expression Trees](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/expression-trees/)
+
+---
 
 ### 27. How does the `lock` statement work?
 **Answer:** 
@@ -298,6 +350,8 @@ The `lock` statement acquires the mutual-exclusion lock for a given object, exec
 **Example:** `lock (_syncObject) { balance -= amount; }`
 **Reference:** [lock statement](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/lock)
 
+---
+
 ### 28. What are covariance and contravariance in C#?
 **Answer:** 
 **The Core Concept:**
@@ -308,6 +362,8 @@ They define how generic type parameters handle inheritance hierarchies.
 - Contravariance (`in`) allows you to use a more generic (less derived) type (e.g., passing `Action<Base>` to `Action<Derived>`).
 **Example:** `IEnumerable<out T>` vs `IComparer<in T>`.
 **Reference:** [Covariance and Contravariance](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/)
+
+---
 
 ### 29. What is the difference between `Finalize` and `Dispose`?
 **Answer:** 
@@ -320,6 +376,8 @@ Both are used to free unmanaged resources, but `Dispose` is deterministic while 
 **Example:** Implementing the Dispose Pattern.
 **Reference:** [Dispose Pattern](https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose)
 
+---
+
 ### 30. What is `volatile` keyword?
 **Answer:** 
 **The Core Concept:**
@@ -329,6 +387,8 @@ The `volatile` keyword indicates that a field might be modified by multiple thre
 - The compiler, runtime system, or hardware may perform optimizations that reorder memory reads/writes. `volatile` prevents these optimizations, ensuring the most up-to-date value is always read from main memory.
 **Example:** `private volatile bool _shouldStop;`
 **Reference:** [volatile](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/volatile)
+
+---
 
 
 ### 31. What is the `readonly` keyword?
@@ -342,6 +402,8 @@ A modifier that prevents a field from being modified after it is initialized.
 **Example:** `public readonly int MaxUsers;`
 **Reference:** [readonly](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/readonly)
 
+---
+
 ### 32. What is the `const` keyword?
 **Answer:** 
 **The Core Concept:**
@@ -352,6 +414,8 @@ A modifier that declares a field or local variable as a compile-time constant.
 - Constants are implicitly static; you access them via the type name, not the instance.
 **Example:** `public const double Pi = 3.14159;`
 **Reference:** [const](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/const)
+
+---
 
 ### 33. What is the difference between `throw` and `throw ex`?
 **Answer:** 
@@ -364,6 +428,8 @@ They dictate how exceptions are propagated up the call stack.
 **Example:** `catch (Exception ex) { throw; }`
 **Reference:** [Exception Handling](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/exceptions/exception-handling)
 
+---
+
 ### 34. What is a Tuple in C#?
 **Answer:** 
 **The Core Concept:**
@@ -373,6 +439,8 @@ A lightweight data structure that contains a specific number and sequence of ele
 - Introduced in C# 7, modern tuples use `ValueTuple` under the hood, making them value types that are great for returning multiple values from a method without creating `out` parameters or dedicated DTO classes.
 **Example:** `public (int sum, int count) GetStats() { return (10, 2); }`
 **Reference:** [Tuple types](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-tuples)
+
+---
 
 ### 35. What is the `dynamic` type?
 **Answer:** 
@@ -385,6 +453,8 @@ A type that bypasses compile-time type checking.
 **Example:** `dynamic obj = GetDynamicObject(); obj.DoSomething();`
 **Reference:** [Using type dynamic](https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/interop/using-type-dynamic)
 
+---
+
 ### 36. What is the `var` keyword?
 **Answer:** 
 **The Core Concept:**
@@ -395,6 +465,8 @@ Implicitly types a local variable.
 - It cannot be used for fields at the class level or for method return types.
 **Example:** `var list = new List<string>();`
 **Reference:** [Implicitly typed local variables](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/implicitly-typed-local-variables)
+
+---
 
 ### 37. What are Attributes in C#?
 **Answer:** 
@@ -407,6 +479,8 @@ Attributes are declarative tags used to convey metadata about types, methods, pr
 **Example:** `[Obsolete("Use NewMethod instead")] public void OldMethod() { }`
 **Reference:** [Attributes](https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/reflection-and-attributes/)
 
+---
+
 ### 38. What is the difference between Array and ArrayList?
 **Answer:** 
 **The Core Concept:**
@@ -418,6 +492,8 @@ Attributes are declarative tags used to convey metadata about types, methods, pr
 **Example:** `int[] arr = new int[5];` vs `ArrayList al = new ArrayList();`
 **Reference:** [ArrayList Class](https://learn.microsoft.com/en-us/dotnet/api/system.collections.arraylist)
 
+---
+
 ### 39. What is `IEnumerable`?
 **Answer:** 
 **The Core Concept:**
@@ -428,6 +504,8 @@ The foundational interface for all non-generic collections that can be enumerate
 **Example:** `public IEnumerable<int> GetNumbers() { ... }`
 **Reference:** [IEnumerable Interface](https://learn.microsoft.com/en-us/dotnet/api/system.collections.ienumerable)
 
+---
+
 ### 40. What is an Indexer?
 **Answer:** 
 **The Core Concept:**
@@ -437,6 +515,8 @@ Indexers allow instances of a class or struct to be indexed just like arrays.
 - They are defined using the `this` keyword. They are essentially properties that take parameters (usually an `int` or `string`).
 **Example:** `public string this[int index] { get { return arr[index]; } set { arr[index] = value; } }`
 **Reference:** [Indexers](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/indexers/)
+
+---
 
 ### 41. What is the difference between `==` and `.Equals()`?
 **Answer:** 
@@ -449,6 +529,8 @@ Both check for equality, but they operate differently under the hood for referen
 **Example:** `objA.Equals(objB)`
 **Reference:** [Equality comparisons](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/how-to-define-value-equality-for-a-type)
 
+---
+
 ### 42. Explain the Null-conditional Operator (`?.`).
 **Answer:** 
 **The Core Concept:**
@@ -459,6 +541,8 @@ It provides a safe way to access members of an object that might be null.
 - It drastically reduces the need for nested `if (obj != null)` checks.
 **Example:** `int? length = user?.Name?.Length;`
 **Reference:** [Null-conditional operators](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/member-access-operators#null-conditional-operators--and-)
+
+---
 
 ### 43. What is the Null-coalescing Operator (`??`)?
 **Answer:** 
@@ -471,6 +555,8 @@ It returns the left-hand operand if it isn't null; otherwise, it evaluates and r
 **Example:** `string name = inputName ?? "Default Name";`
 **Reference:** [?? operator](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-coalescing-operator)
 
+---
+
 ### 44. What is a Destructor (Finalizer)?
 **Answer:** 
 **The Core Concept:**
@@ -481,6 +567,8 @@ A special method invoked by the Garbage Collector before an object is destroyed 
 - It is generally used as a fallback to release unmanaged resources if `Dispose()` was not called.
 **Example:** `~MyClass() { // cleanup code }`
 **Reference:** [Finalizers](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/destructors)
+
+---
 
 ### 45. What are Partial Classes?
 **Answer:** 
@@ -493,6 +581,8 @@ The `partial` keyword allows a class, struct, or interface to be split across mu
 **Example:** `public partial class Employee {}`
 **Reference:** [Partial Classes and Methods](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/partial-classes-and-methods)
 
+---
+
 ### 46. What is the difference between `break` and `continue`?
 **Answer:** 
 **The Core Concept:**
@@ -503,6 +593,8 @@ Both are jump statements used inside loops.
 - `continue` skips the remaining code in the current iteration and jumps to the next iteration of the loop.
 **Example:** `if (skip) continue;`
 **Reference:** [Jump Statements](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/jump-statements)
+
+---
 
 ### 47. Explain the `params` keyword.
 **Answer:** 
@@ -515,6 +607,8 @@ It allows a method to accept a variable number of arguments.
 **Example:** `public void Log(params string[] messages) {}`
 **Reference:** [params](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/params)
 
+---
+
 ### 48. What is Method Overloading?
 **Answer:** 
 **The Core Concept:**
@@ -524,6 +618,8 @@ A type of static (compile-time) polymorphism where multiple methods can share th
 - They must have different signatures (different number of parameters, different types of parameters, or different parameter order). The return type alone cannot be the differentiator.
 **Example:** `public void Print(int i)` and `public void Print(string s)`
 **Reference:** [Method Overloading](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/methods)
+
+---
 
 ### 49. What is Method Overriding?
 **Answer:** 
@@ -536,6 +632,8 @@ A type of dynamic (runtime) polymorphism where a derived class provides a specif
 **Example:** `public override void Draw() { ... }`
 **Reference:** [Knowing When to Use Override and New Keywords](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/knowing-when-to-use-override-and-new-keywords)
 
+---
+
 ### 50. Explain the `new` keyword in method hiding.
 **Answer:** 
 **The Core Concept:**
@@ -546,6 +644,8 @@ The `new` modifier hides a member inherited from a base class.
 **Example:** `public new void Draw() { ... }`
 **Reference:** [new modifier](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/new-modifier)
 
+---
+
 ### 51. What is an Event in C#?
 **Answer:** 
 **The Core Concept:**
@@ -555,6 +655,8 @@ Events are a mechanism for a class to notify other classes when something of int
 - They are built on top of delegates. The publisher raises the event, and subscribers handle it. The `event` keyword adds a layer of protection preventing outside classes from clearing the invocation list.
 **Example:** `public event EventHandler ProcessCompleted;`
 **Reference:** [Events](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/events/)
+
+---
 
 ### 52. What is `Action` and `Func`?
 **Answer:** 
@@ -567,6 +669,8 @@ They are built-in generic delegate types provided by the .NET BCL.
 **Example:** `Func<int, int, bool> isGreater = (a, b) => a > b;`
 **Reference:** [Func Delegate](https://learn.microsoft.com/en-us/dotnet/api/system.func-1)
 
+---
+
 ### 53. What is a Predicate?
 **Answer:** 
 **The Core Concept:**
@@ -577,6 +681,8 @@ A built-in delegate that represents a method that defines a set of criteria and 
 **Example:** `Predicate<int> isEven = x => x % 2 == 0;`
 **Reference:** [Predicate Delegate](https://learn.microsoft.com/en-us/dotnet/api/system.predicate-1)
 
+---
+
 ### 54. What are Lambda Expressions?
 **Answer:** 
 **The Core Concept:**
@@ -586,6 +692,8 @@ An anonymous function used to create delegates or expression tree types inline.
 - Introduced in C# 3.0, they use the `=>` operator (goes to). They are heavily used in LINQ for writing concise, functional-style code.
 **Example:** `users.Where(u => u.Age > 18);`
 **Reference:** [Lambda expressions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions)
+
+---
 
 ### 55. What is the difference between `Any()` and `Count()` in LINQ?
 **Answer:** 
@@ -598,6 +706,8 @@ Both evaluate collections, but with vast performance differences when checking f
 **Example:** Avoid `if (list.Count() > 0)`. Use `if (list.Any())`.
 **Reference:** [Enumerable.Any](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.any)
 
+---
+
 ### 56. What is Deferred Execution in LINQ?
 **Answer:** 
 **The Core Concept:**
@@ -607,6 +717,8 @@ The evaluation of a LINQ query is delayed until its realized value is actually r
 - Defining a query using `Where` or `Select` does not execute it. It is executed only when iterated over in a `foreach` loop or when a method like `ToList()`, `ToArray()`, or `Count()` is called.
 **Example:** Query parameters can be changed before calling `ToList()`.
 **Reference:** [Deferred Execution](https://learn.microsoft.com/en-us/dotnet/standard/linq/deferred-execution)
+
+---
 
 ### 57. What is `IQueryable` vs `IList`?
 **Answer:** 
@@ -619,6 +731,8 @@ The evaluation of a LINQ query is delayed until its realized value is actually r
 **Example:** `IQueryable<User> users = context.Users;`
 **Reference:** [IQueryable](https://learn.microsoft.com/en-us/dotnet/api/system.linq.iqueryable)
 
+---
+
 ### 58. Explain the `lock` statement vs `Mutex`.
 **Answer:** 
 **The Core Concept:**
@@ -630,6 +744,8 @@ Both are used for thread synchronization to prevent race conditions.
 **Example:** `bool isNew; using(var mutex = new Mutex(true, "AppMutex", out isNew))`
 **Reference:** [Mutexes](https://learn.microsoft.com/en-us/dotnet/standard/threading/mutexes)
 
+---
+
 ### 59. What is the `ThreadLocal<T>` class?
 **Answer:** 
 **The Core Concept:**
@@ -639,6 +755,8 @@ It provides thread-local storage of data.
 - It ensures that every thread accessing the variable has its own independent copy of the data, completely eliminating the need for `lock` statements for thread safety.
 **Example:** `ThreadLocal<int> _threadCounter = new ThreadLocal<int>(() => 0);`
 **Reference:** [ThreadLocal](https://learn.microsoft.com/en-us/dotnet/api/system.threading.threadlocal-1)
+
+---
 
 ### 60. What is `Task.WhenAll` vs `Task.WaitAll`?
 **Answer:** 
@@ -651,6 +769,8 @@ Both wait for multiple Tasks to complete.
 **Example:** `await Task.WhenAll(task1, task2);`
 **Reference:** [Task.WhenAll](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.whenall)
 
+---
+
 ### 61. How does `ConfigureAwait(false)` work?
 **Answer:** 
 **The Core Concept:**
@@ -662,6 +782,8 @@ It configures an awaiter used to await a Task.
 **Example:** `await httpClient.GetAsync(url).ConfigureAwait(false);`
 **Reference:** [ConfigureAwait](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.configureawait)
 
+---
+
 ### 62. What is an Extension Method resolution order?
 **Answer:** 
 **The Core Concept:**
@@ -671,6 +793,8 @@ How the compiler decides between an instance method and an extension method.
 - If a class has an instance method with the same name and signature as an extension method, the instance method ALWAYS takes precedence. The extension method is completely ignored.
 **Example:** N/A
 **Reference:** [Extension Methods](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods)
+
+---
 
 ### 63. What is Reflection Emit?
 **Answer:** 
@@ -682,6 +806,8 @@ An advanced feature of the `System.Reflection.Emit` namespace.
 **Example:** Using `ILGenerator` to emit Opcodes.
 **Reference:** [Emitting Dynamic Methods](https://learn.microsoft.com/en-us/dotnet/framework/reflection-and-codedom/emitting-dynamic-methods-and-assemblies)
 
+---
+
 ### 64. What is a Record in C# 9+?
 **Answer:** 
 **The Core Concept:**
@@ -691,6 +817,8 @@ A `record` is a reference type that provides built-in functionality for encapsul
 - Unlike classes (which use reference equality), two records are equal if their *properties* have the same values. They are inherently immutable and support non-destructive mutation via the `with` expression.
 **Example:** `public record Person(string FirstName, string LastName);`
 **Reference:** [Records](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/records)
+
+---
 
 ### 65. What is the `with` expression?
 **Answer:** 
@@ -702,6 +830,8 @@ Used primarily with `record` types for non-destructive mutation.
 **Example:** `var olderPerson = person with { Age = person.Age + 1 };`
 **Reference:** [with expression](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/with-expression)
 
+---
+
 ### 66. Explain Pattern Matching in C#.
 **Answer:** 
 **The Core Concept:**
@@ -711,6 +841,8 @@ A feature that tests whether an expression has a certain characteristic and, if 
 - Modern C# allows incredibly expressive `switch` statements, type testing (`is Type t`), and relational patterns (`> 10 => "High"`), removing the need for sprawling `if-else` chains.
 **Example:** `if (obj is string s) { Console.WriteLine(s.Length); }`
 **Reference:** [Pattern matching](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/functional/pattern-matching)
+
+---
 
 ### 67. What are Local Functions?
 **Answer:** 
@@ -722,6 +854,8 @@ Private methods of a type that are nested in another member.
 **Example:** `int Add(int a, int b) { return a + b; }` defined inside another method.
 **Reference:** [Local functions](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/local-functions)
 
+---
+
 ### 68. What is the difference between `String.Empty` and `""`?
 **Answer:** 
 **The Core Concept:**
@@ -732,6 +866,8 @@ They are functionally identical.
 **Example:** `if (str == string.Empty)`
 **Reference:** [String.Empty](https://learn.microsoft.com/en-us/dotnet/api/system.string.empty)
 
+---
+
 ### 69. What is String Interning?
 **Answer:** 
 **The Core Concept:**
@@ -741,6 +877,8 @@ A mechanism the CLR uses to optimize string memory usage.
 - Because strings are immutable, the CLR maintains an "intern pool". If you create multiple string variables with the literal value "Hello", the CLR does not allocate separate memory blocks. They all point to the single "Hello" reference in the pool.
 **Example:** `object.ReferenceEquals("A", "A") // Returns true`
 **Reference:** [String.Intern](https://learn.microsoft.com/en-us/dotnet/api/system.string.intern)
+
+---
 
 ### 70. What is `IComparable` vs `IComparer`?
 **Answer:** 
@@ -753,6 +891,8 @@ Interfaces used for sorting objects.
 **Example:** `Array.Sort(users, new SortByAgeComparer());`
 **Reference:** [IComparable Interface](https://learn.microsoft.com/en-us/dotnet/api/system.icomparable)
 
+---
+
 ### 71. What is the `volatile` modifier in threading?
 **Answer:** 
 **The Core Concept:**
@@ -762,6 +902,8 @@ The `volatile` keyword indicates that a field might be modified by multiple thre
 - It prevents the compiler/JIT from optimizing read/write access to that field (such as caching the value in a CPU register), forcing every read to fetch the latest value directly from main memory.
 **Example:** `private volatile bool _shouldStop;`
 **Reference:** [volatile](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/volatile)
+
+---
 
 ### 72. What are Covariance and Contravariance?
 **Answer:** 
@@ -774,6 +916,8 @@ They describe how generic type parameters allow implicit reference conversion of
 **Example:** `IEnumerable<out T>`
 **Reference:** [Covariance and Contravariance](https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance)
 
+---
+
 ### 73. What is the difference between late binding and early binding?
 **Answer:** 
 **The Core Concept:**
@@ -785,6 +929,8 @@ Relates to when the compiler resolves method calls.
 **Example:** `obj.DoWork()` (Early) vs `type.GetMethod("DoWork").Invoke(obj)` (Late).
 **Reference:** [Early and Late Binding](https://learn.microsoft.com/en-us/dotnet/visual-basic/programming-guide/language-features/early-late-binding/)
 
+---
+
 ### 74. What is an Anonymous Type?
 **Answer:** 
 **The Core Concept:**
@@ -795,6 +941,8 @@ A convenient way to encapsulate a set of read-only properties into a single obje
 **Example:** `var person = new { Name = "John", Age = 30 };`
 **Reference:** [Anonymous Types](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/anonymous-types)
 
+---
+
 ### 75. Explain the `IDisposable` pattern.
 **Answer:** 
 **The Core Concept:**
@@ -804,6 +952,8 @@ The standard way to release unmanaged resources deterministically.
 - Implements the `Dispose()` method. A proper pattern suppresses finalization (`GC.SuppressFinalize(this)`) to prevent the garbage collector from wasting time finalizing an object that has already been cleaned up.
 **Example:** `public void Dispose() { Dispose(true); GC.SuppressFinalize(this); }`
 **Reference:** [Dispose Pattern](https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose)
+
+---
 
 ### 76. What is the difference between `Array.CopyTo()` and `Array.Clone()`?
 **Answer:** 
@@ -816,6 +966,8 @@ Both copy array data, but handle instantiation differently.
 **Example:** `int[] arr2 = (int[])arr1.Clone();`
 **Reference:** [Array.Clone Method](https://learn.microsoft.com/en-us/dotnet/api/system.array.clone)
 
+---
+
 ### 77. What is `SemaphoreSlim`?
 **Answer:** 
 **The Core Concept:**
@@ -825,6 +977,8 @@ A lightweight synchronization primitive that limits the number of threads that c
 - Unlike `lock` which allows 1 thread, a Semaphore allows N threads. `SemaphoreSlim` is optimized for execution within a single app, and uniquely supports `async/await` (`WaitAsync()`).
 **Example:** `await _semaphore.WaitAsync(); try { ... } finally { _semaphore.Release(); }`
 **Reference:** [SemaphoreSlim](https://learn.microsoft.com/en-us/dotnet/api/system.threading.semaphoreslim)
+
+---
 
 ### 78. What is a Deadlock and how do you prevent it in C#?
 **Answer:** 
@@ -836,6 +990,8 @@ A situation where two or more threads are blocked forever, waiting for each othe
 **Example:** Thread 1 locks A, waits for B. Thread 2 locks B, waits for A.
 **Reference:** [Deadlocks](https://learn.microsoft.com/en-us/dotnet/standard/threading/overview-of-synchronization-primitives)
 
+---
+
 ### 79. What is a Memory Leak in C#?
 **Answer:** 
 **The Core Concept:**
@@ -845,6 +1001,8 @@ When memory is allocated but never released, despite the application no longer n
 - Since C# has a GC, true memory leaks are rare. "Logical leaks" happen when developers keep objects alive via static references, event handler subscriptions (forgetting to unsubscribe `-=`), or unclosed unmanaged resources (forgetting `Dispose()`).
 **Example:** Subscribing to a static event and destroying the local object.
 **Reference:** [Memory Leaks](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/debug-memory-leak)
+
+---
 
 ### 80. How do you find a Memory Leak in a .NET Application?
 **Answer:** 
@@ -856,6 +1014,8 @@ Using diagnostics tools to analyze the managed heap.
 **Example:** Analyzing GC Roots to find an un-detached event handler.
 **Reference:** [Debug memory leaks](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/debug-memory-leak)
 
+---
+
 ### 81. Explain what `Span<T>` and `Memory<T>` are.
 **Answer:** 
 **The Core Concept:**
@@ -866,6 +1026,8 @@ Modern C# types introduced for high-performance memory manipulation without allo
 **Example:** `ReadOnlySpan<char> slice = myString.AsSpan().Slice(0, 5);`
 **Reference:** [Span<T> Struct](https://learn.microsoft.com/en-us/dotnet/api/system.span-1)
 
+---
+
 ### 82. What is `stackalloc`?
 **Answer:** 
 **The Core Concept:**
@@ -875,6 +1037,8 @@ A keyword used in an unsafe context to allocate memory on the stack rather than 
 - Allocating on the stack is almost instantaneous and avoids Garbage Collection entirely. Modern C# allows using `stackalloc` safely with `Span<T>` without the `unsafe` keyword.
 **Example:** `Span<byte> buffer = stackalloc byte[100];`
 **Reference:** [stackalloc](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/stackalloc)
+
+---
 
 ### 83. What is the difference between `Task.Run` and `Task.Factory.StartNew`?
 **Answer:** 
@@ -887,6 +1051,8 @@ Methods to queue work to the ThreadPool.
 **Example:** `Task.Run(() => DoWork());`
 **Reference:** [Task.Run vs Task.Factory.StartNew](https://devblogs.microsoft.com/pfxteam/task-run-vs-task-factory-startnew/)
 
+---
+
 ### 84. Explain the difference between `AsEnumerable()` and `AsQueryable()`.
 **Answer:** 
 **The Core Concept:**
@@ -898,6 +1064,8 @@ Both transition the execution model of a LINQ query.
 **Example:** `query.AsEnumerable().Select(x => MyCustomCsharpFunction(x))`
 **Reference:** [AsEnumerable](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.asenumerable)
 
+---
+
 ### 85. What are Default Interface Methods?
 **Answer:** 
 **The Core Concept:**
@@ -907,6 +1075,8 @@ Introduced in C# 8, interfaces can now provide a default implementation for a me
 - This was added primarily to allow API authors to add new methods to an existing interface without breaking all the classes that currently implement that interface.
 **Example:** `public interface ILogger { void LogError(string e) { Console.WriteLine(e); } }`
 **Reference:** [Default interface methods](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-8.0/default-interface-methods)
+
+---
 
 ### 86. What is the `in` parameter modifier?
 **Answer:** 
@@ -918,6 +1088,8 @@ It passes an argument by reference, but guarantees it is read-only.
 **Example:** `public void Process(in LargeStruct data)`
 **Reference:** [in parameter modifier](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/in-parameter-modifier)
 
+---
+
 ### 87. What are Source Generators?
 **Answer:** 
 **The Core Concept:**
@@ -927,6 +1099,8 @@ A compiler feature introduced in C# 9 that lets developers write code that gener
 - Unlike Reflection (which is slow and happens at runtime), Source Generators inspect the code during the build step and emit highly optimized code files dynamically. Used heavily in modern .NET for JSON serialization and DI without Reflection overhead.
 **Example:** The `System.Text.Json` source generator.
 **Reference:** [Source Generators](https://learn.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/source-generators-overview)
+
+---
 
 ### 88. Explain string interpolation vs `String.Format`.
 **Answer:** 
@@ -939,6 +1113,8 @@ Both construct dynamic strings.
 **Example:** `$"Hello {userName}"`
 **Reference:** [String interpolation](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/tokens/interpolated)
 
+---
+
 ### 89. What is a DTO (Data Transfer Object)?
 **Answer:** 
 **The Core Concept:**
@@ -949,6 +1125,8 @@ An object used to carry data between processes to reduce the number of method ca
 **Example:** Mapping `User` to `UserDto` using AutoMapper.
 **Reference:** [DTO Pattern](https://learn.microsoft.com/en-us/aspnet/web-api/overview/data/using-web-api-with-entity-framework/part-5)
 
+---
+
 ### 90. Explain Boxing/Unboxing performance implications.
 **Answer:** 
 **The Core Concept:**
@@ -958,6 +1136,8 @@ Converting a value type to a reference type (and back).
 - When boxing occurs, the CLR must allocate a new object on the heap, copy the value from the stack to the heap, and create a reference. This creates massive memory allocations and GC pressure if done inside loops. Always use Generics (`List<int>`) to avoid it.
 **Example:** `ArrayList` boxes integers, `List<int>` does not.
 **Reference:** [Boxing/Unboxing Performance](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/types/boxing-and-unboxing)
+
+---
 
 ### 91. What is the difference between `System.DateTime` and `System.DateTimeOffset`?
 **Answer:** 
@@ -970,6 +1150,8 @@ Both store dates and times, but handle time zones differently.
 **Example:** `DateTimeOffset.UtcNow`
 **Reference:** [DateTime vs DateTimeOffset](https://learn.microsoft.com/en-us/dotnet/standard/datetime/choosing-between-datetime)
 
+---
+
 ### 92. What is the `TaskCompletionSource<T>` class?
 **Answer:** 
 **The Core Concept:**
@@ -979,6 +1161,8 @@ It allows you to create a `Task<T>` manually and control its state (Completed, F
 - Used heavily when wrapping legacy event-based asynchronous patterns (EAP) or old callback APIs into modern `async/await` compatible tasks.
 **Example:** Setting `tcs.SetResult(true)` inside an event handler.
 **Reference:** [TaskCompletionSource](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.taskcompletionsource-1)
+
+---
 
 ### 93. What is the `volatile` modifier vs `Interlocked` operations?
 **Answer:** 
@@ -991,6 +1175,8 @@ Both handle thread safety without locks.
 **Example:** `Interlocked.Increment(ref _counter);`
 **Reference:** [Interlocked Class](https://learn.microsoft.com/en-us/dotnet/api/system.threading.interlocked)
 
+---
+
 ### 94. What is a Closure in C#?
 **Answer:** 
 **The Core Concept:**
@@ -1000,6 +1186,8 @@ A closure occurs when a lambda expression or anonymous method references a varia
 - The compiler creates a hidden class to hold the captured variable, meaning its lifetime is extended until the lambda is garbage collected. Capturing loop variables incorrectly in old C# versions led to the infamous "modified closure" bug.
 **Example:** `int x = 5; Action a = () => Console.Write(x);`
 **Reference:** [Closures](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions#capture-of-outer-variables-and-variable-scope-in-lambda-expressions)
+
+---
 
 ### 95. Explain the `IDisposable` pattern with a Finalizer.
 **Answer:** 
@@ -1013,6 +1201,8 @@ The full pattern used to clean up unmanaged resources (file handles, network soc
 **Example:** The official MS Dispose Pattern implementation.
 **Reference:** [Dispose Pattern](https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose)
 
+---
+
 ### 96. What is the difference between `System.Array` and `System.Collections.Generic.List<T>`?
 **Answer:** 
 **The Core Concept:**
@@ -1023,6 +1213,8 @@ Array is a fixed-size contiguous block of memory. List is a dynamic wrapper arou
 - Pre-sizing a List (`new List<int>(1000)`) avoids this expensive reallocation overhead.
 **Example:** `List.Capacity` vs `List.Count`.
 **Reference:** [List Class](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1)
+
+---
 
 ### 97. What is `lock(this)` or `lock(typeof(MyClass))` and why is it bad?
 **Answer:** 
@@ -1035,6 +1227,8 @@ Locking on publicly accessible objects.
 **Example:** `private readonly object _syncRoot = new object();`
 **Reference:** [lock statement](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/lock)
 
+---
+
 ### 98. What is `Task.Yield()`?
 **Answer:** 
 **The Core Concept:**
@@ -1044,6 +1238,8 @@ An asynchronous method that forces the current method to yield execution back to
 - It is used to force a method to complete asynchronously, even if it could run synchronously. Often used in UI applications to keep the UI thread responsive when entering a massive calculation loop.
 **Example:** `await Task.Yield();`
 **Reference:** [Task.Yield](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.yield)
+
+---
 
 ### 99. What are Records and Positional Syntax?
 **Answer:** 
@@ -1055,6 +1251,8 @@ A concise way to declare a record and its properties in one line.
 **Example:** `var (name, age) = person;` (Deconstructing)
 **Reference:** [Positional syntax for property definition](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/records#positional-syntax-for-property-definition)
 
+---
+
 ### 100. What is the `ConfigureAwait` analyzer (CA2007) and why is it important for libraries?
 **Answer:** 
 **The Core Concept:**
@@ -1064,3 +1262,21 @@ A Roslyn analyzer rule enforcing the use of `ConfigureAwait(false)` in class lib
 - If an open-source NuGet package awaits tasks without it, and a consumer uses that package in a WinForms/WPF app with blocking code, the entire app will deadlock. Library authors must use it; application authors (ASP.NET Core) generally don't need it.
 **Example:** `await File.ReadAllTextAsync().ConfigureAwait(false);`
 **Reference:** [CA2007](https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca2007)
+
+---
+\n## Additional Depth (Architectural Focus)\n
+### 101. What is the difference between `IEnumerable<T>` and `IQueryable<T>`?
+**Answer:** 
+**The Core Concept:**
+`IEnumerable<T>` is best suited for querying data in-memory, whereas `IQueryable<T>` is designed for querying data out-of-memory, such as from a SQL database. While both facilitate LINQ queries, they compile and execute those queries differently.
+
+**Key Details:**
+- `IEnumerable<T>` loads all records into application memory and then filters them using delegates, which can cause severe performance bottlenecks on large datasets.
+- `IQueryable<T>` builds an expression tree that is translated into a domain-specific query (like a SQL `WHERE` clause) by the provider (e.g., Entity Framework), executing the filter on the database server.
+
+**Example:** 
+`Use `IQueryable` for EF Core `DbSet` queries; use `IEnumerable` for local Lists.`
+
+**Reference:** [Documentation](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/)
+
+---

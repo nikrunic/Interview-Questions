@@ -9,6 +9,8 @@ This document contains a comprehensive list of 100 React Architecture interview 
 **Example:** Choosing between Monorepo vs Polyrepo, Redux vs Context.
 **Reference:** [React Architecture Guide](https://react.dev/learn)
 
+---
+
 ### 2. What is Unidirectional Data Flow?
 **Answer:** 
 **The Core Concept:**
@@ -19,10 +21,14 @@ A concept where data has one, and only one, way to be transferred to other parts
 **Example:** Parent passes data to Child via props.
 **Reference:** [Unidirectional Data Flow](https://react.dev/learn/sharing-state-between-components)
 
+---
+
 ### 3. What is Component Composition?
 **Answer:** The concept of building complex UIs by combining smaller, isolated, reusable components together.
 **Example:** `<App><Header/><Main/></App>`
 **Reference:** [Composition](https://react.dev/learn/passing-props-to-a-component)
+
+---
 
 ### 4. What is the difference between Smart (Container) and Dumb (Presentational) components?
 **Answer:** 
@@ -34,6 +40,8 @@ Presentational components focus on how things look (UI) and receive data via pro
 **Example:** `UserListContainer` fetches data, passes to `UserList`.
 **Reference:** [Presentational and Container Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)
 
+---
+
 ### 5. Why is file structure important in React?
 **Answer:** 
 **The Core Concept:**
@@ -44,25 +52,35 @@ React does not enforce an architectural pattern.
 **Example:** Grouping by feature vs grouping by file type.
 **Reference:** [File Structure](https://legacy.reactjs.org/docs/faq-structure.html)
 
+---
+
 ### 6. What is "Grouping by Feature"?
 **Answer:** Organizing files based on the feature they belong to (e.g., placing the User list component, its styles, and its custom hooks in a `users` folder).
 **Example:** `src/features/authentication/`
 **Reference:** [Feature Folders](https://react-file-structure.surge.sh/)
+
+---
 
 ### 7. What is State Management?
 **Answer:** The process of maintaining and updating the memory/state of the application UI across different user interactions and API responses.
 **Example:** Using Context, Redux, or Zustand.
 **Reference:** [State Management](https://react.dev/learn/managing-state)
 
+---
+
 ### 8. What is the Context API?
 **Answer:** A built-in feature in React that allows you to share state globally across the component tree without prop drilling.
 **Example:** `const ThemeContext = React.createContext();`
 **Reference:** [Context API](https://react.dev/learn/passing-data-deeply-with-context)
 
+---
+
 ### 9. What is Prop Drilling?
 **Answer:** The process of passing data from a higher-level component down to deeply nested components through props, even if intermediate components don't need the data.
 **Example:** Passing `user` through 5 layers of components.
 **Reference:** [Prop Drilling](https://react.dev/learn/passing-data-deeply-with-context)
+
+---
 
 ### 10. What is Client-Side Rendering (CSR)?
 **Answer:** 
@@ -74,6 +92,8 @@ Rendering the webpage entirely in the browser using JavaScript.
 **Example:** Create React App (CRA).
 **Reference:** [CSR vs SSR](https://web.dev/rendering-on-the-web/)
 
+---
+
 ### 11. What is Server-Side Rendering (SSR)?
 **Answer:** 
 **The Core Concept:**
@@ -83,6 +103,8 @@ The server generates the full HTML for a page and sends it to the client.
 - The client then "hydrates" the HTML with JavaScript to make it interactive.
 **Example:** Next.js `getServerSideProps`.
 **Reference:** [SSR](https://nextjs.org/docs/pages/building-your-application/rendering/server-side-rendering)
+
+---
 
 ### 12. What is Static Site Generation (SSG)?
 **Answer:** 
@@ -94,10 +116,14 @@ HTML is generated at build time.
 **Example:** Next.js `getStaticProps` or Gatsby.
 **Reference:** [SSG](https://nextjs.org/docs/pages/building-your-application/rendering/static-site-generation)
 
+---
+
 ### 13. What is a Custom Hook?
 **Answer:** A JavaScript function starting with "use" that lets you extract and reuse stateful logic across multiple components.
 **Example:** `useAuth()`, `useWindowSize()`.
 **Reference:** [Custom Hooks](https://react.dev/learn/reusing-logic-with-custom-hooks)
+
+---
 
 ### 14. What are Higher-Order Components (HOCs)?
 **Answer:** 
@@ -109,35 +135,49 @@ An architectural pattern where a function takes a component and returns a new co
 **Example:** `withRouter(MyComponent)`
 **Reference:** [HOCs](https://legacy.reactjs.org/docs/higher-order-components.html)
 
+---
+
 ### 15. What is the separation of concerns in React?
 **Answer:** The practice of breaking an application into distinct features with minimal overlap, ensuring components only handle logic related to their direct responsibility.
 **Example:** Keeping API calls out of UI components.
 **Reference:** [Separation of Concerns](https://en.wikipedia.org/wiki/Separation_of_concerns)
+
+---
 
 ### 16. What is an Error Boundary?
 **Answer:** A React component that catches JavaScript errors anywhere in its child component tree, logs those errors, and displays a fallback UI instead of crashing the whole app.
 **Example:** `<ErrorBoundary><App /></ErrorBoundary>`
 **Reference:** [Error Boundaries](https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary)
 
+---
+
 ### 17. What is Code Splitting?
 **Answer:** Splitting the final JavaScript bundle into smaller chunks that can be loaded on-demand, improving the initial load time.
 **Example:** `React.lazy()` and dynamic `import()`.
 **Reference:** [Code Splitting](https://legacy.reactjs.org/docs/code-splitting.html)
+
+---
 
 ### 18. What is Lazy Loading?
 **Answer:** Deferring the loading of non-critical resources (like components or images) until they are actually needed by the user.
 **Example:** Loading a heavy Chart component only when the user scrolls to it.
 **Reference:** [Lazy Loading](https://react.dev/reference/react/lazy)
 
+---
+
 ### 19. What is CSS-in-JS?
 **Answer:** An architectural styling pattern where CSS is composed using JavaScript, allowing styles to be strictly scoped to components and deeply integrated with component state.
 **Example:** Styled Components, Emotion.
 **Reference:** [Styled Components](https://styled-components.com/)
 
+---
+
 ### 20. What are Design Systems?
 **Answer:** A collection of reusable components, guided by clear standards, that can be assembled together to build any number of applications, ensuring UI consistency.
 **Example:** Material UI, Ant Design, Tailwind UI.
 **Reference:** [Design Systems](https://www.invisionapp.com/inside-design/guide-to-design-systems/)
+
+---
 
 
 ## Medium (30 Questions)
@@ -152,6 +192,8 @@ An architectural methodology for creating design systems.
 **Example:** Organizing components into `atoms`, `molecules`, `organisms` folders.
 **Reference:** [Atomic Design by Brad Frost](https://bradfrost.com/blog/post/atomic-web-design/)
 
+---
+
 ### 22. What is the Context vs Redux debate?
 **Answer:** 
 **The Core Concept:**
@@ -163,10 +205,14 @@ Context is best for low-frequency updates (theme, auth).
 **Example:** Redux Toolkit for caching API data; Context for Theme.
 **Reference:** [Context vs Redux](https://blog.isquaredsoftware.com/2021/01/context-redux-differences/)
 
+---
+
 ### 23. What is Zustand?
 **Answer:** A minimalist, fast, and scalable bearbones state-management solution using hooks, acting as a lighter alternative to Redux without boilerplate.
 **Example:** `const useStore = create((set) => ({ count: 1 }))`
 **Reference:** [Zustand](https://github.com/pmndrs/zustand)
+
+---
 
 ### 24. What is React Query (TanStack Query)?
 **Answer:** 
@@ -178,6 +224,8 @@ An architectural tool for managing, caching, and syncing asynchronous and remote
 **Example:** `const { data } = useQuery('todos', fetchTodos)`
 **Reference:** [React Query](https://tanstack.com/query/latest)
 
+---
+
 ### 25. Explain the concept of "Colocation".
 **Answer:** 
 **The Core Concept:**
@@ -188,15 +236,21 @@ The principle of placing files that change together close to each other.
 **Example:** `Button.tsx`, `Button.test.tsx`, `Button.module.css`.
 **Reference:** [Colocation](https://kentcdodds.com/blog/colocation)
 
+---
+
 ### 26. What is the Compound Component Pattern?
 **Answer:** A pattern where multiple components work together to form a cohesive UI, communicating implicitly via React Context.
 **Example:** `<Select><Select.Option value="1">One</Select.Option></Select>`
 **Reference:** [Compound Components](https://kentcdodds.com/blog/compound-components-with-react-hooks)
 
+---
+
 ### 27. What is the Render Props Pattern?
 **Answer:** A technique for sharing code between components using a prop whose value is a function that returns a React element.
 **Example:** `<DataProvider render={data => <h1>{data}</h1>} />`
 **Reference:** [Render Props](https://legacy.reactjs.org/docs/render-props.html)
+
+---
 
 ### 28. What is the Custom Hook Pattern?
 **Answer:** 
@@ -208,25 +262,35 @@ The modern standard for extracting reusable logic.
 **Example:** `const { data, loading } = useFetch('/api');`
 **Reference:** [Custom Hooks](https://react.dev/learn/reusing-logic-with-custom-hooks)
 
+---
+
 ### 29. What is Incremental Static Regeneration (ISR)?
 **Answer:** A Next.js architectural feature that allows you to create or update static pages *after* you've built your site, giving you the benefits of SSG with the flexibility of SSR.
 **Example:** Revalidating a blog post page every 60 seconds.
 **Reference:** [ISR](https://nextjs.org/docs/pages/building-your-application/data-fetching/incremental-static-regeneration)
+
+---
 
 ### 30. How do you implement global error handling in React?
 **Answer:** By wrapping the root component in an Error Boundary and integrating a service like Sentry to catch and report unhandled exceptions.
 **Example:** Sentry React SDK.
 **Reference:** [Sentry with React](https://docs.sentry.io/platforms/javascript/guides/react/)
 
+---
+
 ### 31. What is hydration mismatch?
 **Answer:** When the initial HTML rendered by the server does not exactly match the initial virtual DOM rendered by the client, causing React to discard the server HTML and re-render.
 **Example:** Using `window.innerWidth` during the first render.
 **Reference:** [Hydration Error](https://nextjs.org/docs/messages/react-hydration-error)
 
+---
+
 ### 32. Explain the concept of a "BFF" (Backend For Frontend).
 **Answer:** An architectural pattern where a dedicated backend server is created solely to serve the specific needs of a frontend client (e.g., aggregating multiple microservices into one GraphQL response).
 **Example:** Next.js API Routes acting as a BFF.
 **Reference:** [BFF Pattern](https://samnewman.io/patterns/architectural/bff/)
+
+---
 
 ### 33. What is Module Federation?
 **Answer:** 
@@ -238,6 +302,8 @@ A Webpack 5 feature allowing multiple separate builds to form a single applicati
 **Example:** Loading a "Header" app dynamically into a "Host" app.
 **Reference:** [Module Federation](https://module-federation.github.io/)
 
+---
+
 ### 34. What are Micro-Frontends?
 **Answer:** 
 **The Core Concept:**
@@ -248,20 +314,28 @@ An architectural style where independently deliverable frontend applications are
 **Example:** One team builds the Cart in React, another builds the Catalog in Vue.
 **Reference:** [Micro Frontends](https://martinfowler.com/articles/micro-frontends.html)
 
+---
+
 ### 35. How do you optimize React application bundle size?
 **Answer:** Code splitting (React.lazy), tree shaking (removing unused exports), analyzing bundles (webpack-bundle-analyzer), and using modern lightweight libraries (e.g., date-fns instead of moment.js).
 **Example:** Dynamic imports for heavy libraries.
 **Reference:** [Bundle Optimization](https://legacy.reactjs.org/docs/optimizing-performance.html)
+
+---
 
 ### 36. What is React Suspense?
 **Answer:** A mechanism that lets your components "wait" for something before they can render, showing a fallback UI while waiting (e.g., waiting for lazy components or data).
 **Example:** `<Suspense fallback={<Spinner />}><LazyComponent/></Suspense>`
 **Reference:** [Suspense](https://react.dev/reference/react/Suspense)
 
+---
+
 ### 37. What is the concept of "Lifting State Up"?
 **Answer:** When two sibling components need to share state, you move the state to their closest common ancestor and pass it down via props.
 **Example:** Moving a shared "theme" state to the App root.
 **Reference:** [Lifting State Up](https://react.dev/learn/sharing-state-between-components)
+
+---
 
 ### 38. Explain "Derived State" and why it is an anti-pattern.
 **Answer:** 
@@ -273,15 +347,21 @@ Storing state that can be calculated from other state or props is redundant and 
 **Example:** Storing `fullName` in state when you already have `firstName` and `lastName`.
 **Reference:** [Derived State Anti-Pattern](https://react.dev/learn/choosing-the-state-structure#avoid-redundant-state)
 
+---
+
 ### 39. What is absolute importing?
 **Answer:** Configuring the bundler (like Webpack or TS paths) to allow imports from the root directory instead of relative paths, making refactoring easier.
 **Example:** `import Button from 'components/Button'` instead of `../../components/Button`.
 **Reference:** [Absolute Imports](https://create-react-app.dev/docs/importing-a-component/#absolute-imports)
 
+---
+
 ### 40. How do you manage routing architecture?
 **Answer:** Centralized routing configs (array of objects defining routes) vs Decentralized routing (components declare their own routes via React Router).
 **Example:** Next.js file-system based routing.
 **Reference:** [React Router](https://reactrouter.com/en/main)
+
+---
 
 
 ## Hard (50 Questions)
@@ -296,6 +376,8 @@ An architecture where components run exclusively on the server, zero JS is sent 
 **Example:** Next.js App Router (RSC by default).
 **Reference:** [RSC Overview](https://react.dev/blog/2020/12/21/data-fetching-with-react-server-components)
 
+---
+
 ### 42. How does Server-Driven UI work?
 **Answer:** 
 **The Core Concept:**
@@ -306,15 +388,21 @@ The backend dictates the layout and components to render by sending a JSON paylo
 **Example:** Highly used by companies like Airbnb and Uber for dynamic app updates.
 **Reference:** [Server Driven UI](https://www.youtube.com/watch?v=1r71GgJemF0)
 
+---
+
 ### 43. What is the "Island Architecture"?
 **Answer:** An architecture that uses SSR to deliver static HTML but hydrates small, isolated "islands" of interactivity on the client, minimizing the JavaScript payload.
 **Example:** Astro framework.
 **Reference:** [Islands Architecture](https://jasonformat.com/islands-architecture/)
 
+---
+
 ### 44. What is "Streaming SSR" in React 18?
 **Answer:** Allows the server to send parts of the HTML to the browser as soon as they are ready, rather than waiting for the entire page to render, utilizing `<Suspense>` boundaries.
 **Example:** `renderToPipeableStream`
 **Reference:** [React 18 Streaming](https://react.dev/reference/react-dom/server/renderToPipeableStream)
+
+---
 
 ### 45. Explain State Machines and XState.
 **Answer:** 
@@ -326,10 +414,14 @@ A mathematical model of computation representing states and transitions.
 **Example:** Modeling a Checkout flow (Cart -> Payment -> Success).
 **Reference:** [XState](https://stately.ai/docs/xstate)
 
+---
+
 ### 46. How do you architect a Monorepo for React?
 **Answer:** Using tools like Nx, Turborepo, or Lerna to manage multiple packages/apps in a single repository, sharing UI component libraries, utilities, and config files efficiently with smart caching.
 **Example:** `apps/web`, `apps/mobile`, `packages/ui`.
 **Reference:** [Turborepo](https://turbo.build/repo)
+
+---
 
 ### 47. What is "Clean Architecture" in frontend?
 **Answer:** 
@@ -340,6 +432,8 @@ Separating the application into layers: Domain (business logic), Data (API/stora
 - React should just be the view layer, not containing heavy business logic.
 **Example:** Extracting logic into pure TS classes independent of React.
 **Reference:** [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
+
+---
 
 ### 48. How do you handle authentication architecture?
 **Answer:** 
@@ -352,6 +446,8 @@ Centralized Auth Provider (Context) wrapping the app.
 **Example:** NextAuth.js.
 **Reference:** [NextAuth](https://next-auth.js.org/)
 
+---
+
 ### 49. What is optimistic UI updates?
 **Answer:** 
 **The Core Concept:**
@@ -362,6 +458,8 @@ Updating the UI immediately assuming the server request will succeed, making the
 **Example:** Liking a post instantly, reverting if API fails. React Query supports this natively.
 **Reference:** [Optimistic Updates](https://tanstack.com/query/v4/docs/react/guides/optimistic-updates)
 
+---
+
 ### 50. Explain the concept of "Resilience" in React Architecture.
 **Answer:** 
 **The Core Concept:**
@@ -371,6 +469,8 @@ Building an app that degrades gracefully when things fail.
 - Includes using Error Boundaries for JS errors, Fallback UIs via Suspense, retrying failed network requests, and handling offline states (PWA).
 **Example:** Service worker caching.
 **Reference:** [Resilient Web Design](https://resilientwebdesign.com/)
+
+---
 
 ### 51. Reconciliation & Fiber: How does the Fiber architecture improve performance?
 **Answer:** 
@@ -383,6 +483,8 @@ Fiber is React's reimplementation of its core algorithm.
 **Example:** Using `startTransition` to mark a heavy search filter update as low-priority, keeping the UI completely responsive.
 **Reference:** [React Fiber Architecture](https://github.com/acdlite/react-fiber-architecture)
 
+---
+
 ### 52. State Management Strategy: When should you choose Zustand or Redux over the Context API?
 **Answer:** 
 **The Core Concept:**
@@ -393,6 +495,8 @@ The Context API is great for low-frequency updates like themes.
 - Zustand or Redux use selector-based subscriptions outside the React tree, ensuring only components observing specific slices of state re-render during high-frequency updates.
 **Example:** Using Zustand for a high-frequency real-time stock ticker to avoid rendering the entire layout wrapper.
 **Reference:** [React State Management](https://react.dev/learn/scaling-up-with-reducer-and-context)
+
+---
 
 ### 53. Server Components (RSC): Explain the difference between Server vs. Client Components.
 **Answer:** 
@@ -405,6 +509,8 @@ React Server Components only render on the server, resulting in zero JS added to
 **Example:** Fetching markdown files from a database directly inside an asynchronous Server Component.
 **Reference:** [Next.js React Server Components](https://nextjs.org/docs/app/building-your-application/rendering/server-components)
 
+---
+
 ### 54. Custom Hooks Architecture: How do you design highly reusable and testable Custom Hooks?
 **Answer:** 
 **The Core Concept:**
@@ -416,6 +522,8 @@ Design hooks to encapsulate complex side-effect logic by adhering to the single 
 **Example:** `const { data, loading, error } = useFetch(url);`
 **Reference:** [Reusing Logic with Custom Hooks](https://react.dev/learn/reusing-logic-with-custom-hooks)
 
+---
+
 ### 55. Error Boundaries: How do you implement them to prevent total app crashes?
 **Answer:** 
 **The Core Concept:**
@@ -425,6 +533,8 @@ Error Boundaries are class components that implement `static getDerivedStateFrom
 - You place them high in the component tree to catch rendering errors in their children, displaying a fallback UI instead of a blank screen.
 **Example:** Wrapping a brittle `<ThirdPartyWidget />` inside an `<ErrorBoundary fallback={<p>Widget Failed</p>}>`.
 **Reference:** [React Error Boundaries](https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary)
+
+---
 
 ### 56. Rendering Optimization: How do you identify and fix "wasted renders"?
 **Answer:** 
@@ -436,6 +546,8 @@ Use the React DevTools Profiler to record interactions and spot components rende
 **Example:** Moving a heavy state variable down into the specific child component that uses it rather than storing it in a parent layout.
 **Reference:** [React Profiler](https://react.dev/learn/react-developer-tools)
 
+---
+
 ### 57. Code Splitting: Compare dynamic imports with React.lazy and Suspense.
 **Answer:** 
 **The Core Concept:**
@@ -445,6 +557,8 @@ Use the React DevTools Profiler to record interactions and spot components rende
 - `React.lazy` combined with `<Suspense>` allows you to seamlessly render that dynamic import as a regular React component, providing a declarative fallback UI (like a spinner) while the chunk is downloaded over the network.
 **Example:** `const LazyDashboard = React.lazy(() => import('./Dashboard'));`
 **Reference:** [React Suspense](https://react.dev/reference/react/Suspense)
+
+---
 
 ### 58. Virtualization: How do you handle rendering lists with thousands of items?
 **Answer:** 
@@ -456,6 +570,8 @@ By using virtualization (e.g., `react-window` or `react-virtualized`).
 **Example:** `<FixedSizeList height={500} itemCount={10000} itemSize={50}>`
 **Reference:** [React Virtualized Lists](https://legacy.reactjs.org/docs/optimizing-performance.html#virtualize-long-lists)
 
+---
+
 ### 59. Multi-Step Forms: Building a robust, multi-step form with shared state.
 **Answer:** 
 **The Core Concept:**
@@ -465,6 +581,8 @@ Use a higher-level state object (or a library like React Hook Form with a `FormP
 - Implement a state machine (or simple index state) to track the current step, validating each step's data before allowing progression to the next.
 **Example:** A wizard component that conditionally renders `<Step1>`, `<Step2>`, injecting the shared submit handler.
 **Reference:** [React Hook Form Advanced](https://react-hook-form.com/advanced-usage)
+
+---
 
 ### 60. Concurrency: Implement a debounced search or progress bar using useEffect.
 **Answer:** 
@@ -477,6 +595,8 @@ Use `useEffect` with a cleanup function.
 **Example:** `useEffect(() => { const timer = setTimeout(() => search(term), 300); return () => clearTimeout(timer); }, [term]);`
 **Reference:** [React useEffect Cleanup](https://react.dev/learn/synchronizing-with-effects)
 
+---
+
 ### 61. API Design: Handling race conditions when fetching data in high-frequency scenarios.
 **Answer:** 
 **The Core Concept:**
@@ -486,6 +606,8 @@ To prevent race conditions where an older request resolves after a newer one, ut
 - When the effect cleans up (e.g., user types a new letter), call `abort()` to cancel the stale network request entirely.
 **Example:** `const controller = new AbortController(); fetch(url, { signal: controller.signal }); return () => controller.abort();`
 **Reference:** [React Fetch Data Race Conditions](https://react.dev/learn/you-might-not-need-an-effect#fetching-data)
+
+---
 
 ### 62. How has the core architecture of React shifted between 2023 and 2026?
 **Answer:** 
@@ -497,6 +619,8 @@ React shifted from being a "client-side UI library" (SPA-centric, manual optimiz
 **Example:** Replacing client-side `useEffect` data fetching with direct async DB queries inside Server Components.
 **Reference:** [React Server Components](https://react.dev/blog/2020/12/21/data-fetching-with-react-server-components)
 
+---
+
 ### 63. What is the React Compiler ("React Forget") introduced in React 19?
 **Answer:** 
 **The Core Concept:**
@@ -507,6 +631,8 @@ The React Compiler is an automated build-time tool that optimizes re-renders by 
 **Example:** `const filtered = items.filter(...)` is automatically optimized by the compiler without wrapping it in `useMemo`.
 **Reference:** [React Compiler](https://react.dev/blog/2024/02/15/react-labs-what-we-have-been-working-on-february-2024)
 
+---
+
 ### 64. How do Server Actions fundamentally change form submission and data mutation in modern React?
 **Answer:** 
 **The Core Concept:**
@@ -516,6 +642,8 @@ Before React 19, form submissions required an API route, a `fetch()` call, and m
 - Server Actions eliminate this boilerplate by allowing direct server-side function execution straight from the `action` attribute of a `<form>`.
 **Example:** `async function createTodo(formData) { "use server"; ... }` followed by `<form action={createTodo}>`.
 **Reference:** [React Server Actions](https://react.dev/reference/react/use-server)
+
+---
 
 ### 65. Explain the execution boundaries defined by `"use client"` and `"use server"`.
 **Answer:** 
@@ -528,6 +656,8 @@ These directives create hard architectural boundaries in modern React.
 **Example:** A button with an `onClick` handler requires `"use client"` at the top of its file.
 **Reference:** [React Client Boundaries](https://react.dev/reference/react/use-client)
 
+---
+
 ### 66. What is the `useActionState` hook and how does it simplify forms?
 **Answer:** 
 **The Core Concept:**
@@ -537,6 +667,8 @@ Introduced in React 19, `useActionState` is explicitly designed for managing for
 - It encapsulates the pending state, the form's action, and the result of the action into a single hook, drastically improving form ergonomics.
 **Example:** `const [state, action] = useActionState(submitAction, initialState);`
 **Reference:** [React useActionState](https://react.dev/reference/react/useActionState)
+
+---
 
 ### 67. How does the `useOptimistic` hook improve user experience?
 **Answer:** 
@@ -548,6 +680,8 @@ Introduced in React 19, `useActionState` is explicitly designed for managing for
 **Example:** `const [optimisticTodos, addOptimisticTodo] = useOptimistic(todos);`
 **Reference:** [React useOptimistic](https://react.dev/reference/react/useOptimistic)
 
+---
+
 ### 68. What major conceptual shift does the `use()` hook introduce for handling asynchronous operations?
 **Answer:** 
 **The Core Concept:**
@@ -557,6 +691,8 @@ The `use()` hook allows developers to directly consume async values (like Promis
 - It integrates directly with Suspense, effectively moving React away from `useEffect`-based loading states toward synchronous-looking async rendering.
 **Example:** `const data = use(fetchPromise);` inside a component automatically triggers the nearest Suspense boundary until resolved.
 **Reference:** [React use hook](https://react.dev/reference/react/use)
+
+---
 
 ### 69. How have Context Providers been simplified in React 19?
 **Answer:** 
@@ -568,6 +704,8 @@ React 19 removed the need for the verbose `.Provider` suffix when rendering Cont
 **Example:** `<ThemeContext>` instead of `<ThemeContext.Provider>`.
 **Reference:** [React 19 Improvements](https://react.dev/blog)
 
+---
+
 ### 70. How has React 19 improved Asset Loading APIs and Document Metadata Management?
 **Answer:** 
 **The Core Concept:**
@@ -577,6 +715,8 @@ React 19 added native orchestration for metadata (like `<title>` and `<meta>` ta
 - This natively improves streaming SSR, hydration speed, and Core Web Vitals without relying entirely on external frameworks.
 **Example:** Placing `<title>Dashboard</title>` inside a nested component, and React will automatically hoist it to the document `<head>`.
 **Reference:** [React Document Metadata](https://react.dev/reference/react-dom/components)
+
+---
 
 ### 71. What does it mean that modern React is increasingly "framework-first"?
 **Answer:** 
@@ -588,6 +728,8 @@ Because bleeding-edge features like Server Components, streaming, and Server Act
 **Example:** Next.js App Router natively supporting RSCs and route handlers out of the box.
 **Reference:** [React Frameworks](https://react.dev/learn/start-a-new-react-project)
 
+---
+
 ### 72. How has the performance optimization philosophy shifted from classic React to modern React?
 **Answer:** 
 **The Core Concept:**
@@ -598,15 +740,21 @@ Classic React focused heavily on optimizing client-side rendering (minimizing re
 **Example:** Offloading a heavy markdown parser entirely to a Server Component so the client only receives raw HTML.
 **Reference:** [React Performance](https://react.dev/learn/render-and-commit)
 
+---
+
 ### 73. What are the common criticisms or pushbacks regarding the React 19 architecture?
 **Answer:** The primary criticisms include significantly increased complexity and a steeper learning curve (managing Server vs Client boundaries, Hydration, Actions), heavy framework lock-in (Next.js dominance), harder debugging due to streaming/hydration mismatch, and fragmentation within the ecosystem regarding package compatibility with RSCs.
 **Example:** A popular UI library breaking because it uses `window` inside a component rendered by default as a Server Component.
 **Reference:** [React Ecosystem Critiques](https://react.dev/blog)
 
+---
+
 ### 74. What is the current recommended stack for a production React application in 2026?
 **Answer:** The modern standard leans heavily full-stack: Next.js as the framework, Server Components for rendering/data fetching, Server Actions for mutations, Client Components (restricted to leaves of the tree) for UI state, Suspense for loading, and the React Compiler for optimization.
 **Example:** Fetching data async on the server, passing it down to a client-side chart component, and mutating via a Server Action.
 **Reference:** [Next.js App Router Docs](https://nextjs.org/docs)
+
+---
 
 ### 75. What is the "Island Architecture"?
 **Answer:** 
@@ -617,6 +765,8 @@ Island architecture (popularized by Astro) involves shipping static HTML by defa
 - This minimizes the client-side JavaScript bundle and drastically improves initial load performance compared to traditional SPAs.
 **Example:** A static blog page where only the "Like button" and "Comments section" are interactive React islands.
 **Reference:** [Islands Architecture](https://jasonformat.com/islands-architecture/)
+
+---
 
 ### 76. How does React handle WebGL or Canvas integration architecturally?
 **Answer:** 
@@ -629,6 +779,8 @@ React is inherently tied to the DOM via `react-dom`.
 **Example:** `<Canvas><mesh><boxGeometry /></mesh></Canvas>`
 **Reference:** [React Three Fiber](https://docs.pmnd.rs/react-three-fiber/getting-started/introduction)
 
+---
+
 ### 77. Explain Micro-frontend architecture with React.
 **Answer:** 
 **The Core Concept:**
@@ -638,6 +790,8 @@ Micro-frontends break down a monolithic frontend into smaller, independently dep
 - They are often orchestrated using Webpack Module Federation to stitch together different React apps at runtime into a single shell application.
 **Example:** The checkout flow and product catalog are separate React apps loaded dynamically by a host app.
 **Reference:** [Micro Frontends](https://micro-frontends.org/)
+
+---
 
 ### 78. What are the performance implications of frequent updates in Context API vs State Management libraries?
 **Answer:** 
@@ -649,6 +803,8 @@ Context API re-renders *all* consumers whenever the context value changes, which
 **Example:** Replacing a global `<ThemeContext>` with Zustand for highly dynamic dashboard widgets.
 **Reference:** [React Context Caveats](https://react.dev/learn/passing-data-deeply-with-context)
 
+---
+
 ### 79. How do you implement robust Edge Computing SSR strategies with React?
 **Answer:** 
 **The Core Concept:**
@@ -658,6 +814,8 @@ Edge computing moves Server-Side Rendering from central servers to distributed V
 - To achieve this, the React app must be built without relying on Node.js native modules (`fs`, `path`) and instead leverage the standard Web API (Streams, Fetch).
 **Example:** Streaming React HTML directly from a Cloudflare Worker nearest to the user.
 **Reference:** [Next.js Edge Runtime](https://nextjs.org/docs/app/building-your-application/rendering/edge-and-nodejs-runtimes)
+
+---
 
 ### 80. How do React Native Bridge architectures work?
 **Answer:** 
@@ -669,6 +827,8 @@ Historically, React Native used an asynchronous JSON bridge to communicate betwe
 **Example:** JSI eliminating serialization overhead for 60fps animations.
 **Reference:** [React Native New Architecture](https://reactnative.dev/architecture/overview)
 
+---
+
 ### 81. How does React 18's Concurrent Mode prioritize rendering?
 **Answer:** 
 **The Core Concept:**
@@ -679,6 +839,8 @@ Concurrent Mode allows React to interrupt a heavy rendering task to respond to h
 **Example:** `const [isPending, startTransition] = useTransition();`
 **Reference:** [React Concurrent Features](https://react.dev/blog/2022/03/29/react-v18#what-is-concurrent-react)
 
+---
+
 ### 82. What is strict mode in React and what architectural bugs does it catch?
 **Answer:** 
 **The Core Concept:**
@@ -688,6 +850,8 @@ Concurrent Mode allows React to interrupt a heavy rendering task to respond to h
 - Architecturally, it exposes impure render functions, accidental side effects, and improper teardowns in `useEffect` (which causes memory leaks).
 **Example:** Wrapping `<App />` in `<React.StrictMode>` within `index.js`.
 **Reference:** [React Strict Mode](https://react.dev/reference/react/StrictMode)
+
+---
 
 ### 83. Architecturally, when should you choose SSR vs SSG vs ISR?
 **Answer:** 
@@ -700,6 +864,8 @@ Use SSR (Server-Side Rendering) for highly dynamic, user-specific data that must
 **Example:** Next.js `revalidate: 60` for ISR.
 **Reference:** [Next.js Rendering Strategies](https://nextjs.org/docs/pages/building-your-application/rendering)
 
+---
+
 ### 84. What is hydration mismatch and how do you resolve it?
 **Answer:** 
 **The Core Concept:**
@@ -711,10 +877,14 @@ Hydration mismatch occurs when the server-rendered HTML differs from what the cl
 **Example:** Suppressing warnings locally via `suppressHydrationWarning`.
 **Reference:** [React Hydration](https://react.dev/reference/react-dom/client/hydrateRoot)
 
+---
+
 ### 85. Explain the "Render-as-you-fetch" pattern.
 **Answer:** Unlike "fetch-on-render" (where `useEffect` triggers a fetch) or "fetch-then-render" (waiting for all data before rendering), "render-as-you-fetch" initiates the data fetch as early as possible (e.g., during routing) and immediately renders the component using `<Suspense>` boundaries while the data streams in.
 **Example:** Using Relay or modern React Router loaders.
 **Reference:** [Suspense for Data Fetching](https://react.dev/blog/2020/12/21/data-fetching-with-react-server-components)
+
+---
 
 ### 86. How do you design an accessible React component architecture?
 **Answer:** 
@@ -726,6 +896,8 @@ Incorporate ARIA attributes, semantic HTML, focus management (using `useRef`), a
 **Example:** `<div role="dialog" aria-modal="true" ref={modalRef}>`
 **Reference:** [React Accessibility](https://react.dev/learn/accessibility)
 
+---
+
 ### 87. What is the architectural role of a "BFF" (Backend for Frontend)?
 **Answer:** 
 **The Core Concept:**
@@ -735,6 +907,8 @@ A BFF acts as a middleware orchestration layer between the React client and down
 - It aggregates data, simplifies complex backend APIs into UI-friendly formats, and handles frontend-specific security concerns (like HttpOnly cookies), reducing the client-side network burden.
 **Example:** Next.js API Routes acting as a BFF for an enterprise React app.
 **Reference:** [BFF Pattern](https://samnewman.io/patterns/architectural/bff/)
+
+---
 
 ### 88. How does a single-page application (SPA) handle memory management?
 **Answer:** 
@@ -746,6 +920,8 @@ Since SPAs don't perform full page reloads, memory is never automatically cleare
 **Example:** `return () => window.removeEventListener('resize', handler);`
 **Reference:** [Memory Leaks in React](https://react.dev/learn/synchronizing-with-effects)
 
+---
+
 ### 89. Explain the Custom Hook architectural pattern.
 **Answer:** 
 **The Core Concept:**
@@ -756,6 +932,8 @@ Custom hooks extract highly complex, reusable stateful logic out of the UI layer
 **Example:** `const { data, isLoading } = useUser(userId);`
 **Reference:** [Reusing Logic with Custom Hooks](https://react.dev/learn/reusing-logic-with-custom-hooks)
 
+---
+
 ### 90. What is "Prop Drilling" and how does component composition solve it natively?
 **Answer:** 
 **The Core Concept:**
@@ -765,6 +943,8 @@ Prop drilling is passing data down multiple layers of components just to reach a
 - While Context/Redux solves this globally, "Component Composition" solves it architecturally by passing the deeply nested component itself as `children` or a prop to the parent.
 **Example:** `<Layout sidebar={<Sidebar user={user} />} />`
 **Reference:** [React Composition](https://react.dev/learn/passing-data-deeply-with-context#before-you-use-context)
+
+---
 
 ### 91. How does Resumability differ from Hydration in frontend architecture?
 **Answer:** 
@@ -777,6 +957,8 @@ Hydration (React) downloads all JS, executes it, and attaches event listeners to
 **Example:** Qwik framework's `on:click` lazy-loading logic.
 **Reference:** [Qwik Resumability](https://qwik.builder.io/docs/concepts/resumable/)
 
+---
+
 ### 92. What are the architectural trade-offs of using CSS-in-JS (like styled-components)?
 **Answer:** 
 **The Core Concept:**
@@ -786,6 +968,8 @@ CSS-in-JS provides excellent scoping, dynamic styling based on props, and elimin
 - The trade-off is runtime performance cost (injecting styles dynamically via JS), bundle size increase, and severe compatibility issues with modern Server Components which do not execute runtime hooks.
 **Example:** Shifting to static utility CSS (Tailwind) or zero-runtime CSS-in-JS (vanilla-extract) to support RSCs.
 **Reference:** [CSS in JS Performance](https://react.dev/learn/css-in-js)
+
+---
 
 ### 93. How do you implement robust authentication architecture in React?
 **Answer:** 
@@ -798,6 +982,8 @@ Never store sensitive tokens (like JWT access tokens) in `localStorage` due to X
 **Example:** React Context wrapped around protected routes utilizing HttpOnly cookies.
 **Reference:** [React Authentication Patterns](https://kentcdodds.com/blog/authentication-in-react-applications)
 
+---
+
 ### 94. Explain the concept of "Tearing" in React UI architecture.
 **Answer:** 
 **The Core Concept:**
@@ -808,6 +994,8 @@ Tearing occurs in concurrent rendering when an external state manager updates a 
 - React 18 introduced `useSyncExternalStore` to force synchronous reads to external stores, preventing tearing.
 **Example:** Redux migrating to `useSyncExternalStore` in React 18.
 **Reference:** [useSyncExternalStore](https://react.dev/reference/react/useSyncExternalStore)
+
+---
 
 ### 95. What is the Controller Component vs Presentational Component pattern?
 **Answer:** 
@@ -821,6 +1009,8 @@ Also known as Container/Presentational.
 **Example:** `<UserContainer>` fetches data and renders `<UserCard user={data} />`.
 **Reference:** [Presentational and Container Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)
 
+---
+
 ### 96. How do you implement a highly scalable Internationalization (i18n) architecture?
 **Answer:** 
 **The Core Concept:**
@@ -830,6 +1020,8 @@ Decouple translation strings into separate static JSON files per locale.
 - Use a library like `react-i18next` that supports lazy-loading namespaces so users only download the text needed for the current route, minimizing bundle impact.
 **Example:** `const { t } = useTranslation('checkout');`
 **Reference:** [React i18next](https://react.i18next.com/)
+
+---
 
 ### 97. What is "State Colocation"?
 **Answer:** 
@@ -842,6 +1034,8 @@ The principle of keeping state as close as possible to the component that uses i
 **Example:** Keeping `isDropdownOpen` in the Dropdown component, not Redux.
 **Reference:** [State Colocation](https://kentcdodds.com/blog/state-colocation-will-make-your-react-app-faster)
 
+---
+
 ### 98. How do you architect error tracking and observability in a React app?
 **Answer:** 
 **The Core Concept:**
@@ -853,6 +1047,8 @@ Use top-level Error Boundaries to catch render errors.
 **Example:** `<Sentry.ErrorBoundary fallback={<ErrorPage />}>`
 **Reference:** [Sentry React Integration](https://docs.sentry.io/platforms/javascript/guides/react/)
 
+---
+
 ### 99. Explain "Progressive Enhancement" in the context of React 19 / Server Components.
 **Answer:** 
 **The Core Concept:**
@@ -862,6 +1058,8 @@ Designing the application so core functionality (like form submission) works usi
 - React then "enhances" the interaction with optimistic UI and smooth transitions once the JS is fully hydrated.
 **Example:** A `<form action={serverAction}>` that works identically with or without JS.
 **Reference:** [React Form Actions](https://react.dev/reference/react/use-server)
+
+---
 
 ### 100. What is an Event Bus architecture and why is it usually an anti-pattern in React?
 **Answer:** 
@@ -873,3 +1071,21 @@ An Event Bus uses a global emitter (like Node's `EventEmitter`) to trigger event
 - Use Context or State Management instead.
 **Example:** Avoiding `window.dispatchEvent` to pass data between sibling components.
 **Reference:** [React Data Flow](https://react.dev/learn/sharing-state-between-components)
+
+---
+\n## Additional Depth (Architectural Focus)\n
+### 101. What is the Flux Architecture pattern?
+**Answer:** 
+**The Core Concept:**
+Flux is a strict unidirectional data flow architecture devised by Meta (Facebook) for building client-side web applications. It eschews the complex two-way data binding of MVC frameworks in favor of a predictable, circular flow of data.
+
+**Key Details:**
+- The flow goes: Action -> Dispatcher -> Store -> View. Views trigger Actions, which are broadcasted by a centralized Dispatcher to all Stores, which then update their state and emit a change event, prompting Views to re-render.
+- Redux is the most famous implementation of Flux concepts, though it simplifies the architecture by condensing multiple stores into a single global state tree and dropping the Dispatcher entirely.
+
+**Example:** 
+`View clicks button -> Action dispatched -> Store updates -> View renders.`
+
+**Reference:** [Documentation](https://facebook.github.io/flux/)
+
+---

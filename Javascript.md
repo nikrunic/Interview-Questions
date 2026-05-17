@@ -9,15 +9,21 @@ This document contains a comprehensive list of 100 JavaScript interview question
 **Example:** `const obj = {};`
 **Reference:** [MDN Object Initialization](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer)
 
+---
+
 ### 2. What is a prototype chain?
 **Answer:** The mechanism by which JavaScript objects inherit features from one another.
 **Example:** `obj.__proto__` points to `Object.prototype`.
 **Reference:** [MDN Inheritance and the prototype chain](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain)
 
+---
+
 ### 3. What is the difference between `call`, `apply`, and `bind`?
 **Answer:** `call` invokes with comma-separated arguments, `apply` invokes with an array of arguments, `bind` returns a new function with bound `this`.
 **Example:** `fn.call(obj, 1, 2); fn.apply(obj, [1, 2]); fn.bind(obj)();`
 **Reference:** [MDN Function.prototype.bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)
+
+---
 
 ### 4. What is JSON and its common operations?
 **Answer:** 
@@ -29,6 +35,8 @@ JavaScript Object Notation.
 **Example:** `const obj = JSON.parse('{"a":1}');`
 **Reference:** [MDN JSON](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON)
 
+---
+
 ### 5. What is the difference between `slice` and `splice`?
 **Answer:** 
 **The Core Concept:**
@@ -38,6 +46,8 @@ JavaScript Object Notation.
 - `splice` changes the contents of an array by removing or replacing existing elements.
 **Example:** `arr.slice(1, 3); arr.splice(1, 1, 'new');`
 **Reference:** [MDN Array.prototype.splice](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice)
+
+---
 
 ### 6. What is the difference between `==` and `===`?
 **Answer:** 
@@ -49,10 +59,14 @@ JavaScript Object Notation.
 **Example:** `1 == '1'` is true, `1 === '1'` is false.
 **Reference:** [MDN Equality](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Strict_equality)
 
+---
+
 ### 7. What are arrow functions?
 **Answer:** A compact alternative to traditional function expressions, which lexically bind `this`.
 **Example:** `const add = (a, b) => a + b;`
 **Reference:** [MDN Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+
+---
 
 ### 8. What is a first-class function?
 **Answer:** 
@@ -64,15 +78,21 @@ Functions in JS are treated like any other variable.
 **Example:** `const greet = function() { console.log('Hi'); };`
 **Reference:** [MDN First-class Function](https://developer.mozilla.org/en-US/docs/Glossary/First-class_Function)
 
+---
+
 ### 9. What is a higher-order function?
 **Answer:** A function that takes a function as an argument or returns a function.
 **Example:** `Array.prototype.map()`
 **Reference:** [MDN First-class Function](https://developer.mozilla.org/en-US/docs/Glossary/First-class_Function)
 
+---
+
 ### 10. What is a pure function?
 **Answer:** A function where the return value is only determined by its input values, without observable side effects.
 **Example:** `function add(a, b) { return a + b; }`
 **Reference:** [Wikipedia Pure function](https://en.wikipedia.org/wiki/Pure_function)
+
+---
 
 ### 11. What is the difference between `let` and `var`?
 **Answer:** 
@@ -84,10 +104,14 @@ Functions in JS are treated like any other variable.
 **Example:** `if(true) { let x = 1; var y = 2; }` (`x` is unavailable outside, `y` is available).
 **Reference:** [MDN let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)
 
+---
+
 ### 12. What is the Temporal Dead Zone (TDZ)?
 **Answer:** The time between entering a scope and the actual declaration of a `let` or `const` variable where it cannot be accessed.
 **Example:** `console.log(a); let a = 1;` throws a ReferenceError.
 **Reference:** [MDN TDZ](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let#temporal_dead_zone_tdz)
+
+---
 
 ### 13. What is an IIFE?
 **Answer:** 
@@ -99,15 +123,21 @@ Immediately Invoked Function Expression.
 **Example:** `(function() { console.log('Ran'); })();`
 **Reference:** [MDN IIFE](https://developer.mozilla.org/en-US/docs/Glossary/IIFE)
 
+---
+
 ### 14. What is Hoisting?
 **Answer:** JavaScript's default behavior of moving declarations to the top of the current scope.
 **Example:** `x = 5; var x;` works because `var x` is hoisted.
 **Reference:** [MDN Hoisting](https://developer.mozilla.org/en-US/docs/Glossary/Hoisting)
 
+---
+
 ### 15. What are closures?
 **Answer:** A closure is a function bundled together with references to its lexical environment.
 **Example:** `function outer() { let a = 1; return function inner() { console.log(a); } }`
 **Reference:** [MDN Closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures)
+
+---
 
 ### 16. What is the DOM?
 **Answer:** 
@@ -119,25 +149,35 @@ Document Object Model.
 **Example:** `document.getElementById('app')`
 **Reference:** [MDN DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)
 
+---
+
 ### 17. What is Web Storage?
 **Answer:** An API that provides mechanisms by which browsers can store key/value pairs locally (`localStorage` and `sessionStorage`).
 **Example:** `localStorage.setItem('key', 'value');`
 **Reference:** [MDN Web Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API)
+
+---
 
 ### 18. What is a Promise?
 **Answer:** An object representing the eventual completion or failure of an asynchronous operation.
 **Example:** `new Promise((resolve, reject) => { resolve('Success'); });`
 **Reference:** [MDN Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
+---
+
 ### 19. What is a callback function?
 **Answer:** A function passed into another function as an argument, which is then invoked inside the outer function.
 **Example:** `setTimeout(() => console.log('Done'), 1000);`
 **Reference:** [MDN Callback function](https://developer.mozilla.org/en-US/docs/Glossary/Callback_function)
 
+---
+
 ### 20. What is strict mode?
 **Answer:** A way to opt in to a restricted variant of JavaScript that eliminates silent errors.
 **Example:** `"use strict";`
 **Reference:** [MDN Strict mode](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode)
+
+---
 
 
 ## Medium (30 Questions)
@@ -153,10 +193,14 @@ Document Object Model.
 **Example:** `localStorage.setItem()`, `document.cookie`.
 **Reference:** [MDN Web Storage](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API)
 
+---
+
 ### 22. What is Event Bubbling?
 **Answer:** An event starts from the innermost element and bubbles up to the outer elements.
 **Example:** Clicking a `button` inside a `div` triggers the button's click handler, then the div's.
 **Reference:** [MDN Event bubbling](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#event_bubbling)
+
+---
 
 ### 23. What is Event Capturing?
 **Answer:** 
@@ -168,20 +212,28 @@ The opposite of bubbling.
 **Example:** `element.addEventListener('click', handler, true);` (true enables capturing).
 **Reference:** [MDN Event capturing](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#event_capturing)
 
+---
+
 ### 24. What is Event Delegation?
 **Answer:** Attaching a single event listener to a parent element to handle events for all of its children, utilizing event bubbling.
 **Example:** `ul.addEventListener('click', (e) => { if(e.target.tagName === 'LI') { ... } });`
 **Reference:** [JavaScript.info Event delegation](https://javascript.info/event-delegation)
+
+---
 
 ### 25. What is the `typeof` operator?
 **Answer:** Returns a string indicating the type of the unevaluated operand.
 **Example:** `typeof "hello" // "string"`
 **Reference:** [MDN typeof](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof)
 
+---
+
 ### 26. What is the `instanceof` operator?
 **Answer:** Tests whether the prototype property of a constructor appears anywhere in the prototype chain of an object.
 **Example:** `[] instanceof Array // true`
 **Reference:** [MDN instanceof](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof)
+
+---
 
 ### 27. What is NaN?
 **Answer:** 
@@ -193,6 +245,8 @@ The opposite of bubbling.
 **Example:** `parseInt("abc") // NaN`
 **Reference:** [MDN NaN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN)
 
+---
+
 ### 28. How do you check if a value is NaN?
 **Answer:** 
 **The Core Concept:**
@@ -202,6 +256,8 @@ Using `Number.isNaN()` or `isNaN()`.
 - `Number.isNaN()` is safer as it doesn't coerce values.
 **Example:** `Number.isNaN(NaN) // true`
 **Reference:** [MDN Number.isNaN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isNaN)
+
+---
 
 ### 29. What is `undefined` vs `null`?
 **Answer:** 
@@ -213,10 +269,14 @@ Using `Number.isNaN()` or `isNaN()`.
 **Example:** `let a; // undefined`, `let b = null; // null`
 **Reference:** [MDN null](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null)
 
+---
+
 ### 30. How do you deep clone an object?
 **Answer:** Using `JSON.parse(JSON.stringify(obj))` or `structuredClone(obj)`.
 **Example:** `const clone = structuredClone(original);`
 **Reference:** [MDN structuredClone](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone)
+
+---
 
 ### 31. What are promises in JS and what are their states?
 **Answer:** 
@@ -228,25 +288,35 @@ A Promise represents an asynchronous operation.
 **Example:** `const p = new Promise((resolve) => resolve());`
 **Reference:** [MDN Promise states](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
+---
+
 ### 32. What is `Promise.all()`?
 **Answer:** Takes an iterable of promises and resolves when all promises resolve, or rejects if any promise rejects.
 **Example:** `Promise.all([p1, p2]).then(results => ...)`
 **Reference:** [MDN Promise.all](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all)
+
+---
 
 ### 33. What is `Promise.race()`?
 **Answer:** Returns a promise that fulfills or rejects as soon as one of the promises fulfills or rejects.
 **Example:** `Promise.race([p1, p2]).then(first => ...)`
 **Reference:** [MDN Promise.race](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/race)
 
+---
+
 ### 34. What is `async`/`await`?
 **Answer:** Syntactic sugar for promises, making asynchronous code look synchronous.
 **Example:** `async function fetch() { const res = await apiCall(); }`
 **Reference:** [MDN async function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)
 
+---
+
 ### 35. What is the Event Loop?
 **Answer:** The mechanism that handles the execution of multiple chunks of your program over time, executing functions from the call stack and pushing tasks from the callback queue.
 **Example:** `setTimeout` callbacks are pushed to the queue and run by the event loop.
 **Reference:** [MDN Event loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop)
+
+---
 
 ### 36. What is a generator function?
 **Answer:** 
@@ -258,45 +328,63 @@ A function that can pause its execution and yield multiple values.
 **Example:** `function* gen() { yield 1; yield 2; }`
 **Reference:** [MDN function*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*)
 
+---
+
 ### 37. What are default parameters?
 **Answer:** Allows formal parameters to be initialized with default values if no value or `undefined` is passed.
 **Example:** `function add(a = 0, b = 0) { return a + b; }`
 **Reference:** [MDN Default parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters)
+
+---
 
 ### 38. What is object destructuring?
 **Answer:** Extracting properties from objects and binding them to variables.
 **Example:** `const { name, age } = user;`
 **Reference:** [MDN Destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
 
+---
+
 ### 39. What is the spread operator?
 **Answer:** Allows an iterable such as an array or object expression to be expanded in places where zero or more arguments or elements are expected.
 **Example:** `const arr2 = [...arr1, 4, 5];`
 **Reference:** [MDN Spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
+
+---
 
 ### 40. What is the rest parameter?
 **Answer:** Allows a function to accept an indefinite number of arguments as an array.
 **Example:** `function sum(...args) { return args.reduce((a, b) => a + b); }`
 **Reference:** [MDN Rest parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters)
 
+---
+
 ### 41. What is a WeakMap?
 **Answer:** A collection of key/value pairs where the keys must be objects and are weakly referenced (can be garbage collected).
 **Example:** `const wm = new WeakMap(); wm.set(obj, "value");`
 **Reference:** [MDN WeakMap](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap)
+
+---
 
 ### 42. What is a Set?
 **Answer:** An object that lets you store unique values of any type.
 **Example:** `const unique = new Set([1, 1, 2]); // Set(2) {1, 2}`
 **Reference:** [MDN Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
 
+---
+
 ### 43. How do you remove duplicates from an array?
 **Answer:** `Array.from(new Set(arr))` or `[...new Set(arr)]`.
 **Example:** `const noDups = [...new Set([1, 2, 2])];`
 **Reference:** [MDN Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
 
+---
+
 ### 44. What is currying?
 **Answer:** Transforming a function with multiple arguments into a sequence of nested functions that take one argument at a time.
 **Example:** `const add = x => y => x + y; add(5)(10);`
 **Reference:** [JavaScript.info Currying](https://javascript.info/currying-partials)
+
+---
 
 ### 45. What is the `Map` object?
 **Answer:** 
@@ -308,15 +396,21 @@ Holds key-value pairs and remembers the original insertion order.
 **Example:** `const map = new Map(); map.set('key', 'value');`
 **Reference:** [MDN Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
 
+---
+
 ### 46. Explain `Object.keys()`, `Object.values()`, and `Object.entries()`.
 **Answer:** `keys` returns an array of property names, `values` returns property values, `entries` returns an array of `[key, value]` pairs.
 **Example:** `Object.keys({a: 1}) // ['a']`
 **Reference:** [MDN Object.keys](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys)
 
+---
+
 ### 47. What is `Array.prototype.reduce()`?
 **Answer:** Executes a reducer function on each element of the array, resulting in a single output value.
 **Example:** `[1, 2].reduce((acc, val) => acc + val, 0); // 3`
 **Reference:** [MDN Array.reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce)
+
+---
 
 ### 48. What is the `this` keyword?
 **Answer:** 
@@ -328,15 +422,21 @@ Refers to the object that is currently executing the code.
 **Example:** `console.log(this); // window globally`
 **Reference:** [MDN this](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this)
 
+---
+
 ### 49. How does `Array.prototype.map()` work?
 **Answer:** Creates a new array populated with the results of calling a provided function on every element in the calling array.
 **Example:** `[1, 2].map(x => x * 2); // [2, 4]`
 **Reference:** [MDN Array.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 
+---
+
 ### 50. How does `Array.prototype.filter()` work?
 **Answer:** Creates a shallow copy of a portion of a given array, filtered down to just the elements that pass the test implemented by the provided function.
 **Example:** `[1, 2].filter(x => x > 1); // [2]`
 **Reference:** [MDN Array.filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
+
+---
 
 
 ## Hard (50 Questions)
@@ -352,6 +452,8 @@ JS uses a "mark-and-sweep" algorithm.
 **Example:** An object detached from the global scope is swept.
 **Reference:** [MDN Memory Management](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management)
 
+---
+
 ### 52. What are memory leaks and how do you prevent them?
 **Answer:** 
 **The Core Concept:**
@@ -361,6 +463,8 @@ A memory leak is a piece of memory that is no longer needed but is not released.
 - Prevent them by clearing timers (`clearInterval`), removing unused event listeners, and avoiding accidental global variables.
 **Example:** Forgetting to run `removeEventListener` when a component unmounts.
 **Reference:** [MDN Memory Management](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management)
+
+---
 
 ### 53. What is the difference between Macrotasks and Microtasks?
 **Answer:** 
@@ -372,15 +476,21 @@ Microtasks (Promises, `queueMicrotask`) execute immediately after the current sc
 **Example:** Promise handlers run before `setTimeout`.
 **Reference:** [JavaScript.info Microtasks](https://javascript.info/microtask-queue)
 
+---
+
 ### 54. Explain what polyfills are.
 **Answer:** A polyfill is code (usually JavaScript on the Web) used to provide modern functionality on older browsers that do not natively support it.
 **Example:** Writing a custom `Array.prototype.includes` for IE11.
 **Reference:** [MDN Polyfill](https://developer.mozilla.org/en-US/docs/Glossary/Polyfill)
 
+---
+
 ### 55. What is a Proxy in JavaScript?
 **Answer:** The `Proxy` object enables you to create a proxy for another object, which can intercept and redefine fundamental operations for that object.
 **Example:** `const proxy = new Proxy(target, { get: function(...) { ... } });`
 **Reference:** [MDN Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
+
+---
 
 ### 56. What is `Reflect` in JavaScript?
 **Answer:** 
@@ -392,10 +502,14 @@ Microtasks (Promises, `queueMicrotask`) execute immediately after the current sc
 **Example:** `Reflect.has(obj, 'prop');` (similar to `'prop' in obj`).
 **Reference:** [MDN Reflect](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect)
 
+---
+
 ### 57. What are Service Workers?
 **Answer:** Scripts that run in the background, separate from a web page, opening the door to features that don't need a web page or user interaction, like push notifications and background sync (PWA features).
 **Example:** Intercepting network requests to serve cached assets offline.
 **Reference:** [MDN Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API)
+
+---
 
 ### 58. What is the difference between a Service Worker and a Web Worker?
 **Answer:** 
@@ -407,15 +521,21 @@ Web Workers are for executing heavy computations in a background thread to preve
 **Example:** `new Worker('script.js')` vs `navigator.serviceWorker.register(...)`.
 **Reference:** [MDN Web Workers API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API)
 
+---
+
 ### 59. How does `JSON.stringify` behave with `undefined`, Functions, and Symbols?
 **Answer:** They are omitted if they are values of an object, or converted to `null` if they are in an array.
 **Example:** `JSON.stringify({ a: undefined, b: () => {} }) // "{}"`
 **Reference:** [MDN JSON.stringify](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)
 
+---
+
 ### 60. What is Tail Call Optimization (TCO)?
 **Answer:** TCO allows recursive functions to reuse the stack frame if the recursive call is the very last operation, preventing stack overflow.
 **Example:** `function fact(n, acc=1) { return n===0 ? acc : fact(n-1, n*acc); }`
 **Reference:** [WebKit TCO](https://webkit.org/blog/6240/ecmascript-6-proper-tail-calls-in-webkit/)
+
+---
 
 ### 61. Explain how prototypal inheritance works under the hood.
 **Answer:** 
@@ -427,6 +547,8 @@ When accessing a property on an object, JS looks at the object itself.
 **Example:** `arr.push()` works because `Array.prototype.push` is in `arr`'s chain.
 **Reference:** [MDN Inheritance](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain)
 
+---
+
 ### 62. What is the difference between `Object.create(null)` and `{}`?
 **Answer:** 
 **The Core Concept:**
@@ -436,6 +558,8 @@ When accessing a property on an object, JS looks at the object itself.
 - `Object.create(null)` creates an object with no prototype chain, making it a pure dictionary.
 **Example:** `Object.create(null).toString // undefined`
 **Reference:** [MDN Object.create](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create)
+
+---
 
 ### 63. Implement debouncing in JavaScript.
 **Answer:** Delaying the execution of a function until after a certain time has elapsed since the last time it was invoked.
@@ -450,6 +574,8 @@ function debounce(func, delay) {
 }
 ```
 **Reference:** [MDN Debouncing concept](https://developer.mozilla.org/en-US/docs/Glossary/Debounce)
+
+---
 
 ### 64. Implement throttling in JavaScript.
 **Answer:** Ensuring a function is only called at most once within a specified time period, regardless of how many times the event triggers.
@@ -468,6 +594,8 @@ function throttle(func, limit) {
 ```
 **Reference:** [MDN Throttling concept](https://developer.mozilla.org/en-US/docs/Glossary/Throttle)
 
+---
+
 ### 65. What is the `bind` polyfill?
 **Answer:** 
 ```javascript
@@ -479,6 +607,8 @@ Function.prototype.myBind = function(context, ...args1) {
 **Example:** See answer.
 **Reference:** [MDN bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)
 
+---
+
 ### 66. How does JS handle floating-point precision?
 **Answer:** 
 **The Core Concept:**
@@ -488,6 +618,8 @@ JS uses the IEEE 754 standard (double precision 64-bit float).
 - This causes precision issues with decimals.
 **Example:** `0.1 + 0.2 === 0.3 // false`
 **Reference:** [MDN Numbers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#number_type)
+
+---
 
 ### 67. How can you reliably fix floating-point issues?
 **Answer:** 
@@ -499,6 +631,8 @@ Multiply to integers, add, then divide back.
 **Example:** `Math.abs((0.1 + 0.2) - 0.3) < Number.EPSILON`
 **Reference:** [MDN Number.EPSILON](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/EPSILON)
 
+---
+
 ### 68. What are tagged template literals?
 **Answer:** 
 **The Core Concept:**
@@ -508,6 +642,8 @@ A way to parse template literals with a function.
 - The first argument contains an array of string values, and the remaining arguments are the evaluated expressions.
 **Example:** `function tag(strings, ...values) { return strings[0] + values[0]; } tag\`Hello ${name}\``
 **Reference:** [MDN Tagged templates](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates)
+
+---
 
 ### 69. What is `Object.seal()` vs `Object.freeze()`?
 **Answer:** 
@@ -519,25 +655,35 @@ A way to parse template literals with a function.
 **Example:** `Object.seal(obj); obj.a = 2; // works`
 **Reference:** [MDN Object.seal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/seal)
 
+---
+
 ### 70. What are modules in JavaScript?
 **Answer:** Code encapsulated into a file, isolated in its own scope, which can export functionality and import it from other modules.
 **Example:** `import { fn } from './module.js';`
 **Reference:** [MDN Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
+
+---
 
 ### 71. How do you detect an object is empty?
 **Answer:** Check if `Object.keys(obj).length === 0` and `obj.constructor === Object`.
 **Example:** `Object.keys({}).length === 0 // true`
 **Reference:** [MDN Object.keys](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys)
 
+---
+
 ### 72. What are getters and setters?
 **Answer:** Special functions that allow defining object properties that bind to a function that is called when the property is looked up or assigned.
 **Example:** `get name() { return this._name; } set name(val) { this._name = val; }`
 **Reference:** [MDN Getters/Setters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects#defining_getters_and_setters)
 
+---
+
 ### 73. What is the `Intl` object?
 **Answer:** The `Intl` object provides language-sensitive string comparison, number formatting, and date and time formatting.
 **Example:** `new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(100);`
 **Reference:** [MDN Intl](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl)
+
+---
 
 ### 74. Explain the "Revealing Module Pattern".
 **Answer:** An architectural pattern that returns an anonymous object with pointers to private functions, making them public.
@@ -550,35 +696,49 @@ const module = (function() {
 ```
 **Reference:** [Addy Osmani - Revealing Module Pattern](https://addyosmani.com/resources/essentialjsdesignpatterns/book/#revealingmodulepatternjavascript)
 
+---
+
 ### 75. How does `Array.prototype.flat()` work?
 **Answer:** Creates a new array with all sub-array elements concatenated into it recursively up to the specified depth.
 **Example:** `[1, [2, [3]]].flat(2) // [1, 2, 3]`
 **Reference:** [MDN Array.flat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flat)
+
+---
 
 ### 76. What is the `BigInt` data type?
 **Answer:** A primitive that provides a way to represent whole numbers larger than `2^53 - 1` (the limit for `Number`).
 **Example:** `const huge = 9007199254740991n;`
 **Reference:** [MDN BigInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt)
 
+---
+
 ### 77. What is Optional Chaining (`?.`)?
 **Answer:** Permits reading the value of a property located deep within a chain of connected objects without checking each reference.
 **Example:** `const street = user?.address?.street;`
 **Reference:** [MDN Optional chaining](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining)
+
+---
 
 ### 78. What is Nullish Coalescing (`??`)?
 **Answer:** A logical operator that returns its right-hand side operand when its left-hand side is `null` or `undefined`, otherwise returns its left-hand side.
 **Example:** `const foo = null ?? 'default string';`
 **Reference:** [MDN Nullish coalescing](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing)
 
+---
+
 ### 79. Explain `requestAnimationFrame`.
 **Answer:** Tells the browser that you wish to perform an animation and requests that the browser calls a specified function to update an animation before the next repaint.
 **Example:** `requestAnimationFrame(updateLoop);`
 **Reference:** [MDN requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame)
 
+---
+
 ### 80. How do you compose functions in JavaScript?
 **Answer:** Creating a pipeline where the output of one function becomes the input of the next.
 **Example:** `const compose = (f, g) => x => f(g(x));`
 **Reference:** [Redux Compose](https://redux.js.org/api/compose)
+
+---
 
 ### 81. What is the difference between `function` and `class` declarations?
 **Answer:** 
@@ -590,6 +750,8 @@ Functions are hoisted and can be called before declaration.
 **Example:** `new MyClass(); class MyClass {}`
 **Reference:** [MDN Classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
 
+---
+
 ### 82. What is `Object.assign()`?
 **Answer:** 
 **The Core Concept:**
@@ -599,6 +761,8 @@ Copies all enumerable own properties from one or more source objects to a target
 - It performs a shallow copy.
 **Example:** `const copy = Object.assign({}, obj);`
 **Reference:** [MDN Object.assign](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
+
+---
 
 ### 83. What is the execution context?
 **Answer:** 
@@ -610,30 +774,42 @@ The environment in which JS code is evaluated and executed.
 **Example:** Global Execution Context is the default.
 **Reference:** [ECMAScript Execution Contexts](https://tc39.es/ecma262/#sec-execution-contexts)
 
+---
+
 ### 84. Explain the Scope Chain.
 **Answer:** When resolving a variable, JS engine starts at the innermost scope and searches outwards until it finds the variable or reaches the global scope.
 **Example:** An inner function accessing a variable from its parent.
 **Reference:** [MDN Scope](https://developer.mozilla.org/en-US/docs/Glossary/Scope)
+
+---
 
 ### 85. How do you implement a Singleton in JS?
 **Answer:** By using a closure or ES6 modules to return a single shared instance of an object.
 **Example:** `const Singleton = (function(){ let instance; return { getInstance: () => instance || (instance = new Object()) } })();`
 **Reference:** [Addy Osmani - Singleton](https://addyosmani.com/resources/essentialjsdesignpatterns/book/#singletonpatternjavascript)
 
+---
+
 ### 86. How do WebSockets work in JS?
 **Answer:** WebSockets provide a persistent, full-duplex communication channel over a single TCP connection, ideal for real-time applications.
 **Example:** `const ws = new WebSocket('ws://example.com'); ws.onmessage = (e) => console.log(e.data);`
 **Reference:** [MDN WebSockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)
+
+---
 
 ### 87. What is the `fetch` API?
 **Answer:** A modern, Promise-based alternative to `XMLHttpRequest` for making network requests.
 **Example:** `fetch('/api/data').then(res => res.json());`
 **Reference:** [MDN Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
 
+---
+
 ### 88. How do you abort a `fetch` request?
 **Answer:** By using an `AbortController` and passing its `signal` to the fetch options.
 **Example:** `const controller = new AbortController(); fetch(url, { signal: controller.signal }); controller.abort();`
 **Reference:** [MDN AbortController](https://developer.mozilla.org/en-US/docs/Web/API/AbortController)
+
+---
 
 ### 89. What is Cross-Site Scripting (XSS)?
 **Answer:** 
@@ -645,6 +821,8 @@ A vulnerability where an attacker injects malicious scripts into web pages viewe
 **Example:** Injecting `<script>stealCookies()</script>` into a comment field.
 **Reference:** [MDN XSS](https://developer.mozilla.org/en-US/docs/Glossary/Cross-site_scripting)
 
+---
+
 ### 90. What is Cross-Site Request Forgery (CSRF)?
 **Answer:** 
 **The Core Concept:**
@@ -655,10 +833,14 @@ An attack that forces an end user to execute unwanted actions on a web applicati
 **Example:** A malicious site submitting a form to your bank.
 **Reference:** [MDN CSRF](https://developer.mozilla.org/en-US/docs/Glossary/CSRF)
 
+---
+
 ### 91. Explain how `MutationObserver` works.
 **Answer:** Provides the ability to watch for changes being made to the DOM tree (e.g., node additions, attribute changes).
 **Example:** `const observer = new MutationObserver(callback); observer.observe(node, config);`
 **Reference:** [MDN MutationObserver](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver)
+
+---
 
 ### 92. What are iterators and iterables?
 **Answer:** 
@@ -670,15 +852,21 @@ An iterable is an object with a `Symbol.iterator` method.
 **Example:** Arrays, Strings, Sets, and Maps are iterables.
 **Reference:** [MDN Iterators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators)
 
+---
+
 ### 93. How do you make an object iterable?
 **Answer:** Add a generator function to the object at the key `Symbol.iterator`.
 **Example:** `obj[Symbol.iterator] = function* () { yield 1; yield 2; }`
 **Reference:** [MDN Iteration protocols](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols)
 
+---
+
 ### 94. What is a Memory Heap?
 **Answer:** The unstructured region of memory where objects and variables are allocated dynamically during JS execution.
 **Example:** Objects created with `new` are stored in the heap.
 **Reference:** [MDN Memory model](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management)
+
+---
 
 ### 95. What is the Call Stack?
 **Answer:** 
@@ -690,10 +878,14 @@ A LIFO (Last In, First Out) data structure that stores the execution context of 
 **Example:** When a function completes, it is popped off the stack.
 **Reference:** [MDN Call stack](https://developer.mozilla.org/en-US/docs/Glossary/Call_stack)
 
+---
+
 ### 96. What is the purpose of `Symbol`?
 **Answer:** To create unique, immutable identifiers, often used as object property keys to avoid naming collisions.
 **Example:** `const sym = Symbol('desc'); obj[sym] = 1;`
 **Reference:** [MDN Symbol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol)
+
+---
 
 ### 97. How does `Array.prototype.sort()` behave by default?
 **Answer:** 
@@ -705,6 +897,8 @@ It converts elements to strings and sorts them according to their UTF-16 code un
 **Example:** `[10, 2].sort((a,b) => a - b); // [2, 10]`
 **Reference:** [MDN Array.sort](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
 
+---
+
 ### 98. What is `Object.getPrototypeOf()`?
 **Answer:** 
 **The Core Concept:**
@@ -715,10 +909,14 @@ Returns the prototype (i.e.
 **Example:** `Object.getPrototypeOf([]) === Array.prototype // true`
 **Reference:** [MDN Object.getPrototypeOf](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf)
 
+---
+
 ### 99. What are Typed Arrays?
 **Answer:** Array-like objects that provide a mechanism for reading and writing raw binary data in memory buffers (e.g., `Int8Array`, `Float32Array`).
 **Example:** `const buffer = new ArrayBuffer(8); const view = new Int32Array(buffer);`
 **Reference:** [MDN Typed Arrays](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays)
+
+---
 
 ### 100. Explain WebAssembly (Wasm) and its relationship to JS.
 **Answer:** 
@@ -729,6 +927,8 @@ A binary instruction format that runs alongside JS at near-native speed.
 - JS can compile, instantiate, and communicate with Wasm modules.
 **Example:** `WebAssembly.instantiateStreaming(fetch('module.wasm'));`
 **Reference:** [MDN WebAssembly](https://developer.mozilla.org/en-US/docs/WebAssembly)
+
+---
 
 ### 101. What’s the difference between deep copy and shallow copy, and when can it break your code?
 **Answer:** 
@@ -741,6 +941,8 @@ A shallow copy only copies the top-level properties; nested objects share the sa
 **Example:** `const shallow = { ...obj };` vs `const deep = structuredClone(obj);`
 **Reference:** [MDN Deep copy](https://developer.mozilla.org/en-US/docs/Glossary/Deep_copy)
 
+---
+
 ### 102. Explain how closures work in a real-world use case — for example, maintaining a counter state without global variables.
 **Answer:** 
 **The Core Concept:**
@@ -750,6 +952,8 @@ A closure gives a function access to its outer scope even after the outer functi
 - It is used to encapsulate state, like a counter, preventing external code from directly modifying it.
 **Example:** `function createCounter() { let count = 0; return () => ++count; } const counter = createCounter();`
 **Reference:** [MDN Closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures)
+
+---
 
 ### 103. How would you implement debouncing or throttling for an API call triggered by user input?
 **Answer:** 
@@ -762,6 +966,8 @@ Debouncing delays function execution until a pause in events (e.g., waiting 300m
 **Example:** `function debounce(fn, delay) { let timer; return (...args) => { clearTimeout(timer); timer = setTimeout(() => fn(...args), delay); }}`
 **Reference:** [Debounce vs Throttle](https://css-tricks.com/debouncing-throttling-explained-examples/)
 
+---
+
 ### 104. In an async scenario, what happens if one of your Promise.all() calls fails? How would you handle that gracefully?
 **Answer:** 
 **The Core Concept:**
@@ -771,6 +977,8 @@ If one promise in `Promise.all()` rejects, the entire `Promise.all` immediately 
 - To handle gracefully, use `Promise.allSettled()`, which waits for all to finish and returns an array of their status (fulfilled/rejected).
 **Example:** `const results = await Promise.allSettled([p1, p2]);`
 **Reference:** [MDN Promise.allSettled](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled)
+
+---
 
 ### 105. How do you manage state persistence in localStorage vs sessionStorage with security in mind?
 **Answer:** 
@@ -784,6 +992,8 @@ If one promise in `Promise.all()` rejects, the entire `Promise.all` immediately 
 **Example:** Store UI themes in `localStorage`, but use HTTP-only cookies for authentication tokens.
 **Reference:** [Web Storage API Security](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API)
 
+---
+
 ### 106. What is the difference between undefined and null?
 **Answer:** 
 **The Core Concept:**
@@ -794,6 +1004,8 @@ If one promise in `Promise.all()` rejects, the entire `Promise.all` immediately 
 - `typeof undefined` is `"undefined"`, whereas `typeof null` is `"object"` (a legacy JS bug).
 **Example:** `let x; console.log(x); // undefined`, `let y = null; // null`
 **Reference:** [MDN Null and Undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null)
+
+---
 
 ### 107. What is hoisting, and how does it interact with var, let, and const?
 **Answer:** 
@@ -806,6 +1018,8 @@ Hoisting is a JavaScript mechanism where variable and function declarations are 
 **Example:** `console.log(a); var a = 5; // undefined`, `console.log(b); let b = 5; // ReferenceError`
 **Reference:** [MDN Hoisting](https://developer.mozilla.org/en-US/docs/Glossary/Hoisting)
 
+---
+
 ### 108. What is the rest parameter and how does it differ from the spread operator?
 **Answer:** 
 **The Core Concept:**
@@ -817,6 +1031,8 @@ The rest parameter (`...`) collects multiple individual arguments passed to a fu
 **Example:** Rest: `function sum(...numbers) {}`. Spread: `const merged = [...arr1, ...arr2];`
 **Reference:** [MDN Rest parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters)
 
+---
+
 ### 109. What is a Higher-Order Function vs a Callback Function?
 **Answer:** 
 **The Core Concept:**
@@ -827,6 +1043,8 @@ A callback function is a function passed *into* another function as an argument 
 **Example:** `[1, 2].map(num => num * 2)`: `map` is the Higher-Order Function, the arrow function is the callback.
 **Reference:** [MDN First-class Function](https://developer.mozilla.org/en-US/docs/Glossary/First-class_Function)
 
+---
+
 ### 110. What is the difference between a ReferenceError and a SyntaxError?
 **Answer:** 
 **The Core Concept:**
@@ -836,6 +1054,8 @@ A `SyntaxError` occurs when the code violates the grammatical rules of JavaScrip
 - A `ReferenceError` occurs at runtime when the code attempts to access a variable or function that hasn't been declared in the current scope.
 **Example:** `console.log("hello" // SyntaxError`, `console.log(undeclaredVar); // ReferenceError`
 **Reference:** [MDN Errors](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
+
+---
 
 ### 111. What is the purpose of the debounce function in JavaScript, and how does it optimize performance?
 **Answer:** 
@@ -848,6 +1068,8 @@ A debounce function creates a closure that maintains a timeout variable.
 **Example:** `const debouncedSearch = debounce(searchApi, 300);`
 **Reference:** [CodeSignal JavaScript Interview Questions](https://codesignal.com/blog/25-javascript-interview-questions-and-answers-from-basic-to-senior-level/)
 
+---
+
 ### 112. How would you architect a large-scale, cross-platform application using JavaScript to ensure maintainability, scalability, and high performance?
 **Answer:** 
 **The Core Concept:**
@@ -858,6 +1080,8 @@ Key strategies include utilizing a component-based frontend framework (React/Ang
 **Example:** Combining React for the frontend, Redux for state, Node.js microservices for backend, and Docker for containerization.
 **Reference:** [CodeSignal JavaScript Interview Questions](https://codesignal.com/blog/25-javascript-interview-questions-and-answers-from-basic-to-senior-level/)
 
+---
+
 ### 113. What strategies would you employ to optimize the performance of a legacy JavaScript application?
 **Answer:** 
 **The Core Concept:**
@@ -867,6 +1091,8 @@ Strategies include conducting a code audit to refactor high technical debt, prof
 - Caching mechanisms, database query optimizations, and asynchronous operations (Promises/async/await) also prevent thread blocking.
 **Example:** Using Webpack for code splitting and adopting async/await to replace blocking synchronous callbacks.
 **Reference:** [CodeSignal JavaScript Interview Questions](https://codesignal.com/blog/25-javascript-interview-questions-and-answers-from-basic-to-senior-level/)
+
+---
 
 ### 114. How do you prevent Cross-Site Scripting (XSS) attacks when handling form submissions?
 **Answer:** 
@@ -879,6 +1105,8 @@ To prevent XSS attacks, you must sanitize user input on both the client and serv
 **Example:** Client-side sanitization: `element.textContent = input; return element.innerHTML;`
 **Reference:** [CodeSignal JavaScript Interview Questions](https://codesignal.com/blog/25-javascript-interview-questions-and-answers-from-basic-to-senior-level/)
 
+---
+
 ### 115. What is event delegation in JavaScript and why is it useful?
 **Answer:** 
 **The Core Concept:**
@@ -889,6 +1117,8 @@ Event delegation is a technique where a single event listener is attached to a p
 - This improves performance and memory usage by reducing the number of event listeners, especially for dynamically created elements.
 **Example:** Attaching a click listener to a `<ul>` to handle clicks on dynamically added `<li>` children using `event.target.nodeName === 'LI'`.
 **Reference:** [CodeSignal JavaScript Interview Questions](https://codesignal.com/blog/25-javascript-interview-questions-and-answers-from-basic-to-senior-level/)
+
+---
 
 ### 116. What is `Object.groupBy` (and `Map.groupBy`) introduced in modern JavaScript?
 **Answer:** 
@@ -901,6 +1131,8 @@ Event delegation is a technique where a single event listener is attached to a p
 **Example:** `const grouped = Object.groupBy(inventory, ({ type }) => type);`
 **Reference:** [MDN Object.groupBy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/groupBy)
 
+---
+
 ### 117. How do the newer Array methods (`toSorted`, `toReversed`, `toSpliced`, `with`) differ from previous array methods?
 **Answer:** 
 **The Core Concept:**
@@ -910,6 +1142,8 @@ These newer array methods perform the same operations as their traditional count
 - This is especially useful in functional programming paradigms and frameworks like React where state immutability is crucial.
 **Example:** `const newArr = oldArr.toSorted(); // oldArr remains unchanged`
 **Reference:** [MDN Array.prototype.toSorted](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toSorted)
+
+---
 
 ### 118. What is `Promise.withResolvers()`?
 **Answer:** 
@@ -921,6 +1155,8 @@ Introduced in modern JavaScript, `Promise.withResolvers()` is a factory method t
 **Example:** `const { promise, resolve, reject } = Promise.withResolvers();`
 **Reference:** [MDN Promise.withResolvers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/withResolvers)
 
+---
+
 ### 119. How do JavaScript Sets natively support mathematical operations in ES2024+?
 **Answer:** 
 **The Core Concept:**
@@ -931,6 +1167,8 @@ Modern JavaScript introduces native Set methods like `intersection`, `union`, `d
 **Example:** `const commonElements = setA.intersection(setB);`
 **Reference:** [MDN Set.prototype.intersection](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/intersection)
 
+---
+
 ### 120. How does Top-Level `await` change module execution in modern JavaScript?
 **Answer:** 
 **The Core Concept:**
@@ -940,6 +1178,8 @@ Top-Level `await` allows developers to use the `await` keyword outside of `async
 - This causes the module to act as a large async function, meaning modules that import it will wait for the top-level await to resolve before executing their own code, simplifying async initializations without IIFEs.
 **Example:** `const data = await fetch('https://api.example.com/config').then(r => r.json()); export { data };`
 **Reference:** [MDN Top-level await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await#top_level_await)
+
+---
 
 ### 121. How has the JavaScript runtime landscape evolved beyond Node.js in recent years?
 **Answer:** 
@@ -952,6 +1192,8 @@ Node.js is no longer the sole dominant runtime.
 **Example:** Running a TypeScript file instantly without configuration using `bun run index.ts`.
 **Reference:** [Bun vs Node](https://bun.sh/)
 
+---
+
 ### 122. What drove the JavaScript build tooling revolution away from traditional tools like Webpack?
 **Answer:** 
 **The Core Concept:**
@@ -962,6 +1204,8 @@ Large JavaScript applications suffered from minute-long builds and poor develope
 - **Vite** (using esbuild for dev) and **Turbopack** / **SWC** (Rust-based) replaced complex Webpack configs, drastically improving compilation times and HMR speed.
 **Example:** Replacing `babel-loader` with `swc-loader` for 20x faster transpilation.
 **Reference:** [Vite Motivation](https://vitejs.dev/guide/why.html)
+
+---
 
 ### 123. How does Edge Computing architecture differ from traditional Node.js backend architecture?
 **Answer:** 
@@ -974,6 +1218,8 @@ Traditional architecture routes requests to a centralized server.
 **Example:** Deploying a middleware function to an Edge Worker to intercept and rewrite URLs globally with 0ms cold starts.
 **Reference:** [Cloudflare Workers Architecture](https://developers.cloudflare.com/workers/)
 
+---
+
 ### 124. What is the Temporal API proposed for modern ECMAScript?
 **Answer:** 
 **The Core Concept:**
@@ -984,6 +1230,8 @@ The `Temporal` API is a massive upcoming overhaul to JavaScript date/time handli
 - plain wall-clock time, and precise arithmetic, eliminating mutation bugs and parsing inconsistencies.
 **Example:** `Temporal.Now.instant()` creates a precise timestamp, while `Temporal.PlainDate.from('2026-05-17')` represents a calendar date.
 **Reference:** [TC39 Temporal Proposal](https://tc39.es/proposal-temporal/docs/)
+
+---
 
 ### 125. What are Records and Tuples in modern JavaScript proposals?
 **Answer:** 
@@ -996,6 +1244,8 @@ Records (objects) and Tuples (arrays) introduce deeply immutable data structures
 **Example:** `#{ a: 1 } === #{ a: 1 }` evaluates to `true`, unlike `{ a: 1 } === `{ a: 1 }`.
 **Reference:** [TC39 Records & Tuples](https://github.com/tc39/proposal-record-tuple)
 
+---
+
 ### 126. Why has TypeScript transitioned from an optional tool to an effectively mandatory interface for modern JavaScript?
 **Answer:** 
 **The Core Concept:**
@@ -1006,6 +1256,8 @@ As JavaScript applications became massive, distributed, and asynchronous, plain 
 **Example:** Defining strict I/O contracts using generic types for a cross-platform TRPC router.
 **Reference:** [TypeScript Handbook](https://www.typescriptlang.org/docs/)
 
+---
+
 ### 127. How has the widespread adoption of ES Modules (ESM) impacted the JS ecosystem?
 **Answer:** 
 **The Core Concept:**
@@ -1015,3 +1267,21 @@ ESM (`import`/`export`) became the universal standard, replacing Node's CommonJS
 - While it unified the syntax between the browser and the server, the transition caused severe fragmentation ("transition pain") regarding CJS/ESM interoperability, package resolution, and tooling configurations.
 **Example:** Migrating a Node backend to use `"type": "module"` in `package.json` to allow top-level await and native Web API imports.
 **Reference:** [Node.js ESM Docs](https://nodejs.org/api/esm.html)
+
+---
+\n## Additional Depth (Architectural Focus)\n
+### 128. What is a Closure in JavaScript?
+**Answer:** 
+**The Core Concept:**
+A closure is the combination of a function bundled together (enclosed) with references to its surrounding state (the lexical environment). In simpler terms, a closure gives a function access to its outer scope variables even after the outer function has returned.
+
+**Key Details:**
+- Closures are created every time a function is created, at function creation time. They are commonly used for data privacy (emulating private methods) and in functional programming patterns like currying.
+- Improper use of closures, especially capturing large objects or DOM elements in long-lived event listeners, can lead to severe memory leaks.
+
+**Example:** 
+`function makeCounter() { let count = 0; return () => count++; }`
+
+**Reference:** [Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures)
+
+---
