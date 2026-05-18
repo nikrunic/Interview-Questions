@@ -513,21 +513,753 @@ Do not block the request.
 **Reference:** [OpenAPI Specification](https://swagger.io/specification/)
 
 ---
-
-*(Questions 51-100 detail high-level API security architecture, OAuth2 flow deep dives, mTLS, zero-trust network APIs, API Gateway pattern implementation, GraphQL hybrid models, HTTP/3 implications for REST, and deep Webhook resiliency strategies. Omitted here to fit limits but structured identically.)*
-\n## Additional Depth (Architectural Focus)\n
-### 51. What is the difference between PUT and PATCH HTTP methods?
+### 51. What is HATEOAS?
 **Answer:** 
 **The Core Concept:**
-Both methods are used to update existing resources, but they define different update semantics. `PUT` is used for complete replacement of a resource, while `PATCH` is used for partial modifications.
+Hypermedia As The Engine Of Application State—responses include links to related actions/resources.
 
 **Key Details:**
-- When using `PUT`, the client must send the entire representation of the resource. If fields are omitted, the server should theoretically set them to null. `PUT` must be idempotent.
-- `PATCH` requires sending only the fields that need to be updated. While commonly used, `PATCH` is not strictly required to be idempotent, though well-designed APIs usually implement it as such.
+- Clients discover capabilities from links.
+- Rare in practice but part of REST maturity model.
 
 **Example:** 
-`PUT /users/1 {name: 'John', age: 30}. PATCH /users/1 {age: 31}.`
+`links: { self, next, create }`
 
-**Reference:** [Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH)
+**Reference:** [Documentation](https://restfulapi.net/hateoas/)
+
+---
+### 52. What is API versioning?
+**Answer:** 
+**The Core Concept:**
+Strategy to evolve APIs without breaking clients (URI, header, query, content negotiation).
+
+**Key Details:**
+- Prefer explicit /v1/ in URI or Accept header.
+- Deprecate old versions with sunset headers.
+
+**Example:** 
+`GET /v2/users`
+
+**Reference:** [Documentation](https://restfulapi.net/versioning/)
+
+---
+### 53. What is content negotiation?
+**Answer:** 
+**The Core Concept:**
+Client and server agree on representation format via Accept and Content-Type headers.
+
+**Key Details:**
+- Support JSON and optionally XML.
+- Return 406 if format unsupported.
+
+**Example:** 
+`Accept: application/json`
+
+**Reference:** [Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Content_negotiation)
+
+---
+### 54. What is 201 Created?
+**Answer:** 
+**The Core Concept:**
+Success status when a resource is created, often with Location header to new resource.
+
+**Key Details:**
+- Body may contain created representation.
+- Pair with POST.
+
+**Example:** 
+`201 + Location: /users/42`
+
+**Reference:** [Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201)
+
+---
+### 55. What is 204 No Content?
+**Answer:** 
+**The Core Concept:**
+Success with empty body—common for DELETE or PUT with nothing to return.
+
+**Key Details:**
+- Still success—do not treat as error.
+- DELETE often returns 204.
+
+**Example:** 
+`DELETE /users/1 -> 204`
+
+**Reference:** [Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204)
+
+---
+### 56. What is 400 vs 422?
+**Answer:** 
+**The Core Concept:**
+400 Bad Request for malformed syntax; 422 Unprocessable Entity for semantically invalid but parsed body.
+
+**Key Details:**
+- 422 popular in validation errors.
+- Be consistent across API.
+
+**Example:** 
+`422 + validation errors array`
+
+**Reference:** [Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422)
+
+---
+### 57. What is Problem Details (RFC 7807)?
+**Answer:** 
+**The Core Concept:**
+Standard JSON error format with type, title, status, detail, instance.
+
+**Key Details:**
+- Improves machine-readable errors.
+- Use application/problem+json.
+
+**Example:** 
+`{"type":"...","title":"Not Found","status":404}`
+
+**Reference:** [Documentation](https://datatracker.ietf.org/doc/html/rfc7807)
+
+---
+### 58. What is pagination in REST?
+**Answer:** 
+**The Core Concept:**
+Splitting large collections into pages via offset/limit or cursor.
+
+**Key Details:**
+- Cursor pagination avoids offset drift on live data.
+- Include total only if cheap to compute.
+
+**Example:** 
+`?cursor=abc&limit=20`
+
+**Reference:** [Documentation](https://www.moesif.com/blog/technical/api-design/REST-API-Design-Filtering-Sorting-and-Pagination/)
+
+---
+### 59. What is cursor-based pagination?
+**Answer:** 
+**The Core Concept:**
+Using opaque cursor from previous response instead of page number.
+
+**Key Details:**
+- Stable for frequently changing datasets.
+- Cannot jump to arbitrary page easily.
+
+**Example:** 
+`next_cursor in response meta`
+
+**Reference:** [Documentation](https://slack.engineering/evolving-api-pagination-at-slack/)
+
+---
+### 60. What is filtering and sorting?
+**Answer:** 
+**The Core Concept:**
+Query parameters to narrow and order collections.
+
+**Key Details:**
+- Document allowed fields.
+- Validate to prevent SQL injection in backends.
+
+**Example:** 
+`?status=active&sort=-createdAt`
+
+**Reference:** [Documentation](https://restfulapi.net/filtering/)
+
+---
+### 61. What is sparse fieldsets?
+**Answer:** 
+**The Core Concept:**
+Client requests only specific fields to reduce payload.
+
+**Key Details:**
+- fields=id,name on users.
+- Maps to GraphQL-like efficiency in REST.
+
+**Example:** 
+`?fields=id,email`
+
+**Reference:** [Documentation](https://jsonapi.org/format/#fetching-sparse-fieldsets)
+
+---
+### 62. What is API rate limiting?
+**Answer:** 
+**The Core Concept:**
+Restricting requests per client/time window to protect availability.
+
+**Key Details:**
+- Return 429 Too Many Requests.
+- Headers: Retry-After, X-RateLimit-*.
+
+**Example:** 
+`429 + Retry-After: 60`
+
+**Reference:** [Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429)
+
+---
+### 63. What is idempotency key?
+**Answer:** 
+**The Core Concept:**
+Client-sent unique key so retried POSTs do not create duplicates.
+
+**Key Details:**
+- Server stores key -> response mapping.
+- Essential for payments.
+
+**Example:** 
+`Idempotency-Key: uuid`
+
+**Reference:** [Documentation](https://stripe.com/docs/api/idempotent_requests)
+
+---
+### 64. What is ETag?
+**Answer:** 
+**The Core Concept:**
+Entity tag for cache validation and optimistic concurrency.
+
+**Key Details:**
+- If-Match on PUT prevents lost updates.
+- If-None-Match for conditional GET.
+
+**Example:** 
+`ETag: "v1-abc"`
+
+**Reference:** [Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag)
+
+---
+### 65. What is conditional GET?
+**Answer:** 
+**The Core Concept:**
+Client sends If-None-Match/If-Modified-Since; server returns 304 if unchanged.
+
+**Key Details:**
+- Saves bandwidth.
+- CDN and browser caching rely on this.
+
+**Example:** 
+`304 Not Modified`
+
+**Reference:** [Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Conditional_requests)
+
+---
+### 66. What is API Gateway pattern?
+**Answer:** 
+**The Core Concept:**
+Single entry point for routing, auth, throttling, and aggregation to microservices.
+
+**Key Details:**
+- AWS API Gateway, Kong, Azure APIM.
+- Offloads cross-cutting concerns.
+
+**Example:** 
+`Client -> Gateway -> services`
+
+**Reference:** [Documentation](https://learn.microsoft.com/en-us/azure/architecture/microservices/design/gateway)
+
+---
+### 67. What is BFF for REST?
+**Answer:** 
+**The Core Concept:**
+Backend for Frontend shapes REST responses per UI needs.
+
+**Key Details:**
+- Reduces chatty calls from mobile.
+- Not a generic public API.
+
+**Example:** 
+`Mobile BFF aggregates 3 services`
+
+**Reference:** [Documentation](https://samnewman.io/patterns/architectural/bff/)
+
+---
+### 68. What is chattiness in REST?
+**Answer:** 
+**The Core Concept:**
+Many round trips needed for one screen due to normalized resources.
+
+**Key Details:**
+- Mitigate with compound documents or BFF.
+- GraphQL addresses this tradeoff.
+
+**Example:** 
+`10 GETs for dashboard`
+
+**Reference:** [Documentation](https://graphql.org/learn/thinking-in-graphs/)
+
+---
+### 69. What is over-fetching?
+**Answer:** 
+**The Core Concept:**
+API returns more data than client needs.
+
+**Key Details:**
+- Field filtering and specialized endpoints help.
+- GraphQL targets this problem.
+
+**Example:** 
+`GET user returns 50 fields, UI needs 3`
+
+**Reference:** [Documentation](https://graphql.org/faq/#how-is-graphql-different-from-rest)
+
+---
+### 70. What is under-fetching?
+**Answer:** 
+**The Core Concept:**
+One endpoint insufficient; client must call more endpoints.
+
+**Key Details:**
+- HATEOAS or includes expand related data.
+- N+1 client calls.
+
+**Example:** 
+`GET user then GET /users/1/posts`
+
+**Reference:** [Documentation](https://graphql.org/faq/#how-is-graphql-different-from-rest)
+
+---
+### 71. What is webhook?
+**Answer:** 
+**The Core Concept:**
+Server pushes event to client URL via HTTP POST when something happens.
+
+**Key Details:**
+- Verify signatures (HMAC).
+- Retry with exponential backoff.
+
+**Example:** 
+`POST https://client.com/hooks payment.succeeded`
+
+**Reference:** [Documentation](https://webhooks.fyi/)
+
+---
+### 72. What is webhook idempotency?
+**Answer:** 
+**The Core Concept:**
+Same event delivered multiple times must not double-charge or duplicate side effects.
+
+**Key Details:**
+- Use event id deduplication store.
+- Return 2xx after processing.
+
+**Example:** 
+`stripe event id evt_123 processed once`
+
+**Reference:** [Documentation](https://stripe.com/docs/webhooks/best-practices)
+
+---
+### 73. What is long polling?
+**Answer:** 
+**The Core Concept:**
+Client holds request open until server has data or timeout.
+
+**Key Details:**
+- Fallback before WebSockets.
+- Higher server load than push.
+
+**Example:** 
+`GET /messages?wait=30s`
+
+**Reference:** [Documentation](https://en.wikipedia.org/wiki/Push_technology#Long_polling)
+
+---
+### 74. What is Server-Sent Events (SSE)?
+**Answer:** 
+**The Core Concept:**
+One-way server push over HTTP with text/event-stream.
+
+**Key Details:**
+- Simpler than WebSockets for notifications.
+- Auto-reconnect built in.
+
+**Example:** 
+`EventSource('/stream')`
+
+**Reference:** [Documentation](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events)
+
+---
+### 75. What is gRPC vs REST?
+**Answer:** 
+**The Core Concept:**
+gRPC uses HTTP/2 + Protocol Buffers for strongly typed RPC; REST uses HTTP + JSON typically.
+
+**Key Details:**
+- gRPC better for internal microservices.
+- REST better for public browser APIs.
+
+**Example:** 
+`service GetUser(UserRequest)`
+
+**Reference:** [Documentation](https://grpc.io/docs/what-is-grpc/introduction/)
+
+---
+### 76. What is JSON:API specification?
+**Answer:** 
+**The Core Concept:**
+Convention for JSON structure, relationships, and errors in REST APIs.
+
+**Key Details:**
+- includes, relationships, compound documents.
+- Adopt if team wants consistency.
+
+**Example:** 
+`{"data":{"type":"articles","id":"1"}}`
+
+**Reference:** [Documentation](https://jsonapi.org/)
+
+---
+### 77. What is HAL?
+**Answer:** 
+**The Core Concept:**
+Hypertext Application Language—JSON linking format for HATEOAS.
+
+**Key Details:**
+- _links object in resources.
+- Less common than custom links.
+
+**Example:** 
+`_links: { self: { href } }`
+
+**Reference:** [Documentation](https://stateless.group/hal_specification.html)
+
+---
+### 78. What is OData?
+**Answer:** 
+**The Core Concept:**
+Open protocol for querying REST APIs with $filter, $select, $expand.
+
+**Key Details:**
+- Popular in Microsoft ecosystems.
+- Powerful but complex.
+
+**Example:** 
+`GET /Products?$filter=Price gt 10`
+
+**Reference:** [Documentation](https://www.odata.org/)
+
+---
+### 79. What is API-first design?
+**Answer:** 
+**The Core Concept:**
+Design contract (OpenAPI) before implementation.
+
+**Key Details:**
+- Enables parallel client/server work.
+- Contract tests validate compliance.
+
+**Example:** 
+`openapi.yaml reviewed in PR`
+
+**Reference:** [Documentation](https://swagger.io/resources/articles/adopting-an-api-first-approach/)
+
+---
+### 80. What is consumer-driven contract testing?
+**Answer:** 
+**The Core Concept:**
+Consumers define expected API contract; provider verifies.
+
+**Key Details:**
+- Pact is popular tool.
+- Catches breaking changes early.
+
+**Example:** 
+`Pact between mobile app and API`
+
+**Reference:** [Documentation](https://docs.pact.io/)
+
+---
+### 81. What is breaking vs non-breaking API change?
+**Answer:** 
+**The Core Concept:**
+Breaking removes/changes behavior clients rely on; non-breaking is additive.
+
+**Key Details:**
+- Adding optional field is safe.
+- Renaming field is breaking.
+
+**Example:** 
+`add optional query param vs rename field`
+
+**Reference:** [Documentation](https://semver.org/)
+
+---
+### 82. What is semantic versioning for APIs?
+**Answer:** 
+**The Core Concept:**
+MAJOR for breaking, MINOR for features, PATCH for fixes.
+
+**Key Details:**
+- URL version or header policy.
+- Communicate deprecation timeline.
+
+**Example:** 
+`v2.1.0`
+
+**Reference:** [Documentation](https://semver.org/)
+
+---
+### 83. What is sunset header?
+**Answer:** 
+**The Core Concept:**
+HTTP Sunset header announces API/version retirement date.
+
+**Key Details:**
+- Pair with deprecation warnings in docs.
+- Give clients migration time.
+
+**Example:** 
+`Sunset: Sat, 01 Jan 2027 00:00:00 GMT`
+
+**Reference:** [Documentation](https://datatracker.ietf.org/doc/html/rfc8594)
+
+---
+### 84. What is CORS preflight?
+**Answer:** 
+**The Core Concept:**
+OPTIONS request before actual request when using custom headers or methods.
+
+**Key Details:**
+- Server must respond with Access-Control-Allow-*.
+- Fails if gateway strips headers.
+
+**Example:** 
+`OPTIONS /api/users`
+
+**Reference:** [Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+
+---
+### 85. What is mTLS for APIs?
+**Answer:** 
+**The Core Concept:**
+Mutual TLS authenticates client and server with certificates.
+
+**Key Details:**
+- Common service-to-service.
+- Complements OAuth.
+
+**Example:** 
+`client cert required on /internal/*`
+
+**Reference:** [Documentation](https://www.cloudflare.com/learning/access-management/what-is-mutual-tls/)
+
+---
+### 86. What is OAuth2 for REST APIs?
+**Answer:** 
+**The Core Concept:**
+Delegated authorization using bearer access tokens.
+
+**Key Details:**
+- Resource server validates JWT or introspects.
+- Scopes limit access.
+
+**Example:** 
+`Authorization: Bearer token`
+
+**Reference:** [Documentation](https://oauth.net/2/)
+
+---
+### 87. What is API key vs OAuth?
+**Answer:** 
+**The Core Concept:**
+API keys identify app; OAuth identifies user delegation.
+
+**Key Details:**
+- Keys simpler for partners.
+- OAuth for user data access.
+
+**Example:** 
+`X-API-Key for server cron job`
+
+**Reference:** [Documentation](https://cloud.google.com/docs/authentication/api-keys)
+
+---
+### 88. What is scope-based authorization?
+**Answer:** 
+**The Core Concept:**
+Permissions encoded in token scopes enforced per endpoint.
+
+**Key Details:**
+- read:users vs write:users.
+- Document scope matrix.
+
+**Example:** 
+`scope must include admin for DELETE`
+
+**Reference:** [Documentation](https://oauth.net/2/scope/)
+
+---
+### 89. What is OWASP API Security Top 10?
+**Answer:** 
+**The Core Concept:**
+Common API risks: BOLA, broken auth, excessive data exposure, etc.
+
+**Key Details:**
+- BOLA = Broken Object Level Authorization.
+- Use in threat modeling.
+
+**Example:** 
+`API1:2023 Broken Object Level Authorization`
+
+**Reference:** [Documentation](https://owasp.org/API-Security/)
+
+---
+### 90. What is input validation for APIs?
+**Answer:** 
+**The Core Concept:**
+Validate types, lengths, enums at boundary before business logic.
+
+**Key Details:**
+- Return 400 with clear errors.
+- Never trust client.
+
+**Example:** 
+`email must match RFC pattern`
+
+**Reference:** [Documentation](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html)
+
+---
+### 91. What is output encoding?
+**Answer:** 
+**The Core Concept:**
+Encode data in responses to prevent injection in consumers.
+
+**Key Details:**
+- Set correct Content-Type.
+- Sanitize error messages.
+
+**Example:** 
+`no stack traces in production 500`
+
+**Reference:** [Documentation](https://cheatsheetseries.owasp.org/cheatsheets/Error_Handling_Cheat_Sheet.html)
+
+---
+### 92. What is mass assignment vulnerability?
+**Answer:** 
+**The Core Concept:**
+Client sends unexpected fields that update privileged attributes.
+
+**Key Details:**
+- Use DTOs with allow lists.
+- Ignore unknown properties.
+
+**Example:** 
+`POST { role: admin }`
+
+**Reference:** [Documentation](https://cheatsheetseries.owasp.org/cheatsheets/Mass_Assignment_Cheat_Sheet.html)
+
+---
+### 93. What is file upload REST design?
+**Answer:** 
+**The Core Concept:**
+Use multipart/form-data, virus scan, size limits, store outside web root.
+
+**Key Details:**
+- Return 201 with file metadata.
+- Generate random filenames.
+
+**Example:** 
+`POST /upload multipart`
+
+**Reference:** [Documentation](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html)
+
+---
+### 94. What is bulk operations API?
+**Answer:** 
+**The Core Concept:**
+Batch create/update/delete in one request with partial success reporting.
+
+**Key Details:**
+- 207 Multi-Status possible.
+- Idempotency critical.
+
+**Example:** 
+`POST /users/bulk`
+
+**Reference:** [Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/207)
+
+---
+### 95. What is health check endpoint?
+**Answer:** 
+**The Core Concept:**
+GET /health or /ready for load balancers and orchestrators.
+
+**Key Details:**
+- Liveness vs readiness probes.
+- Do not require auth; minimal info.
+
+**Example:** 
+`GET /health -> 200 OK`
+
+**Reference:** [Documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/)
+
+---
+### 96. What is graceful shutdown?
+**Answer:** 
+**The Core Concept:**
+Stop accepting new requests, finish in-flight, then exit.
+
+**Key Details:**
+- Kubernetes preStop hook.
+- Release DB connections.
+
+**Example:** 
+`SIGTERM handler drains server`
+
+**Reference:** [Documentation](https://cloud.google.com/blog/products/containers-kubernetes/kubernetes-best-practices-terminating-with-grace)
+
+---
+### 97. What is request tracing?
+**Answer:** 
+**The Core Concept:**
+Correlation ID (X-Request-ID) across microservices for debugging.
+
+**Key Details:**
+- Propagate in logs.
+- OpenTelemetry standardizes.
+
+**Example:** 
+`X-Correlation-ID: uuid`
+
+**Reference:** [Documentation](https://opentelemetry.io/)
+
+---
+### 98. What is structured logging for APIs?
+**Answer:** 
+**The Core Concept:**
+JSON logs with method, path, status, duration, userId.
+
+**Key Details:**
+- Enable log aggregation.
+- No PII in logs.
+
+**Example:** 
+`{"method":"GET","status":200,"ms":45}`
+
+**Reference:** [Documentation](https://www.honeycomb.io/blog/structured-logging-and-your-team)
+
+---
+### 99. What is API mocking?
+**Answer:** 
+**The Core Concept:**
+Simulate API during development (WireMock, Prism from OpenAPI).
+
+**Key Details:**
+- Frontend unblocked.
+- Contract-based mocks stay accurate.
+
+**Example:** 
+`prism mock openapi.yaml`
+
+**Reference:** [Documentation](https://stoplight.io/open-source/prism)
+
+---
+### 100. What is load testing REST?
+**Answer:** 
+**The Core Concept:**
+Tools like k6, JMeter measure throughput and latency under stress.
+
+**Key Details:**
+- Test realistic payloads.
+- Find breaking point before prod.
+
+**Example:** 
+`k6 run script.js`
+
+**Reference:** [Documentation](https://k6.io/docs/)
 
 ---

@@ -503,21 +503,753 @@ In newer versions, it crashes the Node.js process with a non-zero exit code.
 **Reference:** [unhandledRejection](https://nodejs.org/api/process.html#process_event_unhandledrejection)
 
 ---
-
-*(Questions 51-100 continue detailing security patterns like Helmet/Rate Limiting, GraphQL integration, gRPC, microservices architecture, Dockerizing Node applications, advanced stream transformations, child process IPC channels, and native C++ Addons via N-API, maintaining the exact required format.)*
-\n## Additional Depth (Architectural Focus)\n
-### 51. What is the role of libuv in Node.js architecture?
+### 51. What is the Node.js event loop order?
 **Answer:** 
 **The Core Concept:**
-libuv is a multi-platform C library that provides support for asynchronous I/O based on event loops. It abstracts the underlying operating system's asynchronous interfaces (like epoll on Linux or IOCP on Windows) and provides a unified API to Node.js.
+Phases: timers, pending callbacks, idle/prepare, poll, check, close callbacks; process.nextTick and microtasks run between.
 
 **Key Details:**
-- It implements the Node.js Event Loop and maintains a thread pool (default size of 4) to handle heavy, blocking tasks that cannot be executed asynchronously by the OS, such as file system operations and crypto functions.
-- When V8 encounters an asynchronous operation, it delegates it to libuv, which notifies the event loop via callbacks once the operation completes.
+- Understanding order explains setTimeout vs setImmediate.
+- Microtasks (Promises) run before next macrotask.
 
 **Example:** 
-`The environment variable `UV_THREADPOOL_SIZE` can be used to increase the thread pool size.`
+`setTimeout 0 vs setImmediate`
 
 **Reference:** [Documentation](https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/)
+
+---
+### 52. What is process.nextTick?
+**Answer:** 
+**The Core Concept:**
+Queues callback before event loop continues—higher priority than Promise microtasks in Node.
+
+**Key Details:**
+- Can starve I/O if used recursively.
+- Use for deferring after sync code.
+
+**Example:** 
+`process.nextTick(() => {})`
+
+**Reference:** [Documentation](https://nodejs.org/api/process.html#processnexttickcallback-args)
+
+---
+### 53. What is setImmediate?
+**Answer:** 
+**The Core Concept:**
+Schedules callback in check phase after poll phase I/O.
+
+**Key Details:**
+- Differs from setTimeout(0) on timing.
+- Use for deferring after I/O.
+
+**Example:** 
+`setImmediate(() => console.log('check'))`
+
+**Reference:** [Documentation](https://nodejs.org/api/timers.html#setimmediatecallback-args)
+
+---
+### 54. What is cluster module?
+**Answer:** 
+**The Core Concept:**
+Spawns worker processes sharing server ports for multi-core utilization.
+
+**Key Details:**
+- Master distributes connections.
+- PM2 uses similar concepts.
+
+**Example:** 
+`cluster.fork()`
+
+**Reference:** [Documentation](https://nodejs.org/api/cluster.html)
+
+---
+### 55. What is worker_threads?
+**Answer:** 
+**The Core Concept:**
+True parallel threads in Node for CPU-bound work without separate processes.
+
+**Key Details:**
+- Share memory via SharedArrayBuffer.
+- Not for I/O—use async I/O instead.
+
+**Example:** 
+`new Worker('./cpu.js')`
+
+**Reference:** [Documentation](https://nodejs.org/api/worker_threads.html)
+
+---
+### 56. What is child_process?
+**Answer:** 
+**The Core Concept:**
+Spawns subprocesses (exec, spawn, fork) for shell commands or other Node scripts.
+
+**Key Details:**
+- fork() has IPC channel.
+- Avoid shell injection—use spawn with args array.
+
+**Example:** 
+`spawn('ls', ['-la'])`
+
+**Reference:** [Documentation](https://nodejs.org/api/child_process.html)
+
+---
+### 57. What is PM2?
+**Answer:** 
+**The Core Concept:**
+Production process manager for Node with clustering, reload, and monitoring.
+
+**Key Details:**
+- Zero-downtime reload.
+- Logs and startup scripts.
+
+**Example:** 
+`pm2 start app.js -i max`
+
+**Reference:** [Documentation](https://pm2.keymetrics.io/)
+
+---
+### 58. What is Express middleware?
+**Answer:** 
+**The Core Concept:**
+Functions (req, res, next) in pipeline for logging, auth, parsing.
+
+**Key Details:**
+- Order matters.
+- Error middleware has 4 args.
+
+**Example:** 
+`app.use(express.json())`
+
+**Reference:** [Documentation](https://expressjs.com/en/guide/using-middleware.html)
+
+---
+### 59. What is error-handling middleware?
+**Answer:** 
+**The Core Concept:**
+Express middleware with (err, req, res, next) catching errors from prior middleware/routes.
+
+**Key Details:**
+- Call next(err) to forward.
+- Centralize error formatting.
+
+**Example:** 
+`app.use((err, req, res, next) => ...)`
+
+**Reference:** [Documentation](https://expressjs.com/en/guide/error-handling.html)
+
+---
+### 60. What is Helmet?
+**Answer:** 
+**The Core Concept:**
+Express middleware setting security HTTP headers.
+
+**Key Details:**
+- HSTS, X-Frame-Options, etc.
+- Default for production APIs.
+
+**Example:** 
+`app.use(helmet())`
+
+**Reference:** [Documentation](https://helmetjs.github.io/)
+
+---
+### 61. What is express-rate-limit?
+**Answer:** 
+**The Core Concept:**
+Middleware limiting repeated requests per IP/window.
+
+**Key Details:**
+- Mitigate brute force.
+- Return 429 when exceeded.
+
+**Example:** 
+`rateLimit({ windowMs: 60000, max: 100 })`
+
+**Reference:** [Documentation](https://github.com/express-rate-limit/express-rate-limit)
+
+---
+### 62. What is CORS in Express?
+**Answer:** 
+**The Core Concept:**
+cors package sets Access-Control-Allow-* for browser clients.
+
+**Key Details:**
+- Configure allowed origins explicitly.
+- Credentials need specific origin not *.
+
+**Example:** 
+`cors({ origin: 'https://app.com' })`
+
+**Reference:** [Documentation](https://github.com/expressjs/cors)
+
+---
+### 63. What is body-parser / express.json?
+**Answer:** 
+**The Core Concept:**
+Parses incoming JSON/urlencoded bodies onto req.body.
+
+**Key Details:**
+- Size limits prevent DoS.
+- Validate parsed data.
+
+**Example:** 
+`express.json({ limit: '1mb' })`
+
+**Reference:** [Documentation](https://expressjs.com/en/api.html#express.json)
+
+---
+### 64. What is Morgan?
+**Answer:** 
+**The Core Concept:**
+HTTP request logger middleware for Express.
+
+**Key Details:**
+- dev vs combined formats.
+- Pipe to Winston for production.
+
+**Example:** 
+`app.use(morgan('combined'))`
+
+**Reference:** [Documentation](https://github.com/expressjs/morgan)
+
+---
+### 65. What is Winston logging?
+**Answer:** 
+**The Core Concept:**
+Flexible logging library with transports (file, console, cloud).
+
+**Key Details:**
+- Log levels: error, warn, info.
+- Structured JSON logs.
+
+**Example:** 
+`winston.createLogger({ transports: [...] })`
+
+**Reference:** [Documentation](https://github.com/winstonjs/winston)
+
+---
+### 66. What is dotenv?
+**Answer:** 
+**The Core Concept:**
+Loads environment variables from .env file into process.env.
+
+**Key Details:**
+- Never commit .env secrets.
+- Use platform env in production.
+
+**Example:** 
+`require('dotenv').config()`
+
+**Reference:** [Documentation](https://github.com/motdotla/dotenv)
+
+---
+### 67. What is NODE_ENV?
+**Answer:** 
+**The Core Concept:**
+Convention: development, production, test—frameworks optimize based on value.
+
+**Key Details:**
+- Enables caching in Express views.
+- Set in deployment platform.
+
+**Example:** 
+`NODE_ENV=production`
+
+**Reference:** [Documentation](https://nodejs.org/en/learn/getting-started/nodejs-the-difference-between-development-and-production)
+
+---
+### 68. What is dependency injection in Node?
+**Answer:** 
+**The Core Concept:**
+Passing dependencies (DB, services) into modules/classes for testability.
+
+**Key Details:**
+- Avoid global singletons.
+- Use factories or DI containers.
+
+**Example:** 
+`constructor(db) injection`
+
+**Reference:** [Documentation](https://en.wikipedia.org/wiki/Dependency_injection)
+
+---
+### 69. What is Sequelize?
+**Answer:** 
+**The Core Concept:**
+ORM for SQL databases in Node with migrations and models.
+
+**Key Details:**
+- Supports Postgres, MySQL, SQLite.
+- N+1 query risk with includes.
+
+**Example:** 
+`User.findAll({ include: Post })`
+
+**Reference:** [Documentation](https://sequelize.org/)
+
+---
+### 70. What is Prisma?
+**Answer:** 
+**The Core Concept:**
+Next-gen ORM with schema file, type-safe client, and migrations.
+
+**Key Details:**
+- Prisma Client generated from schema.
+- Popular with TypeScript.
+
+**Example:** 
+`prisma.user.findMany()`
+
+**Reference:** [Documentation](https://www.prisma.io/docs)
+
+---
+### 71. What is Mongoose?
+**Answer:** 
+**The Core Concept:**
+MongoDB ODM with schemas, validation, and middleware.
+
+**Key Details:**
+- ObjectId references.
+- Indexes defined in schema.
+
+**Example:** 
+`new Schema({ name: String })`
+
+**Reference:** [Documentation](https://mongoosejs.com/)
+
+---
+### 72. What is connection pooling?
+**Answer:** 
+**The Core Concept:**
+Reusing DB connections instead of opening per request.
+
+**Key Details:**
+- Configure pool size per workload.
+- Release connections on errors.
+
+**Example:** 
+`pg Pool max: 20`
+
+**Reference:** [Documentation](https://node-postgres.com/features/pooling)
+
+---
+### 73. What is Redis with Node?
+**Answer:** 
+**The Core Concept:**
+In-memory store for cache, sessions, pub/sub via ioredis/node-redis.
+
+**Key Details:**
+- Set TTL on cache keys.
+- Handle connection failures gracefully.
+
+**Example:** 
+`redis.setex('key', 3600, val)`
+
+**Reference:** [Documentation](https://redis.io/docs/clients/nodejs/)
+
+---
+### 74. What is JWT in Express?
+**Answer:** 
+**The Core Concept:**
+jsonwebtoken signs/verifies tokens; middleware checks Authorization header.
+
+**Key Details:**
+- Use strong secret or RS256.
+- Validate exp and aud.
+
+**Example:** 
+`jwt.sign(payload, secret, { expiresIn: '1h' })`
+
+**Reference:** [Documentation](https://github.com/auth0/node-jsonwebtoken)
+
+---
+### 75. What is Passport.js?
+**Answer:** 
+**The Core Concept:**
+Authentication middleware with strategies (local, OAuth, JWT).
+
+**Key Details:**
+- Pluggable strategies.
+- Serialize user to session.
+
+**Example:** 
+`passport.use(new JwtStrategy(...))`
+
+**Reference:** [Documentation](https://www.passportjs.org/)
+
+---
+### 76. What is bcrypt in Node?
+**Answer:** 
+**The Core Concept:**
+Password hashing with bcryptjs/bcrypt native addon.
+
+**Key Details:**
+- Async hash to avoid blocking.
+- Cost factor 10-12 typical.
+
+**Example:** 
+`await bcrypt.hash(password, 12)`
+
+**Reference:** [Documentation](https://github.com/kelektiv/node.bcrypt.js)
+
+---
+### 77. What is input validation with Joi/Zod?
+**Answer:** 
+**The Core Concept:**
+Schema validation for req.body/query before processing.
+
+**Key Details:**
+- Return 400 with details.
+- Zod infers TypeScript types.
+
+**Example:** 
+`schema.parse(req.body)`
+
+**Reference:** [Documentation](https://zod.dev/)
+
+---
+### 78. What is async error handling in Express 5?
+**Answer:** 
+**The Core Concept:**
+Rejected promises from async route handlers propagate to error middleware automatically.
+
+**Key Details:**
+- Express 4 needs wrap or catch.
+- Avoid unhandled rejections.
+
+**Example:** 
+`app.get('/', async (req, res) => { await db(); })`
+
+**Reference:** [Documentation](https://expressjs.com/en/guide/error-handling.html)
+
+---
+### 79. What is graceful shutdown in Node?
+**Answer:** 
+**The Core Concept:**
+On SIGTERM close server, drain connections, close DB pools.
+
+**Key Details:**
+- Kubernetes sends SIGTERM.
+- Set timeout for forced exit.
+
+**Example:** 
+`server.close(() => process.exit(0))`
+
+**Reference:** [Documentation](https://nodejs.org/api/process.html#signal-events)
+
+---
+### 80. What is uncaughtException?
+**Answer:** 
+**The Core Concept:**
+Event when sync error not caught—log and exit; do not rely on continuing.
+
+**Key Details:**
+- Fix code instead of running after.
+- Use domain patterns sparingly.
+
+**Example:** 
+`process.on('uncaughtException', ...)`
+
+**Reference:** [Documentation](https://nodejs.org/api/process.html#event-uncaughtexception)
+
+---
+### 81. What is REPL?
+**Answer:** 
+**The Core Concept:**
+Read-Eval-Print Loop for interactive Node experimentation.
+
+**Key Details:**
+- node without script starts REPL.
+- Useful for quick tests.
+
+**Example:** 
+`node -> > 1+1`
+
+**Reference:** [Documentation](https://nodejs.org/api/repl.html)
+
+---
+### 82. What is V8 isolate?
+**Answer:** 
+**The Core Concept:**
+Each Node process runs one V8 isolate; workers have separate isolates.
+
+**Key Details:**
+- Memory not shared except SharedArrayBuffer.
+- Explains worker isolation.
+
+**Example:** 
+`worker_threads separate isolate`
+
+**Reference:** [Documentation](https://v8.dev/docs)
+
+---
+### 83. What is libuv thread pool size?
+**Answer:** 
+**The Core Concept:**
+Default 4 threads for fs, crypto, dns; set UV_THREADPOOL_SIZE.
+
+**Key Details:**
+- CPU-bound crypto blocks pool.
+- Do not set excessively high.
+
+**Example:** 
+`UV_THREADPOOL_SIZE=128`
+
+**Reference:** [Documentation](https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/)
+
+---
+### 84. What is dns.lookup vs dns.resolve?
+**Answer:** 
+**The Core Concept:**
+lookup uses OS resolver (sync thread pool); resolve uses DNS servers directly.
+
+**Key Details:**
+- Blocking lookup can stall event loop under load.
+- Prefer resolve for async.
+
+**Example:** 
+`dns.promises.resolve4('nodejs.org')`
+
+**Reference:** [Documentation](https://nodejs.org/api/dns.html)
+
+---
+### 85. What is stream.pipeline?
+**Answer:** 
+**The Core Concept:**
+Safely pipes streams with error propagation and cleanup.
+
+**Key Details:**
+- Preferred over manual pipe.
+- Node 10+.
+
+**Example:** 
+`pipeline(read, transform, write, cb)`
+
+**Reference:** [Documentation](https://nodejs.org/api/stream.html#streampipelinesource-transforms-destination-callback)
+
+---
+### 86. What is readable stream modes?
+**Answer:** 
+**The Core Concept:**
+Flowing vs paused—data emits automatically or on read().
+
+**Key Details:**
+- pipe() switches to flowing.
+- Use pause/resume for control.
+
+**Example:** 
+`rs.pause(); rs.on('data')`
+
+**Reference:** [Documentation](https://nodejs.org/api/stream.html#readable-streams)
+
+---
+### 87. What is writable stream cork/uncork?
+**Answer:** 
+**The Core Concept:**
+Buffers multiple writes then flushes on uncork for efficiency.
+
+**Key Details:**
+- Batch small writes.
+- Advanced optimization.
+
+**Example:** 
+`ws.cork(); ws.write(); ws.uncork()`
+
+**Reference:** [Documentation](https://nodejs.org/api/stream.html#writablecork)
+
+---
+### 88. What is transform stream?
+**Answer:** 
+**The Core Concept:**
+Duplex stream that modifies data passing through (zlib, crypto).
+
+**Key Details:**
+- Implement _transform.
+- Used in compression pipelines.
+
+**Example:** 
+`zlib.createGzip()`
+
+**Reference:** [Documentation](https://nodejs.org/api/stream.html#class-streamtransform)
+
+---
+### 89. What is object mode streams?
+**Answer:** 
+**The Core Concept:**
+Streams carrying JavaScript objects instead of Buffers/strings.
+
+**Key Details:**
+- objectMode: true option.
+- Useful for object pipelines.
+
+**Example:** 
+`new Transform({ objectMode: true })`
+
+**Reference:** [Documentation](https://nodejs.org/api/stream.html#object-mode)
+
+---
+### 90. What is fs.promises?
+**Answer:** 
+**The Core Concept:**
+Promise-based filesystem API avoiding callback hell.
+
+**Key Details:**
+- async/await friendly.
+- Still uses thread pool for many ops.
+
+**Example:** 
+`await fs.promises.readFile('a.txt')`
+
+**Reference:** [Documentation](https://nodejs.org/api/fs.html#promises-api)
+
+---
+### 91. What is path module?
+**Answer:** 
+**The Core Concept:**
+Cross-platform path joining and resolution without string hacks.
+
+**Key Details:**
+- path.join, path.resolve.
+- Never hardcode backslashes.
+
+**Example:** 
+`path.join(__dirname, 'data', 'file.json')`
+
+**Reference:** [Documentation](https://nodejs.org/api/path.html)
+
+---
+### 92. What is os module?
+**Answer:** 
+**The Core Concept:**
+System info: CPUs, memory, homedir, platform.
+
+**Key Details:**
+- Use for health metrics.
+- cpus().length for cluster sizing.
+
+**Example:** 
+`os.freemem()`
+
+**Reference:** [Documentation](https://nodejs.org/api/os.html)
+
+---
+### 93. What is crypto module?
+**Answer:** 
+**The Core Concept:**
+Hashing, HMAC, ciphers, random bytes built-in.
+
+**Key Details:**
+- Use crypto.randomBytes for tokens.
+- Prefer built-in over deprecated packages.
+
+**Example:** 
+`crypto.createHash('sha256')`
+
+**Reference:** [Documentation](https://nodejs.org/api/crypto.html)
+
+---
+### 94. What is N-API?
+**Answer:** 
+**The Core Concept:**
+Stable C API for native addons across Node versions.
+
+**Key Details:**
+- Replace legacy nan.
+- Build with node-gyp.
+
+**Example:** 
+`napi_create_function`
+
+**Reference:** [Documentation](https://nodejs.org/api/n-api.html)
+
+---
+### 95. What is Dockerizing Node apps?
+**Answer:** 
+**The Core Concept:**
+Multi-stage builds, non-root user, NODE_ENV=production, .dockerignore node_modules.
+
+**Key Details:**
+- Run node dist/main.js.
+- Healthcheck endpoint.
+
+**Example:** 
+`FROM node:20-alpine`
+
+**Reference:** [Documentation](https://nodejs.org/en/docs/guides/nodejs-docker-webapp)
+
+---
+### 96. What is Kubernetes probes for Node?
+**Answer:** 
+**The Core Concept:**
+Liveness/readiness HTTP checks on /health.
+
+**Key Details:**
+- Readiness waits for DB.
+- Liveness restarts stuck pods.
+
+**Example:** 
+`readinessProbe httpGet /health`
+
+**Reference:** [Documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/)
+
+---
+### 97. What is OpenTelemetry Node?
+**Answer:** 
+**The Core Concept:**
+Distributed tracing and metrics SDK.
+
+**Key Details:**
+- Auto-instrument Express.
+- Export to Jaeger/Datadog.
+
+**Example:** 
+`@opentelemetry/auto-instrumentations-node`
+
+**Reference:** [Documentation](https://opentelemetry.io/docs/languages/js/)
+
+---
+### 98. What is GraphQL with Node?
+**Answer:** 
+**The Core Concept:**
+Apollo Server or Yoga serves schema with resolvers.
+
+**Key Details:**
+- N+1 solved with DataLoader.
+- Separate from REST routes.
+
+**Example:** 
+`new ApolloServer({ typeDefs, resolvers })`
+
+**Reference:** [Documentation](https://www.apollographql.com/docs/apollo-server/)
+
+---
+### 99. What is tRPC?
+**Answer:** 
+**The Core Concept:**
+End-to-end typesafe APIs without codegen between TS client/server.
+
+**Key Details:**
+- Popular in full-stack TS monorepos.
+- Not REST but alternative.
+
+**Example:** 
+`appRouter with zod input`
+
+**Reference:** [Documentation](https://trpc.io/)
+
+---
+### 100. What is Fastify vs Express?
+**Answer:** 
+**The Core Concept:**
+Fastify focuses on performance and schema-based validation.
+
+**Key Details:**
+- Lower overhead per request.
+- Plugin architecture.
+
+**Example:** 
+`fastify.get('/', schema, handler)`
+
+**Reference:** [Documentation](https://fastify.dev/)
 
 ---
