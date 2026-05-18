@@ -64,3 +64,29 @@ React Server Components allow you to write UI that is rendered and optionally ca
 **Reference:** [Documentation](https://nextjs.org/docs/app/building-your-application/rendering/server-components)
 
 ---
+
+### 5. How would you troubleshoot and resolve a memory leak in a Next.js application deployed via a standalone Docker container?
+**Answer:** 
+**The Core Concept:**
+When deploying Next.js in a long-running environment like a Docker container (using `output: 'standalone'`), features like built-in Image Optimization (`next/image`) can cause progressive memory inflation. Unlike serverless environments (e.g., Vercel) where memory is naturally flushed when the ephemeral instance shuts down, Docker containers persist memory usage over time, requiring explicit limits and architectural adjustments to avoid heap out-of-memory crashes.
+
+**Key Details:**
+- **Image Optimization Leaks:** The default Next.js image optimizer processes and caches images on the Node.js server. In certain environments (like Alpine Linux Docker images), garbage collection can fail to release this memory effectively, leading to OOM crashes.
+- **Architectural Resolution:** The most robust architectural fix for high-traffic applications is to offload image optimization to a dedicated external CDN (like Cloudinary, AWS CloudFront, or Imgix) by configuring a custom loader, thus bypassing the Node.js server entirely.
+- **Build-Time Memory:** Memory leaks can also occur during `npm run build` (e.g., when compiling thousands of MDX pages). This is resolved by explicitly configuring V8 garbage collection limits using `NODE_OPTIONS="--max-old-space-size=4096"` in the CI/CD pipeline or Dockerfile.
+
+**Example:** 
+```javascript
+// next.config.js - Offloading optimization to avoid Node server memory leaks
+module.exports = {
+  output: 'standalone',
+  images: {
+    loader: 'custom',
+    loaderFile: './my-custom-image-loader.js',
+  },
+}
+```
+
+**Reference:** [Next.js Custom Image Loader](https://nextjs.org/docs/app/api-reference/next-config-js/images#loader)
+
+---
