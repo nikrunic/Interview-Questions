@@ -50,4 +50,4 @@ When generating content, prioritize the following modern paradigms:
 
 - Ensure all links in the `Reference` section point to valid, official documentation (e.g., Microsoft Learn, MDN, React Docs).
 - Use proper markdown formatting for bolding (`**text**`) and code blocks.
-- Maintain continuous sequential numbering (1 through 100) across the sections within a file.
+- Maintain continuous sequential numbering (1 through 1000) across the sections within a file.

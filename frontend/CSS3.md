@@ -1020,6 +1020,12 @@ Sass variables (`$color`) are compiled away at build time and do not exist in th
 **Reference:** [MDN CSS Variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties)
 
 ---
+
+## Related guides
+
+- [CSS Pseudo-Elements Prep](./CSS-Pseudo-Elements-Prep.md) — `::before`, `::after`, `::backdrop`, `::cue`, and more
+
+---
 \n## Additional Depth (Architectural Focus)\n
 ### 101. What is the Stacking Context in CSS and how is it formed?
 **Answer:** 

@@ -16,16 +16,16 @@ Each file contains a minimum of 100 questions categorized by difficulty:
 - [Angular](./frontend/Angular.md)
 - [Browser Compatibility](./frontend/BrowserCompatibility.md)
 - [Build Tools](./frontend/Webpack.md)
-- [Core Javascript](./frontend/Core-javascript.md)
 - [CSS3](./frontend/CSS3.md)
+- [CSS Pseudo-Elements Prep](./frontend/CSS-Pseudo-Elements-Prep.md)
 - [Cypress & E2E Testing](./frontend/Cypress.md)
 - [HTML](./frontend/HTML.md)
-- [Javascript](./frontend/Javascript.md)
+- [Javascript](./frontend/Javascript.md) — prep + 100 Q&A + core deep dive
 - [Jest & Testing](./frontend/Jest.md)
 - [LESS](./frontend/LESS.md)
 - [Next.js](./frontend/Nextjs.md)
 - [React Architecture](./frontend/ReactArchiteture.md)
-- [React.js](./frontend/Reactjs.md)
+- [React.js](./frontend/Reactjs.md) — prep + 100 Q&A
 - [Redux & State Management](./frontend/Redux.md)
 - [Responsive Web Design](./frontend/ResponsiveDesign.md)
 - [SCSS](./frontend/SCSS.md)
@@ -66,6 +66,6 @@ Each file contains a minimum of 100 questions categorized by difficulty:
 
 ### Practical
 
-- [JS practical](./frontend/js-practical.md)
+- [JS Practical](./frontend/js-practical.md)
 
 _Note: Questions include examples where applicable and reference links for further reading._

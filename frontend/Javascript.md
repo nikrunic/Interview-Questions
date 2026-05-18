@@ -1,4 +1,691 @@
-# JavaScript Interview Questions
+# JavaScript — Complete Interview Guide
+
+This file combines three JavaScript resources into one place:
+
+| Part | Content | Former file |
+|------|---------|-------------|
+| **1** | Interview preparation (concepts, links, tables) | `Javascript-Interview-Prep.md` |
+| **2** | 100 interview Q&A (Basic / Medium / Hard) | `Javascript.md` |
+| **3** | Core language deep dive Q&A | `Core-javascript.md` |
+
+**Also see:** [JS Practical](./js-practical.md) — runnable snippets with step-by-step outputs.
+
+---
+
+## Table of contents
+
+- [Part 1 — Interview preparation](#part-1--interview-preparation)
+- [Part 2 — Interview questions (100)](#part-2--interview-questions-100)
+- [Part 3 — Core JavaScript deep dive](#part-3--core-javascript-deep-dive)
+
+---
+
+# Part 1 — Interview preparation
+
+Core language concepts for interviews: types, memory, scope, functions, async, storage, and OOP in JavaScript. Each topic includes a concise answer and reference links for deeper reading.
+
+---
+
+## 1. What are the different data types in JavaScript?
+
+**Answer:**
+
+JavaScript has **primitive** and **reference** types.
+
+| Category | Types | Stored as |
+|----------|--------|-----------|
+| **Primitive** | `string`, `number`, `bigint`, `boolean`, `undefined`, `symbol`, `null` | Immutable values (copied by value) |
+| **Reference** | `object` (includes arrays, functions, dates, etc.) | Reference to memory heap |
+
+**The Core Concept:**
+
+- Primitives hold a single value. Assigning or passing them copies the value.
+- Objects hold collections of properties. Assigning or passing them copies the **reference** (pointer), not the whole object.
+
+**Example:**
+
+```javascript
+let a = 10;
+let b = a;
+b = 20;
+console.log(a); // 10 — primitive copy
+
+const obj1 = { x: 1 };
+const obj2 = obj1;
+obj2.x = 99;
+console.log(obj1.x); // 99 — same object in memory
+```
+
+**Reference:** [Reference vs primitive values (Academind)](https://academind.com/tutorials/reference-vs-primitive-values/)
+
+---
+
+## 2. Call by value vs call by reference in JavaScript
+
+**Answer:**
+
+JavaScript is **always pass-by-value**. For objects, the **value** passed is the reference (memory address), not the object itself.
+
+**The Core Concept:**
+
+- **Primitives:** the actual value is copied into the parameter.
+- **Objects/arrays/functions:** the reference is copied — both the argument and parameter point to the same object, so mutations inside the function are visible outside.
+
+**Example:**
+
+```javascript
+function updateAge(user) {
+  user.age = 31; // mutates shared object
+}
+const person = { name: "Knl", age: 30 };
+updateAge(person);
+console.log(person.age); // 31
+
+function changePrimitive(n) {
+  n = 100; // only changes local copy
+}
+let num = 5;
+changePrimitive(num);
+console.log(num); // 5
+```
+
+**Interview line:** “JS is pass-by-value; objects are passed by value of the reference.”
+
+**Reference:** [Call by value vs reference (GeeksforGeeks)](https://www.geeksforgeeks.org/call-by-value-vs-call-by-reference-in-javascript/)
+
+---
+
+## 3. Memory: stack vs heap (behind the scenes)
+
+**Answer:**
+
+**Stack** holds static, fixed-size data (execution context, primitive values, references). **Heap** holds dynamically allocated objects (objects, closures, large data).
+
+**The Core Concept:**
+
+1. When a function runs, a **execution context** is pushed on the call stack.
+2. Primitives live in the stack (or are inlined where engines optimize).
+3. Objects are created on the **heap**; the stack stores a **reference** to them.
+4. When nothing references a heap object, the **garbage collector** frees it.
+
+**Example (conceptual):**
+
+```javascript
+function createUser() {
+  const id = 1;              // primitive — stack-friendly
+  return { id, name: "Knl" }; // object — heap; return value is reference
+}
+const user = createUser();
+```
+
+**Reference:** [Confused about stack and heap (Medium)](https://medium.com/fhinkel/confused-about-stack-and-heap-2cf3e6adb771)
+
+---
+
+## 4. What is variable hoisting?
+
+**Answer:**
+
+Hoisting is JavaScript’s behavior of processing **declarations** before executing the rest of the code in a scope. Declarations are “moved” to the top of their scope during the compilation phase.
+
+**Key notes (from your outline — corrected):**
+
+| Declaration | Hoisted? | Initial value when hoisted |
+|-------------|----------|----------------------------|
+| `var` | Yes | `undefined` |
+| `function` declaration | Yes | Full function |
+| `let` / `const` | Hoisted but **not initialized** | TDZ until line runs |
+
+- **Initializations are not hoisted** — only declarations.  
+  `console.log(x); var x = 5;` → logs `undefined`, not `5`.
+- **`let` / `const`** are in the **Temporal Dead Zone** from start of block until declaration — accessing them before the line throws `ReferenceError`.
+- Use **`"use strict"`** for stricter rules (no accidental globals, etc.).
+
+**Example:**
+
+```javascript
+console.log(a); // undefined
+var a = 10;
+
+console.log(b); // ReferenceError
+let b = 20;
+```
+
+**References:**
+
+- [InterviewBit — JavaScript interview questions](https://www.interviewbit.com/javascript-interview-questions/)
+- [Understanding hoisting (DigitalOcean)](https://www.digitalocean.com/community/tutorials/understanding-hoisting-in-javascript)
+
+---
+
+## 5. `var` vs `let` vs `const`
+
+**Answer:**
+
+| Feature | `var` | `let` | `const` |
+|---------|-------|-------|---------|
+| Scope | Function (or global) | Block | Block |
+| Hoisting | Yes (`undefined`) | TDZ | TDZ |
+| Re-declare in same scope | Allowed | Not allowed | Not allowed |
+| Re-assign value | Yes | Yes | No (binding is constant) |
+
+**The Core Concept:**
+
+- Prefer **`const`** by default; use **`let`** when you need to reassign; avoid **`var`** in new code (block scope bugs, hoisting).
+- `const` does **not** make objects immutable — you cannot reassign the variable, but `obj.prop = 1` still works.
+
+**Example:**
+
+```javascript
+if (true) {
+  var x = 1;
+  let y = 2;
+}
+console.log(x); // 1
+console.log(y); // ReferenceError
+```
+
+**References:**
+
+- [var, let, const (freeCodeCamp)](https://www.freecodecamp.org/news/var-let-and-const-whats-the-difference/)
+- [InterviewBit — declaring variables](https://www.interviewbit.com/javascript-interview-questions/#diff-declaring-variable)
+
+---
+
+## 6. Is JavaScript statically or dynamically typed?
+
+**Answer:**
+
+JavaScript is **dynamically typed**. Variable types are checked at **runtime**, not compile time.
+
+**The Core Concept:**
+
+- In a **statically typed** language (e.g. TypeScript when compiled, Java, C#), types are known before run time.
+- In **JavaScript**, the same variable can hold different types over time.
+
+**Example:**
+
+```javascript
+let value = 42;       // number
+value = "hello";      // string — valid at runtime
+value = { id: 1 };    // object — valid
+```
+
+**Note:** **TypeScript** adds static typing at **compile time**; it compiles to JavaScript.
+
+**Reference:** [InterviewBit — JavaScript interview questions](https://www.interviewbit.com/javascript-interview-questions/)
+
+---
+
+## 7. What are higher-order functions?
+
+**Answer:**
+
+A **higher-order function** either:
+
+1. Takes one or more functions as arguments, or  
+2. Returns a function.
+
+**The Core Concept:**
+
+Functions are first-class values — you can pass them like any other value. Array methods `map`, `filter`, `reduce`, and `forEach` are built-in higher-order functions.
+
+**Example:**
+
+```javascript
+function operate(arr, fn) {
+  return arr.map(fn);
+}
+const doubled = operate([1, 2, 3], (n) => n * 2);
+// [2, 4, 6]
+```
+
+**Reference:** [InterviewBit — higher-order functions](https://www.interviewbit.com/javascript-interview-questions/)
+
+---
+
+## 8. `call`, `apply`, and `bind`
+
+**Answer:**
+
+All three control **`this`** and invoke or prepare a function.
+
+| Method | Invokes now? | Arguments | `this` |
+|--------|----------------|-----------|--------|
+| `call` | Yes | Comma-separated | Set explicitly |
+| `apply` | Yes | Array | Set explicitly |
+| `bind` | No (returns new function) | Comma-separated | Fixed for later calls |
+
+**Example:**
+
+```javascript
+function greet(greeting, punct) {
+  return `${greeting}, ${this.name}${punct}`;
+}
+const user = { name: "Knl" };
+
+greet.call(user, "Hello", "!");     // "Hello, Knl!"
+greet.apply(user, ["Hi", "."]);     // "Hi, Knl."
+const bound = greet.bind(user, "Hey");
+bound("?");                          // "Hey, Knl?"
+```
+
+**Reference:** [InterviewBit — call, apply, bind](https://www.interviewbit.com/javascript-interview-questions/#call-apply-bind-methods)
+
+---
+
+## 9. Scope and scoping in JavaScript
+
+**Answer:**
+
+**Scope** is the region where a variable is accessible.
+
+**Types:**
+
+1. **Global** — `var` at top level, or implicit globals (avoid).
+2. **Function** — `var` inside a function.
+3. **Block** — `let` / `const` inside `{ }`.
+4. **Lexical (closure)** — inner functions access outer variables even after outer returns.
+
+**The Core Concept:**
+
+JavaScript uses **lexical scoping** — scope is determined by where code is **written**, not where it is called.
+
+**Example:**
+
+```javascript
+function outer() {
+  const secret = "abc";
+  return function inner() {
+    return secret; // closure over outer's scope
+  };
+}
+const fn = outer();
+console.log(fn()); // "abc"
+```
+
+**Reference:** [InterviewBit — scope](https://www.interviewbit.com/javascript-interview-questions/)
+
+---
+
+## 10. What is currying?
+
+**Answer:**
+
+**Currying** transforms a function that takes multiple arguments into a sequence of functions that each take one argument (or fewer at a time).
+
+**The Core Concept:**
+
+Useful for partial application, reusable specialized functions, and functional composition.
+
+**Example:**
+
+```javascript
+const add = (a) => (b) => (c) => a + b + c;
+add(1)(2)(3); // 6
+
+// General curry helper pattern
+function curry(fn) {
+  return function curried(...args) {
+    if (args.length >= fn.length) return fn(...args);
+    return (...more) => curried(...args, ...more);
+  };
+}
+```
+
+**Reference:** [Currying in JavaScript (codeburst)](https://codeburst.io/currying-in-javascript-ba51eb9778dc)
+
+---
+
+## 11. Prototypes in JavaScript
+
+**Answer:**
+
+JavaScript uses **prototypal inheritance**. Every object has an internal link `[[Prototype]]` (exposed as `__proto__` or via `Object.getPrototypeOf`). If a property is missing on the object, the engine looks up the prototype chain.
+
+**The Core Concept:**
+
+- `function` constructors (and classes) have a `prototype` property used when you `new` them.
+- Methods on `Array.prototype` are shared by all arrays.
+
+**Example:**
+
+```javascript
+const animal = { eats: true };
+const dog = Object.create(animal);
+dog.barks = true;
+console.log(dog.eats); // true — from prototype
+
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+  hello() {
+    return `Hi, ${this.name}`;
+  }
+}
+```
+
+**Reference:** [InterviewBit — prototypes](https://www.interviewbit.com/javascript-interview-questions/)
+
+---
+
+## 12. What are callback functions?
+
+**Answer:**
+
+A **callback** is a function passed as an argument to another function, to be run later (after an event, timer, or async operation).
+
+**The Core Concept:**
+
+Enables asynchronous and event-driven code. Downside: nested callbacks → “callback hell”; mitigated with Promises and `async/await`.
+
+**Example:**
+
+```javascript
+function fetchData(callback) {
+  setTimeout(() => callback(null, { id: 1 }), 1000);
+}
+fetchData((err, data) => {
+  if (err) return console.error(err);
+  console.log(data);
+});
+```
+
+**Reference:** [InterviewBit — callbacks](https://www.interviewbit.com/javascript-interview-questions/#callbacks)
+
+---
+
+## 13. What is memoization?
+
+**Answer:**
+
+**Memoization** caches a function’s **return value** for a given set of arguments so repeated calls return the cached result without recomputing.
+
+**The Core Concept:**
+
+Trade memory for speed. Best when the function is pure and expensive (e.g. Fibonacci, heavy calculations).
+
+**Example:**
+
+```javascript
+function memoize(fn) {
+  const cache = new Map();
+  return function (...args) {
+    const key = JSON.stringify(args);
+    if (cache.has(key)) return cache.get(key);
+    const result = fn(...args);
+    cache.set(key, result);
+    return result;
+  };
+}
+
+const fib = memoize(function fib(n) {
+  if (n <= 1) return n;
+  return fib(n - 1) + fib(n - 2);
+});
+```
+
+**Reference:** [InterviewBit — memoization](https://www.interviewbit.com/javascript-interview-questions/#memoization)
+
+---
+
+## 14. Arrow functions vs regular functions
+
+**Answer:**
+
+| Feature | Regular function | Arrow function |
+|---------|------------------|--------------|
+| `this` | Dynamic — set by **how called** | **Lexical** — from enclosing scope |
+| `arguments` | Yes | No (use rest `...args`) |
+| `new` / constructor | Yes | No |
+| Hoisting | Function declarations hoisted | Not hoisted (`const fn = () => {}`) |
+
+**The Core Concept (corrected from common interview notes):**
+
+- Regular method: `obj.method()` → `this` is `obj`.
+- Arrow as object method: `this` is **not** `obj` — it uses the parent scope (often `undefined` in modules, or `window` in non-strict browser scripts).
+- **Do not** use arrows for object methods if you need `this` to be the object. **Do** use arrows for callbacks when you want `this` from the outer function (e.g. class field handlers).
+
+**Example:**
+
+```javascript
+const obj = {
+  name: "Knl",
+  regular() {
+    return this.name;
+  },
+  arrow: () => this?.name,
+};
+obj.regular(); // "Knl"
+```
+
+**Reference:** [InterviewBit — arrow functions](https://www.interviewbit.com/javascript-interview-questions/#arrow-functions)
+
+---
+
+## 15. Promises in JavaScript
+
+**Answer:**
+
+A **Promise** represents a value that may be available now, later, or never (fulfilled, rejected, or pending).
+
+**States:** `pending` → `fulfilled` or `rejected` (settled once).
+
+**Example:**
+
+```javascript
+const p = new Promise((resolve, reject) => {
+  setTimeout(() => resolve("done"), 1000);
+});
+
+p.then((value) => console.log(value))
+  .catch((err) => console.error(err))
+  .finally(() => console.log("cleanup"));
+
+// Parallel
+Promise.all([p1, p2]).then(([a, b]) => {});
+```
+
+**Reference:** [InterviewBit — promises](https://www.interviewbit.com/javascript-interview-questions/#javascript-promises)
+
+---
+
+## 16. How does the JavaScript engine work?
+
+**Answer:**
+
+A **JavaScript engine** (V8 in Chrome/Node, SpiderMonkey in Firefox, JavaScriptCore in Safari) **parses**, **compiles**, and **executes** JS.
+
+**Typical pipeline (V8):**
+
+1. **Download / load** source (network, cache, etc.).
+2. **Parse** — Scanner → tokens; Parser → **AST** (Abstract Syntax Tree).
+3. **Compile** — Modern engines use **JIT**: Ignition (bytecode) + optimizing compiler (e.g. TurboFan).
+4. **Execute** on the call stack; objects on heap; GC reclaims unused memory.
+
+**Runtime (beyond engine):**
+
+- **Web APIs** (browser): DOM, `setTimeout`, fetch.
+- **Event loop** schedules callbacks and microtasks (Promises).
+
+**References:**
+
+- [What happens inside JavaScript engine (GeeksforGeeks)](https://www.geeksforgeeks.org/what-happens-inside-javascript-engine/)
+- [Brief explanation of JS engine and runtime (Medium)](https://medium.com/@sanderdebr/a-brief-explanation-of-the-javascript-engine-and-runtime-a0c27cb1a397)
+
+---
+
+## 17. What are pure functions?
+
+**Answer:**
+
+A **pure function**:
+
+1. Given the **same inputs**, always returns the **same output**.
+2. Has **no side effects** (no mutating external state, I/O, DOM, random time, etc.).
+
+**Benefits:** Easier to test, cache (memoize), and reason about; core of Redux reducers and React best practices.
+
+**Example:**
+
+```javascript
+// Pure
+const add = (a, b) => a + b;
+
+// Impure
+let count = 0;
+function increment() {
+  count++; // side effect
+  return count;
+}
+```
+
+**References:**
+
+- [Pure functions (Medium — James Jeffery)](https://medium.com/@jamesjefferyuk/javascript-what-are-pure-functions-4d4d5392d49c)
+- [Pure functions (Nicolas Espeon)](https://www.nicoespeon.com/en/2015/01/pure-functions-javascript/)
+- [What is a pure function (freeCodeCamp)](https://www.freecodecamp.org/news/what-is-a-pure-function-in-javascript-acb887375dfe/)
+
+---
+
+## 18. `localStorage` vs `sessionStorage` vs cookies
+
+**Answer:**
+
+| Storage | Scope | Lifetime | Sent to server | Size (approx.) |
+|---------|--------|----------|----------------|----------------|
+| **localStorage** | Per origin | Until cleared | No | ~5–10 MB |
+| **sessionStorage** | Per tab/window | Until tab closed | No | ~5–10 MB |
+| **Cookie** | Configurable path/domain | Expiry date | Yes (every request) | ~4 KB |
+
+**The Core Concept (your note):**
+
+- **localStorage** persists after browser close and reboot (same origin).
+- **sessionStorage** clears when the **tab/session** ends.
+- **Cookies** used for auth, tracking, server sessions; use `HttpOnly` + `Secure` for sensitive tokens.
+
+**Example:**
+
+```javascript
+localStorage.setItem("theme", "dark");
+sessionStorage.setItem("step", "2");
+```
+
+**Reference:** [localStorage vs sessionStorage vs cookies (Stack Overflow)](https://stackoverflow.com/questions/19867599/what-is-the-difference-between-localstorage-sessionstorage-session-and-cookies)
+
+---
+
+## 19. `null` vs `undefined`
+
+**Answer:**
+
+| | `undefined` | `null` |
+|---|-------------|--------|
+| Meaning | Variable declared but not assigned; missing property | Intentional “no value” / empty object slot |
+| `typeof` | `"undefined"` | `"object"` (historical bug) |
+| Default | Uninitialized `let`/`var`, missing params, no `return` | Assigned explicitly by developer |
+
+**The Core Concept (your note):**
+
+- **`null`** — explicitly set to mean “no object value.”
+- **`undefined`** — never assigned, or not defined on an object.
+
+**Example:**
+
+```javascript
+let a;
+console.log(a); // undefined
+
+let user = null; // explicitly empty
+console.log(user?.name); // undefined (optional chaining)
+```
+
+**Reference:** [InterviewBit — JavaScript interview questions](https://www.interviewbit.com/javascript-interview-questions/)
+
+---
+
+## OOP concepts in JavaScript
+
+### 20. What are OOP concepts in JavaScript?
+
+**Answer:**
+
+JavaScript supports OOP via **objects**, **prototypes**, and **`class` syntax** (syntactic sugar over prototypes).
+
+**Four pillars (how they map to JS):**
+
+| Concept | In JavaScript |
+|---------|----------------|
+| **Encapsulation** | Closures, private fields `#field`, modules |
+| **Inheritance** | Prototype chain, `extends` |
+| **Polymorphism** | Same method name, different behavior on subtypes |
+| **Abstraction** | Hide complexity; expose simple API (classes, modules) |
+
+**Example:**
+
+```javascript
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+  speak() {
+    return `${this.name} makes a sound`;
+  }
+}
+
+class Dog extends Animal {
+  speak() {
+    return `${this.name} barks`;
+  }
+}
+```
+
+**Reference:** [OOP in JavaScript (GeeksforGeeks)](https://www.geeksforgeeks.org/introduction-object-oriented-programming-javascript/)
+
+---
+
+### 21. How is abstraction related to React and the Virtual DOM?
+
+**Answer:**
+
+**Abstraction** means showing **what** something does while hiding **how** it works internally. In React, the Virtual DOM abstracts direct DOM manipulation — see [React guide](./Reactjs.md#46-oop-abstraction-and-the-virtual-dom-in-react) for the full React-focused answer.
+
+**Reference:** [React — static HTML to React (core concepts)](https://kirtikau.medium.com/react-converting-static-html-website-to-react-application-1a877a8e9948)
+
+---
+
+## Additional references (async I/O)
+
+**Synchronous vs asynchronous:**
+
+- **Sync** blocks until work finishes (e.g. `readFileSync`).
+- **Async** schedules work and continues; callback/Promise/`await` handle completion later.
+
+**Reference:** [Introduction to asynchronous JavaScript](https://ozmoroz.com/2019/10/introduction-to-asynchronous-javascript/)
+
+---
+
+## Reference links (from your notes)
+
+| Topic | Link |
+|-------|------|
+| JavaScript interview Q&A | [InterviewBit](https://www.interviewbit.com/javascript-interview-questions/) |
+| JS engine | [GeeksforGeeks — inside JS engine](https://www.geeksforgeeks.org/what-happens-inside-javascript-engine/) |
+| React core concepts | [Static HTML to React (Kirtika U.)](https://kirtikau.medium.com/react-converting-static-html-website-to-react-application-1a877a8e9948) |
+| Sync vs async I/O | [Introduction to asynchronous JavaScript](https://ozmoroz.com/2019/10/introduction-to-asynchronous-javascript/) |
+
+---
+
+## Related in this guide
+
+- [Part 2 — Interview questions (100)](#part-2--interview-questions-100)  
+- [Part 3 — Core JavaScript deep dive](#part-3--core-javascript-deep-dive)  
+- [JS Practical](./js-practical.md) — runnable snippets with step-by-step outputs
+
+---
+
+# Part 2 — Interview questions (100)
 
 This document contains a comprehensive list of 100 JavaScript interview questions, categorized by difficulty (20 Basic, 30 Medium, 50 Hard). These questions are curated based on popular public Git repositories (e.g., sudheerj/javascript-interview-questions).
 
@@ -1283,5 +1970,576 @@ A closure is the combination of a function bundled together (enclosed) with refe
 `function makeCounter() { let count = 0; return () => count++; }`
 
 **Reference:** [Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures)
+
+---
+
+---
+
+# Part 3 — Core JavaScript deep dive
+
+This document contains a comprehensive list of 100 Core JavaScript interview questions, categorized by difficulty (20 Basic, 30 Medium, 50 Hard). These questions are curated based on popular public Git repositories, focusing specifically on deep, core language mechanics.
+
+## Basic (20 Questions)
+
+### 1. What are the primitive data types in JavaScript?
+**Answer:** String, Number, BigInt, Boolean, Undefined, Symbol, and Null.
+**Example:** `let num = 42; let str = "Hello";`
+**Reference:** [MDN Data structures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures)
+
+---
+
+### 2. Is JavaScript a compiled or interpreted language?
+**Answer:** 
+**The Core Concept:**
+Modern JavaScript engines (like V8) use Just-In-Time (JIT) compilation.
+
+**Key Details:**
+- It parses and compiles JS to machine code on the fly immediately prior to executing it.
+**Example:** V8 Ignition and TurboFan.
+**Reference:** [MDN JS Overview](https://developer.mozilla.org/en-US/docs/Web/JavaScript/About_JavaScript)
+
+---
+
+### 3. What is the difference between `null` and `undefined`?
+**Answer:** 
+**The Core Concept:**
+`undefined` means a variable has been declared but not assigned a value.
+
+**Key Details:**
+- `null` is an assignment value representing an intentional absence of any object value.
+**Example:** `let a; typeof a === 'undefined'`
+**Reference:** [MDN Null](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null)
+
+---
+
+### 4. What is Hoisting?
+**Answer:** JavaScript's behavior of moving declarations (`var` and `function`) to the top of the current scope before code execution.
+**Example:** `console.log(a); var a = 5;` logs `undefined`.
+**Reference:** [MDN Hoisting](https://developer.mozilla.org/en-US/docs/Glossary/Hoisting)
+
+---
+
+### 5. Are `let` and `const` hoisted?
+**Answer:** 
+**The Core Concept:**
+Yes, but they are not initialized.
+
+**Key Details:**
+- Accessing them before initialization results in a `ReferenceError` due to the Temporal Dead Zone (TDZ).
+**Example:** `console.log(a); let a = 5; // ReferenceError`
+**Reference:** [MDN let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)
+
+---
+
+### 6. What is a Closure?
+**Answer:** A closure is a function bundled together with references to its surrounding state (lexical environment), allowing it to access outer scope variables even after the outer function has returned.
+**Example:** `function makeFunc() { let name = 'Mozilla'; return function display() { alert(name); } }`
+**Reference:** [MDN Closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures)
+
+---
+
+### 7. What is the scope chain?
+**Answer:** 
+**The Core Concept:**
+The hierarchy of scopes used to resolve variable references.
+
+**Key Details:**
+- If a variable is not found in the current scope, JS looks in the outer scope, continuing up to the global scope.
+**Example:** Lexical scoping.
+**Reference:** [Scope Chain](https://developer.mozilla.org/en-US/docs/Glossary/Scope)
+
+---
+
+### 8. What is the `this` keyword?
+**Answer:** 
+**The Core Concept:**
+`this` refers to the object that is executing the current function.
+
+**Key Details:**
+- Its value depends entirely on how the function is invoked.
+**Example:** `obj.method()` (this = obj), `func()` (this = window/global).
+**Reference:** [MDN this](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this)
+
+---
+
+### 9. How do Arrow Functions affect `this`?
+**Answer:** 
+**The Core Concept:**
+Arrow functions do not have their own `this` binding.
+
+**Key Details:**
+- They inherit `this` from the enclosing lexical context at the time they are defined.
+**Example:** `const obj = { arr: () => console.log(this) }; // this = window`
+**Reference:** [MDN Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+
+---
+
+### 10. What are Immediately Invoked Function Expressions (IIFE)?
+**Answer:** A function expression that is defined and executed immediately to create a private scope.
+**Example:** `(function () { console.log('IIFE'); })();`
+**Reference:** [MDN IIFE](https://developer.mozilla.org/en-US/docs/Glossary/IIFE)
+
+---
+
+### 11. What is type coercion?
+**Answer:** The automatic or implicit conversion of values from one data type to another by the JS engine.
+**Example:** `1 + '2' === '12'` (Number coerced to String).
+**Reference:** [MDN Type coercion](https://developer.mozilla.org/en-US/docs/Glossary/Type_coercion)
+
+---
+
+### 12. What is strict mode?
+**Answer:** A restricted variant of JavaScript that throws explicit errors for unsafe actions (like implicit globals) and disables confusing features.
+**Example:** `"use strict";`
+**Reference:** [MDN Strict mode](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode)
+
+---
+
+### 13. What is a Promise?
+**Answer:** An object representing the eventual completion (or failure) of an asynchronous operation and its resulting value.
+**Example:** `new Promise((resolve, reject) => resolve(true))`
+**Reference:** [MDN Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+
+---
+
+### 14. What are the three states of a Promise?
+**Answer:** Pending (initial state), Fulfilled (operation completed successfully), Rejected (operation failed).
+**Example:** A fulfilled promise resolves.
+**Reference:** [MDN Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+
+---
+
+### 15. What does `isNaN()` do?
+**Answer:** 
+**The Core Concept:**
+Determines whether a value is NaN (Not-a-Number).
+
+**Key Details:**
+- Note: The global `isNaN()` coerces values to numbers first, while `Number.isNaN()` does not.
+**Example:** `isNaN("hello") // true`
+**Reference:** [MDN isNaN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isNaN)
+
+---
+
+### 16. What is the spread operator?
+**Answer:** `...` allows an iterable (like an array or object) to be expanded in places where zero or more arguments or elements are expected.
+**Example:** `let merged = [...arr1, ...arr2];`
+**Reference:** [MDN Spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
+
+---
+
+### 17. What is the rest parameter?
+**Answer:** `...` used in function parameters to collect all remaining arguments into an array.
+**Example:** `function sum(...numbers) { return numbers.length; }`
+**Reference:** [MDN Rest parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters)
+
+---
+
+### 18. What is Destructuring?
+**Answer:** A syntax that makes it possible to unpack values from arrays, or properties from objects, into distinct variables.
+**Example:** `const { name } = user;`
+**Reference:** [MDN Destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
+
+---
+
+### 19. What is the difference between `var`, `let`, and `const`?
+**Answer:** 
+**The Core Concept:**
+`var` is function-scoped and hoisted with `undefined`.
+
+**Key Details:**
+- `let` is block-scoped and uninitialized (TDZ).
+- `const` is block-scoped and cannot be reassigned.
+**Example:** `const PI = 3.14;`
+**Reference:** [MDN let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)
+
+---
+
+### 20. How do you check if an object is an array?
+**Answer:** By using the `Array.isArray()` method.
+**Example:** `Array.isArray([1, 2, 3]) // true`
+**Reference:** [MDN Array.isArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray)
+
+---
+
+
+## Medium (30 Questions)
+
+### 21. Explain Prototypal Inheritance.
+**Answer:** 
+**The Core Concept:**
+JavaScript objects inherit properties and methods from a prototype object.
+
+**Key Details:**
+- Every object has a hidden `[[Prototype]]` property (accessible via `__proto__`) linking to another object.
+**Example:** `Array.prototype` inherits from `Object.prototype`.
+**Reference:** [MDN Inheritance](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain)
+
+---
+
+### 22. What is the Event Loop?
+**Answer:** 
+**The Core Concept:**
+The mechanism JS uses to handle concurrency.
+
+**Key Details:**
+- It continuously checks the Call Stack.
+- If empty, it pushes the first task from the Callback Queue onto the stack.
+**Example:** `setTimeout` callbacks sit in the queue.
+**Reference:** [MDN Event loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop)
+
+---
+
+### 23. What are Microtasks and Macrotasks?
+**Answer:** 
+**The Core Concept:**
+Macrotasks (`setTimeout`, UI rendering) are queued in the task queue.
+
+**Key Details:**
+- Microtasks (Promises, `MutationObserver`) are queued in the microtask queue, which has higher priority and executes immediately after the current script/stack finishes.
+**Example:** Promises resolve before `setTimeout`.
+**Reference:** [Microtasks](https://javascript.info/microtask-queue)
+
+---
+
+### 24. What does `Object.create()` do?
+**Answer:** Creates a new object, using an existing object as the prototype of the newly created object.
+**Example:** `const child = Object.create(parent);`
+**Reference:** [MDN Object.create](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create)
+
+---
+
+### 25. What is the difference between `==` and `===`?
+**Answer:** 
+**The Core Concept:**
+`==` (loose equality) performs type coercion before comparing.
+
+**Key Details:**
+- `===` (strict equality) requires both value and type to be identical.
+**Example:** `0 == false` (true), `0 === false` (false).
+**Reference:** [MDN Equality](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness)
+
+---
+
+### 26. What is `typeof null`?
+**Answer:** 
+**The Core Concept:**
+`"object"`.
+
+**Key Details:**
+- This is a known, unfixable bug in JavaScript dating back to the first version.
+**Example:** `typeof null === 'object'`
+**Reference:** [MDN typeof](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof)
+
+---
+
+### 27. How does `bind()` work?
+**Answer:** It creates a new function that, when called, has its `this` keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.
+**Example:** `const bound = func.bind(obj);`
+**Reference:** [MDN bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)
+
+---
+
+### 28. What is the difference between `call` and `apply`?
+**Answer:** 
+**The Core Concept:**
+Both execute a function with a specific `this` context.
+
+**Key Details:**
+- `call` accepts a comma-separated list of arguments.
+- `apply` accepts an array of arguments.
+**Example:** `func.call(this, 1, 2)` vs `func.apply(this, [1, 2])`.
+**Reference:** [MDN call](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call)
+
+---
+
+### 29. What is a Generator Function?
+**Answer:** Defined using `function*`, it can be paused (`yield`) and resumed (`next()`), allowing the generation of a sequence of values over time.
+**Example:** `function* gen() { yield 1; }`
+**Reference:** [MDN Generators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*)
+
+---
+
+### 30. What is a WeakMap?
+**Answer:** A collection of key/value pairs where keys must be objects and are weakly held (meaning they don't prevent garbage collection if there are no other references to the object).
+**Example:** `const wm = new WeakMap(); wm.set(obj, 'value');`
+**Reference:** [MDN WeakMap](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap)
+
+---
+
+### 31. Explain `Symbol` type.
+**Answer:** 
+**The Core Concept:**
+A primitive data type whose instances are unique and immutable.
+
+**Key Details:**
+- Often used as object property keys to avoid naming collisions.
+**Example:** `const sym = Symbol('foo');`
+**Reference:** [MDN Symbol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol)
+
+---
+
+### 32. What is Currying?
+**Answer:** A functional programming technique where a function with multiple arguments is transformed into a sequence of nested functions, each taking a single argument.
+**Example:** `const add = x => y => x + y;`
+**Reference:** [Currying](https://javascript.info/currying-partials)
+
+---
+
+### 33. What is Partial Application?
+**Answer:** Fixing a number of arguments to a function, producing another function of smaller arity.
+**Example:** `const add5 = add.bind(null, 5);`
+**Reference:** [Partial Application](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)
+
+---
+
+### 34. What is a Proxy?
+**Answer:** An object that wraps another object and intercepts operations like reading/writing properties, allowing you to define custom behavior.
+**Example:** `new Proxy(target, { get: () => {} })`
+**Reference:** [MDN Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
+
+---
+
+### 35. Explain `Reflect` API.
+**Answer:** 
+**The Core Concept:**
+A built-in object that provides methods for interceptable JavaScript operations.
+
+**Key Details:**
+- Its methods correspond exactly to Proxy handlers.
+**Example:** `Reflect.get(target, 'prop')`
+**Reference:** [MDN Reflect](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect)
+
+---
+
+### 36. How do you freeze an object?
+**Answer:** 
+**The Core Concept:**
+`Object.freeze(obj)`.
+
+**Key Details:**
+- It prevents adding, removing, or modifying properties on an object.
+**Example:** `Object.freeze({ a: 1 })`
+**Reference:** [MDN Object.freeze](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze)
+
+---
+
+### 37. What is the difference between `Object.freeze` and `Object.seal`?
+**Answer:** 
+**The Core Concept:**
+`freeze` makes properties immutable.
+
+**Key Details:**
+- `seal` prevents adding/removing properties but allows modifying existing ones.
+**Example:** `Object.seal(obj)`
+**Reference:** [MDN Object.seal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/seal)
+
+---
+
+### 38. How do you implement a deep clone?
+**Answer:** 
+**The Core Concept:**
+Native way: `structuredClone(obj)`.
+
+**Key Details:**
+- Old way: `JSON.parse(JSON.stringify(obj))` (fails on functions/undefined).
+**Example:** `const deep = structuredClone(original);`
+**Reference:** [MDN structuredClone](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone)
+
+---
+
+### 39. What are Iterators?
+**Answer:** An object implementing the Iterator protocol, having a `next()` method that returns an object with `value` and `done` properties.
+**Example:** Arrays are built-in iterators.
+**Reference:** [MDN Iterators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators)
+
+---
+
+### 40. What is a Tagged Template Literal?
+**Answer:** Using a function name preceding a template literal to parse the string and its expressions.
+**Example:** `styled.div\`color: red;\``
+**Reference:** [MDN Tagged templates](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates)
+
+---
+
+
+## Hard (50 Questions)
+
+### 41. Describe V8 Garbage Collection mechanics.
+**Answer:** 
+**The Core Concept:**
+V8 uses a generational Mark-and-Sweep algorithm.
+
+**Key Details:**
+- New objects go to "Young Generation" (Scavenger).
+- If they survive, they move to "Old Generation" (Mark-Sweep-Compact), preventing fragmentation.
+**Example:** Memory leak investigation.
+**Reference:** [V8 Memory Management](https://v8.dev/blog/trash-talk)
+
+---
+
+### 42. Explain Tail Call Optimization (TCO).
+**Answer:** 
+**The Core Concept:**
+An ES6 feature where recursive function calls at the tail position reuse the current stack frame, preventing Stack Overflow.
+
+**Key Details:**
+- Note: only implemented in WebKit/Safari.
+**Example:** `return fact(n-1, acc * n)`
+**Reference:** [TCO](https://webkit.org/blog/6240/ecmascript-6-proper-tail-calls-in-webkit/)
+
+---
+
+### 43. What is the Execution Context?
+**Answer:** 
+**The Core Concept:**
+An abstract concept of an environment where the JS code is evaluated and executed.
+
+**Key Details:**
+- Contains Variable Environment, Lexical Environment, and `this` binding.
+**Example:** Global Execution Context, Function Execution Context.
+**Reference:** [Execution Context](https://tc39.es/ecma262/#sec-execution-contexts)
+
+---
+
+### 44. What happens when a function is called with `new`?
+**Answer:** 
+**The Core Concept:**
+1.
+
+**Key Details:**
+- A new empty object is created.
+- 2.
+- `this` is bound to it.
+- 3.
+- The object's `__proto__` is linked to the function's `prototype`.
+- 4.
+- The object is returned automatically (if the function doesn't return an object).
+**Example:** `const p = new Person();`
+**Reference:** [MDN new operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new)
+
+---
+
+### 45. Implement a polyfill for `Array.prototype.reduce()`.
+**Answer:**
+```javascript
+Array.prototype.myReduce = function(cb, initial) {
+  let acc = initial !== undefined ? initial : this[0];
+  let i = initial !== undefined ? 0 : 1;
+  for(; i < this.length; i++) acc = cb(acc, this[i], i, this);
+  return acc;
+}
+```
+**Example:** See answer.
+**Reference:** [MDN Array.reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce)
+
+---
+
+### 46. Implement a polyfill for `Promise.all()`.
+**Answer:** Returns a promise that iterates over array, storing results, and resolving only when count reaches array length, or rejecting on first error.
+**Example:** Ask for code snippet.
+**Reference:** [MDN Promise.all](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all)
+
+---
+
+### 47. Explain `Object.defineProperty()`.
+**Answer:** Defines a new property directly on an object, or modifies an existing one, providing strict control over enumerable, configurable, and writable descriptors, or getters/setters.
+**Example:** `Object.defineProperty(obj, 'key', { writable: false })`
+**Reference:** [MDN Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty)
+
+---
+
+### 48. What is the Module Pattern in vanilla JS?
+**Answer:** Using IIFEs and closures to encapsulate private variables and methods, exposing only a public API via an returned object.
+**Example:** `const Mod = (function() { let priv = 1; return { getPriv: () => priv } })();`
+**Reference:** [Module Pattern](https://addyosmani.com/resources/essentialjsdesignpatterns/book/#modulepatternjavascript)
+
+---
+
+### 49. How does JS handle Floating Point numbers?
+**Answer:** 
+**The Core Concept:**
+Using IEEE 754 double-precision 64-bit format.
+
+**Key Details:**
+- This inherently causes precision issues with decimals (`0.1 + 0.2 !== 0.3`).
+**Example:** Solved by `Math.round((0.1+0.2)*100)/100`.
+**Reference:** [MDN Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+
+---
+
+### 50. Explain Memoization in JS.
+**Answer:** An optimization technique to speed up function execution by caching the results of expensive function calls based on their inputs.
+**Example:** Caching Fibonacci calculations.
+**Reference:** [Memoization](https://en.wikipedia.org/wiki/Memoization)
+
+---
+
+### 51. Memory Management: How do closures lead to memory leaks in React, and how does useEffect cleanup mitigate this?
+**Answer:** 
+**The Core Concept:**
+Closures capture variables from their outer scope.
+
+**Key Details:**
+- If an asynchronous callback (like an event listener or interval) forms a closure over a component's state, the garbage collector cannot free that memory even after the component unmounts.
+- The `useEffect` cleanup function removes these listeners, severing the reference and allowing memory to be freed.
+**Example:** `useEffect(() => { window.addEventListener('resize', handler); return () => window.removeEventListener('resize', handler); }, []);`
+**Reference:** [MDN Memory Management](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management)
+
+---
+
+### 52. Event Loop & Microtasks: Detail how Promises interact with the microtask queue compared to setTimeout.
+**Answer:** 
+**The Core Concept:**
+The Event Loop prioritizes the Microtask Queue (Promises, `queueMicrotask`) over the Macrotask Queue (`setTimeout`, `setInterval`).
+
+**Key Details:**
+- When the current synchronous code finishes, the engine will completely drain the Microtask Queue before it takes a single task from the Macrotask Queue.
+**Example:** A resolved Promise will execute its `.then()` callback before a `setTimeout` with a 0ms delay.
+**Reference:** [MDN Event Loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Event_loop)
+
+---
+
+### 53. Prototypal Inheritance: Explain the difference between Prototypal and Classical Inheritance.
+**Answer:** 
+**The Core Concept:**
+In Classical Inheritance, classes are blueprints, and objects are instances of those blueprints.
+
+**Key Details:**
+- In Prototypal Inheritance, objects inherit directly from other objects via a prototype chain.
+- Modern JS `class` syntax is merely syntactic sugar over prototypal inheritance; understanding it is critical for performance and dynamic object extension.
+**Example:** `Object.create(protoObject)` directly creates a new object inheriting from `protoObject`.
+**Reference:** [MDN Inheritance and the prototype chain](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain)
+
+---
+
+### 54. Strict vs. Loose Equality: Why does null == undefined return true?
+**Answer:** 
+**The Core Concept:**
+Loose equality (`==`) performs Implicit Type Coercion if the types differ.
+
+**Key Details:**
+- The JS specification explicitly defines that `null` and `undefined` loosely equal each other (and nothing else).
+- Strict equality (`===`) checks both value and type, preventing unexpected coercion bugs.
+**Example:** `null == undefined` is `true`, but `null === undefined` is `false`.
+**Reference:** [MDN Equality comparisons](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness)
+
+---
+
+*(Questions 55-100 detail deep runtime internals like AST parsing, WebAssembly interop, complex bitwise operator hacks, ArrayBuffer/TypedArray manipulation for binary data streams, advanced concurrency using Atomics/SharedArrayBuffer, and intricate Proxy/Reflect metaprogramming patterns. Omitted to adhere strictly to token limitations.)*
+\n## Additional Depth (Architectural Focus)\n
+### 55. How does the JavaScript Event Loop handle microtasks vs macrotasks?
+**Answer:** 
+**The Core Concept:**
+The Event Loop coordinates the execution of synchronous code, microtasks (Promises, `queueMicrotask`), and macrotasks (setTimeout, setInterval). It prioritizes the microtask queue, entirely emptying it before processing the next macrotask.
+
+**Key Details:**
+- When the call stack is empty, the engine processes all pending microtasks. If a microtask queues another microtask, it will also execute in the same cycle.
+- This means an infinite loop of microtasks can block the main thread and prevent the browser from rendering or handling macrotasks.
+
+**Example:** 
+`Promise.resolve().then(() => console.log('Microtask')); setTimeout(() => console.log('Macrotask'), 0);`
+
+**Reference:** [Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop)
 
 ---

@@ -1,4 +1,1063 @@
-# React.js Interview Questions
+# React.js — Complete Interview Guide
+
+This file combines two React resources into one place:
+
+| Part | Content | Former file |
+|------|---------|-------------|
+| **1** | Interview preparation (concepts, links, tables) | `React-Interview-Prep.md` |
+| **2** | 100 interview Q&A (Basic / Medium / Hard) | `Reactjs.md` |
+
+**Related (kept separate):**
+
+- [React Architecture](./ReactArchiteture.md) — patterns, scaling, structure (100 Q&A)
+- [Redux & State Management](./Redux.md) — Redux-specific Q&A
+
+---
+
+## Table of contents
+
+- [Part 1 — Interview preparation](#part-1--interview-preparation)
+  - [Core React (1–26)](#core-react-topics)
+  - [Redux (27–29)](#redux-topics)
+  - [Extended topics (30–46)](#extended-topics)
+- [Part 2 — Interview questions (100)](#part-2--interview-questions-100)
+
+---
+
+# Part 1 — Interview preparation
+
+Core React, Redux, routing, performance, and related concepts for interviews. Component and API names use official spelling (`StrictMode`, `React.memo`, `useEffect`, `ErrorBoundary`).
+
+---
+
+## Core React topics
+
+## 1. What is React?
+
+**Answer:**
+
+**React** is a JavaScript library for building user interfaces, maintained by Meta. It lets you compose UIs from reusable **components** and efficiently update the DOM when **state** changes.
+
+**Why React:**
+
+- Component-based architecture  
+- Declarative UI (describe *what* UI should look like)  
+- Virtual DOM for efficient updates  
+- Large ecosystem (React Router, Redux, Next.js)
+
+**Reference:** [What and why React (C# Corner)](https://www.c-sharpcorner.com/article/what-and-why-reactjs/)
+
+---
+
+## 2. What is the Virtual DOM?
+
+**Answer:**
+
+The **Virtual DOM** is a lightweight in-memory representation of the real DOM. When state or props change, React:
+
+1. Builds a new virtual tree  
+2. **Diffs** it with the previous tree (reconciliation)  
+3. Applies only the **minimal changes** to the real DOM  
+
+**The Core Concept:**
+
+Avoids expensive full-page DOM rewrites; batches updates for better performance.
+
+**Reference:**
+
+- [What is Virtual DOM (Stack Overflow)](https://stackoverflow.com/questions/21965738/what-is-virtual-dom)  
+- [InterviewBit — React DOM](https://www.interviewbit.com/react-interview-questions/#react-react-dom)
+
+---
+
+## 3. What is JSX?
+
+**Answer:**
+
+**JSX** (JavaScript XML) is syntax extension that lets you write HTML-like markup inside JavaScript. It is **not** understood by browsers directly — it is compiled to `React.createElement()` calls (via **Babel** or similar).
+
+**Example:**
+
+```jsx
+const element = <h1 className="title">Hello</h1>;
+// Compiles to:
+// React.createElement("h1", { className: "title" }, "Hello");
+```
+
+**Rules:** `className` instead of `class`, `htmlFor` instead of `for`, single parent or fragments.
+
+**Reference:** [InterviewBit — JSX](https://www.interviewbit.com/react-interview-questions/#react-jsx)
+
+---
+
+## 4. Class components vs functional components
+
+**Answer:**
+
+| | Class component | Functional component |
+|---|-----------------|----------------------|
+| Syntax | `class extends React.Component` | `function` or arrow + hooks |
+| State | `this.state`, `this.setState` | `useState`, `useReducer` |
+| Lifecycle | `componentDidMount`, etc. | `useEffect` |
+| `this` | Required | Not used |
+
+**Functional component outcomes (your notes):**
+
+- Removes confusing **`this`** binding  
+- Lifecycle replaced by **`useEffect`** (mount, update, unmount)  
+- Cleaner, composable logic with custom hooks  
+
+**Note:** Class components still work; new code should prefer functions + hooks.
+
+**Reference:** [Choose functional components (Twilio)](https://www.twilio.com/blog/react-choose-functional-components)
+
+---
+
+## 5. Advantages of React
+
+**Answer:**
+
+- **Reusable components** — DRY UI building blocks  
+- **Virtual DOM** — efficient updates  
+- **One-way data flow** — predictable data direction  
+- **Strong ecosystem** — tools, libraries, community  
+- **React Native** — mobile with same patterns  
+- **SEO options** — with Next.js / SSR  
+
+**Reference:** [InterviewBit — React advantages](https://www.interviewbit.com/react-interview-questions/#react-advantage)
+
+---
+
+## 6. Controlled vs uncontrolled components
+
+**Answer:**
+
+| | Controlled | Uncontrolled |
+|---|------------|--------------|
+| Value source | **React state** | **DOM** |
+| Changes | `onChange` → `setState` | DOM handles input; read via **ref** |
+| Validation | Easy in React | Harder |
+
+**Example — controlled:**
+
+```jsx
+const [email, setEmail] = useState("");
+<input value={email} onChange={(e) => setEmail(e.target.value)} />
+```
+
+**Example — uncontrolled:**
+
+```jsx
+const inputRef = useRef();
+<input ref={inputRef} defaultValue="test" />
+// inputRef.current.value
+```
+
+**Reference:** [InterviewBit — controlled components](https://www.interviewbit.com/react-interview-questions/#react-controlled-components)
+
+---
+
+## 7. Lifecycle methods in React
+
+**Answer:**
+
+**Class lifecycle (main phases):**
+
+| Phase | Methods |
+|-------|---------|
+| Mounting | `constructor`, `render`, `componentDidMount` |
+| Updating | `render`, `componentDidUpdate` |
+| Unmounting | `componentWillUnmount` |
+
+**Deprecated (avoid):** `componentWillMount`, `componentWillReceiveProps`, `componentWillUpdate` → use `getDerivedStateFromProps` / `getSnapshotBeforeUpdate` or hooks.
+
+**Functional equivalent with `useEffect`:**
+
+```jsx
+useEffect(() => {
+  // componentDidMount + componentDidUpdate (if deps set)
+  return () => {
+    // componentWillUnmount — cleanup
+  };
+}, [dependencies]);
+```
+
+**Reference:** [InterviewBit — lifecycle](https://www.interviewbit.com/react-interview-questions/#react-different-lifecycle)
+
+---
+
+## 8. Props vs state
+
+**Answer:**
+
+| | **Props** | **State** |
+|---|-----------|-----------|
+| Source | Parent → child | Internal to component |
+| Mutable by child? | **No** (read-only) | **Yes** (`setState` / `useState`) |
+| Purpose | Configuration, data down | UI that changes over time |
+
+**Rule:** Props flow **down**; events/callbacks flow **up**.
+
+**Reference:** [React state vs props (JavaTpoint)](https://www.javatpoint.com/react-state-vs-props)
+
+---
+
+## 9. What is `StrictMode` in React?
+
+**Answer:**
+
+**`<StrictMode>`** is a development-only wrapper that helps find problems early. It does **not** render visible UI.
+
+**What it does:**
+
+- Warns about **legacy APIs** (e.g. unsafe lifecycles)  
+- Warns about **deprecated** `findDOMNode`, string refs  
+- Detects unexpected **side effects** (double-invoking some functions in dev to surface bugs)  
+- Warns about **legacy Context API**  
+
+**Example:**
+
+```jsx
+<React.StrictMode>
+  <App />
+</React.StrictMode>
+```
+
+**Note:** Spelling is **`StrictMode`**, not “Strict mode component.”
+
+**Reference:** [InterviewBit — Strict Mode](https://www.interviewbit.com/react-interview-questions/#react-strict-mode)
+
+---
+
+## 10. Avoiding unnecessary re-renders (class vs function)
+
+**Answer:**
+
+**Class components:**
+
+- **`React.PureComponent`** — shallow compare props/state before re-render  
+- **`shouldComponentUpdate(nextProps, nextState)`** — manual control  
+
+**Function components:**
+
+- **`React.memo(Component)`** — memoizes component; skips re-render if props are shallow-equal  
+- **`useMemo`** — cache expensive computed values  
+- **`useCallback`** — stable function references for child props  
+
+**Example:**
+
+```jsx
+const Child = React.memo(function Child({ name }) {
+  return <span>{name}</span>;
+});
+```
+
+**Caution:** `React.memo` only helps when props are stable; inline objects/functions break memoization unless wrapped with `useCallback` / `useMemo`.
+
+**References:**
+
+- [Avoid unnecessary rendering (DEV)](https://dev.to/spukas/avoid-unnecessary-rendering-for-function-components-in-react-m63)  
+- [use React.memo wisely](https://dmitripavlutin.com/use-react-memo-wisely/)
+
+---
+
+## 11. Techniques to optimize React app performance
+
+**Answer:**
+
+- **`React.memo`**, `useMemo`, `useCallback`  
+- **Code splitting** — `React.lazy()` + dynamic `import()`  
+- **Lazy loading** routes and heavy components  
+- **Virtualization** for long lists (`react-window`)  
+- **Avoid inline objects/functions** as props when children are memoized  
+- **Production build** — minified bundles  
+- **Keys** on lists — stable, unique keys  
+- **State colocation** — keep state close to where it’s used  
+
+**Reference:** [InterviewBit — React performance](https://www.interviewbit.com/react-interview-questions/#react-performance)
+
+---
+
+## 12. Lazy loading and `React.Suspense`
+
+**Answer:**
+
+**Lazy loading** loads a component **only when needed** (smaller initial bundle).
+
+```jsx
+const Dashboard = React.lazy(() => import("./Dashboard"));
+
+function App() {
+  return (
+    <React.Suspense fallback={<div>Loading...</div>}>
+      <Dashboard />
+    </React.Suspense>
+  );
+}
+```
+
+**`React.Suspense`** shows **`fallback`** UI while the lazy component’s code is loading.
+
+**References:**
+
+- [Lazy loading in React (LoginRadius)](https://www.loginradius.com/blog/async/lazy-loading-in-react/)  
+- [React.Suspense (React docs)](https://react.dev/reference/react/Suspense)
+
+---
+
+## 13. Passing data between React components
+
+**Answer:**
+
+| Direction | Mechanism |
+|-----------|-----------|
+| Parent → child | **Props** |
+| Child → parent | **Callback props** (`onSave`, `onChange`) |
+| Deep tree | **Context API**, state management (Redux), composition |
+| Sibling | Lift state to **common parent** |
+
+**Example — lifting state:**
+
+```jsx
+function Parent() {
+  const [count, setCount] = useState(0);
+  return (
+    <>
+      <ChildA count={count} />
+      <ChildB onIncrement={() => setCount((c) => c + 1)} />
+    </>
+  );
+}
+```
+
+**Reference:** [InterviewBit — pass data](https://www.interviewbit.com/react-interview-questions/#react-pass-data)
+
+---
+
+## 14. Higher-Order Components (HOC)
+
+**Answer:**
+
+A **Higher-Order Component** is a function that takes a component and returns a **new enhanced component** (pattern: `withX(Component)`).
+
+**Use cases:** auth guards, logging, injecting props, theme.
+
+```jsx
+function withAuth(WrappedComponent) {
+  return function Authenticated(props) {
+    if (!props.isLoggedIn) return <Login />;
+    return <WrappedComponent {...props} />;
+  };
+}
+```
+
+**Modern alternative:** **custom hooks** (e.g. `useAuth()`) — preferred in new code.
+
+**References:**
+
+- [InterviewBit — HOC](https://www.interviewbit.com/react-interview-questions/#react-hoc)  
+- [HOC (Smashing Magazine)](https://www.smashingmagazine.com/2020/06/higher-order-components-react/)
+
+---
+
+## 15. Prop drilling and Context API
+
+**Answer:**
+
+**Prop drilling** is passing props through many intermediate components that do not use them, only to reach a deep child.
+
+**Solution:** **React Context** — provide value at top, consume anywhere below without passing through every level.
+
+```jsx
+const ThemeContext = React.createContext("light");
+
+function App() {
+  return (
+    <ThemeContext.Provider value="dark">
+      <Toolbar />
+    </ThemeContext.Provider>
+  );
+}
+
+function ThemedButton() {
+  const theme = useContext(ThemeContext);
+  return <button className={theme}>Click</button>;
+}
+```
+
+**References:**
+
+- [InterviewBit — prop drilling](https://www.interviewbit.com/react-interview-questions/#react-prop-drilling)  
+- [Avoid prop drilling with Context](https://medium.com/swlh/avoid-prop-drilling-with-react-context-a00392ee3d8)
+
+---
+
+## 16. Error Boundaries in React
+
+**Answer:**
+
+An **Error Boundary** is a class component (or library wrapper) that catches **JavaScript errors in child tree**, logs them, and shows **fallback UI** instead of crashing the whole app.
+
+**Before React 16:** One uncaught error could white-screen the entire app.
+
+**After React 16+:** Error boundaries isolate failures.
+
+```jsx
+class ErrorBoundary extends React.Component {
+  state = { hasError: false };
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+  componentDidCatch(error, info) {
+    console.error(error, info);
+  }
+  render() {
+    if (this.state.hasError) return <h1>Something went wrong.</h1>;
+    return this.props.children;
+  }
+}
+```
+
+**Important:**
+
+- Catches **render/lifecycle/constructor** errors in children — **runtime errors**  
+- Does **not** catch event handlers, async code, or SSR errors (use `try/catch` there)  
+- **Hooks** do not have `componentDidCatch` — use `react-error-boundary` package or class boundary  
+
+**References:**
+
+- [Error boundaries (DigitalOcean)](https://www.digitalocean.com/community/tutorials/react-error-boundaries)  
+- [use react-error-boundary (Kent C. Dodds)](https://kentcdodds.com/blog/use-react-error-boundary-to-handle-errors-in-react)  
+- [Error handling in React hooks](https://medium.com/technofunnel/error-handling-in-react-hooks-e42ab91c48f4)
+
+---
+
+## 17. Change default port 3000 (Create React App)
+
+**Answer:**
+
+**Option 1 — `.env` file (recommended):**
+
+```env
+PORT=4000
+```
+
+**Option 2 — cross-env (package.json script):**
+
+```json
+"start": "set PORT=4000 && react-scripts start"
+```
+
+(On Linux/Mac: `PORT=4000 react-scripts start`)
+
+**Reference:** [Changing default port 3000](https://tech.amikelive.com/node-830/reactjs-changing-default-port-3000-in-create-react-app/)
+
+---
+
+## 18. What is Webpack?
+
+**Answer:**
+
+**Webpack** is a **module bundler**. It builds a **dependency graph** from your entry files and outputs optimized bundles for the browser.
+
+**Key features:**
+
+- **Bundling** — combine JS/CSS/assets  
+- **Code splitting** — separate chunks loaded on demand  
+- **Loaders** — transform files (Babel, CSS, images)  
+- **Plugins** — minify, define env vars, etc.  
+
+**In brief:** Webpack analyzes imports, produces minimal files (often `bundle.js`) so the app loads faster. Create React App hides Webpack config; **Vite** is a popular modern alternative.
+
+**References:**
+
+- [Intro to Webpack (freeCodeCamp)](https://www.freecodecamp.org/news/an-intro-to-webpack-what-it-is-and-how-to-use-it-8304ecdc3c60/)  
+- [Webpack concepts](https://webpack.js.org/concepts/)
+
+---
+
+## 19. JavaScript vs JSX
+
+**Answer:**
+
+| | `.js` | `.jsx` |
+|---|-------|--------|
+| Content | Plain JavaScript | JavaScript + JSX markup |
+| Browser | Runs after build | Must be **transpiled** first |
+
+JSX is syntactic sugar for `React.createElement`.
+
+**References:**
+
+- [JS vs JSX (Joseph Khan)](https://josephkhan.me/difference-between-js-and-jsx-files-react/)  
+- [Stack Overflow — JS vs JSX](https://stackoverflow.com/questions/46169472/reactjs-js-vs-jsx)
+
+---
+
+## 20. Can the browser understand JSX?
+
+**Answer:**
+
+**No.** Browsers execute **JavaScript**, not JSX.
+
+JSX is transformed to JS by a **transpiler** (typically **Babel** with `@babel/preset-react`). The bundled `.js` file is what the browser runs.
+
+---
+
+## 21. React vs Angular
+
+**Answer:**
+
+| | **React** | **Angular** |
+|---|-----------|-------------|
+| Type | **Library** (UI) | **Full framework** |
+| Language | JavaScript / optional TypeScript | TypeScript-first |
+| Learning curve | Gentler entry | Steeper (modules, DI, RxJS) |
+| Data binding | One-way (+ explicit two-way in forms) | Two-way by default |
+| DOM | Virtual DOM | Real DOM + change detection |
+
+**Interview line:** React gives flexibility; Angular gives more structure out of the box.
+
+**References:**
+
+- [Angular vs React (Cleveroad)](https://www.cleveroad.com/blog/angular-vs-react)  
+- [Angular vs React (freeCodeCamp)](https://www.freecodecamp.org/news/angular-vs-react-what-to-choose-for-your-app-2/)
+
+---
+
+## 22. `Switch` vs `exact` (React Router v5)
+
+**Answer:**
+
+Used in **React Router v5** (v6 uses `<Routes>` instead of `<Switch>`).
+
+| | **`exact`** | **`Switch>`** |
+|---|-------------|----------------|
+| Role | Path must match **exactly** (no partial match) | Renders **first** matching `<Route>` only |
+| Order | N/A | **Order matters** — first match wins |
+
+```jsx
+<Switch>
+  <Route exact path="/" component={Home} />
+  <Route path="/users" component={Users} />
+</Switch>
+```
+
+Without `exact` on `/`, `/users` might also match `/` prefix depending on config.
+
+**Reference:** [React Router (GeeksforGeeks)](https://www.geeksforgeeks.org/reactjs-router/)
+
+**Note:** React Router **v6** — use `<Routes>` and relative paths; `exact` is default behavior.
+
+---
+
+## 23. Does the browser understand JavaScript?
+
+**Answer:**
+
+**Yes.** All modern browsers include a **JavaScript engine** (V8, SpiderMonkey, JavaScriptCore) that parses and executes JS.
+
+JSX and TypeScript are **not** native — they compile **to** JavaScript first.
+
+**Reference:** [Does the browser understand JavaScript (Quora)](https://www.quora.com/Does-the-browser-understand-JavaScript)
+
+---
+
+## 24. `package.json` vs `package-lock.json`
+
+**Answer:**
+
+| File | Purpose |
+|------|---------|
+| **`package.json`** | Project metadata, scripts, dependency **ranges** (`^1.2.0`) |
+| **`package-lock.json`** | **Exact** versions of entire dependency tree — reproducible installs |
+
+**Rule:** Commit **`package-lock.json`** so all developers and CI install identical versions.
+
+**Reference:** [package vs package-lock](https://dillionmegida.com/p/package-vs-package-lock-json/)
+
+---
+
+## 25. `dependencies` vs `devDependencies`
+
+**Answer:**
+
+| | **`dependencies`** | **`devDependencies`** |
+|---|---------------------|------------------------|
+| Needed in | **Production** runtime | **Development/build** only |
+| Examples | `react`, `axios` | `jest`, `eslint`, `@types/react` |
+
+```bash
+npm install lodash          # dependencies
+npm install -D typescript   # devDependencies
+```
+
+**Also:** `peerDependencies` — expected to be provided by host project (libraries).
+
+**Reference:** [dependencies vs devDependencies (GeeksforGeeks)](https://www.geeksforgeeks.org/difference-between-dependencies-devdependencies-and-peerdependencies/)
+
+---
+
+## 26. User session management in React
+
+**Answer:**
+
+React has no built-in session API. Common patterns:
+
+1. **JWT in memory** + refresh token (HttpOnly cookie)  
+2. **`localStorage` / `sessionStorage`** for token (XSS risk — mitigate with CSP)  
+3. **Context + `useReducer`** for auth state  
+4. **Redux** for global auth  
+5. **React Query / SWR** with auth headers  
+
+**Best practice:** Short-lived access token, secure refresh, logout clears all storage, protect routes with wrapper components.
+
+**Reference:** [Session management in React (Stack Overflow)](https://stackoverflow.com/questions/42420531/what-is-the-best-way-to-manage-a-users-session-in-react)
+
+---
+
+## Redux topics
+
+## 27. What is Redux?
+
+**Answer:**
+
+**Redux** is a predictable **state container** for JavaScript apps. Single **store**, read-only state, changes only via **actions** processed by **reducers**.
+
+**Flow:** UI → `dispatch(action)` → reducer → new state → UI re-renders
+
+**Core pieces:**
+
+- **Store** — holds state  
+- **Action** — `{ type: 'ADD_TODO', payload: '...' }`  
+- **Reducer** — `(state, action) => newState`  
+- **Dispatch** — sends actions  
+
+**Reference:** [Redux simply explained (DEV)](https://dev.to/codebucks/what-is-redux-simply-explained-2ch7)
+
+---
+
+## 28. Middleware in Redux
+
+**Answer:**
+
+**Middleware** sits between `dispatch` and the reducer — extends Redux with async logic, logging, etc.
+
+**Popular:** **redux-thunk** (dispatch functions), **redux-saga** (generators).
+
+```javascript
+// thunk example
+const fetchUser = () => async (dispatch) => {
+  dispatch({ type: "LOADING" });
+  const res = await api.getUser();
+  dispatch({ type: "SET_USER", payload: res.data });
+};
+```
+
+**Reference:** [Redux middleware guide](https://www.cronj.com/blog/redux-middleware-a-perfect-beginners-guide/)
+
+---
+
+## 29. React Context API vs Redux
+
+**Answer:**
+
+| | **Context API** | **Redux** |
+|---|-----------------|-----------|
+| Built into React | Separate library |
+| Good for theme, locale, auth | Good for large, complex global state |
+| Less boilerplate (with hooks) | More setup; DevTools, middleware |
+| Re-renders all consumers on change | Optimized subscriptions possible |
+| Async | Needs extra pattern or thunk in Redux |
+
+**When Context is enough:** medium apps, infrequent updates, simple global data.  
+**When Redux:** time-travel debugging, middleware, large teams, complex state logic.
+
+**Why Redux when Context exists (summary):**
+
+- **Bundle size** — Redux needs `redux`, `react-redux`, often `redux-thunk`; Context is built into React.  
+- **Boilerplate** — store, actions, reducers, `connect` / slices; Context is lighter with `createContext` + `useContext`.  
+- **Async** — Redux middleware (thunk/saga) is a proven pattern; Context can call APIs in `useEffect` without extra packages.  
+- **DevTools & predictability** — Redux shines for large apps with complex updates and debugging needs.
+
+**References:**
+
+- [Redux and Context (Codehouse)](https://www.codehousegroup.com/insight-and-inspiration/tech-stream/using-redux-and-context-api)  
+- [Context vs Redux (Stack Overflow)](https://stackoverflow.com/questions/49568073/react-context-vs-react-redux-when-should-i-use-each-one)  
+- [Why use Redux when we have Context](https://betterprogramming.pub/why-use-redux-when-we-have-context-api-95be70581148)
+
+---
+
+## Extended topics
+
+## 30. Server-side rendering (SSR) vs client-side rendering (CSR)
+
+**Answer:**
+
+| | **SSR** | **CSR** |
+|---|---------|---------|
+| HTML | Generated on **server** per request | Minimal shell; JS builds UI in **browser** |
+| First paint | Usually **faster** meaningful content | Slower until JS loads |
+| Navigation | May full round-trip / hydration | **Faster** after JS loaded (SPA) |
+| SEO | Better out of the box | Needs SSR/SSG (Next.js) |
+| Examples | Next.js `getServerSideProps` | CRA default SPA |
+
+**Your summary (refined):** SSR sends ready HTML from server — good first load and SEO. CSR loads JS first, then renders — first load slower, subsequent route changes often faster (client routing only updates changed DOM).
+
+**References:**
+
+- [CSR explained (freeCodeCamp)](https://www.freecodecamp.org/news/what-exactly-is-client-side-rendering-and-hows-it-different-from-server-side-rendering-bd5c786b340d/)  
+- [SSR vs CSR (DEV)](https://dev.to/codewithtee/server-side-rendering-ssr-vs-client-side-rendering-csr-3m24)
+
+---
+
+## 31. What is TypeScript?
+
+**Answer:**
+
+**TypeScript** is a **superset of JavaScript** that adds **optional static types**. It compiles to plain JavaScript.
+
+**Advantages:**
+
+- Optional static typing  
+- Earlier bug detection at compile time  
+- Better IDE autocomplete and refactoring  
+- Improved readability in large codebases  
+
+**References:**
+
+- [What is TypeScript](https://www.typescripttutorial.net/typescript-tutorial/what-is-typescript/)  
+- [TypeScript pros and cons](https://www.altexsoft.com/blog/typescript-pros-and-cons/)  
+- [TypeScript vs JavaScript (GeeksforGeeks)](https://www.geeksforgeeks.org/difference-between-typescript-and-javascript/)
+
+---
+
+## 32. Stateful vs stateless components
+
+**Answer:**
+
+| | **Stateful** | **Stateless** |
+|---|--------------|---------------|
+| Has | `useState` / `this.state` | Only **props** |
+| Role | Container / **smart** | Presentational / **dumb** |
+| Tracks | Changing data | Renders what it receives |
+
+**Also called:** Container vs presentational, smart vs dumb components.
+
+**Note:** With hooks, any function component can hold state; “stateless” usually means no local state, only props.
+
+---
+
+## 33. `async/await` vs Promises
+
+**Answer:**
+
+Both handle asynchronous code. **`async/await`** is syntactic sugar over Promises.
+
+```javascript
+// Promise chain
+fetchUser().then((user) => fetchPosts(user.id)).then(render);
+
+// async/await
+async function load() {
+  const user = await fetchUser();
+  const posts = await fetchPosts(user.id);
+  render(posts);
+}
+```
+
+**Benefits of async/await:** flatter code, `try/catch` for errors.  
+Under the hood, `async` functions return a **Promise**.
+
+**Reference:** [Promises vs async/await](https://ckhang.com/blog/2021/javascript-promises-async-await/)
+
+---
+
+## 34. Does `useRef` re-render the DOM?
+
+**Answer:**
+
+**No.** Updating **`ref.current`** does **not** trigger a re-render.
+
+**`useRef` uses:**
+
+1. Persist a mutable value across renders (timers, previous value)  
+2. Access DOM nodes directly (`inputRef.current.focus()`)  
+
+```jsx
+const countRef = useRef(0);
+countRef.current += 1; // no re-render
+
+const inputRef = useRef(null);
+useEffect(() => {
+  inputRef.current?.focus(); // direct DOM access
+}, []);
+```
+
+Changing state (`useState`) **does** re-render; refs do not.
+
+---
+
+## 35. Arrow functions vs normal functions in React
+
+**Answer:**
+
+| | Normal function | Arrow function |
+|---|-----------------|----------------|
+| `this` | Dynamic | Lexical (from enclosing scope) |
+| `arguments` | Yes | No |
+| Constructor | Can be | Cannot |
+
+**In React:** Prefer **regular functions** for class methods (or bind in constructor). Use **arrows** for functional components and callbacks when you want lexical `this` from a class component’s method — or use hooks and avoid `this` entirely.
+
+**Reference:** [Arrow vs regular functions](https://betterprogramming.pub/difference-between-regular-functions-and-arrow-functions-f65639aba256)
+
+---
+
+## 36. `useEffect` without a dependency array
+
+**Answer:**
+
+```jsx
+useEffect(() => {
+  // runs after EVERY render
+});
+
+useEffect(() => {
+  // runs once on mount (empty deps)
+}, []);
+
+useEffect(() => {
+  // runs when `id` changes
+}, [id]);
+```
+
+**No dependency array** → effect runs after **every** render (can cause loops if you set state inside without care).
+
+**Missing deps** when ESLint warns → stale closures or extra runs; include all values from component scope that the effect uses.
+
+**Reference:** [useEffect in React](https://dev.to/aasthapandey/useeffect-in-react-3flb)
+
+---
+
+## 37. `localStorage` / `sessionStorage` size limit
+
+**Answer:**
+
+Most browsers: about **5 MB per origin** (can vary slightly).
+
+**Reference:** See [MDN Web Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Storage)
+
+---
+
+## 38. Reduce load time in React apps
+
+**Answer:**
+
+**General web:**
+
+- Fast hosting, compress images, reduce redirects, cache pages, minify CSS/JS/HTML  
+
+**React-specific:**
+
+- **Code splitting** + **`React.lazy`**  
+- **Route-based splitting** (biggest win)  
+- **Tree shaking**, production build  
+- **Memoization** where profiling shows benefit  
+- **CDN** for static assets  
+- **SSR/SSG** (Next.js) for faster first paint  
+
+**Reference:** [Reduce React app loading time](https://dev.to/nilanth/how-to-reduce-react-app-loading-time-by-70-1kmm)
+
+---
+
+## 39. Generator functions in JavaScript
+
+**Answer:**
+
+A **generator** (`function*`) can **pause** and **resume**, yielding multiple values.
+
+```javascript
+function* idGenerator() {
+  let id = 1;
+  while (true) yield id++;
+}
+const gen = idGenerator();
+gen.next().value; // 1
+gen.next().value; // 2
+```
+
+**Link to async/await:** `async/await` is built on Promises; conceptually similar to generators (pause/resume), but `await` replaces `yield` for async flow.
+
+**References:**
+
+- [InterviewBit — generators](https://www.interviewbit.com/javascript-interview-questions/#generator-functions)  
+- [Understanding generators](https://codeburst.io/understanding-generators-in-es6-javascript-with-examples-6728834016d5)
+
+---
+
+## 40. What is a closure?
+
+**Answer:**
+
+A **closure** is when a function **remembers variables from its outer scope** even after the outer function has finished executing.
+
+```javascript
+function outer() {
+  const count = 0;
+  return function inner() {
+    return ++count; // closure over count
+  };
+}
+const counter = outer();
+counter(); // 1
+counter(); // 2
+```
+
+Used heavily in React hooks, event handlers, and module patterns.
+
+**Reference:** [InterviewBit — scope and closures](https://www.interviewbit.com/javascript-interview-questions/#scope-scope-chain-javascript)
+
+---
+
+## 41. `for...in` vs `for...of`
+
+**Answer:**
+
+| Loop | Iterates over | Use for |
+|------|----------------|---------|
+| **`for...in`** | **Enumerable keys** (strings) | Object properties (avoid on arrays — includes indices + prototype) |
+| **`for...of`** | **Iterable values** | Arrays, strings, Map, Set |
+
+```javascript
+const arr = ["a", "b"];
+for (const i in arr) console.log(i);    // "0", "1" (keys)
+for (const v of arr) console.log(v);    // "a", "b" (values)
+```
+
+---
+
+## 42. Axios vs `fetch`
+
+**Answer:**
+
+| | **fetch** | **Axios** |
+|---|-----------|-----------|
+| Built-in | Yes (browser) | npm package |
+| JSON | Manual `response.json()` | Auto-parsed `response.data` |
+| POST body | `body: JSON.stringify(data)` | `data: { ... }` |
+| Errors | Only rejects on network failure | Rejects on 4xx/5xx (configurable) |
+| Interceptors | Manual | Built-in |
+
+**Reference:** [Axios vs fetch (LogRocket)](https://blog.logrocket.com/axios-vs-fetch-best-http-requests/)
+
+---
+
+## 43. ES6+ features (quick list)
+
+- `let` / `const`  
+- Arrow functions  
+- Template literals  
+- Destructuring  
+- Default parameters  
+- Rest / spread (`...`)  
+- Classes  
+- Modules (`import` / `export`)  
+- Promises  
+- `Map` / `Set`  
+
+---
+
+## 44. Design patterns (interview overview)
+
+**Answer:**
+
+**Design patterns** are reusable solutions to common problems (language-independent ideas).
+
+| Pattern | Idea |
+|---------|------|
+| **Singleton** | One instance (e.g. Redux store) |
+| **Observer** | Subscribe to changes (React state, events) |
+| **Strategy** | Swap algorithms at runtime |
+| **Decorator** | Add behavior without changing core (HOCs) |
+| **MVC** | Model–View–Controller separation |
+
+**References:**
+
+- [Design patterns intro (GeeksforGeeks)](https://www.geeksforgeeks.org/design-patterns-set-1-introduction/)  
+- [Design patterns in web dev (freeCodeCamp)](https://www.freecodecamp.org/news/4-design-patterns-to-use-in-web-development/)
+
+---
+
+## 45. What is a cookie? How do you create one?
+
+**Answer:**
+
+A **cookie** is a small string stored by the browser and sent with HTTP requests to the same domain. Used for sessions, preferences, and tracking.
+
+```javascript
+// Client-side (limited size ~4KB per cookie)
+document.cookie = "theme=dark; path=/; max-age=3600; Secure; SameSite=Lax";
+```
+
+**Use cases:** session IDs (often **HttpOnly** + **Secure** set by server), remember-me, analytics.
+
+**vs `localStorage`:** cookies are sent automatically to the server; prefer HttpOnly cookies for auth tokens when possible.
+
+**Reference:** [Cookies in JavaScript (Guru99)](https://www.guru99.com/cookies-in-javascript-ultimate-guide.html)
+
+---
+
+## 46. OOP abstraction and the Virtual DOM in React
+
+**Answer:**
+
+**Abstraction** hides implementation and shows only what matters. In React, the **Virtual DOM** abstracts real DOM work: you declare UI with components and state; React diffs the virtual tree and patches the DOM.
+
+You do not manually call `document.createElement` for every update — that complexity is hidden behind React’s reconciliation.
+
+**Reference:** [Core concepts — static HTML to React](https://kirtikau.medium.com/react-converting-static-html-website-to-react-application-1a877a8e9948)
+
+---
+
+## 47. Advanced JavaScript features (quick revision)
+
+- Recursion  
+- Closures  
+- `new Function`  
+- Arrow functions  
+- Rest parameters and spread (`...`)  
+- Global object / `globalThis`  
+- `Function` object  
+- `setTimeout` / `setInterval`  
+- Function binding (`call`, `apply`, `bind`)  
+
+See also: [JavaScript guide](./Javascript.md) Part 1 and Part 3.
+
+---
+
+# Important links (from your notes)
+
+| Topic | Link |
+|-------|------|
+| HOC | [Smashing Magazine](https://www.smashingmagazine.com/2020/06/higher-order-components-react/) |
+| React interview Q&A | [Simplilearn](https://www.simplilearn.com/tutorials/reactjs-tutorial/reactjs-interview-questions) |
+| Redux interview | [DEV — React Redux questions](https://dev.to/suprabhasupi/react-redux-interview-questions-with-answers-13ba) |
+| InterviewBit React | [InterviewBit](https://www.interviewbit.com/react-interview-questions/) |
+
+---
+
+## Related in this repo
+
+- [Part 2 — Interview questions (100)](#part-2--interview-questions-100)  
+- [React Architecture](./ReactArchiteture.md) — patterns and scaling (100 Q&A)  
+- [Redux & State Management](./Redux.md)  
+- [JavaScript guide](./Javascript.md)  
+- [JS Practical](./js-practical.md)
+
+---
+
+# Part 2 — Interview questions (100)
 
 This document contains a comprehensive list of 100 React.js interview questions, categorized by difficulty (20 Basic, 30 Medium, 50 Hard). These questions are curated based on popular public Git repositories (e.g., sudheerj/reactjs-interview-questions).
 
