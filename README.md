@@ -90,3 +90,4 @@ _Note: Questions include examples where applicable and reference links for furth
 - [Node.js](./Learn/NodeJs.md)
 - [Technical Communication](./Learn/Technical-Communication.md)
 - [MySQL](./Learn/MySQL.md)
+- [Testing](./Learn/Testing.md)
