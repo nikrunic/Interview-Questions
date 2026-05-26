@@ -59,6 +59,9 @@ Each file contains a minimum of 100 questions categorized by difficulty:
 
 ### Others
 
+- [AI Automation Specialist](./other/AI-Automation-Specialist.md)
+- [AI-Driven Development](./other/AI-Driven-Development.md)
+- [AI Strategist](./other/AI-Strategist.md)
 - [Agentic AI](./other/AgenticAI.md)
 - [Agile Development](./other/Agile.md)
 
@@ -69,3 +72,12 @@ Each file contains a minimum of 100 questions categorized by difficulty:
 - [JS Practical](./frontend/js-practical.md)
 
 _Note: Questions include examples where applicable and reference links for further reading._
+
+---
+
+### Learn
+
+- [React.js](./Learn/ReactJs.md)
+- [AI Automation Specialist](./Learn/AI-Automation-Specialist.md)
+- [AI Strategist](./Learn/AI-Strategist.md)
+- [AI-Driven Development](./Learn/AI-Driven-Development.md)
