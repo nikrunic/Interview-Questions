@@ -46,7 +46,9 @@ Each file contains a minimum of 100 questions categorized by difficulty:
 - [MS SQL Server](./backend/MSSQL.md)
 - [MySQL](./backend/MySQL.md)
 - [Node.js](./backend/NodeJs.md)
+- [NoSQL (DynamoDB & Redis)](./backend/NoSQL.md)
 - [REST API](./backend/RestAPI.md)
+
 
 ---
 

@@ -1524,6 +1524,1021 @@ N/A
 2. `?.[0]` safely accesses first array element.
 3. `?? "Guest"` / `?? "N/A"` applies only when result is `null` or `undefined`.
 
+
+---
+
+## Section L — Practical Coding Exercises
+
+### 51. How do you find the second highest number in an array, accounting for duplicates?
+
+**Code:**
+
+```javascript
+const a = [1, 2, 3, 3];
+
+// 1. Simple Set + Sort Approach
+const simple = [...new Set(a)].sort((x, y) => y - x)[1];
+
+// 2. One-Pass O(n) Loop (Best for Interviews)
+let first = -Infinity;
+let second = -Infinity;
+for (let num of a) {
+  if (num > first) {
+    second = first;
+    first = num;
+  } else if (num > second && num !== first) {
+    second = num;
+  }
+}
+
+// 3. Functional reduce() Approach
+const byReduce = a.reduce(
+  (acc, num) => {
+    if (num > acc.first) {
+      acc.second = acc.first;
+      acc.first = num;
+    } else if (num > acc.second && num !== acc.first) {
+      acc.second = num;
+    }
+    return acc;
+  },
+  { first: -Infinity, second: -Infinity }
+).second;
+
+// 4. filter() + Math.max() Approach
+const max = Math.max(...a);
+const byFilter = Math.max(...a.filter(n => n !== max));
+
+console.log("Simple:", simple);
+console.log("One-Pass:", second);
+console.log("Reduce:", byReduce);
+console.log("Filter + Max:", byFilter);
+```
+
+**Answer:**
+
+```text
+Simple: 2
+One-Pass: 2
+Reduce: 2
+Filter + Max: 2
+```
+
+**How this answer is obtained:**
+
+There are multiple ways to find the second highest number, each with different trade-offs:
+
+#### ✅ Simple Approach
+- **Code snippet:**
+  ```javascript
+  const a = [1, 2, 3, 3];
+  const unique = [...new Set(a)];   // remove duplicates
+  unique.sort((x, y) => y - x);     // sort descending
+  const secondHighest = unique[1];
+  console.log(secondHighest); // 2
+  ```
+- **🔍 Steps:**
+  1. Remove duplicates → `[1, 2, 3]`
+  2. Sort descending → `[3, 2, 1]`
+  3. Pick index `[1]` → `2`
+- **⚡ In Short:** Second highest = `2`
+- **🧠 Interview Tip:** You can write this in a single line:
+  `const second = [...new Set(a)].sort((a, b) => b - a)[1];`
+
+#### ✅ One-Pass / Single Loop (Best for Interviews)
+- **Code snippet:**
+  ```javascript
+  const a = [1, 2, 3, 3];
+  let first = -Infinity;
+  let second = -Infinity;
+  for (let num of a) {
+    if (num > first) {
+      second = first;
+      first = num;
+    } else if (num > second && num !== first) {
+      second = num;
+    }
+  }
+  console.log(second); // 2
+  ```
+- **🔍 How It Works:**
+  - `first` → highest number
+  - `second` → second highest
+  - Loop runs once ($O(n)$ time complexity)
+  - Handles duplicates using the condition `num !== first`
+- **⚡ Why This Is Better:**
+  - No sorting ❌
+  - Faster for large arrays ✅
+  - Space efficient ($O(1)$ auxiliary space) ✅
+- **🧠 Easy Way to Remember:** Track top 2 values while iterating once.
+
+#### 🔹 Other Alternative Ways
+1. **Using `reduce()` (Functional Style):**
+   ```javascript
+   const a = [1, 2, 3, 3];
+   const { first, second } = a.reduce(
+     (acc, num) => {
+       if (num > acc.first) {
+         acc.second = acc.first;
+         acc.first = num;
+       } else if (num > acc.second && num !== acc.first) {
+         acc.second = num;
+       }
+       return acc;
+     },
+     { first: -Infinity, second: -Infinity }
+   );
+   console.log(second); // 2
+   ```
+   👉 Same logic as loop but written in a functional style.
+
+2. **Using `filter` + `Math.max`:**
+   ```javascript
+   const a = [1, 2, 3, 3];
+   const max = Math.max(...a);
+   const second = Math.max(...a.filter(n => n !== max));
+   console.log(second); // 2
+   ```
+   👉 Easy to read and understand, but loops through the array multiple times.
+
+3. **Using sort:**
+   ```javascript
+   const a = [1, 2, 3, 3];
+   const second = [...new Set(a)].sort((a, b) => b - a)[1];
+   console.log(second); // 2
+   ```
+   👉 Simplest to write, but not optimal due to sorting complexity.
+
+#### ⚡ Comparison of Methods
+
+| Method | Time Complexity | Best For |
+| :--- | :--- | :--- |
+| **Loop ($O(n)$)** | ✅ Fastest | Interviews / large datasets |
+| **`reduce()`** | $O(n)$ | Functional style |
+| **`filter` + `max`** | $O(n)$ (multiple passes) | Readability |
+| **`sort`** | $O(n \log n)$ | Simplicity |
+
+#### ⚡ Summary
+- **Best:** Single loop ($O(n)$)
+- **Clean:** `filter` + `max`
+- **Simple:** `sort`
+
+---
+
+### 52. How do you print a countdown from 10 to 1 in JavaScript with a 1-second delay between each number?
+
+**Code:**
+```javascript
+// 1. Using setInterval
+function countdownInterval() {
+  let count = 10;
+  const timer = setInterval(() => {
+    console.log(count);
+    count--;
+    if (count === 0) {
+      clearInterval(timer);
+    }
+  }, 1000);
+}
+
+// 2. Using modern async/await with sleep helper
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+async function countdownAsync() {
+  for (let i = 10; i >= 1; i--) {
+    console.log(i);
+    await sleep(1000);
+  }
+}
+```
+
+**Answer:**
+```text
+10
+9
+8
+7
+6
+5
+4
+3
+2
+1
+```
+
+**How this answer is obtained:**
+
+1. **`setInterval` Method:**
+   - `setInterval(callback, 1000)` schedules the callback function to execute repeatedly every `1000ms` (1 second).
+   - In each tick, we log the current value of `count` and then decrement it.
+   - When `count` reaches `0`, we call `clearInterval(timer)` to stop the recurring timer and free memory.
+2. **Modern `async/await` Method:**
+   - We define a reusable `sleep(ms)` helper that returns a Promise resolving after `ms` milliseconds using `setTimeout`.
+   - Inside an `async` function, we loop from `10` down to `1`. In each iteration, we log the number and then `await sleep(1000)` to pause execution of that block for 1 second.
+   - This allows writing asynchronous, non-blocking code that reads sequentially like synchronous code.
+
+---
+
+### 53. How do you remove duplicates from an array?
+
+**Code:**
+```javascript
+const arr = [1, 2, 2, 3, 4, 4, 5];
+
+// 1. Using Set (Fastest & Simplest)
+const uniqueSet = [...new Set(arr)];
+
+// 2. Using filter & indexOf
+const uniqueFilter = arr.filter((item, index, self) => self.indexOf(item) === index);
+
+console.log("Set:", uniqueSet);
+console.log("Filter:", uniqueFilter);
+```
+
+**Answer:**
+```text
+Set: [1, 2, 3, 4, 5]
+Filter: [1, 2, 3, 4, 5]
+```
+
+**How this answer is obtained:**
+1. **`Set` Approach:** A `Set` natively stores only unique values. `[...new Set(arr)]` creates a Set from the array, deduplicating it, and spreads the unique items back into a new array. Runs in $O(n)$ time.
+2. **`filter` Approach:** `self.indexOf(item)` always returns the *first* index where `item` is found. If that first index matches the current `index`, the item is kept; duplicates fail this check. Runs in $O(n^2)$ time.
+
+---
+
+### 54. How do you reverse an array in-place and returning a new copy?
+
+**Code:**
+```javascript
+const original = [1, 2, 3];
+
+// 1. In-place mutation (modifies original)
+const inPlace = original.reverse();
+
+// 2. Non-mutating copy-reversal
+const copied = [...original].reverse(); // or original.slice().reverse()
+```
+
+**Answer:**
+```text
+(Original is mutated after reverse() call)
+```
+
+**How this answer is obtained:**
+1. `.reverse()` mutates the array *in-place*. This is a common bug source in React because mutating state directly does not trigger re-renders.
+2. To preserve the original array, create a shallow copy first using the spread operator `[...original]` or `.slice()` and then reverse the copy.
+
+---
+
+### 55. How do you find the single missing number in a consecutive array from 1 to N?
+
+**Code:**
+```javascript
+const arr = [1, 2, 4, 5, 6]; // N = 6, missing 3
+
+function findMissingNumber(nums, n) {
+  const expectedSum = (n * (n + 1)) / 2;
+  const actualSum = nums.reduce((sum, num) => sum + num, 0);
+  return expectedSum - actualSum;
+}
+
+console.log("Missing:", findMissingNumber(arr, 6));
+```
+
+**Answer:**
+```text
+Missing: 3
+```
+
+**How this answer is obtained:**
+1. The mathematical sum of consecutive integers from $1$ to $N$ is calculated via Gauss's formula: $\frac{N(N+1)}{2}$.
+2. We sum the actual elements in the array using `.reduce()`.
+3. The difference between the expected mathematical sum and the actual array sum is the missing number. Runs in linear $O(n)$ time.
+
+---
+
+### 56. How do you find all duplicate numbers in an array?
+
+**Code:**
+```javascript
+const arr = [4, 3, 2, 7, 8, 2, 3, 1];
+
+function findDuplicates(nums) {
+  const seen = new Set();
+  const duplicates = new Set();
+  for (let num of nums) {
+    if (seen.has(num)) {
+      duplicates.add(num);
+    } else {
+      seen.add(num);
+    }
+  }
+  return Array.from(duplicates);
+}
+
+console.log("Duplicates:", findDuplicates(arr));
+```
+
+**Answer:**
+```text
+Duplicates: [2, 3]
+```
+
+**How this answer is obtained:**
+1. We iterate through the array once. For each element `num`, we check if it is already present in a `seen` Set.
+2. If yes, it is a duplicate, so we add it to a `duplicates` Set (ensuring duplicates themselves aren't duplicated in our results).
+3. If no, we add it to `seen`. Runs in optimal $O(n)$ time.
+
+---
+
+### 57. How do you rotate an array to the right by K steps?
+
+**Code:**
+```javascript
+const arr = [1, 2, 3, 4, 5]; // K = 2 -> [4, 5, 1, 2, 3]
+
+function rotateArray(nums, k) {
+  const step = k % nums.length;
+  const sliced = nums.splice(nums.length - step); // removes last 'step' items
+  nums.unshift(...sliced); // inserts them at the front
+  return nums;
+}
+
+console.log("Rotated:", rotateArray([...arr], 2));
+```
+
+**Answer:**
+```text
+Rotated: [4, 5, 1, 2, 3]
+```
+
+**How this answer is obtained:**
+1. `k % nums.length` handles cases where rotation steps exceed the array's size (e.g., rotating 5 items by 7 steps is identical to rotating by 2 steps).
+2. `.splice(nums.length - step)` extracts the last `step` elements from the array.
+3. `.unshift(...sliced)` prepends those extracted items to the front of the original array, mutating it.
+
+---
+
+### 58. How do you move all zeros to the end of an array while maintaining element order?
+
+**Code:**
+```javascript
+const arr = [0, 1, 0, 3, 12];
+
+function moveZeros(nums) {
+  let insertPos = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== 0) {
+      nums[insertPos] = nums[i];
+      insertPos++;
+    }
+  }
+  while (insertPos < nums.length) {
+    nums[insertPos] = 0;
+    insertPos++;
+  }
+  return nums;
+}
+
+console.log("Moved:", moveZeros([...arr]));
+```
+
+**Answer:**
+```text
+Moved: [1, 3, 12, 0, 0]
+```
+
+**How this answer is obtained:**
+1. We iterate through the array. Whenever we encounter a non-zero element, we place it at the `insertPos` index and increment `insertPos`.
+2. This shifts all non-zero elements to the front in their original order.
+3. Once the loop ends, we fill all remaining array slots from `insertPos` to the end with `0`s. Runs in $O(n)$ time with $O(1)$ auxiliary space.
+
+---
+
+### 59. How do you merge two sorted arrays into a single sorted array?
+
+**Code:**
+```javascript
+const arr1 = [1, 3, 5];
+const arr2 = [2, 4, 6];
+
+function mergeSorted(nums1, nums2) {
+  const merged = [];
+  let i = 0, j = 0;
+  while (i < nums1.length && j < nums2.length) {
+    if (nums1[i] < nums2[j]) {
+      merged.push(nums1[i]);
+      i++;
+    } else {
+      merged.push(nums2[j]);
+      j++;
+    }
+  }
+  return merged.concat(nums1.slice(i)).concat(nums2.slice(j));
+}
+
+console.log("Merged:", mergeSorted(arr1, arr2));
+```
+
+**Answer:**
+```text
+Merged: [1, 2, 3, 4, 5, 6]
+```
+
+**How this answer is obtained:**
+1. We maintain two pointers (`i` and `j`) to iterate through both sorted arrays simultaneously.
+2. In each step, we compare the values at `nums1[i]` and `nums2[j]`, pushing the smaller value to our results and incrementing its pointer.
+3. Once one array is exhausted, we append the remaining elements of the other array using `.concat()`. Runs in $O(n + m)$ time.
+
+---
+
+### 60. How do you find the maximum subarray sum (Kadane's Algorithm)?
+
+**Code:**
+```javascript
+const arr = [-2, 1, -3, 4, -1, 2, 1, -5, 4];
+
+function maxSubArraySum(nums) {
+  let maxSum = nums[0];
+  let currentSum = nums[0];
+  for (let i = 1; i < nums.length; i++) {
+    currentSum = Math.max(nums[i], currentSum + nums[i]);
+    maxSum = Math.max(maxSum, currentSum);
+  }
+  return maxSum;
+}
+
+console.log("Max Sum:", maxSubArraySum(arr));
+```
+
+**Answer:**
+```text
+Max Sum: 6
+```
+
+**How this answer is obtained:**
+1. At each index `i`, we decide whether to add `nums[i]` to the existing subarray sum (`currentSum + nums[i]`) or start a new subarray beginning exactly at `nums[i]` (`Math.max`).
+2. We continuously track the absolute maximum sum found so far in `maxSum`.
+3. For this array, the maximum subarray is `[4, -1, 2, 1]` which sums to `6`. Runs in $O(n)$ time.
+
+---
+
+### 61. How do you find the intersection of two arrays (unique common elements)?
+
+**Code:**
+```javascript
+const arr1 = [1, 2, 2, 1];
+const arr2 = [2, 2];
+
+function intersection(nums1, nums2) {
+  const set1 = new Set(nums1);
+  const intersectionSet = new Set();
+  for (let num of nums2) {
+    if (set1.has(num)) {
+      intersectionSet.add(num);
+    }
+  }
+  return Array.from(intersectionSet);
+}
+
+console.log("Intersection:", intersection(arr1, arr2));
+```
+
+**Answer:**
+```text
+Intersection: [2]
+```
+
+**How this answer is obtained:**
+1. We load the first array elements into a Set (`set1`) for $O(1)$ lookups.
+2. We iterate through the second array, checking if each element exists in `set1`.
+3. If it matches, we add it to `intersectionSet`, ensuring only unique values are collected. Runs in linear $O(n + m)$ time.
+
+---
+
+### 62. How do you reverse a string in JavaScript?
+
+**Code:**
+```javascript
+const str = "hello";
+
+// 1. Built-in methods array conversion
+const reversed = str.split("").reverse().join("");
+
+console.log(reversed);
+```
+
+**Answer:**
+```text
+olleh
+```
+
+**How this answer is obtained:**
+1. `split("")` converts the string into an array of characters: `['h', 'e', 'l', 'l', 'o']`.
+2. `reverse()` reverses that array of characters in-place.
+3. `join("")` joins the reversed array back into a unified string.
+
+---
+
+### 63. How do you check if a string is a palindrome (ignoring casing and spaces)?
+
+**Code:**
+```javascript
+const str = "A man a plan a canal Panama";
+
+def isPalindrome(s) {
+  const cleaned = s.toLowerCase().replace(/[^a-z0-9]/g, "");
+  return cleaned === cleaned.split("").reverse().join("");
+}
+
+console.log(isPalindrome(str));
+```
+
+**Answer:**
+```text
+true
+```
+
+**How this answer is obtained:**
+1. `.toLowerCase()` standardizes casing.
+2. `.replace(/[^a-z0-9]/g, "")` uses a regular expression to strip out all non-alphanumeric characters (like spaces and commas).
+3. We then check if the cleaned string is identical to its reversed counterpart.
+
+---
+
+### 64. How do you count the number of vowels in a string?
+
+**Code:**
+```javascript
+const str = "hello world";
+
+function countVowels(s) {
+  const matches = s.match(/[aeiou]/gi);
+  return matches ? matches.length : 0;
+}
+
+console.log("Vowels:", countVowels(str));
+```
+
+**Answer:**
+```text
+Vowels: 3
+```
+
+**How this answer is obtained:**
+1. `s.match(/[aeiou]/gi)` searches the string for vowels. The flags `g` (global search) and `i` (case-insensitive) match all instances regardless of case.
+2. If matches are found, we return `matches.length` (here matching 'e', 'o', 'o' -> 3).
+3. If no match is found, `.match()` returns `null`, so we fallback to `0`.
+
+---
+
+### 65. How do you find the first non-repeating character in a string?
+
+**Code:**
+```javascript
+const str = "swiss";
+
+function firstNonRepeating(s) {
+  const charCount = {};
+  for (let char of s) {
+    charCount[char] = (charCount[char] || 0) + 1;
+  }
+  for (let char of s) {
+    if (charCount[char] === 1) return char;
+  }
+  return null;
+}
+
+console.log("First non-repeating:", firstNonRepeating(str));
+```
+
+**Answer:**
+```text
+First non-repeating: w
+```
+
+**How this answer is obtained:**
+1. We perform a first pass to count frequencies of each character and store them in an object: `{ s: 3, w: 1, i: 1 }`.
+2. We perform a second pass over the string sequentially. The first character we hit that has a frequency count of `1` is our result ('w'). Runs in linear $O(n)$ time.
+
+---
+
+### 66. How do you check if two strings are anagrams of each other?
+
+**Code:**
+```javascript
+const s1 = "listen";
+const s2 = "silent";
+
+function isAnagram(str1, str2) {
+  const clean = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, "").split("").sort().join("");
+  return clean(str1) === clean(str2);
+}
+
+console.log("Is Anagram:", isAnagram(s1, s2));
+```
+
+**Answer:**
+```text
+Is Anagram: true
+```
+
+**How this answer is obtained:**
+1. An anagram is formed by rearranging the letters of another word.
+2. We clean both strings by removing spaces/casing, split them into arrays of characters, sort them alphabetically, and join them back.
+3. If the resulting sorted strings are identical, they are anagrams.
+
+---
+
+### 67. How do you implement basic string compression using character counts?
+
+**Code:**
+```javascript
+const str = "aabcccccaaa"; // -> "a2b1c5a3"
+
+function compress(s) {
+  let compressed = "";
+  let count = 1;
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === s[i + 1]) {
+      count++;
+    } else {
+      compressed += s[i] + count;
+      count = 1;
+    }
+  }
+  return compressed.length < s.length ? compressed : s;
+}
+
+console.log("Compressed:", compress(str));
+```
+
+**Answer:**
+```text
+Compressed: a2b1c5a3
+```
+
+**How this answer is obtained:**
+1. We iterate through the string. In each step, if the next character matches the current one (`s[i] === s[i+1]`), we increment our counter.
+2. If it does not match, we append the character and its count to our result string and reset `count` to `1`.
+3. Finally, if the compressed string is not actually shorter than the original, we return the original string.
+
+---
+
+### 68. How do you remove duplicate characters from a string?
+
+**Code:**
+```javascript
+const str = "banana";
+
+const uniqueChars = [...new Set(str)].join("");
+console.log(uniqueChars);
+```
+
+**Answer:**
+```text
+ban
+```
+
+**How this answer is obtained:**
+1. `new Set("banana")` extracts the unique character symbols: `Set { 'b', 'a', 'n' }`.
+2. `[...uniqueSet]` spreads those symbols into an array.
+3. `.join("")` joins them back into the string `"ban"`.
+
+---
+
+### 69. How do you find the length of the longest substring without repeating characters?
+
+**Code:**
+```javascript
+const str = "abcabcbb";
+
+function longestSubstring(s) {
+  let maxLen = 0;
+  let start = 0;
+  const seen = {};
+  for (let i = 0; i < s.length; i++) {
+    const char = s[i];
+    if (seen[char] >= start) {
+      start = seen[char] + 1;
+    }
+    seen[char] = i;
+    maxLen = Math.max(maxLen, i - start + 1);
+  }
+  return maxLen;
+}
+
+console.log("Max Len:", longestSubstring(str));
+```
+
+**Answer:**
+```text
+Max Len: 3
+```
+
+**How this answer is obtained:**
+1. We use a **sliding window** technique with a `start` pointer and a `seen` index map tracking where each character was last spotted.
+2. If we encounter a character we've already seen *inside our active window* (`seen[char] >= start`), we shrink our window by moving the `start` pointer to the index right after the previous occurrence.
+3. We then update the character's last-seen index and calculate the window size (`i - start + 1`), updating `maxLen` if it is larger. Runs in $O(n)$ time.
+
+---
+
+### 70. How do you count the number of words in a string?
+
+**Code:**
+```javascript
+const str = "   Hello  world, this is   a test.  ";
+
+function countWords(s) {
+  const cleaned = s.trim().split(/\s+/);
+  return cleaned[0] === "" ? 0 : cleaned.length;
+}
+
+console.log("Words:", countWords(str));
+```
+
+**Answer:**
+```text
+Words: 6
+```
+
+**How this answer is obtained:**
+1. `.trim()` strips all leading and trailing whitespace from the input.
+2. `.split(/\s+/)` uses a regular expression matching one or more consecutive whitespaces as a split boundary. This handles multiple consecutive spaces correctly.
+3. We return the length of the resulting array.
+
+---
+
+### 71. How do you capitalize the first letter of each word in a sentence?
+
+**Code:**
+```javascript
+const str = "hello world from javascript";
+
+const capitalized = str
+  .split(" ")
+  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+  .join(" ");
+
+console.log(capitalized);
+```
+
+**Answer:**
+```text
+Hello World From Javascript
+```
+
+**How this answer is obtained:**
+1. `split(" ")` divides the sentence into individual words: `["hello", "world", ...]`.
+2. For each word, `word.charAt(0).toUpperCase()` capitalizes the first character, and `word.slice(1)` appends the remainder of the word.
+3. `join(" ")` joins the capitalized words back together with single spaces.
+
+---
+
+### 72. Predict the output of `[] == ![]` in JavaScript.
+
+**Code:**
+```javascript
+console.log([] == ![]);
+```
+
+**Answer:**
+```text
+true
+```
+
+**How this answer is obtained:**
+1. The logical NOT operator `!` has higher precedence than `==`. It converts `[]` (which is truthy) into `false`. So the expression becomes `[] == false`.
+2. Under JavaScript's **Implicit Type Coercion** rules, when comparing an object (the array `[]`) to a boolean (`false`), both are converted to numbers.
+3. `false` converts to `0`.
+4. The empty array `[]` is coerced to a primitive string via `.toString()`, yielding `""` (empty string), which then converts to the number `0`.
+5. Since `0 == 0` is true, the result is `true`.
+
+---
+
+### 73. Predict the output of `typeof typeof null`.
+
+**Code:**
+```javascript
+console.log(typeof typeof null);
+```
+
+**Answer:**
+```text
+string
+```
+
+**How this answer is obtained:**
+1. `typeof null` executes first due to standard right-to-left associativity. Due to an infamous historical JS implementation bug, it returns the string `"object"`.
+2. The expression becomes `typeof "object"`.
+3. `typeof` any string (including `"object"`) always returns the string `"string"`.
+
+---
+
+### 74. Predict the output of `1 + +"2" * "2"`.
+
+**Code:**
+```javascript
+console.log(1 + +"2" * "2");
+```
+
+**Answer:**
+```text
+5
+```
+
+**How this answer is obtained:**
+1. Precedence rules: Unary plus `+` runs first, converting the string `"2"` to the number `2`. The expression becomes `1 + 2 * "2"`.
+2. Multiplication `*` runs next. It coerces the second string `"2"` into a number `2` to perform arithmetic, yielding `2 * 2 = 4`. The expression is now `1 + 4`.
+3. Addition runs last, resulting in `5`.
+
+---
+
+### 75. Predict the output of this hoisting scenario:
+```javascript
+var a = 1;
+function x() {
+  console.log(a);
+  var a = 2;
+}
+x();
+```
+
+**Answer:**
+```text
+undefined
+```
+
+**How this answer is obtained:**
+1. Inside the function `x()`, the declaration `var a` is hoisted to the top of the function's local scope.
+2. Only the *declaration* is hoisted, not the initialization (`a = 2`).
+3. Inside `x()`, the local variable `a` shadows the global variable `a = 1`.
+4. Therefore, when `console.log(a)` runs, it reads the local `a` before it has been assigned, resulting in `undefined`.
+
+---
+
+### 76. Predict the output of this closure scope scenario:
+```javascript
+for (var i = 0; i < 3; i++) {
+  setTimeout(() => console.log(i), 1000);
+}
+```
+
+**Answer:**
+```text
+3
+3
+3
+```
+
+**How this answer is obtained:**
+1. `var` is function-scoped (or globally scoped here), not block-scoped. There is only a **single shared binding** of `i` across all loop iterations.
+2. The `for` loop completes fully before any asynchronous `setTimeout` callback fires. By the time they run (after 1 second), `i` has been incremented to `3`.
+3. All three callback closures reference the exact same `i`, logging `3` three times.
+4. **Mitigation:** Changing `var i` to `let i` creates a new block-scoped variable binding for each loop iteration, correctly logging `0`, `1`, and `2`.
+
+---
+
+### 77. Predict the output of this Event Loop execution order scenario:
+```javascript
+console.log("Start");
+
+setTimeout(() => {
+  console.log("Timeout");
+}, 0);
+
+Promise.resolve().then(() => {
+  console.log("Promise");
+});
+
+console.log("End");
+```
+
+**Answer:**
+```text
+Start
+End
+Promise
+Timeout
+```
+
+**How this answer is obtained:**
+1. Synchronous execution runs first: `console.log("Start")` and `console.log("End")` print immediately.
+2. `setTimeout` callback is queued in the **Macrotask Queue**.
+3. `Promise.then` callback is queued in the **Microtask Queue**.
+4. Once the synchronous execution completes and the Call Stack is empty, the Event Loop drains the entire **Microtask Queue** first, logging `"Promise"`.
+5. Only then does it execute the next pending **macrotask**, logging `"Timeout"`.
+
+---
+
+### 78. Predict the output of this Promise chain scenario:
+```javascript
+Promise.resolve("A")
+  .then((val) => {
+    console.log(val);
+    return "B";
+  })
+  .then((val) => {
+    console.log(val);
+  })
+  .then((val) => {
+    console.log(val);
+  });
+```
+
+**Answer:**
+```text
+A
+B
+undefined
+```
+
+**How this answer is obtained:**
+1. The first `.then()` resolves with `"A"`, logging `"A"`, and explicitly returns `"B"`.
+2. The second `.then()` receives `"B"` as its argument, logs `"B"`, but returns nothing (implicitly returning `undefined`).
+3. The third `.then()` receives `undefined` as its argument, logging `undefined`.
+
+---
+
+### 79. Predict the output of this dynamic `this` binding scenario:
+```javascript
+const obj = {
+  name: "John",
+  greetRegular: function() {
+    console.log(this.name);
+  },
+  greetArrow: () => {
+    console.log(this.name);
+  }
+};
+
+obj.greetRegular();
+obj.greetArrow();
+```
+
+**Answer:**
+```text
+John
+undefined (or empty string in some browser contexts)
+```
+
+**How this answer is obtained:**
+1. `greetRegular` is a standard function. When called as `obj.greetRegular()`, its `this` is dynamically bound to the calling context (`obj`), correctly reading `"John"`.
+2. `greetArrow` is an arrow function. Arrow functions do not possess their own `this` binding. They bind `this` **lexically**, inheriting it from their enclosing environment.
+3. Here, the enclosing scope of the object literal is the global scope (the `window` object in browsers or `global` in Node), where `name` is undefined.
+
+---
+
+### 80. Predict the output of this prototype inheritance scenario:
+```javascript
+function Foo() {}
+Foo.prototype.bar = 1;
+
+const a = new Foo();
+console.log(a.bar);
+
+Foo.prototype = { bar: 2 };
+const b = new Foo();
+console.log(a.bar);
+console.log(b.bar);
+```
+
+**Answer:**
+```text
+1
+1
+2
+```
+
+**How this answer is obtained:**
+1. `const a = new Foo()` creates an object `a` whose internal `[[Prototype]]` link points to the active `Foo.prototype` object, which has `bar = 1`. Thus, `a.bar` logs `1`.
+2. `Foo.prototype = { bar: 2 }` **reassigns** the prototype object entirely. 
+3. Existing instances like `a` still point to the *original* prototype object in memory, which still has `bar = 1`.
+4. New instances like `const b = new Foo()` point to the new prototype object, logging `2`.
+
+---
+
+### 81. Predict the output of this Temporal Dead Zone (TDZ) scenario:
+```javascript
+let x = 1;
+function test() {
+  console.log(x);
+  let x = 2;
+}
+test();
+```
+
+**Answer:**
+```text
+ReferenceError: Cannot access 'x' before initialization
+```
+
+**How this answer is obtained:**
+1. Inside the function `test()`, the local declaration `let x = 2` is hoisted to the top of the function's scope during compilation.
+2. Variables declared with `let` and `const` are hoisted but **not initialized**. They enter the **Temporal Dead Zone (TDZ)** from the start of the function scope block until the declaration line is executed.
+3. Accessing the local `x` via `console.log(x)` while it is trapped in the TDZ throws a `ReferenceError` immediately, instead of falling back to the outer global `x = 1`.
+
 ---
 
 ## Quick reference

@@ -1275,3 +1275,140 @@ A Clustered Index determines the physical order of data rows in a table, meaning
 **Reference:** [Documentation](https://learn.microsoft.com/en-us/sql/relational-databases/indexes/clustered-and-nonclustered-indexes-described)
 
 ---
+
+### 102. What is a Database Transaction and what are the ACID properties?
+**Answer:** 
+**The Core Concept:**
+A database transaction is a sequence of one or more database operations executed as a single, logical unit of work. It is governed by **ACID** properties to guarantee absolute data integrity under concurrency and crashes.
+
+**Key Details:**
+- **Atomicity**: "All or nothing." If a single statement inside the transaction fails, the entire transaction is rolled back.
+- **Consistency**: Guarantees that any transaction will transition the database from one valid state to another, preserving all schemas, constraints, and triggers.
+- **Isolation**: Ensures that concurrent transactions execute independently without bleeding uncommitted data into one another (controlled by Isolation Levels).
+- **Durability**: Guarantees that once a transaction is committed, its changes are permanently recorded in non-volatile storage and survive system crashes.
+
+**Example:** 
+```sql
+BEGIN TRANSACTION;
+  UPDATE Accounts SET Balance = Balance - 100 WHERE AccountId = 1;
+  UPDATE Accounts SET Balance = Balance + 100 WHERE AccountId = 2;
+COMMIT TRANSACTION;
+```
+
+**Reference:** [SQL Server Transactions](https://learn.microsoft.com/en-us/sql/t-sql/language-elements/transactions-transact-sql)
+
+---
+
+### 103. What is Database Normalization?
+**Answer:** 
+**The Core Concept:**
+Database Normalization is the structured process of organizing database tables to minimize data redundancy (duplication) and prevent transactional anomalies (insertion, update, and deletion bugs).
+
+**Key Details:**
+- **First Normal Form (1NF)**: Requires atomic values (no repeating groups/multi-valued fields) and a designated primary key.
+- **Second Normal Form (2NF)**: Meets 1NF, and ensures all non-key columns are fully dependent on the *entire* primary key (eliminates partial dependencies on composite keys).
+- **Third Normal Form (3NF)**: Meets 2NF, and ensures non-key columns do not depend transitively on other non-key columns (eliminates transitive dependencies).
+- **Trade-off**: Higher normalization reduces redundancy but increases table count, requiring complex SQL joins that can impact read throughput.
+
+**Example:** 
+```
+// 1NF/2NF Violating Table: [EmployeeId, DepartmentId, DepartmentName]
+// 3NF Normalized into two tables:
+// Table 1: [EmployeeId, DepartmentId]
+// Table 2: [DepartmentId, DepartmentName] (eliminates transitive dependency)
+```
+
+**Reference:** [Database Normalization Guide](https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description)
+
+---
+
+### 104. What is Database Indexing?
+**Answer:** 
+**The Core Concept:**
+Database indexing is an optimization technique that creates specialized auxiliary data structures (typically B-Trees) to drastically accelerate record retrieval speeds, bypassing expensive full-table scans.
+
+**Key Details:**
+- **How it works**: An index stores key values sorted in a tree structure alongside pointers to their corresponding physical row locations.
+- **Cost**: Accelerates reads (`SELECT`) but introduces write overhead (`INSERT`, `UPDATE`, `DELETE`) as index pages must be dynamically updated on every write.
+- **Indexes in SQL**: `CREATE INDEX IX_TableName_Column ON TableName(ColumnName);`
+
+**Reference:** [SQL Server Index Architecture](https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-index-design-guide)
+
+---
+
+### 105. What is a Deadlock and how does SQL Server handle it?
+**Answer:** 
+**The Core Concept:**
+A deadlock is a high-concurrency conflict where two or more transactions hold exclusive locks on resources the other needs to proceed, creating an infinite block cycle.
+
+**Key Details:**
+- **Detection**: SQL Server runs a background thread called the **Lock Monitor** every 5 seconds to scan the lock trees for cyclic dependencies.
+- **Resolution**: Once a cycle is detected, the engine terminates one transaction (the "Deadlock Victim", usually the one with the lowest rollback cost), rolls back its changes, and throws a 1205 error to the client, allowing the other transaction to finish.
+- **Prevention**: Keep transactions short, access tables in the identical order across all procedures, and build appropriate indexes to minimize lock duration.
+
+**Example:** 
+```
+Transaction A: Locks Table 1 ---> Needs Table 2 (Blocked)
+Transaction B: Locks Table 2 ---> Needs Table 1 (Blocked)
+```
+
+**Reference:** [Deadlock Analysis](https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide#deadlocks)
+
+---
+
+### 106. What is the difference between an `INNER JOIN` and a `LEFT JOIN`?
+**Answer:** 
+**The Core Concept:**
+An `INNER JOIN` returns only the records that have matching keys in both participating tables. A `LEFT JOIN` (Left Outer Join) returns *all* records from the left table, along with matching rows from the right table, filling unmatched right fields with `NULL`s.
+
+**Key Details:**
+- **INNER JOIN**: Filters out orphans. If a child row doesn't match a parent key, it is excluded from the output.
+- **LEFT JOIN**: Preserves the left side. Useful for reports where you want to list all records regardless of whether they have matching details on the other side.
+
+**Example:** 
+```sql
+-- Inner: Only users with active profile details
+SELECT * FROM Users u INNER JOIN Profiles p ON u.Id = p.UserId;
+
+-- Left: All users, with profiles being NULL if missing
+SELECT * FROM Users u LEFT JOIN Profiles p ON u.Id = p.UserId;
+```
+
+**Reference:** [SQL Joins](https://learn.microsoft.com/en-us/sql/relational-databases/performance/joins)
+
+---
+
+### 107. What is Database Replication?
+**Answer:** 
+**The Core Concept:**
+Database Replication is the automatic process of copying and distributing data from one database server (primary/master) to one or more auxiliary servers (secondaries/replicas) to maximize availability, disaster recovery, and read throughput.
+
+**Key Details:**
+- **Primary-Secondary (Master-Slave)**: Writes occur on the primary, which streams modifications to secondaries. Great for scaling massive read traffic by offloading queries to secondaries.
+- **Multi-Master (Active-Active)**: Writes can occur on any node, with conflict resolution algorithms syncing changes across the entire cluster.
+- **Replication latency**: The sync delay between primary writes and secondary reads, which can lead to eventual consistency read-skew bugs.
+
+**Reference:** [SQL Server Replication](https://learn.microsoft.com/en-us/sql/relational-databases/replication/sql-server-replication)
+
+---
+
+### 108. How do you prevent duplicate users with the same email?
+**Answer:** 
+**The Core Concept:**
+Preventing duplicate emails requires a defense-in-depth approach combining strict database-level unique constraints with application-level verification checks.
+
+**Key Details:**
+- **Database Level (Mandatory)**: Create a `UNIQUE` index or constraint on the email column. This acts as the final gatekeeper, raising a duplicate key exception at the storage layer if a duplicate write attempt slips through the application.
+- **Application Level**: Perform a query validation check (`SELECT EXISTS`) in the database before attempting to insert.
+- **Concurrency Guard**: Wrap checking and writing in a database transaction, or use native atomic upserts (like `INSERT ... ON CONFLICT` or `upsert: true` in NoSQL).
+
+**Example:** 
+```sql
+-- SQL database unique index constraint
+ALTER TABLE Users ADD CONSTRAINT UQ_Users_Email UNIQUE (Email);
+```
+
+**Reference:** [Unique Constraints](https://learn.microsoft.com/en-us/sql/relational-databases/tables/unique-constraints-and-check-constraints)
+
+---
+

@@ -1,0 +1,146 @@
+# DynamoDB Interview Questions
+
+This document contains a comprehensive list of essential Amazon DynamoDB interview questions, focusing on architectural patterns, key schema design, data querying techniques, and real-world NoSQL scaling.
+
+---
+
+## Core Concepts & Schema Design
+
+### 1. What is Amazon DynamoDB?
+**Answer:** Amazon DynamoDB is a fully managed, serverless, key-value and document NoSQL database service offered by AWS. It is designed to provide high-performance, single-digit millisecond latency at any scale.
+
+**Key Details:**
+- **Fully Managed & Serverless**: Auto-scales throughput capacity up and down to match workloads without requiring server provisioning, OS patching, or manual replication configuration.
+- **Data Model**: Data is stored in tables containing items (rows), which are collections of attributes (columns). It is schema-flexible; items in the same table can have unique attributes.
+- **High Availability**: Automatically replicates your data across three physical Availability Zones (AZs) in an AWS Region to ensure robust fault tolerance.
+
+**Example:** 
+Storing and retrieving session states or real-time user profiles with sub-second lookups.
+
+**Reference:** [What is Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html)
+
+---
+
+### 2. What is a Partition Key vs. Sort Key (Composite Primary Key)?
+**Answer:** 
+**The Core Concept:**
+A Partition Key (PK) is a single attribute that DynamoDB uses as input to an internal hash function to determine the physical partition where the item is stored. A Sort Key (SK) is a second attribute used to physically sort items with the same partition key within a partition.
+
+**Key Details:**
+- **Simple Primary Key**: Consists solely of a Partition Key. Every item in the table must have a unique PK.
+- **Composite Primary Key**: Consists of both a Partition Key and a Sort Key. Items can share the same PK, but their combination of PK and SK must be globally unique.
+- **Query Efficiency**: You can perform direct, ultra-fast $O(1)$ lookups on the PK, and range queries (e.g., `begins_with`, `between`, `>`, `<`) using the SK.
+
+**Example:** 
+In a messaging application, `userId` is the Partition Key, and `messageTimestamp` is the Sort Key. This allows storing multiple messages per user, sorted sequentially.
+
+**Reference:** [DynamoDB Primary Key Spec](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html#HowItWorks.CoreComponents.PrimaryKey)
+
+---
+
+## Querying and Operations
+
+### 3. What is the difference between a `Query` and a `Scan` operation?
+**Answer:** 
+**The Core Concept:**
+`Query` finds items based on their primary key values, searching only the specific partition where the target data resides. `Scan` reads *every single item* in the entire table, partition-by-partition.
+
+**Key Details:**
+- **Performance**: `Query` is highly efficient ($O(1)$ partition lookup + $O(\log N)$ sort key search) and consumes minimal Read Capacity Units (RCUs). `Scan` is highly inefficient ($O(N)$ time complexity) and can easily consume all your table's provisioned RCUs, throttling your API.
+- **Limits**: Both operations are capped at returning a maximum of 1 MB of data per request, requiring pagination (using `LastEvaluatedKey`).
+
+**Comparison Table:**
+
+| Feature | `Query` | `Scan` |
+|:---|:---|:---|
+| **Complexity** | ✅ $O(1)$ / $O(\log N)$ | ❌ $O(N)$ (sequential) |
+| **Throughput (RCU)**| Minimal (targeted reads) | High (reads entire table) |
+| **Best For** | Finding specific items or ranges | Auditing or small lookup tables |
+| **Mandatory Input** | Partition Key (`KeyConditionExpression`) | None |
+
+**Reference:** [Query vs Scan in DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-query-scan.html)
+
+---
+
+### 4. What is the difference between a Filter Expression and a Scan?
+**Answer:** 
+**The Core Concept:**
+Scanning reads every item from disk. A **Filter Expression** is applied *after* the raw data has been read from the physical partitions but *before* it is returned to the client.
+
+**Key Details:**
+- **No RCU Saving**: A Filter Expression does **not** reduce the throughput cost (RCUs) of a `Scan` or `Query` because the items are still physically read from the partitions first.
+- **Bandwidth Saving**: It only reduces network payload size by filtering out unwanted data on the AWS server tier, returning only matching items to your application.
+- **Pitfall**: A `Scan` with a Filter Expression can still return an empty page of results with a `LastEvaluatedKey` if the 1 MB block of scanned items did not contain any matching filters.
+
+**Example:** 
+```javascript
+// Consumes RCUs for the ENTIRE table, but returns only active users over the network
+const params = {
+  TableName: "Users",
+  FilterExpression: "status = :active",
+  ExpressionAttributeValues: { ":active": "ACTIVE" }
+};
+await dynamoDb.scan(params).promise();
+```
+
+**Reference:** [Filter Expressions](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.html#Query.FilterExpression)
+
+---
+
+### 5. What is a Key Condition Expression?
+**Answer:** 
+**The Core Concept:**
+A Key Condition Expression is a query parameter that specifies the key values for the items to be read. Unlike Filter Expressions, it directly restricts the read operation to a single partition on disk, maximizing efficiency and saving RCUs.
+
+**Key Details:**
+- You **must** provide the partition key name and exact value as an equality condition (`PK = :value`).
+- You can optionally provide comparison conditions for the sort key (e.g., `SK begins_with :prefix`, `SK > :date`).
+- Cannot reference non-key attributes (non-key filters must go inside the `FilterExpression`).
+
+**Example:** 
+```javascript
+const params = {
+  TableName: "Orders",
+  KeyConditionExpression: "userId = :uid AND orderDate > :date",
+  ExpressionAttributeValues: {
+    ":uid": "user_12345",
+    ":date": "2026-01-01"
+  }
+};
+await dynamoDb.query(params).promise();
+```
+
+**Reference:** [Query Key Condition Expression](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.html#Query.KeyConditionExpression)
+
+---
+
+### 6. What are Batch Writes and Batch Reads (`BatchWriteItem` and `BatchGetItem`)?
+**Answer:** 
+**The Core Concept:**
+Batch operations allow you to execute multiple write (put/delete) or read (get) actions across one or more tables in a single, parallelized network request, significantly reducing connection overhead.
+
+**Key Details:**
+- **Limits**:
+  - **`BatchGetItem`**: Read up to 100 items or 16 MB of data.
+  - **`BatchWriteItem`**: Put or delete up to 25 items or 16 MB of data.
+- **Partial Failures**: If the table lacks sufficient throughput capacity, a batch operation can partially succeed. Failed items are returned in the `UnprocessedKeys` or `UnprocessedItems` properties, which the application **must** retry using an exponential backoff algorithm.
+- **No Transactions**: Batch operations are not atomic. If item 5 fails, items 1-4 remain committed. For atomic transactions, use `TransactWriteItems` and `TransactGetItems`.
+
+**Example:** 
+```javascript
+// Bulk writing up to 25 users in a single request
+const params = {
+  RequestItems: {
+    "Users": [
+      { PutRequest: { Item: { userId: "1", name: "Alice" } } },
+      { PutRequest: { Item: { userId: "2", name: "Bob" } } }
+    ]
+  }
+};
+const res = await dynamoDb.batchWrite(params).promise();
+// check res.UnprocessedItems for retries!
+```
+
+**Reference:** [DynamoDB Batch Operations](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/best-practices-many-items.html)
+
+---

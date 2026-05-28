@@ -65,3 +65,30 @@ Redux Thunk is a middleware that allows you to write action creators that return
 **Reference:** [Documentation](https://redux.js.org/usage/writing-logic-thunks)
 
 ---
+
+### 5. What is a Redux Middleware and how does it work under the hood?
+**Answer:** 
+**The Core Concept:**
+A Redux Middleware provides a third-party extension point between dispatching an action and the moment it reaches the reducer. It is used for side effects, logging, crash reporting, routing, or asynchronous API calls.
+
+**Key Details:**
+- Uses a functional curry pattern under the hood: `store => next => action => { ... }`.
+- **`store`**: The middleware has access to `dispatch` and `getState`.
+- **`next`**: A function that passes control of the action to the next middleware in the pipeline, or finally to the reducer.
+- **`action`**: The current action object being processed.
+
+**Example:** 
+```javascript
+// A simple custom logging middleware
+const loggerMiddleware = (store) => (next) => (action) => {
+  console.log("Dispatching:", action);
+  const result = next(action); // pass action to next middleware/reducer
+  console.log("Next State:", store.getState());
+  return result; // return result of next(action)
+};
+```
+
+**Reference:** [Redux Middleware Guide](https://redux.js.org/understanding/history-and-design/middleware)
+
+---
+

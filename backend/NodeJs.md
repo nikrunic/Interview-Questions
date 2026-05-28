@@ -1253,3 +1253,261 @@ Fastify focuses on performance and schema-based validation.
 **Reference:** [Documentation](https://fastify.dev/)
 
 ---
+
+## Additional Depth (Architectural Focus)
+
+### 101. What is Node.js and explain its Event-Driven architecture?
+**Answer:** 
+**The Core Concept:**
+Node.js is an open-source, cross-platform JavaScript runtime built on Chrome's V8 engine. Its Event-Driven architecture means that every action (like database queries, network requests, or file systems) triggers an asynchronous event, processing events sequentially via callbacks.
+
+**Key Details:**
+- Decouples processing from thread counts, enabling highly scalable operations without generating separate system threads per request.
+- Leverages the V8 engine for execution, compiling JavaScript directly to machine code.
+- Relies on event emitters to publish events that are subscribed to by handlers throughout the application.
+
+**Example:** 
+```javascript
+const EventEmitter = require("events");
+const chatRoom = new EventEmitter();
+
+chatRoom.on("message", (msg) => console.log("Received:", msg));
+chatRoom.emit("message", "Hello, World!");
+```
+
+**Reference:** [Node.js Architecture](https://nodejs.org/en/about/)
+
+---
+
+### 102. How does the Event Loop work under the hood?
+**Answer:** 
+**The Core Concept:**
+The Event Loop is the heart of Node.js, coordinating asynchronous, non-blocking I/O. It continuously checks the call stack and, if it is empty, schedules callbacks from queues in a strict cycle of phases.
+
+**Key Details:**
+- **Event Loop Phases**:
+  1. **Timers**: Executes callbacks scheduled by `setTimeout()` and `setInterval()`.
+  2. **Pending Callbacks**: Executes I/O callbacks deferred from previous cycles.
+  3. **Idle, Prepare**: Used only internally by the system.
+  4. **Poll**: Retrieves new I/O events; executes I/O callbacks.
+  5. **Check**: Executes callbacks scheduled by `setImmediate()`.
+  6. **Close Callbacks**: Processes socket close events (e.g., `socket.on('close')`).
+- **Intermediate Queues**: Between phases, the Microtask Queue (including `process.nextTick()` and Promise callbacks) is fully drained.
+
+**Example:** 
+```javascript
+setTimeout(() => console.log("Timer"), 0);
+setImmediate(() => console.log("Immediate"));
+process.nextTick(() => console.log("nextTick"));
+
+// Order: nextTick -> Timer -> Immediate (depending on poll context)
+```
+
+**Reference:** [Node.js Event Loop](https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/)
+
+---
+
+### 103. Difference between `dependencies` and `devDependencies`
+**Answer:** 
+**The Core Concept:**
+In `package.json`, `dependencies` are packages required to run the application in a production environment, while `devDependencies` are only used for local development, building, and testing.
+
+**Key Details:**
+- **dependencies**: Dynamic libraries, routers, utility wrappers, databases (e.g., `express`, `pg`, `zod`, `dotenv`).
+- **devDependencies**: Compilers, linters, testing suites, bundlers, and typings (e.g., `typescript`, `jest`, `eslint`, `@types/node`).
+- Production bundles ignore `devDependencies` when installed via `npm install --omit=dev` or `npm ci --only=production`, drastically reducing bundle size and attack surface.
+
+**Example:** 
+```json
+{
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}
+```
+
+**Reference:** [NPM package.json Spec](https://docs.npmjs.com/specifying-dependencies-and-devdependencies-in-a-package-json-file)
+
+---
+
+### 104. Difference between a Buffer and a Stream
+**Answer:** 
+**The Core Concept:**
+A Buffer is a fixed-size chunk of physical raw memory allocated outside the V8 heap. A Stream is a sequential sequence of data chunks transferred over time, allowing processing of data as it arrives without keeping it entirely in memory.
+
+**Key Details:**
+- **Buffer**: Best for binary manipulations of small, complete files. It loads the entire dataset into RAM, which causes server crashes when reading multi-gigabyte files.
+- **Stream**: Processes data piece-by-piece. Uses standard events (`data`, `end`, `error`) or `.pipe()` to process massive files with steady, low memory footprints.
+
+**Example:** 
+```javascript
+const fs = require("fs");
+
+// Streams - Memory Efficient
+const readStream = fs.createReadStream("massive_movie.mp4");
+const writeStream = fs.createWriteStream("copy.mp4");
+readStream.pipe(writeStream); // Handles backpressure automatically
+```
+
+**Reference:** [Node.js Streams](https://nodejs.org/api/stream.html)
+
+---
+
+### 105. What is Clustering and how does the `cluster` module work?
+**Answer:** 
+**The Core Concept:**
+Clustering scales a Node.js API by spinning up multiple instances (workers) of the same process that share the same server port. This allows the application to utilize multi-core CPU architectures.
+
+**Key Details:**
+- The primary process spawns worker processes using `child_process.fork()`.
+- The primary handles network traffic and distributes incoming TCP connections using a Round-Robin load-balancing algorithm.
+- Workers run in separate V8 instances with independent memory heaps, preventing errors in one worker from taking down the entire cluster.
+
+**Example:** 
+```javascript
+const cluster = require("cluster");
+const os = require("os");
+
+if (cluster.isPrimary) {
+  const numCPUs = os.cpus().length;
+  for (let i = 0; i < numCPUs; i++) {
+    cluster.fork(); // Spawn worker
+  }
+} else {
+  // Workers share the same TCP port
+  require("./server.js");
+}
+```
+
+**Reference:** [Node.js Cluster](https://nodejs.org/api/cluster.html)
+
+---
+
+### 106. What are Built-in Middlewares in Express?
+**Answer:** 
+**The Core Concept:**
+Built-in middlewares are functions packaged natively inside the Express framework to parse requests, parse cookies, or serve static assets, removing the need for legacy third-party dependencies (like body-parser).
+
+**Key Details:**
+- **`express.json()`**: Parses incoming requests containing JSON payloads.
+- **`express.urlencoded()`**: Parses URL-encoded payloads (e.g., standard HTML forms).
+- **`express.static()`**: Serves static files directly from a directory (e.g., images, compiled client assets).
+
+**Example:** 
+```javascript
+const express = require("express");
+const app = express();
+
+app.use(express.json()); // Built-in parsing middleware
+app.use(express.static("public")); // Built-in file serving middleware
+```
+
+**Reference:** [Express Built-in Middleware](https://expressjs.com/en/guide/using-middleware.html#middleware.built-in)
+
+---
+
+### 107. What is the MVC (Model-View-Controller) pattern?
+**Answer:** 
+**The Core Concept:**
+MVC is an architectural software design pattern that divides an application into three interconnected components, separating data representation, user interfaces, and control flow logic.
+
+**Key Details:**
+- **Model**: Represents database schemas, validation logic, and business entities (data tier).
+- **View**: The layout structure rendered to the user (HTML, template engines, or API JSON representation).
+- **Controller**: Processes incoming HTTP requests, coordinates with Models, and selects which Views/JSON payloads to output.
+
+**Example:** 
+```
+  [HTTP Request] ---> [Controller] <---> [Model] (DB Access)
+                           |
+                           v
+                   [View / JSON Response]
+```
+
+**Reference:** [MDN MVC Architecture](https://developer.mozilla.org/en-US/docs/Glossary/MVC)
+
+---
+
+### 108. What is Redis and how is it used in caching?
+**Answer:** 
+**The Core Concept:**
+Redis is a high-performance, in-memory, key-value database. It is widely used in Node.js as a caching tier to store frequently accessed data in RAM, reducing heavy query load on slower primary databases (like SQL or MongoDB).
+
+**Key Details:**
+- Operates in-memory to deliver sub-millisecond response latencies.
+- **TTL (Time-To-Live)**: Keys are configured to auto-expire after a set duration, ensuring cached data does not remain indefinitely stale.
+- **Cache-Aside Pattern**: Check Redis first. If a cache miss occurs, query the primary database, save the result in Redis, and return.
+
+**Example:** 
+```javascript
+const Redis = require("ioredis");
+const redis = new Redis();
+
+async function getCachedUser(id) {
+  const cacheKey = `user:${id}`;
+  const cached = await redis.get(cacheKey);
+  if (cached) return JSON.parse(cached); // Cache Hit
+
+  const user = await db.users.findById(id); // Cache Miss
+  await redis.setex(cacheKey, 3600, JSON.stringify(user)); // Cache for 1 hour
+  return user;
+}
+```
+
+**Reference:** [Redis Docs](https://redis.io/docs/clients/nodejs/)
+
+---
+
+### 109. What is the difference between `process.nextTick()` and `setImmediate()`?
+**Answer:** 
+**The Core Concept:**
+`process.nextTick()` runs immediately after the current operation finishes, bypassing any Event Loop phases. `setImmediate()` executes during the *Check* phase of the Event Loop, immediately after the Poll phase.
+
+**Key Details:**
+- **`process.nextTick()`**: Technically not part of the event loop. Invocations drain the microtask queue, meaning recursive `nextTick` calls will completely block the event loop and freeze I/O.
+- **`setImmediate()`**: Yields execution to the event loop, ensuring I/O events, timers, and other phases remain unblocked.
+
+**Example:** 
+```javascript
+setImmediate(() => console.log("Immediate"));
+process.nextTick(() => console.log("nextTick"));
+
+// Output:
+// nextTick (runs instantly before the event loop advances)
+// Immediate (runs during the Check phase)
+```
+
+**Reference:** [Event Loop setImmediate vs nextTick](https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/#processnexttick-vs-setimmediate)
+
+---
+
+### 110. What are the best practices for security in a Node.js API?
+**Answer:** 
+**The Core Concept:**
+Security in Node.js requires a defense-in-depth approach covering request parsing, dependency auditing, header configuration, and secure execution runtime rules.
+
+**Key Details:**
+- **Helmet**: Set HTTP security headers (HSTS, CSP, X-Frame-Options) to mitigate common browser vectors.
+- **Rate Limiting**: Limit API request volume per IP window to prevent DDoS and brute-force attacks.
+- **Data Sanitization**: Never trust client inputs; use tools like Zod to strictly validate payloads and prevent SQL/NoSQL Injection.
+- **Dependency Audit**: Run `npm audit` frequently to check for vulnerabilities in third-party scripts.
+- **Environment Rules**: Avoid running Node as the root user in Docker containers, and store sensitive secrets securely in environmental variables.
+
+**Example:** 
+```javascript
+const express = require("express");
+const helmet = require("helmet");
+const rateLimit = require("express-rate-limit");
+const app = express();
+
+app.use(helmet()); // Set secure HTTP headers
+app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 100 })); // Rate limiting
+```
+
+**Reference:** [Node.js Security Best Practices](https://nodejs.org/en/docs/guides/security-best-practices/)
+
+---
+

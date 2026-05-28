@@ -473,3 +473,420 @@ Generics provide a way to create reusable components that can work over a variet
 **Reference:** [Documentation](https://www.typescriptlang.org/docs/handbook/2/generics.html)
 
 ---
+
+### 52. What are Optional Properties in TypeScript?
+**Answer:** 
+**The Core Concept:**
+Optional properties are object properties that may or may not be present on an instance of a type or interface. They are denoted by appending a question mark (`?`) after the property name.
+
+**Key Details:**
+- Reading an optional property that is missing evaluates to `undefined` at runtime.
+- In strict mode, the type of an optional property `prop?: type` is automatically inferred as `type | undefined`.
+- Safe access can be performed using optional chaining (`?.`) or logical fallback operators (`??`).
+
+**Example:** 
+```typescript
+interface User {
+  id: number;
+  name: string;
+  email?: string; // Optional property
+}
+
+const user1: User = { id: 1, name: "Alice" }; // Valid
+const emailLength = user1.email?.length; // Safe access (evaluates to undefined)
+```
+
+**Reference:** [TS Optional Properties](https://www.typescriptlang.org/docs/handbook/2/objects.html#optional-properties)
+
+---
+
+### 53. Difference between `type` and `interface`
+**Answer:** 
+**The Core Concept:**
+Both declare shapes of objects or custom types, but `type` is a flexible type alias for any type structure, while `interface` is restricted to describing object contracts and supports inheritance and merging.
+
+**Key Details:**
+- **Declaration Merging**: Only `interface` supports declaration merging (declaring the same interface name multiple times merges the properties).
+- **Utility & Combinators**: `type` can represent unions (`A | B`), intersections (`A & B`), tuples, and primitives. Interfaces can only extend other objects/classes.
+- **Performance**: In older TS compiler versions, interfaces were resolved slightly faster due to internal caching; in modern versions, they are functionally identical for objects.
+
+**Example:** 
+```typescript
+// Declaration Merging (Interfaces only)
+interface Box { height: number; }
+interface Box { width: number; }
+const myBox: Box = { height: 10, width: 20 }; // Merged!
+
+// Type Alias Unions (Types only)
+type ID = string | number;
+```
+
+**Reference:** [TS Type Aliases vs Interfaces](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces)
+
+---
+
+### 54. What are Utility Types?
+**Answer:** 
+**The Core Concept:**
+Utility Types are built-in generic types in TypeScript that allow developers to perform common type transformations and operations on existing types.
+
+**Key Details:**
+- **`Partial<T>`**: Constructs a type with all properties of `T` set to optional.
+- **`Required<T>`**: Constructs a type with all properties of `T` set to required.
+- **`Readonly<T>`**: Constructs a type with all properties of `T` set to readonly (cannot be reassigned).
+- **`Pick<T, K>`**: Constructs a type by picking a subset of keys `K` from type `T`.
+- **`Omit<T, K>`**: Constructs a type by omitting a subset of keys `K` from type `T`.
+- **`Record<K, T>`**: Constructs an object type with property keys of type `K` and values of type `T`.
+
+**Example:** 
+```typescript
+interface Todo {
+  title: string;
+  description: string;
+}
+
+// Omit description
+type TodoPreview = Omit<Todo, "description">; 
+const todo: TodoPreview = { title: "Clean room" }; // Valid
+```
+
+**Reference:** [TS Utility Types](https://www.typescriptlang.org/docs/handbook/utility-types.html)
+
+---
+
+### 55. `unknown` vs `any` in TypeScript
+**Answer:** 
+**The Core Concept:**
+Both are top-level types (supertypes) in TypeScript that can hold any value, but `any` disables all type safety checks, whereas `unknown` preserves type safety by forcing a type assertion or guard before any operation is allowed.
+
+**Key Details:**
+- **`any`**: Escape hatch. You can read any properties or call any methods on a variable of type `any` without compiler warnings, leading to runtime crashes.
+- **`unknown`**: Highly recommended for safe APIs (like dynamic payloads or network inputs). You must prove the type (using `typeof`, `instanceof`, or custom type guards) before invoking operations.
+
+**Example:** 
+```typescript
+let valueAny: any = "hello";
+console.log(valueAny.toUpperCase()); // Allowed (unsafe)
+
+let valueUnknown: unknown = "hello";
+// console.log(valueUnknown.toUpperCase()); // Compiler error!
+
+if (typeof valueUnknown === "string") {
+  console.log(valueUnknown.toUpperCase()); // Allowed (safe: type refined)
+}
+```
+
+**Reference:** [TS unknown type](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-0.html#new-unknown-top-type)
+
+---
+
+### 56. What is an Enum?
+**Answer:** 
+**The Core Concept:**
+Enums (Enumerations) are a feature in TypeScript that allow developers to define a set of named constants, supporting either numeric or string-based mappings.
+
+**Key Details:**
+- **Numeric Enums**: Map keys to index numbers starting at `0` (or a custom start value) and automatically generate reverse mappings (index to name).
+- **String Enums**: Map keys to explicit string values, which is safer for debugging and logging as strings remain descriptive.
+- **`const enum`**: An optimization that strips the enum objects completely during compilation, inlining the raw values directly into the JavaScript output.
+
+**Example:** 
+```typescript
+// String Enum
+enum Direction {
+  Up = "UP",
+  Down = "DOWN",
+}
+const currentDir: Direction = Direction.Up;
+
+// Compiled JS: directionObj.Up evaluates to "UP"
+```
+
+**Reference:** [TS Enums](https://www.typescriptlang.org/docs/handbook/enums.html)
+
+---
+
+### 57. Utility Types: How do `Partial<T>`, `Pick<T, K>`, and `Omit<T, K>` work, and what are their use cases?
+
+**Answer:**
+**The Core Concept:**
+These utility types are built-in generic types that transform an existing object type `T` by modifying or filtering its properties.
+- **`Partial<T>`** makes all properties optional.
+- **`Pick<T, K>`** creates a type containing only the specified keys `K`.
+- **`Omit<T, K>`** creates a type containing all properties of `T` *except* the specified keys `K`.
+
+**Key Details:**
+- **`Partial`** is ideal for PATCH requests or search filters where the client can provide a subset of properties.
+- **`Pick`** and **`Omit`** help enforce the Principle of Least Privilege in typing (e.g., exposing a user preview that excludes a hashed password).
+
+**Example:**
+```typescript
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  passwordHash: string;
+}
+
+// 1. Partial: All optional
+type UserUpdate = Partial<User>; // { id?, name?, email?, passwordHash? }
+
+// 2. Pick: Only name and email
+type UserContactInfo = Pick<User, "name" | "email">; // { name, email }
+
+// 3. Omit: All except passwordHash
+type UserProfile = Omit<User, "passwordHash">; // { id, name, email }
+```
+
+**Reference:** [TS Utility Types](https://www.typescriptlang.org/docs/handbook/utility-types.html)
+
+---
+
+### 58. Utility Types: How do `Readonly<T>` and `Record<K, V>` work under the hood?
+
+**Answer:**
+**The Core Concept:**
+- **`Readonly<T>`** constructs a type where all properties of `T` are set to `readonly`, preventing reassignment at compile-time.
+- **`Record<K, V>`** constructs an object type where keys are of type `K` (which must be a string, number, or symbol union) and values are of type `V`.
+
+**Key Details:**
+- **Immutability:** `Readonly` only enforces shallow immutability. Nested object properties can still be mutated unless they are also typed as `Readonly` or compiled with `as const`.
+- **Dictionaries:** `Record` is the primary way to define strict dictionary structures or map unions to unified values.
+
+**Example:**
+```typescript
+interface PageInfo {
+  title: string;
+}
+
+type Page = "home" | "about" | "contact";
+
+// 1. Record mapping a union to PageInfo
+const nav: Record<Page, PageInfo> = {
+  home: { title: "Home Page" },
+  about: { title: "About Us" },
+  contact: { title: "Contact" }
+};
+
+// 2. Readonly object
+const user: Readonly<{ id: number; name: string }> = { id: 1, name: "Knl" };
+// user.id = 2; // Error: Cannot assign to 'id' because it is a read-only property.
+```
+
+**Reference:** [TS Utility Types Guide](https://www.typescriptlang.org/docs/handbook/utility-types.html#readonlytype)
+
+---
+
+### 59. What is the difference between extending an interface (`extends`) and type intersection (`&`)?
+
+**Answer:**
+**The Core Concept:**
+Both allow combining multiple type definitions, but `interface extends` checks for property conflicts and generates optimized compiler cache shapes, while type intersections (`&`) combine types blindly, resolving conflicts by creating `never` types if properties clash.
+
+**Key Details:**
+- **Conflict Checks:** If you extend an interface and redefine a property with an incompatible type, the compiler throws a clear error immediately. In an intersection, it merges the conflicting types to `type1 & type2` (e.g. `string & number`), which resolves to `never` silently.
+- **Open vs Closed:** Interfaces are "open" and support Declaration Merging. Type intersections are "closed" and final.
+
+**Example:**
+```typescript
+interface A { id: string; }
+// interface B extends A { id: number; } // Compiler Error: Interface 'B' incorrectly extends interface 'A'.
+
+type X = { id: string; };
+type Y = { id: number; };
+type Z = X & Y; // Z.id is of type 'string & number' which evaluates to 'never'
+// const item: Z = { id: "123" }; // Error: Type 'string' is not assignable to type 'never'.
+```
+
+**Reference:** [TS Interfaces vs Intersections](https://www.typescriptlang.org/docs/handbook/2/objects.html#intersection-types)
+
+---
+
+### 60. What is Declaration Merging and how does it apply to TypeScript interfaces?
+
+**Answer:**
+**The Core Concept:**
+**Declaration Merging** is the process where the TypeScript compiler merges two or more separate declarations declared with the identical name into a single definition. This is a unique feature of `interface` (and `namespace`), whereas `type` aliases cannot be re-declared.
+
+**Key Details:**
+- **Merge Logic:** Properties declared in separate interfaces are merged. If the interfaces define a method with the same name, they are merged as overloaded signatures.
+- **Non-Function Conflicts:** If same-named non-functional properties are merged, they *must* have the identical type, otherwise the compiler will throw a conflict error.
+- **Enterprise Pattern:** Crucial for extending external global definitions (like adding custom properties to the Express `Request` object or window global object).
+
+**Example:**
+```typescript
+interface Window {
+  myCustomGlobal: string;
+}
+
+// Accessing it safely:
+window.myCustomGlobal = "custom_value"; // Works due to declaration merging!
+```
+
+**Reference:** [TS Declaration Merging](https://www.typescriptlang.org/docs/handbook/declaration-merging.html)
+
+---
+
+### 61. What is Type Assertion in TypeScript, and what is the difference between `as Type` and `<Type>`?
+
+**Answer:**
+**The Core Concept:**
+A **Type Assertion** is a way to tell the TypeScript compiler: "I know the type of this value better than you do, so trust me." It overrides the compiler's default inference.
+- `value as Type` is the standard modern syntax.
+- `<Type>value` is the legacy angle-bracket syntax.
+
+**Key Details:**
+- **No Runtime Impact:** Assertions are completely stripped during compilation and do not perform any runtime casting, type-checking, or conversions.
+- **Syntax clash:** The `<Type>` syntax is forbidden in `.tsx` files because it conflicts with React JSX tag parsing. Use `as Type` exclusively.
+- **Safe Limit:** Assertions are not arbitrary; you can only assert to a more specific or less specific version of a type. For unrelated types, you must assert to `unknown` first: `x as unknown as string`.
+
+**Example:**
+```typescript
+const element = document.getElementById("main-input") as HTMLInputElement;
+element.value = "John Doe"; // Safe because we asserted it is an Input Element.
+```
+
+**Reference:** [TS Type Assertions](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-assertions)
+
+---
+
+### 62. What is Function Overloading in TypeScript, and how do you implement it?
+
+**Answer:**
+**The Core Concept:**
+**Function Overloading** allows you to define multiple function signatures (overload signatures) for a single function, followed by a single unified implementation that handles all signature cases at runtime.
+
+**Key Details:**
+- **Safety:** Overload signatures are purely for type safety during development; they declare valid combinations of arguments and return types.
+- **Implementation:** The implementation signature must be compatible with all overload signatures and is *not* callable directly. It must check argument types at runtime to execute the correct path.
+
+**Example:**
+```typescript
+// 1. Overload Signatures
+function getLength(str: string): number;
+function getLength(arr: any[]): number;
+
+// 2. Implementation Signature
+function getLength(val: string | any[]): number {
+  return val.length;
+}
+
+getLength("hello"); // Valid (returns number)
+getLength([1, 2, 3]); // Valid (returns number)
+// getLength(123); // Compiler Error: No overload matches this call.
+```
+
+**Reference:** [TS Function Overloads](https://www.typescriptlang.org/docs/handbook/2/functions.html#function-overloads)
+
+---
+
+### 63. What is the difference between `never` and `void` in TypeScript?
+
+**Answer:**
+**The Core Concept:**
+- **`void`** represents the complete absence of a return value. A function returning `void` completes execution but returns nothing useful (evaluates to `undefined` at runtime).
+- **`never`** represents values that can *never* occur. A function returning `never` **never completes execution** (either throws an uncaught error or runs infinitely).
+
+**Key Details:**
+- **Assignability:** `never` is the bottom type, meaning nothing can be assigned to `never` except `never` itself.
+- **Exhaustive Checking:** `never` is commonly used in switch-case default blocks to enforce compile-time checking that all union members are handled.
+
+**Example:**
+```typescript
+// void: returns undefined
+function logMessage(msg: string): void {
+  console.log(msg);
+}
+
+// never: execution halts
+function throwError(msg: string): never {
+  throw new Error(msg);
+}
+```
+
+**Reference:** [TS never type](https://www.typescriptlang.org/docs/handbook/2/functions.html#never)
+
+---
+
+### 64. What is a Tuple in TypeScript, and how does it differ from a standard Array?
+
+**Answer:**
+**The Core Concept:**
+A **Tuple** is an array-like type with a fixed number of elements, where the type of each specific element at each index is strictly declared. A standard **Array** represents a dynamic collection where all elements share the same type union.
+
+**Key Details:**
+- **Strict Boundaries:** Useful for expressing structured patterns (like geo-coordinates `[number, number]` or React state hooks `[T, Dispatch<SetStateAction<T>>]`).
+- **Readonly Tuple:** Tuples are mutable unless compiled with `readonly` or `as const` assertions.
+
+**Example:**
+```typescript
+// 1. Tuple: Strict index-based types
+const coordinates: [number, number] = [40.7128, -74.0060];
+
+// 2. Standard Array: Dynamic order of elements
+const tags: string[] = ["react", "typescript"];
+```
+
+**Reference:** [TS Tuples](https://www.typescriptlang.org/docs/handbook/2/objects.html#tuple-types)
+
+---
+
+### 65. What are Generics and how do you define a Generic constraint?
+
+**Answer:**
+**The Core Concept:**
+**Generics** allow creating reusable components and functions that can work across multiple data types, acting as "type variables" resolved by the caller. A **Generic Constraint** restricts the types that a generic parameter can accept using the `extends` keyword.
+
+**Key Details:**
+- **Constraints:** Enforces that a type parameter must implement a specific interface or possess specific properties (like a `.length` property).
+
+**Example:**
+```typescript
+// Generic constraint requiring a length property
+interface HasLength {
+  length: number;
+}
+
+function logLength<T extends HasLength>(arg: T): T {
+  console.log("Length is:", arg.length);
+  return arg;
+}
+
+logLength("hello"); // Valid (string has length)
+logLength([1, 2, 3]); // Valid (array has length)
+// logLength(123); // Error: Argument of type 'number' is not assignable to parameter of type 'HasLength'.
+```
+
+**Reference:** [TS Generic Constraints](https://www.typescriptlang.org/docs/handbook/2/generics.html#generic-constraints)
+
+---
+
+### 66. What are Mapped Types in TypeScript?
+
+**Answer:**
+**The Core Concept:**
+**Mapped Types** allow you to create a new object type by iterating through a union of keys (usually using `keyof`), transforming the property names and types dynamically.
+
+**Key Details:**
+- **Modifiers:** You can add or subtract modifiers like `readonly` or optional (`?`) by prefixing them with `+` or `-` (e.g. `-readonly` to remove readonly).
+
+**Example:**
+```typescript
+type FeatureFlags = {
+  darkMode: () => void;
+  analytics: () => void;
+};
+
+// Map all properties to boolean flags
+type OptionsFlags<Type> = {
+  [Property in keyof Type]: boolean;
+};
+
+type AppFeatures = OptionsFlags<FeatureFlags>;
+// Resolves to: { darkMode: boolean; analytics: boolean; }
+```
+
+**Reference:** [TS Mapped Types](https://www.typescriptlang.org/docs/handbook/2/mapped-types.html)
+
+---
+

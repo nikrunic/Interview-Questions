@@ -2543,3 +2543,393 @@ The Event Loop coordinates the execution of synchronous code, microtasks (Promis
 **Reference:** [Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop)
 
 ---
+
+### 56. What is a Closure in JavaScript (in short)?
+**Answer:** 
+**The Core Concept:**
+A closure is the combination of a function bundled together with references to its surrounding lexical environment. It allows an inner function to access variables from its outer scope even after the outer function has finished executing.
+
+**Key Details:**
+- Created automatically whenever a function is defined inside another function.
+- Enables critical patterns like data privacy (encapsulation), state preservation, and function currying.
+- Accessing outer variables is live: it references the actual variable binding, not a static snapshot copy.
+
+**Example:** 
+```javascript
+const makeSecureCounter = () => {
+  let count = 0; // private state
+  return {
+    increment: () => ++count,
+    getValue: () => count
+  };
+};
+const counter = makeSecureCounter();
+console.log(counter.increment()); // 1
+console.log(counter.getValue());   // 1
+```
+
+**Reference:** [MDN Closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures)
+
+---
+
+### 57. What is the difference between `var`, `let`, and `const`?
+**Answer:** 
+**The Core Concept:**
+They are variable declaration keywords with distinct behaviors regarding scope, hoisting, and re-assignability.
+
+**Key Details:**
+- **Scope**: `var` is function-scoped. `let` and `const` are block-scoped (restricted to the nearest `{}`).
+- **Hoisting**: All are hoisted, but `var` is initialized with `undefined`. `let` and `const` are not initialized, remaining in the Temporal Dead Zone (TDZ) until execution reaches their declaration.
+- **Re-assignment**: `var` and `let` allow re-assignment. `const` creates an immutable binding (though referenced objects can still be mutated).
+
+**Example:** 
+```javascript
+// Scope differences
+if (true) {
+  var functionScoped = "accessible outside";
+  let blockScoped = "restricted inside";
+}
+console.log(functionScoped); // "accessible outside"
+console.log(blockScoped);    // ReferenceError
+
+// Const reference mutation
+const obj = { age: 30 };
+obj.age = 31; // Valid! Reference remains constant, property changes
+```
+
+**Reference:** [MDN var](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var) · [MDN let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)
+
+---
+
+### 58. What is the difference between `null` and `undefined`?
+**Answer:** 
+**The Core Concept:**
+Both represent empty values, but they convey different semantic intents and behave differently under strict equality and type checks.
+
+**Key Details:**
+- **undefined**: Means a variable has been declared but has not yet been assigned a value, or a function lacks an explicit return.
+- **null**: Represents an intentional absence of any object value, explicitly assigned by a developer to clear a reference.
+- **Type**: `typeof undefined` is `"undefined"`, whereas `typeof null` is `"object"` (a historical JS engine bug).
+
+**Example:** 
+```javascript
+let a;
+console.log(a); // undefined
+
+let b = null;
+console.log(b); // null
+
+console.log(null == undefined);  // true (loose equality performs type coercion)
+console.log(null === undefined); // false (strict equality checks value and type)
+```
+
+**Reference:** [MDN undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
+
+---
+
+### 59. What is the difference between Promises and `async/await`?
+**Answer:** 
+**The Core Concept:**
+Promises are low-level construct objects used for asynchronous operations. `async/await` is syntactic sugar built on top of Promises, allowing asynchronous code to be written in a sequential, synchronous-looking style.
+
+**Key Details:**
+- **Syntax**: Promises use chains of `.then()`, `.catch()`, and `.finally()`. `async/await` uses standard procedural blocks with `try/catch` for errors.
+- **Error Handling**: Promises require a `.catch()` block or second argument to `.then()`. `async/await` handles errors via native JavaScript `try/catch` statements.
+- **Readability**: `async/await` avoids nested chaining and callback-like styles, simplifying deep conditional async branches.
+
+**Example:** 
+```javascript
+// Promise chaining
+fetchData()
+  .then(res => process(res))
+  .catch(err => console.error(err));
+
+// async/await alternative
+async function handleData() {
+  try {
+    const res = await fetchData();
+    const result = await process(res);
+  } catch (err) {
+    console.error(err);
+  }
+}
+```
+
+**Reference:** [MDN Async functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)
+
+---
+
+### 60. What are Higher-Order Functions?
+**Answer:** 
+**The Core Concept:**
+A Higher-Order Function (HOF) is a function that either takes one or more functions as arguments, returns a function, or both.
+
+**Key Details:**
+- Enabled by JavaScript's treatment of functions as first-class citizens (functions are objects and can be passed like values).
+- Crucial for functional programming paradigms, enabling abstractions, callbacks, and composition.
+- Commonly used in built-in array methods like `.map()`, `.filter()`, and `.reduce()`.
+
+**Example:** 
+```javascript
+// Custom Higher-Order Function returning a new function
+const multiplier = (factor) => (num) => num * factor;
+
+const double = multiplier(2);
+console.log(double(5)); // 10
+
+// Array built-in HOF
+const evens = [1, 2, 3, 4].filter(num => num % 2 === 0);
+```
+
+**Reference:** [MDN First-class Function](https://developer.mozilla.org/en-US/docs/Glossary/First-class_Function)
+
+---
+
+### 61. What is a Prototype and Prototypal Inheritance?
+**Answer:** 
+**The Core Concept:**
+Every JavaScript object has a private internal link to another object called its **prototype**. Prototypal Inheritance is the mechanism where objects inherit properties and methods directly from other objects along a prototype chain.
+
+**Key Details:**
+- When accessing a property on an object, if the engine cannot find it on the instance, it automatically traverses up the prototype chain (`[[Prototype]]`) until it finds it or reaches `null`.
+- Modern `class` syntax is merely syntactic sugar over prototypes; it does not change JS's dynamic, class-free inheritance model.
+- Properties defined directly on `Constructor.prototype` are shared by all instances, saving memory.
+
+**Example:** 
+```javascript
+const animal = { eats: true };
+const dog = Object.create(animal); // sets animal as dog's prototype
+dog.barks = true;
+
+console.log(dog.barks); // true (own property)
+console.log(dog.eats);  // true (inherited from animal)
+```
+
+**Reference:** [MDN Inheritance and the prototype chain](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain)
+
+---
+
+### 62. What is the difference between a Deep and Shallow Copy?
+**Answer:** 
+**The Core Concept:**
+A shallow copy copies only the top-level values and references of an object; nested objects continue to point to their original locations. A deep copy recursively copies every nested structure, producing a fully independent duplicate.
+
+**Key Details:**
+- **Shallow Copy Methods**: Spread operator `{ ...obj }`, `Object.assign({}, obj)`, or `Array.prototype.slice()`.
+- **Deep Copy Methods**: Modern native `structuredClone()`, lodash's `cloneDeep`, or `JSON.parse(JSON.stringify(obj))` (fails on functions, Dates, RegExps, Map/Set, and circular references).
+- Mutation of nested values in a shallow copy will unintentionally affect the original object.
+
+**Example:** 
+```javascript
+const original = { user: { name: "Alice" } };
+
+// Shallow Copy
+const shallow = { ...original };
+shallow.user.name = "Bob";
+console.log(original.user.name); // "Bob" (Original mutated!)
+
+// Deep Copy
+const deep = structuredClone(original);
+deep.user.name = "Charlie";
+console.log(original.user.name); // "Bob" (Original unaffected!)
+```
+
+**Reference:** [MDN structuredClone](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone)
+
+---
+
+### 63. What is Currying?
+**Answer:** 
+**The Core Concept:**
+Currying is the process of converting a function that takes multiple arguments into a sequence of nested functions that each accept a single argument (or arity of one).
+
+**Key Details:**
+- Uses closures to preserve intermediate arguments until all parameters are supplied and the final function executes.
+- Supports **partial application**, creating highly reusable, specialized utility functions from a generic base function.
+- Fits perfectly into functional programming composition patterns.
+
+**Example:** 
+```javascript
+// Generic uncurried function
+const simpleAdd = (a, b) => a + b;
+
+// Curried equivalent
+const curriedAdd = (a) => (b) => a + b;
+const addFive = curriedAdd(5); // specialized function
+
+console.log(addFive(3)); // 8
+console.log(curriedAdd(1)(2)); // 3
+```
+
+**Reference:** [MDN Closures (Practical Closures)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures#practical_closures)
+
+---
+
+### 64. What are `bind`, `call`, and `apply`?
+**Answer:** 
+**The Core Concept:**
+All three are built-in methods on `Function.prototype` used to explicitly control the execution context (`this`) of a function.
+
+**Key Details:**
+- **`call`**: Immediately executes the function, accepting `this` as the first argument followed by comma-separated parameters.
+- **`apply`**: Immediately executes the function, accepting `this` as the first argument followed by parameters packed inside an array.
+- **`bind`**: Does not execute the function immediately; it returns a new, bound function with a permanently locked `this` context for future invocations.
+
+**Example:** 
+```javascript
+function greet(greeting, punctuation) {
+  return `${greeting}, ${this.user}${punctuation}`;
+}
+const context = { user: "Alice" };
+
+// Immediate invocation
+console.log(greet.call(context, "Hello", "!"));      // "Hello, Alice!"
+console.log(greet.apply(context, ["Welcome", "."])); // "Welcome, Alice."
+
+// Delayed invocation
+const bound = greet.bind(context, "Hey");
+console.log(bound("?"));                             // "Hey, Alice?"
+```
+
+**Reference:** [MDN Function.prototype.bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)
+
+---
+
+### 65. Is JavaScript synchronous or asynchronous?
+**Answer:** 
+**The Core Concept:**
+JavaScript is a **single-threaded, synchronous** language by design. However, runtime environments (browsers and Node.js) provide Web/C++ APIs and an **Event Loop** that allow JavaScript to execute asynchronous, non-blocking operations.
+
+**Key Details:**
+- The V8 engine has a single call stack and a single memory heap, meaning it can only process one instruction at a time (synchronous execution).
+- To prevent freezing (e.g. during a network request), blocking calls are delegated to the browser environment (Web APIs) or OS kernel threads via libuv in Node.js.
+- Once those external tasks complete, their callbacks are pushed to the Event Loop queues (Microtasks and Macrotasks) to run when the main call stack is empty.
+
+**Example:** 
+```javascript
+console.log("Start"); // Sync
+
+// Async operation delegated to browser timer API
+setTimeout(() => console.log("Timer Callback"), 0); 
+
+console.log("End"); // Sync
+// Output: "Start" -> "End" -> "Timer Callback"
+```
+
+**Reference:** [MDN Asynchronous JavaScript](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Introducing)
+
+---
+
+### 66. What is Hoisting?
+**Answer:** 
+**The Core Concept:**
+Hoisting is JavaScript's default compilation behavior where variable, class, and function declarations are put into memory during the compilation phase, before execution begins.
+
+**Key Details:**
+- **Function Declarations**: Completely hoisted (both declaration and body), meaning you can call them safely before they are written in the source code.
+- **`var` declarations**: Hoisted but initialized with `undefined`. Accessing them early yields `undefined` instead of throwing an error.
+- **`let` and `const` declarations**: Hoisted but **not initialized**. They live in the Temporal Dead Zone (TDZ) and accessing them early throws a `ReferenceError`.
+- **Function/Class Expressions**: Hoisting rules depend on the keyword used (e.g., `const myFn = () => {}` is treated as a `const` hoisting rule).
+
+**Example:** 
+```javascript
+sayHi(); // Works! Logs "Hi"
+function sayHi() { console.log("Hi"); }
+
+console.log(num); // undefined (var hoisted, not value)
+var num = 10;
+
+console.log(val); // ReferenceError (Temporal Dead Zone)
+let val = 20;
+```
+
+**Reference:** [MDN Hoisting](https://developer.mozilla.org/en-US/docs/Glossary/Hoisting)
+
+---
+
+### 67. What is the difference between the Rest and Spread operators?
+**Answer:** 
+**The Core Concept:**
+Both use the identical `...` syntax, but they perform opposite actions depending on the context: Rest packs individual elements into a single array/object, while Spread unpacks an array/object into individual items.
+
+**Key Details:**
+- **Rest Operator**: Used in function parameters or destructuring to collect the "rest" of the values. It must always be the final element in the structure.
+- **Spread Operator**: Used in function calls, array literals, or object literals to expand elements out of an iterable into individual values.
+
+**Example:** 
+```javascript
+// Rest: collecting values into a real array
+function sumAll(first, ...others) {
+  console.log(others); // [2, 3, 4]
+  return first + others.reduce((acc, curr) => acc + curr, 0);
+}
+sumAll(1, 2, 3, 4);
+
+// Spread: unpacking values out of an array
+const values = [1, 2, 3];
+const newArray = [...values, 4, 5]; // [1, 2, 3, 4, 5]
+```
+
+**Reference:** [MDN Spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) · [MDN Rest parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters)
+
+---
+
+### 68. Why do variables go into the Temporal Dead Zone (TDZ)?
+**Answer:** 
+**The Core Concept:**
+The TDZ is the period of time starting from the entry of a block scope until the line where a `let` or `const` variable is officially declared. Variables in the TDZ are in an uninitialized state, and any attempt to read or write to them throws a `ReferenceError`.
+
+**Key Details:**
+- Enforces best coding practices by preventing developers from using variables before they are declared, avoiding silent bugs common with `var`.
+- Supports `const` correctness—if a `const` could be read as `undefined` before its declaration, it would violate the guarantee that a constant cannot be reassigned from its initial value.
+- The TDZ is a **temporal** boundary (based on execution time), not a positional/spatial boundary.
+
+**Example:** 
+```javascript
+{
+  // TDZ for variable 'a' begins
+  const log = () => console.log(a); // accessing 'a' is compiled but not run yet
+  
+  // Running log() here would throw ReferenceError!
+  
+  let a = 10; // TDZ for 'a' ends!
+  log(); // Works! Logs 10
+}
+```
+
+**Reference:** [MDN let (Temporal Dead Zone)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let#temporal_dead_zone_tdz)
+
+---
+
+### 69. What are Arrow Functions and how do they differ from regular functions?
+**Answer:** 
+**The Core Concept:**
+Arrow functions (introduced in ES6) are a compact alternative to traditional function expressions. The key architectural difference is that arrow functions **do not** have their own execution context (`this`), `arguments` object, or prototype.
+
+**Key Details:**
+- **Lexical `this`**: Arrow functions inherit `this` from the enclosing scope. They cannot be bound dynamically via `call`, `apply`, or `bind`.
+- **No `arguments`**: Accessing `arguments` yields a ReferenceError or refers to outer functions; use rest parameters `...args` instead.
+- **No constructor**: Cannot be invoked with the `new` keyword and do not have a `prototype` property.
+- **Syntax**: Offers implicit returns for single-line expressions.
+
+**Example:** 
+```javascript
+const obj = {
+  name: "Alice",
+  regular() {
+    setTimeout(function() {
+      console.log(this.name); // undefined (this references global/timeout)
+    }, 100);
+  },
+  arrow() {
+    setTimeout(() => {
+      console.log(this.name); // "Alice" (inherits from arrow's parent method context)
+    }, 100);
+  }
+};
+```
+
+**Reference:** [MDN Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+
+---
+
