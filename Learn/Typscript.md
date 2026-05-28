@@ -138,9 +138,9 @@ console.log(`Inventory Value: $${report.totalValue}`); // Output: $1080
 
 ---
 
-## 🛠️ Phase 2: Intermediate Level (Unions, Narrowing, & Const Assertions)
+## 🛠️ Phase 2: Intermediate Level (Unions, Narrowing, & Branded Types)
 
-At this level, you build dynamic models and narrow type scopes safely.
+At this level, you build complex data models, refine types, and master compilation safety boundaries.
 
 ### 1. Union Types & Intersection Types
 - **Union (`A | B`)**: The variable can be type $A$ **OR** type $B$ (e.g. `string | number`).
@@ -211,6 +211,84 @@ type UserRole = typeof ROLES[keyof typeof ROLES];
 
 ---
 
+### 4. Structural vs Nominal (Branded) Typing
+TypeScript's type system is **structural** (duck-typed). If two different interfaces have the exact same fields, TypeScript treats them as identical, allowing you to assign one to the other.
+
+#### The Accidental Assignment Trap:
+```typescript
+type UserId = string;
+type OrderId = string;
+
+function shipOrder(userId: UserId, orderId: OrderId) {
+  console.log(`Shipping order ${orderId} to user ${userId}`);
+}
+
+const myUser: UserId = 'usr_abc123';
+const myOrder: OrderId = 'ord_xyz789';
+
+// ⚠️ BUG: We swapped the arguments, but the compiler is SILENT because both are raw strings!
+shipOrder(myOrder, myUser);
+```
+
+#### The Architect Solution: Nominal "Branded" Types
+We can bypass structural typing by adding a unique, imaginary brand property to primitive types. This forces the compiler to treat them as completely distinct types at compile time, while remaining standard primitives at runtime.
+
+```typescript
+// Define nominal branded types
+type Brand<K, T> = K & { __brand: T };
+
+type UserIdBranded = Brand<string, 'UserId'>;
+type OrderIdBranded = Brand<string, 'OrderId'>;
+
+// Type-safe Constructor functions
+function makeUserId(id: string): UserIdBranded {
+  return id as UserIdBranded;
+}
+
+function makeOrderId(id: string): OrderIdBranded {
+  return id as OrderIdBranded;
+}
+
+function shipOrderBranded(userId: UserIdBranded, orderId: OrderIdBranded) {
+  console.log(`Shipping order ${orderId} to user ${userId}`);
+}
+
+const safeUser = makeUserId('usr_123');
+const safeOrder = makeOrderId('ord_456');
+
+// shipOrderBranded(safeOrder, safeUser); 
+// ❌ COMPILE ERROR: Argument of type 'OrderIdBranded' is not assignable to 'UserIdBranded'.
+// Type safety is completely enforced!
+```
+
+---
+
+### 5. Exhaustiveness Checks using the `never` Type
+The `never` type represents values that can *never* occur. We can use it at compile time to perform exhaustive pattern matching checks. If a developer adds a new state to a union type but forgets to handle it inside a switch statement, the compiler will throw an error.
+
+```typescript
+type PaymentStatus = 'pending' | 'success' | 'failed';
+
+function handlePayment(status: PaymentStatus) {
+  switch (status) {
+    case 'pending':
+      return 'Processing...';
+    case 'success':
+      return 'Payment received.';
+    case 'failed':
+      return 'Payment declined.';
+    default:
+      // If all cases are handled, 'status' is coerced to type 'never' here.
+      // If a new status is added to PaymentStatus but not handled in switch, 
+      // 'status' will be that type instead, causing a compiler error!
+      const _exhaustiveCheck: never = status;
+      return _exhaustiveCheck;
+  }
+}
+```
+
+---
+
 ## ⚡ Phase 3: Advanced Level (Generics & Utility Types)
 
 ### 1. Generics (`<T>`)
@@ -231,14 +309,14 @@ interface ApiResponse<T> {
 export class ApiService {
   private baseUrl = 'https://api.example.com/';
 
-  // Generic method: fetches any model type <T> safely
-  async getRecord<T>(endpoint: string): Promise<ApiResponse<T>> {
+  // Generic method with constraints: T must be an object
+  async getRecord<T extends object>(endpoint: string): Promise<ApiResponse<T>> {
     const response = await fetch(`${this.baseUrl}${endpoint}`);
     if (!response.ok) throw new Error('Network error querying endpoint');
     
     const data = await response.json();
     return {
-      data: data as T, // Typecast to target Generic
+      data: data as T,
       status: response.status,
       success: response.ok
     };
@@ -279,8 +357,6 @@ type GuestUser = Omit<UserProfile, 'id'>; // Result: { name, email }
 
 ## 🧬 Phase 4: Expert Level (Conditional Mappings & Gymnastics)
 
-At this level, you write dynamic, self-adapting type structures.
-
 ### 1. Conditional Types (`extends ? :`)
 Conditional types calculate type outputs based on relationship criteria, mimicking ternary checks (`if/else`) inside typing declarations.
 
@@ -311,7 +387,7 @@ type SingleNum = FlattenArray<NumberRecord>; // Result: number (ignores non-arra
 ---
 
 ### 3. Mapped Types & Key Remapping
-We can dynamically rewrite property names inside a type using key remapping (`as`).
+We can dynamically rewrite property names inside a type using key remapping (`as`) and template literal types.
 
 ```typescript
 interface CustomerActions {
@@ -335,12 +411,74 @@ Result: {
 
 ---
 
+### 4. Covariance & Contravariance
+In type theory, **variance** describes how subtyping of complex types (like arrays, promises, and functions) relates to subtyping of their component types.
+
+- **Covariance (Produce / Read-only)**: A type transitions in the **same direction** as its subtype. If `Dog` extends `Animal`, then `Dog[]` can be assigned to `Animal[]`.
+- **Contravariance (Consume / Write-only)**: A type transitions in the **opposite direction**. When checking function parameters, **arguments are contravariant**. You can assign a function that handles any `Animal` to a variable expecting a function that only handles a `Dog`.
+
+#### Programmatic Variance Demonstration:
+```typescript
+class Animal { name!: string }
+class Dog extends Animal { bark() { console.log('woof') } }
+
+// 1. Covariance: Array of Dog is assignable to Array of Animal
+let animals: Animal[] = [];
+let dogs: Dog[] = [new Dog()];
+animals = dogs; // ✅ OK (Covariant)
+
+// 2. Contravariance: Function arguments
+type AnimalHandler = (a: Animal) => void;
+type DogHandler = (d: Dog) => void;
+
+let handleAnimal: AnimalHandler = (a: Animal) => { console.log(a.name) };
+let handleDog: DogHandler = (d: Dog) => { d.bark() };
+
+// Can we assign handleAnimal to handleDog?
+handleDog = handleAnimal; // ✅ OK (Contravariant)
+// Why? A function that can process ANY Animal can safely process a Dog.
+
+// Can we assign handleDog to handleAnimal?
+// handleAnimal = handleDog; 
+// ❌ COMPILE ERROR! A function that expects a Dog might call .bark() on a standard Cat, crashing!
+```
+
+---
+
+### 5. Decorators: Stage 3 ECMAScript vs Legacy
+Decorators enable metaprogramming by wrapping classes, methods, or properties in descriptive behaviors.
+
+- **Legacy Experimental Decorators**: Enabled via `experimentalDecorators: true` inside `tsconfig`. Legacy decorators accept `target`, `key`, and `descriptor` arguments.
+- **Stage 3 Decorators (Standard)**: Native ECMAScript feature supported natively in modern TypeScript (5.0+). They use a new API with a `ClassMethodDecoratorContext` or `ClassDecoratorContext` argument.
+
+#### Standard Stage 3 Class Decorator:
+```typescript
+// Stage 3 Class Decorator type definition
+function LogClass<T extends new (...args: any[]) => {}>(
+  target: T,
+  context: ClassDecoratorContext
+) {
+  console.log(`Class ${context.name} registered.`);
+  return class extends target {
+    created_at = new Date();
+  };
+}
+
+@LogClass
+class UserService {
+  getUser() { return { id: 1 }; }
+}
+
+const service = new UserService() as any;
+console.log(service.created_at); // Output: Timestamp!
+```
+
+---
+
 ## 🏛️ Phase 5: Technical Architect Level (Compiler Governance & Scale)
 
-As an enterprise architect, your role is to enforce strict compiler standards and scale compilation performance across massive code repositories.
-
-### 1. TSConfig Strict Rules Governance
-An Enterprise Architect must enforce a strict `tsconfig.json` compiler standard to prevent developers from checking buggy code into repository branches:
+### 1. TSConfig Compiler Directive Governance
+An Enterprise Architect must enforce strict compiler settings inside `tsconfig.json` to prevent compilation escapes:
 
 ```json
 {
@@ -353,7 +491,11 @@ An Enterprise Architect must enforce a strict `tsconfig.json` compiler standard 
     "noImplicitAny": true,                  // Throws error if type falls back to any
     "strictNullChecks": true,               // Blocks assigning null/undefined to values
     
-    /* 2. Code Quality Controls */
+    /* 2. Critical Runtime Safety Flags */
+    "esModuleInterop": true,                // Enables CommonJS modules import compatibility
+    "isolatedModules": true,                // Enforces single-file transpile safety (critical for Vite/Esbuild)
+    
+    /* 3. Code Quality Controls */
     "noUnusedLocals": true,                 // Flag variables declared but never used
     "noUnusedParameters": true,             // Flag function parameters never consumed
     "noImplicitReturns": true,              // Ensures all function execution paths return value
@@ -364,7 +506,35 @@ An Enterprise Architect must enforce a strict `tsconfig.json` compiler standard 
 
 ---
 
-### 2. Monorepo Project References
+### 2. Global Module Augmentation & Ambient Declarations
+In corporate monorepos, third-party libraries often lack custom fields required by corporate platforms. We use **Ambient Declarations** (`declare`) and **Module Augmentation** to extend libraries globally without modifying their source code.
+
+#### Scenario: Extending the Express.js `Request` Interface
+We want to append a decoded `currentUser` record to the Express `req` object inside our authentication middleware.
+
+```typescript
+// src/types/express.d.ts
+import { UserRecord } from '../models/user';
+
+declare global {
+  namespace Express {
+    // Augment the existing Request interface
+    interface Request {
+      currentUser?: UserRecord;
+      requestId: string;
+    }
+  }
+}
+
+// Now, developers can write type-safe assignments!
+// app.use((req, res, next) => {
+//   req.currentUser = { id: 'usr_abc', name: 'Alice' }; // Fully compiled & type-safe!
+// });
+```
+
+---
+
+### 3. Monorepo Project References
 In massive corporate monorepos (containing 50 packages or apps), running a single `tsc` compilation command over millions of files causes catastrophic compiler slowdowns, blocking CI/CD pipelines.
 
 We solve this using **TypeScript Project References** (`composite: true` and `references`). 

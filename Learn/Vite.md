@@ -187,7 +187,38 @@ Imagine you are playing a highly complex, 4-hour video game campaign. You are in
 - **Legacy Page Reload (F5)**: The console crashes, shuts down, and reboots. You lose all game progress, return to the main title screen, and have to navigate menus for 5 minutes to get back to the fight.
 - **Hot Module Replacement (HMR)**: You decide you want to swap your standard plastic game controller for an ergonomic pro controller. You unplug controller A and plug in controller B. The game doesn't crash; it doesn't even pause. The console swaps the controller hardware drivers (code module) instantly in memory, and you continue the boss battle exactly where you left off, keeping all active points and health states!
 
-Vite implements a high-performance HMR API. When you edit a component, Vite compiles *only* that component, transmits the update to the browser, and swaps the module in memory, keeping your active page inputs and dropdown selections completely intact!
+Vite implements a high-performance HMR API on top of native ES modules. When you save a file, Vite compiles only that specific file, notifies the browser via WebSockets, and dynamically fetches the updated module via a query string, swapping it in memory.
+
+#### Low-Level HMR API (`import.meta.hot`):
+While framework plugins (like `@vitejs/plugin-react`) handle HMR automatically, custom applications can tap into the low-level HMR API to handle custom state preservation or cleanup.
+
+```javascript
+// src/components/Counter.js
+let count = 0;
+
+export function renderCounter() {
+  document.getElementById('counter-btn').innerText = `Clicks: ${count}`;
+}
+
+// 1. Check if HMR is active in this environment
+if (import.meta.hot) {
+  // 2. Accept self-updates: when this file changes, do not reload the page
+  import.meta.hot.accept((newModule) => {
+    // 3. Preserve the counter state from the old module
+    newModule.setCount(count);
+    newModule.renderCounter();
+  });
+
+  // 4. Clean up side effects (e.g. interval loops or event listeners) before replacing
+  import.meta.hot.dispose(() => {
+    console.log('Cleaning up old counter component...');
+  });
+}
+
+export function setCount(newCount) {
+  count = newCount;
+}
+```
 
 ---
 
@@ -205,12 +236,20 @@ Vite splits its compilation work between two entirely different compiler tools t
 |  1. DEVELOPMENT RUNS ON: ESBUILD (Written in Go)                                 |
 |     - Fast transpilations of TypeScript & modules.                              |
 |     - Focus: Instant startup speed.                                             |
+|     - Pre-bundles dependencies (lodash, react) to flatten hundreds of imports.  |
 +---------------------------------------------------------------------------------+
 |  2. PRODUCTION RUNS ON: ROLLUP (Written in JS)                                  |
 |     - Highly optimized bundle compression, code-splitting, and minification.    |
 |     - Focus: Tiny asset outputs, tree-shaking performance.                      |
+|     - Generates static hashes for perfect browser caching.                      |
 +---------------------------------------------------------------------------------+
 ```
+
+#### Why Esbuild in Development?
+Esbuild is written in Go and compiles to native machine code. It parses, links, and generates source maps up to **100x faster** than traditional JavaScript-based compilers. Since dev mode requires rapid iteration and near-instant HMR, Esbuild is the perfect fit.
+
+#### Why Rollup in Production?
+While Esbuild is fast, it lacks advanced bundle optimization features. Production deployment requires **Tree-Shaking** (removing dead/unused code), CSS code-splitting, custom chunk segregation, and advanced asset hashes. Rollup is highly mature, features an exceptionally robust plugin system, and yields far smaller, more stable production bundles.
 
 ---
 
@@ -242,7 +281,7 @@ export default defineConfig({
             return 'vendor-core'; // All other packages
           }
         },
-        // Setup clean hashed naming conventions
+        // Setup clean hashed naming conventions for browser caching
         entryFileNames: 'assets/js/[name]-[hash].js',
         chunkFileNames: 'assets/js/[name]-[hash].js',
         assetFileNames: 'assets/[ext]/[name]-[hash].[ext]'
@@ -260,12 +299,14 @@ export default defineConfig({
 Vite plugins are built on top of Rollup's standard compiler hook lifecycle. You can write custom plugins to manipulate files during compilation.
 
 #### The Compiler Hook Lifecycle:
-- `options`: Read and modify general project configurations.
-- `resolveId`: Customize how import path strings map to files.
-- `load`: Read target file contents from the disk.
-- `transform`: Modify raw file text programmatically before compiling.
+- **`options`**: Read and modify general project configurations.
+- **`buildStart`**: Fired at the beginning of the compilation process. Excellent for initializing caches.
+- **`resolveId`**: Customize how import path strings map to files on disk.
+- **`load`**: Read target file contents from the disk.
+- **`transform`**: Modify raw file text programmatically before compiling.
+- **`buildEnd`**: Fired when the compiler finishes gathering assets.
 
-Let's build a custom Vite plugin that programmatically strips development testing attributes (e.g. `data-testid="button-audit"`) from HTML files before packaging production assets.
+Let's build a custom Vite plugin that programmatically strips development testing attributes (e.g. `data-testid="button-audit"`) from HTML/JSX files before packaging production assets.
 
 ```typescript
 import { Plugin } from 'vite';
@@ -311,6 +352,14 @@ export default defineConfig({
 
 ### 2. Server-Side Rendering (SSR) in Vite
 To implement highly scalable Server-Side Rendering systems, a Technical Architect designs custom Node.js Express servers that query Vite's dev server programmatically, compile assets on the fly, and hydrate them dynamically.
+
+#### The SSR Architecture:
+1. **Express Server** catches the incoming request.
+2. The server loads the **`index.html`** template from the disk.
+3. The server invokes **`vite.ssrLoadModule`** to dynamically import the backend React entry point (`entry-server.tsx`).
+4. The React tree is compiled to a static HTML string using `renderToString`.
+5. The markup is injected into `index.html` (replacing `<!--ssr-outlet-->`) and streamed back to the browser.
+6. The browser loads the client-side JavaScript bundle, which **hydrates** the static elements, binding event listeners seamlessly.
 
 #### Custom SSR Express server setup (`server.js`):
 ```javascript

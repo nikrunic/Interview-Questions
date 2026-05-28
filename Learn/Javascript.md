@@ -48,8 +48,8 @@ Think of your computer as a kitchen, and a JavaScript file as a **Cooking Recipe
 ### 2. Primitive vs. Reference Values
 Understanding how JavaScript stores data in memory is crucial:
 
-- **Primitive Types (Number, String, Boolean, null, undefined, Symbol)**: The values are extremely small. They are stored directly on the stack. When you assign one variable to another, JavaScript **copies the actual value**.
-- **Reference Types (Objects, Arrays, Functions)**: These data shapes can grow to massive sizes. They are stored in a larger memory space called the Heap. The variable itself holds only a small **memory address pointer** pointing to where that data lives on the heap.
+- **Primitive Types (Number, String, Boolean, null, undefined, Symbol, BigInt)**: The values are immutable and extremely small. They are stored directly on the stack. When you assign one variable to another, JavaScript **copies the actual value**.
+- **Reference Types (Objects, Arrays, Functions)**: These data shapes can grow to massive sizes. They are stored in a larger memory space called the Heap. The variable itself holds only a small **memory address pointer** (reference) pointing to where that data lives on the heap.
 
 ```
 STACK MEMORY (Fast & Simple)                    HEAP MEMORY (Flexible & Large)
@@ -78,8 +78,125 @@ console.log(userA.name); // Output: 'Bob'! (userA points to the same heap object
 
 ---
 
-### 3. The DOM (Document Object Model)
-The DOM is a tree structure representing your website HTML pages. JavaScript uses browser bindings to select, modify, and listen to visual page nodes.
+### 3. The Reassignment Trap: Pass-by-Value of Reference
+A common source of confusion is whether JavaScript is "pass-by-value" or "pass-by-reference". 
+
+> [!IMPORTANT]
+> **JavaScript is strictly pass-by-value.** 
+> However, for reference types, the **value** being passed or copied is the **memory pointer** itself. This has critical consequences when you reassign a variable vs. mutate its properties.
+
+#### Code Demonstration of the Trap:
+```javascript
+function modifyAccount(accountObj, balanceNum) {
+  // 1. Mutating a property inside the object:
+  // Since 'accountObj' is a copy of the pointer, it points to the same heap object.
+  accountObj.status = 'active'; 
+
+  // 2. Reassigning the pointer:
+  // This overwrites our local 'accountObj' variable with a NEW memory pointer.
+  // It completely severs the link to the original object. The caller's variable is untouched!
+  accountObj = { status: 'suspended', balance: 0 }; 
+
+  // 3. Reassigning a primitive:
+  // 'balanceNum' is a copy of a primitive value. Changing it has zero effect outside.
+  balanceNum = 99999;
+}
+
+const myAccount = { status: 'pending', balance: 100 };
+let myBalance = 100;
+
+modifyAccount(myAccount, myBalance);
+
+console.log(myAccount.status);  // Output: 'active' (Mutation was successful!)
+console.log(myAccount.balance); // Output: 100 (Unchanged! The reassignment did not affect myAccount)
+console.log(myBalance);         // Output: 100 (Primitive copy was unaffected)
+```
+
+---
+
+### 4. Variable Hoisting & Lexical Environments (The TDZ)
+Hoisting is often summarized as "moving variables to the top of the file." Under the hood, this is a compiler side effect. 
+
+When your JavaScript runs, the engine compiles the code in two distinct phases:
+1. **Compilation Phase**: The engine parses the code, sets up the **Lexical Environment** scope, and registers all variable and function declarations.
+2. **Execution Phase**: The engine runs the code line-by-line, assigning values and executing functions.
+
+```
+       [ COMPILATION PHASE ]                         [ EXECUTION PHASE ]
+ Parses declarations, registers scopes         Executes code line-by-line
+      var x   -> initialized: undefined             x = 10 -> assigns 10
+      let y   -> registered in TDZ                  y = 20 -> exits TDZ, assigns 20
+      function f() -> fully registered in memory
+```
+
+#### Declaration Hoisting Lifecycle:
+- **`var` Declarations**: Hoisted and instantly initialized to `undefined`. You can access a `var` variable before its assignment without a crash.
+- **`function` Declarations**: Hoisted and **fully registered** with their actual body. You can call a function declaration before writing it in the file.
+- **`let` & `const` Declarations**: Hoisted but **not initialized**. They are placed in the **Temporal Dead Zone (TDZ)**—a strict, inaccessible state. Any attempt to read or write to them before the actual line of declaration runs throws a `ReferenceError`.
+
+#### Programmatic TDZ Demonstration:
+```javascript
+// Function declarations can be called before declaration
+greet(); // Output: "Hello World"
+
+function greet() {
+  console.log("Hello World");
+}
+
+// var variables are hoisted as undefined
+console.log(a); // Output: undefined
+var a = 5;
+
+// let/const variables throw ReferenceError due to the TDZ
+try {
+  console.log(b); // Throws ReferenceError!
+  let b = 10;
+} catch (error) {
+  console.error(error.name); // "ReferenceError"
+}
+```
+
+---
+
+### 5. Type Coercion and Strict Equality
+JavaScript is dynamically typed. This flexibility leads to **Type Coercion**, where the runtime automatically converts values from one type to another during operations.
+
+- **Loose Equality (`==`)**: Compares values after coercing their types according to the complex ECMAScript Abstract Equality Comparison Algorithm. This leads to infamous, non-transitive anomalies.
+- **Strict Equality (`===`)**: Compares both the **type** and the **value** directly. No coercion takes place.
+
+#### Coercion anomalies:
+```javascript
+console.log(0 == false);   // true (coerced)
+console.log("" == 0);      // true (coerced)
+console.log(null == undefined); // true (special rule)
+console.log(null === undefined); // false (different types)
+
+// The famous array-to-number anomaly:
+console.log([] == 0); // true!
+// Why? [] is coerced to primitive -> "" -> coerced to number -> 0.
+```
+
+#### Controlling Coercion: Object-to-Primitive conversion
+When you compare or add objects, JavaScript invokes three internal methods to reduce them to primitive values: `Symbol.toPrimitive`, `valueOf`, and `toString`.
+
+```javascript
+const wallet = {
+  cash: 50,
+  // Custom conversion handler
+  [Symbol.toPrimitive](hint) {
+    if (hint === 'number') return this.cash;
+    return `Wallet with $${this.cash}`;
+  }
+};
+
+console.log(wallet + 10); // Output: 60 (coerced to number hint -> returns 50)
+console.log(`State: ${wallet}`); // Output: "State: Wallet with $50" (string hint)
+```
+
+---
+
+### 6. The DOM (Document Object Model)
+The DOM is an object tree structure representing your website's visual HTML pages. JavaScript uses browser-provided Web API bindings to select, modify, and listen to visual page nodes.
 
 ```javascript
 // 1. Select a visual DOM node
@@ -90,7 +207,7 @@ const outputSpan = document.querySelector('.result-display');
 button.addEventListener('click', (event) => {
   console.log('Button clicked! Target:', event.target);
   
-  // 3. Modify text on-screen
+  // 3. Modify text and styling on-screen
   outputSpan.textContent = 'Transaction processed successfully!';
   outputSpan.style.color = 'green';
 });
@@ -100,16 +217,16 @@ button.addEventListener('click', (event) => {
 
 ## 🛠️ Phase 2: Intermediate Level (Asynchronous JS & Scope)
 
-At this level, you master closures and understand the browser's asynchronous engine.
+At this level, you master closures, runtime bind bindings, functional design patterns, and the browser's asynchronous task scheduling engine.
 
 ### 1. Scope & Closures
 
 #### 💡 The Backpack Analogy:
 When you write a nested function inside a parent function, the child function has access to variables defined in the parent function. 
 When the parent function finishes executing and returns, its variables would normally be deleted from memory. However, the returning child function keeps access to those variables. 
-Think of a **Closure** as a **Backpack** that a function carries around. The function packs up all the variables present in its birth environment and carries them wherever it goes!
+Think of a **Closure** as a **Backpack** that a function carries around. The function packs up all the variables present in its birth environment (its lexical scope) and carries them wherever it goes!
 
-#### Code Demonstration:
+#### Code Demonstration of Private State:
 ```javascript
 function createBankVault(owner) {
   // A private variable locked inside the closure backpack
@@ -132,29 +249,126 @@ console.log(myVault.deposit(50));  // Output: Balance: 150
 console.log(myVault.balance);      // Output: undefined (Secure, private variable!)
 ```
 
+#### Functional Programming: Currying & Composition
+Closures allow advanced functional patterns like **Currying** (converting a function that takes multiple arguments into a chain of single-argument functions) and **Composition** (piping the output of one function as the input of another).
+
+```javascript
+// A. Curried addition
+const add = (a) => (b) => (c) => a + b + c;
+console.log(add(1)(2)(3)); // Output: 6
+
+// Reusable curried multiplier helper
+const multiply = (factor) => (num) => num * factor;
+const double = multiply(2);
+const triple = multiply(3);
+
+console.log(double(10)); // 20
+console.log(triple(10)); // 30
+
+// B. Composition helper (Pipe)
+const pipe = (...fns) => (x) => fns.reduce((value, fn) => fn(value), x);
+
+const addOne = (n) => n + 1;
+const square = (n) => n * n;
+
+const addAndSquare = pipe(addOne, square);
+console.log(addAndSquare(4)); // Output: 25 (4 + 1 = 5 -> 5^2 = 25)
+```
+
 ---
 
-### 2. The Event Loop Deep-Dive
-JavaScript is single-threaded (it can only execute one line of code at a time). Yet it can handle thousands of network requests, mouse clicks, and timers without blocking. How does it do this?
+### 2. Explicit `this` Control: Designing Polyfills
+JavaScript provides three methods to explicitly bind the context of `this`: `call`, `apply`, and `bind`. 
 
-The **Event Loop** is the browser engine mechanism that orchestrates execution priorities across four primary memory zones:
+| Method | Execution | Argument Format | Return Type |
+| :--- | :--- | :--- | :--- |
+| `call` | Invokes instantly | Comma-separated list | Function return value |
+| `apply` | Invokes instantly | Array of arguments | Function return value |
+| `bind` | Prepares for later | Comma-separated list | Brand new bound function |
+
+#### 🛠️ Professional Architect Polyfill implementations:
+To truly master JavaScript's internal runtime execution, let's write custom polyfills from scratch on `Function.prototype` without using built-in helper methods.
+
+```javascript
+// 1. Polyfill for call()
+Function.prototype.myCall = function (context, ...args) {
+  // If no context is passed, fall back to global window/globalThis
+  context = context || globalThis;
+
+  // Use a unique Symbol key to prevent overwriting existing properties
+  const fnSymbol = Symbol('fn');
+  
+  // Assign 'this' (the target function instance) as a property of the context
+  context[fnSymbol] = this;
+
+  // Execute the function inside the context scope and capture the result
+  const result = context[fnSymbol](...args);
+
+  // Clean up the temporary property to prevent memory leaks
+  delete context[fnSymbol];
+
+  return result;
+};
+
+// 2. Polyfill for apply()
+Function.prototype.myApply = function (context, argsArray = []) {
+  context = context || globalThis;
+  const fnSymbol = Symbol('fn');
+  context[fnSymbol] = this;
+
+  // Pass array items using the spread operator
+  const result = context[fnSymbol](...argsArray);
+  
+  delete context[fnSymbol];
+  return result;
+};
+
+// 3. Polyfill for bind()
+Function.prototype.myBind = function (context, ...boundArgs) {
+  const originalFunction = this;
+
+  return function (...executionArgs) {
+    // Combine arguments passed at binding time with arguments passed at execution time
+    return originalFunction.myCall(context, ...boundArgs, ...executionArgs);
+  };
+};
+
+// Verification:
+const dev = { name: 'Knl' };
+function greet(greeting, punctuation) {
+  return `${greeting}, ${this.name}${punctuation}`;
+}
+
+console.log(greet.myCall(dev, 'Hello', '!')); // Output: "Hello, Knl!"
+console.log(greet.myApply(dev, ['Hi', '.']));  // Output: "Hi, Knl."
+
+const boundGreet = greet.myBind(dev, 'Hey');
+console.log(boundGreet('?')); // Output: "Hey, Knl?"
+```
+
+---
+
+### 3. The Event Loop & Async Scheduling Engine
+JavaScript is single-threaded (executes one line of code at a time). To support massive concurrent requests, it offloads heavy non-blocking I/O operations (timers, files, network calls) to the browser background runtime.
+
+The **Event Loop** is the active coordinator that prioritizes execution across four distinct zones:
 
 ```
-+-----------------------------------------------------------------------+
-|                            THE EVENT LOOP                             |
-+-----------------------------------------------------------------------+
-|  1. CALL STACK: Executes active code frames immediately (Sync).       |
-|  2. WEB APIs:   Offloads async tasks (setTimeout, fetch, events) to   |
-|                 browser backgrounds.                                  |
-|  3. MICROTASK QUEUE: High-priority queue reserved strictly for        |
-|                      fulfilled Promise callbacks.                     |
-|  4. MACROTASK QUEUE: Low-priority queue for timers (setTimeout) and   |
-|                      DOM callbacks.                                   |
-+-----------------------------------------------------------------------+
++-------------------------------------------------------------------------------+
+|                                THE EVENT LOOP                                 |
++-------------------------------------------------------------------------------+
+|  1. CALL STACK: Executes active code frames synchronously.                    |
+|  2. WEB APIs:   Offloads async tasks (setTimeout, fetch, events) to backgrounds. |
+|  3. MICROTASK QUEUE: High-priority queue strictly for Promise resolutions,    |
+|                      queueMicrotask(), and MutationObserver.                  |
+|  4. MACROTASK QUEUE: Low-priority queue for timers (setTimeout), network      |
+|                      callbacks, and DOM rendering ticks.                      |
++-------------------------------------------------------------------------------+
 ```
 
-#### The Priority Rule:
-The Call Stack executes all synchronous code first. Once the Call Stack is empty, the Event Loop checks the **Microtask Queue** and executes **ALL** pending microtasks before checking or executing a single low-priority task from the **Macrotask Queue**.
+#### The Strict Microtask Priority Rule:
+The Call Stack executes all synchronous code first. 
+Once the Call Stack is empty, the Event Loop checks the **Microtask Queue** and executes **ALL** pending microtasks. Crucially, if a microtask schedules *another* microtask, it will also execute inside the same tick. The Event Loop will remain locked until the Microtask Queue is **completely empty** before it will check or execute a single task from the **Macrotask Queue**.
 
 #### 🧪 Predict the Output Log:
 ```javascript
@@ -164,28 +378,58 @@ setTimeout(() => {
   console.log('2: Timeout Macrotask');
 }, 0);
 
-Promise.resolve().then(() => {
-  console.log('3: Promise Microtask');
-});
+Promise.resolve()
+  .then(() => {
+    console.log('3: Promise Microtask A');
+    // Inject a secondary microtask dynamically
+    queueMicrotask(() => console.log('4: Dynamic Microtask B'));
+  });
 
-console.log('4: Sync End');
+console.log('5: Sync End');
 ```
 
 #### Chronological Execution Steps:
-1. `console.log('1: Sync Start')` runs immediately on Call Stack.
-2. `setTimeout` is pushed to Web APIs. Since delay is `0`, its callback is placed in the **Macrotask Queue** instantly.
-3. `Promise.resolve` is executed immediately. Its callback is placed in the **Microtask Queue**.
-4. `console.log('4: Sync End')` runs on Call Stack.
+1. `console.log('1: Sync Start')` runs immediately on the Call Stack.
+2. `setTimeout` is pushed to Web APIs. Its callback is placed in the **Macrotask Queue** instantly.
+3. `Promise.resolve` resolves instantly. Its `.then()` callback is placed in the **Microtask Queue**.
+4. `console.log('5: Sync End')` runs on the Call Stack.
 5. The Call Stack is now **empty**.
-6. The Event Loop prioritizes the **Microtask Queue** first: it runs the Promise callback, logging `'3: Promise Microtask'`.
-7. Once Microtasks are clear, the Event Loop checks the **Macrotask Queue**: it runs the Timeout callback, logging `'2: Timeout Macrotask'`.
+6. The Event Loop halts macrotask execution and prioritizes the **Microtask Queue**:
+   - It runs the first microtask, logging `'3: Promise Microtask A'`.
+   - `queueMicrotask` dynamically inserts a new callback at the tail of the Microtask Queue.
+   - The queue is not empty yet! It executes the dynamic callback, logging `'4: Dynamic Microtask B'`.
+7. The Microtask Queue is now **completely empty**.
+8. The Event Loop pulls the next item from the **Macrotask Queue**, logging `'2: Timeout Macrotask'`.
+
+#### ⚠️ Async/Await Under the Hood
+The `async/await` syntax is syntactical sugar over Promises. When the runtime encounters an `await` expression, it executes the target promise, pauses synchronous execution of that specific function block, and schedules the remaining lines of the function as a **Microtask** to be executed when the promise resolves.
+
+```javascript
+async function executeTask() {
+  console.log("A: Inside Async");
+  await Promise.resolve(); // Pauses, yields execution, places next line in microtask queue
+  console.log("B: Post-Await Microtask");
+}
+
+console.log("1: Start");
+executeTask();
+console.log("2: End");
+
+// Output:
+// 1: Start
+// A: Inside Async
+// 2: End
+// B: Post-Await Microtask
+```
 
 ---
 
-### 3. Arrow Functions vs. Regular Functions (`this` binding)
+### 4. Arrow Functions vs. Regular Functions (`this` binding)
 A massive source of confusion in JavaScript is the keyword `this`.
 - **Regular Functions**: Bind `this` **dynamically** at runtime based on *how* the function is called.
-- **Arrow Functions**: Do not have their own `this`. They bind `this` **lexically** (inheriting it from their parent container scope where they were declared).
+  - Called as object method (`obj.method()`): `this` is `obj`.
+  - Called as simple function (`method()`): `this` is `globalThis` (or `undefined` in strict mode).
+- **Arrow Functions**: Do not have their own `this` binding, `arguments` object, or `new` capability. They bind `this` **lexically** (inheriting it from their parent container scope where they were declared).
 
 ```javascript
 const user = {
@@ -212,18 +456,92 @@ const user = {
 #### 💡 The Ancestral DNA Analogy:
 Imagine you have unique physical traits (properties). If someone looks at your eyes, they see your eye color. If they ask about your family's history, but you don't know it, you ask your parents. If they don't know it, they ask their parents (grandparents). You trace DNA traits up the **family tree** until you either find the answer or hit the original ancestral root (`null`).
 
-In JavaScript, every object has an internal link (`__proto__`) pointing to its "parent" prototype. When you call a method on an object, JavaScript checks if the method exists on that object. If not, it traverses up the **Prototype Chain** until it finds the method or hits `Object.prototype.__proto__` which is `null`.
+In JavaScript, every object has an internal link (`[[Prototype]]`, exposed in modern browsers as `__proto__` or accessed securely via `Object.getPrototypeOf`) pointing to its "parent" prototype object. When you read a property or call a method on an object, JavaScript checks if it exists on the local instance. If not, it traverses up the **Prototype Chain** until it finds the property or hits `Object.prototype.__proto__` which resolves to `null`.
 
 ```
 [Object: myUser] ──__proto__──> [User.prototype] ──__proto__──> [Object.prototype] ──__proto__──> null
 ```
 
+#### Under the Hood: Object.create vs Class extends
+Before the ES6 `class` keyword was introduced, developers mapped inheritance manually. Modern class syntax is purely **syntactic sugar** over prototypal inheritance.
+
+```javascript
+// A. Manual Prototypal Linkage (Pre-ES6)
+const animal = {
+  eats: true,
+  walk() {
+    return "Animal walking...";
+  }
+};
+
+const dog = Object.create(animal); // Creates a new object with 'animal' as its prototype
+dog.bark = function() { return "Woof!"; };
+
+console.log(dog.eats); // Output: true (Found on prototype chain!)
+console.log(Object.getPrototypeOf(dog) === animal); // true
+
+// B. ES6 Class Prototypal Sugar
+class AnimalClass {
+  constructor() { this.eats = true; }
+  walk() { return "Animal walking..."; }
+}
+
+class DogClass extends AnimalClass {
+  bark() { return "Woof!"; }
+}
+
+const myDog = new DogClass();
+// Under the hood, JS compiler sets: 
+// Object.getPrototypeOf(DogClass.prototype) === AnimalClass.prototype
+console.log(myDog.walk()); // Output: "Animal walking..."
+```
+
 ---
 
 ### 2. Stack vs. Heap Allocation & Garbage Collection
-- **Stack Allocation**: Fast, rigid memory blocks. Used for storing function frames and primitive variables. Stack frames are immediately discarded when a function completes.
-- **Heap Allocation**: Unstructured, flexible memory space. Used for storing massive reference objects. Since heap records don't self-destruct when functions end, browsers use a **Garbage Collector** to clean them up.
-- **Mark-and-Sweep Algorithm**: The engine starts at the root node (the `window` object) and traverses all references. Any object on the heap that is **unreachable** (no active pointer leads to it) is marked for deletion and swept away.
+Memory management in JavaScript is automatic, relying on two distinct physical structures:
+
+- **Stack Allocation**: Extremely fast, rigid, fixed-size memory blocks managed in LIFO (Last In, First Out) order. Used for active function execution frames and primitive variables. Stack frames are immediately discarded when a function completes its execution.
+- **Heap Allocation**: Unstructured, flexible memory space. Used for storing massive, dynamic reference objects (arrays, functions, objects). Heap variables don't self-destruct. The engine relies on a **Garbage Collector (GC)** to clean them.
+
+#### The GC Mark-and-Sweep Algorithm:
+To free unused memory, modern engines start at the root node (typically the global `window` or `globalThis` object) and recursively traverse all references. Any object on the heap that is **unreachable** (no active pointer leads to it from a root node) is marked for deletion and swept away.
+
+#### V8 Generational Garbage Collection:
+To optimize performance, V8 splits heap memory into two generations:
+1. **Young Generation (New Space)**:
+   - Holds newly allocated objects. Most objects die young.
+   - Divided into two equal-sized semispaces: **To-Space** and **From-Space**.
+   - V8 uses the ultra-fast **Scavenge Algorithm**: New allocations go to the Active To-Space. During GC, active (live) objects are copied to the From-Space, and the inactive To-Space is swept clean. The semispaces then swap roles.
+2. **Old Generation (Old Space)**:
+   - Holds objects that survived multiple Scavenge cycles in the New Space.
+   - Managed via the **Mark-Sweep-Compact Algorithm**: Since old space is large, V8 avoids copying. It marks live objects, sweeps away unreachable ones, and defragments (compacts) memory gaps to prevent allocation failures.
+
+#### Weak References: WeakMap and WeakSet
+Regular objects stored in a standard `Map` or `Set` are kept alive in memory as long as the map is active, blocking GC. Modern JavaScript provides `WeakMap` and `WeakSet` to store **weak references**.
+
+> [!TIP]
+> Keys in a `WeakMap` must be objects, and they do not prevent garbage collection. If an object key has no other active references in the application, V8 will garbage-collect it and automatically purge the key-value entry from the `WeakMap` to prevent memory leaks.
+
+```javascript
+// A. Standard Map holds references, blocking GC:
+let keyObj = { id: 999 };
+const standardMap = new Map();
+standardMap.set(keyObj, 'metadata');
+
+keyObj = null; // Sever the primary reference
+// Even though keyObj is null, the object is STILL trapped in standardMap!
+// It will NEVER be garbage-collected!
+
+// B. WeakMap allows garbage collection:
+let weakKey = { id: 101 };
+const weakMap = new WeakMap();
+weakMap.set(weakKey, 'session_cache');
+
+weakKey = null; // Sever the primary reference
+// V8 detects no active pointers. At the next GC cycle, 
+// the object is swept from heap, and the entry is cleared from weakMap automatically!
+```
 
 ---
 
@@ -283,10 +601,8 @@ unsub();
 
 ## 🧬 Phase 4: Expert Level (V8 Engine & Optimization)
 
-At this level, you optimize code execution by understanding compiler designs.
-
 ### 1. V8 Just-In-Time (JIT) Compilation
-Google Chrome and Node.js execute code using the **V8 Engine**. V8 does not just interpret code line-by-line; it compiles it directly into native machine code at runtime.
+Google Chrome and Node.js execute code using the **V8 Engine**. V8 compiles JavaScript directly into native machine code at runtime for high performance.
 
 ```
                   +----------------------------------------------+
@@ -307,13 +623,33 @@ Google Chrome and Node.js execute code using the **V8 Engine**. V8 does not just
                   +----------------------------------------------+
 ```
 
-1. **Ignition Interpreter**: Reads code and quickly generates lightweight bytecode.
-2. **TurboFan Optimizer**: Monitors execution. If a specific function runs frequently (a "hot path") with the exact same data shapes, TurboFan compiles it into lightning-fast **optimized machine code**.
-3. **Hidden Classes (Shapes)**: In V8, objects with identical keys in the same order share a "Hidden Class." If you initialize objects with varying structures or change keys at runtime, V8 has to discard optimized machine code (De-optimization), making your execution run 10x slower!
+1. **Parser & AST**: The parser reads raw JavaScript text, converting it to tokens, and builds an **Abstract Syntax Tree (AST)**.
+2. **Ignition Interpreter**: Reads the AST and quickly generates lightweight bytecode to start execution instantly.
+3. **TurboFan JIT Compiler**: Monitors active execution. If a specific function runs frequently (a "hot path") with the exact same data shapes, TurboFan compiles it into highly optimized **native machine code**.
+4. **Hidden Classes (Shapes)**: JavaScript has no static class offsets in memory. To solve property lookup latencies, V8 dynamically generates internal **Hidden Classes (Shapes)**. Objects initialized with the exact same keys in the exact same order share the same hidden class.
+5. **Inline Caching (IC)**: V8 caches the memory offsets of object properties inside hot function calls. If your function is **Monomorphic** (always receives objects sharing the exact same shape), V8 bypasses property dictionary lookups entirely and reads raw memory offsets, executing in nanoseconds.
 
-#### Monomorphic vs. Polymorphic Optimizations:
-- **Monomorphic call**: Passing objects of the exact same hidden class shape to a function. V8 caches this instantly (**Inline Caching**), executing in nanoseconds.
-- **Polymorphic call**: Passing objects of varying shapes to a function. V8 must run dictionary lookups, dragging down performance.
+#### ⚠️ The Shape Drift (Polymorphic De-optimization) Trap:
+If you initialize objects with varying shapes, or dynamically add/delete keys at runtime, your functions become **Polymorphic** or **Megamorphic**. V8 has to discard optimized machine code (De-optimization) and fall back to slow dictionary lookups.
+
+```javascript
+// Monomorphic: Objects share identical Hidden Class shape
+function calculateTotal(order) {
+  return order.price * 1.1; // Hot path optimized by TurboFan!
+}
+
+const orderA = { price: 10 }; // Shape: [price]
+const orderB = { price: 20 }; // Shape: [price] - Shared!
+calculateTotal(orderA);
+calculateTotal(orderB); // ⚡ Fast Monomorphic call!
+
+// Shape Drift: Different property initialization order
+const orderC = { discount: 5, price: 30 }; // Shape: [discount, price]
+const orderD = { price: 40, discount: 5 }; // Shape: [price, discount] - De-optimized!
+
+// In V8, orderC and orderD have DIFFERENT Hidden Classes!
+// Passing them to the same hot function forces a Polymorphic bailout.
+```
 
 ---
 
@@ -366,13 +702,13 @@ export function throttle<Args extends any[]>(
 ### 1. ESM (ECMAScript Modules) vs. CommonJS (CJS)
 Enterprise systems migrate to ESM because it supports static analysis.
 
-- **CommonJS (`require`)**: Node.js legacy default. Evaluates modules dynamically at runtime. You cannot easily tree-shake (remove unused dead code) because exports are decided on the fly.
-- **ESM (`import/export`)**: The modern standard. Statically analyzed at compile time. Allows modern bundlers (Vite/Webpack) to strip unused exports entirely from the production bundle, decreasing load times.
+- **CommonJS (`require`)**: Node.js legacy default. Imports are dynamic, executed synchronously at runtime. You cannot easily tree-shake (remove unused code) because exports can change on the fly depending on runtime conditions.
+- **ESM (`import/export`)**: The modern ES6 standard. Statically analyzed at compile time. Allows modern bundlers (Vite, Rollup) to parse the module tree, detect dead code, and strip unused exports entirely from the production bundle.
 
 ---
 
 ### 2. Abstract Syntax Trees (AST) & Compilers
-When Vite, Babel, or SWC processes your code, they parse your raw text files into a nested object map called an **Abstract Syntax Tree (AST)**.
+When Vite, Babel, SWC, or ESLint processes your code, they parse your raw text files into a nested JSON object map called an **Abstract Syntax Tree (AST)**.
 
 #### Input Text Code:
 ```javascript
@@ -396,7 +732,8 @@ const z = x + y;
   }]
 }
 ```
-By writing AST Transformer plugins, architects can automatically rewrite code structures, strip development logs, or optimize bundles before shipping.
+
+By writing AST Transformer plugins (e.g. using Babel or Esbuild), architects can automatically rewrite code structures, strip development console logs, or optimize production code before shipping bundles.
 
 ---
 

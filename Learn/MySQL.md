@@ -11,10 +11,10 @@ This guide starts from relational database design and normalization, then progre
 ```mermaid
 graph TD
     A["Phase 1: Beginner Level<br/>(Relational Design & SQL Basics)"]
-    B["Phase 2: Intermediate Level<br/>(Joins, Aggregations & ACID)"]
-    C["Phase 3: Advanced Level<br/>(Indexing & Performance Tuning)"]
-    D["Phase 4: Expert Level<br/>(Locks, Triggers & Replication)"]
-    E["Phase 5: Database Architect Level<br/>(Partitioning, Sharding & HA)"]
+    B["Phase 2: Intermediate Level<br/>(Joins, MVCC Isolation & Locking Models)"]
+    C["Phase 3: Advanced Level<br/>(B-Tree Traversal, Covered Queries & Tuning)"]
+    D["Phase 4: Expert Level<br/>(Deadlocks Wait-For Graphs & Replication Lag)"]
+    E["Phase 5: Database Architect Level<br/>(Partition Pruning, Sharding & HA)"]
     
     A --> B
     B --> C
@@ -25,10 +25,10 @@ graph TD
 | Phase | Target Role | Key Focus Area | Capstone Project |
 | :--- | :--- | :--- | :--- |
 | **Phase 1: Beginner** | Software Developer | Table normalization (1NF-3NF), keys, standard DML & DDL operations. | Normalized school enrollment schema design |
-| **Phase 2: Intermediate** | Backend Developer | Complex Joins, grouping/aggregation, subqueries, CTEs, ACID compliance. | E-commerce checkout transactional query suite |
-| **Phase 3: Advanced** | Performance Engineer | B-Tree index structures, composite indexes, query optimization, EXPLAIN profiling. | Optimize slow reporting queries with composite indexes |
-| **Phase 4: Expert** | Database Engineer | Locking levels, deadlock mitigation, stored procedures, triggers, Primary-Replica. | Row-level auditing system via Triggers + read replica |
-| **Phase 5: Architect** | Database Architect | Table partitioning, multi-master cluster topologies, ProxySQL routing, backups. | Multi-region, high-availability SaaS database gateway |
+| **Phase 2: Intermediate** | Backend Developer | Joins, group aggregation, ACID, 4 Isolation Levels under the hood, InnoDB MVCC & Locks. | E-commerce checkout transactional query suite |
+| **Phase 3: Advanced** | Performance Engineer | B-Tree traversal mechanics, covered queries, composite index skip-scans, EXPLAIN profiling. | Optimize slow reporting queries with covered indexing |
+| **Phase 4: Expert** | Database Engineer | Deadlock wait-for graphs, transactional retry suites, replication lag, multi-threaded slave workers. | Row-level auditing system via Triggers + replication optimizer |
+| **Phase 5: Architect** | Database Architect | Table partitioning pruning, multi-master cluster topologies, ProxySQL routing, backups. | Multi-region, high-availability SaaS database gateway |
 
 ---
 
@@ -39,7 +39,7 @@ graph TD
 #### 💡 The Digital Filing Cabinet Analogy:
 Imagine an office **filing cabinet**:
 - **The Cabinet (The Database)**: The high-level container holding everything.
-- **The Drawers (Tables)**: Divided sections holding specific categories of records (e.g. one drawer for "Customers", one for "Orders", one for "Products").
+- **The Drawers (Tables)**: Divided sections holding specific categories of records (e.g., one drawer for "Customers", one for "Orders", one for "Products").
 - **The Paper Folders (Rows/Records)**: Inside each drawer are individual folders containing information about a single entity (e.g., Customer #1234).
 - **The Sheet Template (Schema)**: Every paper folder has a pre-printed form with empty fields. You have strict rules: the "Age" box must contain a number, the "Email" box must have an `@` symbol, and the "Name" cannot be left blank.
 
@@ -158,7 +158,7 @@ WHERE status = 'pending';
 
 ---
 
-## 🛠️ Phase 2: Intermediate Level (Joins, Aggregations & ACID)
+## 🛠️ Phase 2: Intermediate Level (Joins, MVCC Isolation & Locking Models)
 
 ### 1. Joins Explained
 
@@ -226,7 +226,7 @@ Imagine you want to transfer $100 from your **Checking Account (A)** to your **S
 1. Deduct $100 from Account A.
 2. Add $100 to Account B.
 
-If the database server crashes exactly *after* Step 1 but *before* Step 2, the $100 vanishes into thin air. Your money is gone, and the bank database is inconsistent.
+If the database server crashes exactly *after* Step 1 but *before* Step 2, the $100 vanishes. Your money is gone, and the bank database is inconsistent.
 
 To prevent this, relational databases use **Transactions**. A transaction wraps both steps in an **all-or-nothing box**. If both succeed, the change is committed. If any step fails, the entire transaction is rolled back (undone) as if it never started.
 
@@ -238,70 +238,144 @@ To prevent this, relational databases use **Transactions**. A transaction wraps 
 | **Isolation** | Concurrent transactions do not interfere with each other. | Locks & Multiversion Concurrency Control (MVCC) |
 | **Durability** | Committed transactions persist permanently, even if the system crashes. | Redo log (WAL - Write-Ahead Logging) |
 
-#### Transaction Syntax in MySQL:
-```sql
-START TRANSACTION;
+---
 
--- Step 1: Deduct from Account A
-UPDATE accounts 
-SET balance = balance - 100.00 
-WHERE id = 1 AND balance >= 100.00;
+### 4. MVCC and the 4 Isolation Levels under the Hood
 
--- Step 2: Add to Account B (Only if Step 1 succeeded)
-UPDATE accounts 
-SET balance = balance + 100.00 
-WHERE id = 2;
+InnoDB achieves high performance and transaction isolation using **Multi-Version Concurrency Control (MVCC)**. Instead of locking every read row (which locks out writers), InnoDB maintains multiple versions of a modified row simultaneously.
 
--- Confirm transaction (make permanent)
-COMMIT;
+#### InnoDB Row Metadata Hidden Columns
+For every row stored in an InnoDB table, the system automatically appends two hidden metadata columns:
+1.  `DB_TRX_ID` (6 bytes): The transaction ID of the transaction that last inserted or mutated the row.
+2.  `DB_ROLL_PTR` (7 bytes): The "Rollback Pointer." Points directly to the **Undo Log** segment containing the original state of the row before this mutation.
 
--- Or if an error occurs, undo everything:
--- ROLLBACK;
 ```
++---------------+-----------+-------------+-------------+
+| User records  | ...       | DB_TRX_ID   | DB_ROLL_PTR |
++---------------+-----------+-------------+-------------+
+| "Alice"       | Active    | Tx #105     | OxFF001A24  |--+
++---------------+-----------+-------------+-------------+  | (Points to Undo Log)
+                                                             ▼
+                                                    +-----------------------+
+                                                    | UNDO LOG SEGMENT      |
+                                                    | Old record: "Alice"   |
+                                                    | Status: "Pending"     |
+                                                    +-----------------------+
+```
+
+When a transaction performs a read, InnoDB constructs a **Read View** (a snapshot of active transactions at that moment) to filter which `DB_TRX_ID` values are visible. If a row version is modified by an uncommitted transaction, the query router traverses the `DB_ROLL_PTR` link into the Undo Log to find the last committed version.
+
+#### The 4 Transaction Isolation Levels
+MVCC behaves differently across the four standard ANSI SQL isolation levels:
+
+```
+              [ Transaction isolation levels and Anomaly Matrix ]
+  READ UNCOMMITTED ----(Dirty Reads)----> READ COMMITTED ----(Non-Repeatable Reads)
+         |                                       |
+         | (Gap Locking Disabled)                | (Gap Locking Disabled)
+         ▼                                       ▼
+  REPEATABLE READ -----(Phantom Reads)----> SERIALIZABLE
+   (MySQL Default)                          (Strict Implicit Shared Locks)
+```
+
+1.  **Read Uncommitted**
+    *   *Under the hood*: Reads rows directly, ignoring both locks and MVCC `DB_TRX_ID` checks.
+    *   *Anomaly*: **Dirty Reads**. You can read modified data from another transaction before it commits. If that transaction rolls back, your read was fake.
+2.  **Read Committed**
+    *   *Under the hood*: Every individual `SELECT` statement in a transaction generates a **new** MVCC Read View.
+    *   *Anomaly*: **Non-Repeatable Reads**. If you query a row at 12:00 PM and query it again at 12:01 PM, another transaction could commit a change in between. Your two identical queries return different data.
+3.  **Repeatable Read** (MySQL Default)
+    *   *Under the hood*: A **single** MVCC Read View is created when the first `SELECT` statement in the transaction runs. This identical Read View is reused for every subsequent query in that transaction.
+    *   *How it prevents Phantom Reads*: InnoDB uses **Gap Locks** and **Next-Key Locks** to lock not just rows, but the empty indexing gaps between rows, blocking concurrent transactions from inserting new records (phantoms) into your queried ranges.
+4.  **Serializable**
+    *   *Under the hood*: MVCC is bypassed for reads. Every plain `SELECT` is implicitly converted to `SELECT ... FOR SHARE`. This forces every read query to acquire a Shared lock (S), completely blocking concurrent writers and creating serial execution queues.
+
+---
+
+### 5. InnoDB Locking Taxonomy
+
+To manage concurrency safely, InnoDB deploys a rich taxonomy of lock types:
+
+#### a) Shared (S) and Exclusive (X) Locks
+*   **Shared Lock (S)**: Acquired during read transactions (e.g., `FOR SHARE`). Allows concurrent S-locks on the same resource, but blocks Exclusive locks (X).
+*   **Exclusive Lock (X)**: Acquired during mutations (`UPDATE`, `DELETE`, `FOR UPDATE`). Blocks all other S and X locks.
+
+#### b) Intent Locks: IS and IX
+*   **Intent Shared (IS)** and **Intent Exclusive (IX)** are **Table-Level Locks**.
+*   *The Purpose*: They indicate that a transaction plans to acquire a row-level lock (S or X) on a row within that table.
+*   *Why they are needed*: Before a transaction can acquire a table lock (e.g., `LOCK TABLES users WRITE`), it must verify no other transaction holds a row-level lock. Instead of scanning millions of rows to check, it inspects the table's IX or IS locks instantly.
+
+#### c) Record, Gap, and Next-Key Locks
+*   **Record Lock**: Locks the exact index record.
+*   **Gap Lock**: Locks the empty space *between* index records, or the space before/after the first/last index keys.
+*   **Next-Key Lock**: A combination of a Record Lock and a Gap Lock on the gap preceding the index record.
+
+```
+       Index Keys:       [ 10 ]               [ 20 ]               [ 30 ]
+                         /    \               /    \               /    \
+     Gap Lock targets:  (  Gap  )            (  Gap  )            (  Gap  )
+                       Locks empty space to prevent new inserts in these ranges.
+```
+
+If you execute `SELECT * FROM users WHERE age BETWEEN 10 AND 20 FOR UPDATE`, InnoDB places a Gap Lock on the space between 10 and 20. If another transaction tries to execute `INSERT INTO users (age) VALUES (15)`, the write is blocked, preventing phantom rows from appearing.
 
 ---
 
 ## ⚡ Phase 3: Advanced Level (Indexing & Performance Tuning)
 
-### 1. B-Tree Indexes Internals
+### 1. B-Tree Indexes Internals: Mathematics and Leaf Layouts
 
-#### 💡 The Textbook Index Analogy:
-Imagine you are reading a 1,000-page textbook on databases. You want to look up the term **"deadlocks."**
-- **Without an Index (Table Scan)**: You start on page 1, scan every word, then turn to page 2, scanning all the way to page 1,000. This is O(N) complexity and incredibly slow.
-- **With an Index (B-Tree)**: You flip to the back of the book, where all terms are alphabetized. You look under "D", locate "deadlocks", find "Page 412", and immediately flip directly to page 412. This is O(log N) complexity.
-
-#### How MySQL Indexes Work (InnoDB B-Trees):
-InnoDB organizes data using a **balanced tree (B-Tree)** structure. The tree consists of:
-- **Root Node**: The top entry point of the search tree.
-- **Internal Nodes**: Guide pointers directing the query down the tree.
-- **Leaf Nodes**: The bottom layer containing the actual indexed keys and pointers to the raw rows.
+Relational indexing requires storing records in physical storage pages (typically 16KB blocks in InnoDB) that are indexed using B-Trees.
 
 ```
-                       [ 50 ]                   <-- Root Node
-                      /      \
-               [ 25 ]          [ 75 ]           <-- Internal Nodes
-              /      \        /      \
-            [10]    [30]    [60]    [90]        <-- Leaf Nodes (Contain Row Pointers)
+                         [ 16KB Index Page ]
+             +-----------------------------------------+
+             | Page Header                             |
+             +-----------------------------------------+
+             | Slot Directory (For Binary Search)     |
+             +-----------------------------------------+
+             | User Records (Sorted List)              |
+             |  [Key: 10] -> [Key: 20] -> [Key: 30]   |
+             +-----------------------------------------+
 ```
 
-For a table with 1,000,000 rows, searching without an index requires **1,000,000 reads**. With a B-Tree index, it takes only **3 or 4 page reads** to locate the exact row.
+#### Traversal Path Step-by-Step
+When you execute `WHERE id = 25`:
+1.  MySQL loads the index **Root Page** into memory.
+2.  It reads the **Slot Directory** and performs a fast **Binary Search** inside the page's sorted keys to find the child pointer matching the target value.
+3.  It follows the pointer to load the intermediate internal node page, repeating the binary search.
+4.  It traverses to the **Leaf Page** containing key `25`.
+5.  *Resolution*: If searching a **Clustered Index**, the leaf node contains the key and the actual data row. If searching a **Secondary Index**, the leaf contains the key and a pointer to the Primary Key value, requiring a second traversal down the Clustered Index tree (a double lookup).
 
 ---
 
-### 2. Composite Indexes & Left-Prefix Rule
+### 2. Composite Indexes, Skip-Scans, and Covered Queries
 
-A **composite index** is an index built on multiple columns (e.g., `INDEX (last_name, first_name)`).
+#### Composite Index Skip-Scans
+As discussed in the Left-Prefix rule, a composite index on `(last_name, first_name)` is structured around `last_name` as the leading column. 
+
+*   *Standard Behavior*: If you query `WHERE first_name = 'John'`, MySQL must bypass the index and scan the whole table.
+*   *Index Skip-Scan*: If the leading column (`last_name`) has very low cardinality (e.g., only 3 unique values like 'Smith', 'Jones', 'Doe'), the MySQL optimizer can perform an **Index Skip-Scan**. It splits the query into three sub-scans:
+    1. Scan `WHERE last_name = 'Smith' AND first_name = 'John'`
+    2. Scan `WHERE last_name = 'Jones' AND first_name = 'John'`
+    3. Scan `WHERE last_name = 'Doe' AND first_name = 'John'`
+    
+    This technique allows MySQL to use the index even when the leading column is missing, though it incurs a performance overhead compared to a matching query.
+
+#### Covered Queries (Index-Only Scan)
+A **Covered Query** occurs when all columns requested in the `SELECT` and `WHERE` clauses are contained entirely within the index itself.
 
 ```sql
-CREATE INDEX idx_name ON employees (last_name, first_name);
+-- Creating the index
+CREATE INDEX idx_user_status ON users (username, status);
+
+-- Running the covered query
+SELECT username, status FROM users WHERE username = 'alice';
 ```
 
-#### The Left-Prefix Rule:
-A composite index can only be used if the columns in your query's `WHERE` clause match the index columns from left to right:
-
-*   `WHERE last_name = 'Smith'` — **Yes** (uses index)
-*   `WHERE last_name = 'Smith' AND first_name = 'John'` — **Yes** (uses index fully)
-*   `WHERE first_name = 'John'` — **No** (index is ignored, performs full table scan)
+*   **Under the hood**: When executing this query, MySQL reads the index tree nodes. Because the index blocks contain the values for both `username` and `status`, MySQL resolves the query directly from memory.
+*   **The Benefit**: It bypasses the clustered index leaf pointer lookup entirely. It does not touch the physical table data files on disk, saving extensive disk I/O operations.
+*   **EXPLAIN Profiling**: The `Extra` column will display `Using index`.
 
 ---
 
@@ -339,7 +413,7 @@ Output:
 
 - **type = ref**: Accessing rows directly via index equality lookup.
 - **key = idx_cust_status**: The new composite index is actively used.
-- **rows = 12**: MySQL only read 12 rows to return the result, bypassing 850,000+ rows!
+- **rows = 12**: MySQL only read 12 rows to return the result, bypassing 850,000+ rows.
 
 ---
 
@@ -357,60 +431,123 @@ MySQL supports multiple storage engines, configurable per table. InnoDB is the m
 
 ---
 
-## 🧬 Phase 4: Expert Level (Locks, Triggers & Replication)
+## 🧬 Phase 4: Expert Level (Locks, Deadlocks & Replication)
 
-### 1. Database Locking Mechanisms
+### 1. Deadlock wait-for graphs and Cycle Detection
 
-To maintain isolation, InnoDB uses lock types depending on the transaction level:
+InnoDB maintains an internal **Wait-For Graph** to detect deadlock dependencies dynamically.
 
-- **Shared Locks (S)**: Read locks. Multiple transactions can hold S-locks on the same row simultaneously to read data.
-- **Exclusive Locks (X)**: Write locks. Only one transaction can hold an X-lock, blocking all other reads and writes.
+```
+       +-------------------+               +-------------------+
+       |   Transaction A   |-------------->|   Transaction B   | (Tx A waits for Row 2
+       |  Holds Lock: Row 1|               |  Holds Lock: Row 2|  which is locked by Tx B)
+       +-------------------+               +-------------------+
+                 ▲                                   |
+                 |                                   | (Tx B requests Row 1
+                 +-----------------------------------+  which is locked by Tx A)
+                            [ CYCLE DETECTED ]
+```
 
-#### Lock Granularity:
-- **Table Locks**: Locks the entire table. High write latency, low memory footprint.
-- **Row Locks**: Locks specific rows. Low latency, allows concurrent writes to other rows, but high memory overhead.
+*   **Wait-For Graph**: A directed graph where nodes represent active transactions, and directed edges represent lock dependencies (e.g., $Tx_A \to Tx_B$ indicates Transaction A is waiting for a lock held by Transaction B).
+*   **The Detector Thread**: InnoDB runs an internal background thread that continually traverses this graph. If it finds a closed loop (a cycle), it declares a deadlock.
+*   **The Resolution Heuristic**: To resolve the deadlock, InnoDB evaluates the active transactions in the cycle and selects the transaction that has generated the **fewest Undo Log records** (the one that made the fewest modifications). It terminates and rolls back this "cheapest" transaction, releasing its locks and allowing the other transaction to complete.
 
-#### Explicit Locking Syntax:
-```sql
--- Get an Exclusive (Write) lock on a row (blocks others until commit/rollback)
-SELECT * FROM users WHERE id = 1 FOR UPDATE;
+#### Production TypeScript/Node Transaction Retry Wrapper
+Applications running on transactional databases must handle deadlocks gracefully by implementing a retry mechanism.
 
--- Get a Shared (Read) lock on a row
-SELECT * FROM users WHERE id = 1 FOR SHARE;
+```typescript
+import mysql from 'mysql2/promise';
+
+const dbPool = mysql.createPool({
+  host: 'db-primary.example.com',
+  user: 'admin',
+  database: 'payments'
+});
+
+/**
+ * Runs a database transaction, automatically retrying if a deadlock is encountered.
+ */
+export async function runTransactionWithRetry<T>(
+  action: (connection: mysql.PoolConnection) => Promise<T>,
+  maxRetries = 5,
+  delayMs = 100
+): Promise<T> {
+  let attempt = 0;
+
+  while (true) {
+    const connection = await dbPool.getConnection();
+    try {
+      await connection.beginTransaction();
+      
+      // Execute the database mutations
+      const result = await action(connection);
+      
+      await connection.commit();
+      return result;
+    } catch (error: any) {
+      await connection.rollback();
+      
+      const isDeadlock = error.errno === 1213 || error.sqlState === '40001';
+      attempt++;
+
+      if (isDeadlock && attempt < maxRetries) {
+        // Deadlock detected: backoff exponentially and retry
+        const backoff = delayMs * Math.pow(2, attempt);
+        console.warn(`Deadlock detected (attempt ${attempt}/${maxRetries}). Retrying in ${backoff}ms...`);
+        await new Promise((resolve) => setTimeout(resolve, backoff));
+        continue;
+      }
+
+      // Throw error if max retries exceeded or not a deadlock error
+      throw error;
+    } finally {
+      connection.release();
+    }
+  }
+}
 ```
 
 ---
 
-### 2. Deadlocks: Causes & Mitigation
+### 2. Replication Topology & Mitigation of Replication Lag
 
-A **deadlock** occurs when two transactions hold locks that the other needs, creating an infinite block.
+MySQL Replication distributes database loads by copying data from one primary database server to one or more replicas.
 
 ```
-Transaction A                       Transaction B
-1. Lock Row 1 (Success)             1. Lock Row 2 (Success)
-2. Request Row 2 (Waiting...)       2. Request Row 1 (Waiting...)
-      │                                   │
-      └──────────────── Deadlock ─────────┘
+                     ┌──────────────────┐
+                     │   PRIMARY (R/W)  │
+                     │  (Writes to BIN) │
+                     └────────┬─────────┘
+                               │
+               ┌───────────────┴───────────────┐
+               ▼                               ▼
+      ┌─────────────────┐             ┌─────────────────┐
+      │  REPLICA (Read) │             │  REPLICA (Read) │
+      │  (Reads Relay)  │             │  (Reads Relay)  │
+      └─────────────────┘             └─────────────────┘
 ```
 
-#### Real-World Example:
+#### What Causes Replication Lag?
+Replication lag is the delay between a write operation committing on the Primary and that write executing on the Replica.
+1.  **Single-Thread Replay Bottleneck**: By default, the Primary executes transactions in parallel using multiple CPU threads. However, older or poorly configured replica nodes process the incoming Binary Log using a single thread (`SQL Thread`), creating a write bottleneck.
+2.  **Write Amplification and Lock Contention**: Running heavy analytical queries or reports on the Replica creates read-locks that block the incoming SQL replication replay thread.
+
+#### Monitoring Replication Lag
+Connect to the Replica instance and execute:
 ```sql
--- Transaction A
-UPDATE accounts SET balance = balance - 10.00 WHERE id = 1; -- Holds lock on Row 1
--- Transaction B
-UPDATE accounts SET balance = balance + 10.00 WHERE id = 2; -- Holds lock on Row 2
-
--- Transaction A requests Row 2
-UPDATE accounts SET balance = balance + 10.00 WHERE id = 2; -- Blocked, waits for B
-
--- Transaction B requests Row 1
-UPDATE accounts SET balance = balance - 10.00 WHERE id = 1; -- DEADLOCK!
+SHOW REPLICA STATUS;
 ```
+Look for the metric **`Seconds_Behind_Master`**. A non-zero value represents the duration (in seconds) the replica's state lags behind the primary node.
 
-#### Deadlock Mitigations:
-1.  **Uniform Order**: Always update tables and rows in the exact same logical order (e.g. order by primary key ID ascending).
-2.  **Keep Transactions Short**: Commit transactions quickly to release locks immediately.
-3.  **App Retry Logic**: Application code must catch Deadlock errors (Error code `1213`) and transparently retry the transaction.
+#### Lag Mitigation Strategies
+*   **Enable Multi-Threaded Replay**: Configure the replica to replay transactions in parallel using worker threads:
+    ```sql
+    -- MySQL Configuration (my.cnf)
+    replica_parallel_workers = 8
+    replica_parallel_type = 'LOGICAL_CLOCK'
+    ```
+*   **Semi-Synchronous Replication**: Instead of asynchronous replication (where the Primary commits without waiting), enable semi-synchronous replication. This forces the Primary to wait until at least one Replica has received and written the transaction logs to its relay log before returning success to the client.
+*   **Write-to-Read Routing Paths**: Ensure your application routing layer sends fresh reads (such as a profile change a user just saved) directly to the Primary, while routing non-urgent reads to the Replicas.
 
 ---
 
@@ -440,77 +577,73 @@ BEGIN
     INSERT INTO user_audits (user_id, action, old_email, new_email)
     VALUES (OLD.id, 'EMAIL_CHANGE', OLD.email, NEW.email);
   END IF;
-END //
+End //
 DELIMITER ;
-```
-
----
-
-### 4. MySQL Replication Topology
-
-MySQL Replication distributes database loads by copying data from one primary database server to one or more replicas.
-
-```
-                     ┌──────────────────┐
-                     │   PRIMARY (R/W)  │
-                     │  (Writes to BIN) │
-                     └────────┬─────────┘
-                              │
-              ┌───────────────┴───────────────┐
-              ▼                               ▼
-     ┌─────────────────┐             ┌─────────────────┐
-     │  REPLICA (Read) │             │  REPLICA (Read) │
-     │  (Reads Relay)  │             │  (Reads Relay)  │
-     └─────────────────┘             └─────────────────┘
-```
-
-| Server Role | Operations Allowed | Internal Mechanism |
-| :--- | :--- | :--- |
-| **Primary (Master)** | Read & Write (mutations) | Writes changes to its **Binary Log (`binlog`)**. |
-| **Replica (Slave)** | Read-Only | Copies the binlog into its **Relay Log**, then replays queries sequentially to sync data. |
-
-#### Read-Write Splitting (Application Pattern):
-```typescript
-import mysql from 'mysql2/promise';
-
-// Define two pools
-const writePool = mysql.createPool({ host: 'primary.database.internal' });
-const readPool = mysql.createPool({ host: 'replica.database.internal' });
-
-async function executeQuery(sql: string, params: any[], isMutation = false) {
-  // Routes writes to primary, reads to replica
-  const pool = isMutation ? writePool : readPool;
-  const [rows] = await pool.execute(sql, params);
-  return rows;
-}
 ```
 
 ---
 
 ## 🏛️ Phase 5: Database Architect Level (Partitioning, Sharding & HA)
 
-### 1. Table Partitioning
+### 1. Table Partitioning: Range, List, and Hash
 
 Partitioning splits a massive table into smaller, physically separate files on disk, while presenting a single table interface to the application.
 
+#### a) Range Partitioning
+Splits rows based on value ranges within a specified column (e.g., dividing transactions by calendar year).
+
 ```sql
--- Partition a logs table by Year
-CREATE TABLE system_logs (
-  id INT NOT NULL,
-  log_text TEXT,
-  created_at DATE NOT NULL,
-  PRIMARY KEY (id, created_at)
+CREATE TABLE historical_orders (
+  order_id INT NOT NULL,
+  amount DECIMAL(10, 2) NOT NULL,
+  order_date DATE NOT NULL,
+  PRIMARY KEY (order_id, order_date)
 )
-PARTITION BY RANGE (YEAR(created_at)) (
+PARTITION BY RANGE (YEAR(order_date)) (
   PARTITION p2024 VALUES LESS THAN (2025),
   PARTITION p2025 VALUES LESS THAN (2026),
   PARTITION p_future VALUES LESS THAN MAXVALUE
 );
 ```
 
-#### Why partition?
-*   **Partition Pruning**: If your query filters `WHERE created_at >= '2025-01-01'`, MySQL completely ignores the `p2024` file on disk, scanning only the `p2025` partition file.
-*   **Fast Archiving**: Instead of running a slow `DELETE` query to purge old logs, you can drop a partition instantly: `ALTER TABLE system_logs DROP PARTITION p2024;`.
+#### b) List Partitioning
+Partitions rows based on a predefined set of literal value lists (e.g., grouping customers by geographic region).
+
+```sql
+CREATE TABLE customers (
+  id INT NOT NULL,
+  name VARCHAR(50),
+  region_id INT NOT NULL,
+  PRIMARY KEY (id, region_id)
+)
+PARTITION BY LIST (region_id) (
+  PARTITION p_americas VALUES IN (1, 2, 3),
+  PARTITION p_europe VALUES IN (4, 5, 6),
+  PARTITION p_asia VALUES IN (7, 8, 9)
+);
+```
+
+#### c) Hash Partitioning
+Distributes rows evenly across a fixed number of partitions using a hashing function.
+
+```sql
+CREATE TABLE user_sessions (
+  session_id INT NOT NULL,
+  token VARCHAR(100),
+  user_id INT NOT NULL,
+  PRIMARY KEY (session_id)
+)
+PARTITION BY HASH (session_id)
+PARTITIONS 8; -- Distributes keys uniformly modulo 8
+```
+
+#### How Partition Pruning Works Mathematically
+When you run the query `SELECT * FROM historical_orders WHERE order_date = '2025-06-15'`, the MySQL query optimizer evaluates the partition range definitions. 
+It calculates:
+
+$$\text{Target Year} = 2025 \implies 2025 < 2026 \implies \text{Partition: } p2025$$
+
+MySQL prunes all other partitions (`p2024`, `p_future`) and reads *only* the physical storage file corresponding to `p2025`. This minimizes disk scans and improves search performance.
 
 ---
 
@@ -519,19 +652,19 @@ PARTITION BY RANGE (YEAR(created_at)) (
 For mission-critical applications, Primary-Replica replication lacks automatic failover. Architects use **Group Replication** inside **MySQL InnoDB Clusters**.
 
 ```
-                   ┌───────────────────────────────────┐
-                   │        ProxySQL ROUTER            │
-                   │  (Auto-routes & detects healthy)  │
-                   └─────────────────┬─────────────────┘
-                                     │
-         ┌───────────────────────────┼───────────────────────────┐
-         ▼                           ▼                           ▼
-┌──────────────────┐        ┌──────────────────┐        ┌──────────────────┐
-│   Node A (Primary)│◀──────▶│  Node B (Replica)│◀──────▶│  Node C (Replica)│
-│   Reads & Writes │        │  Read-Only Sync  │        │  Read-Only Sync  │
-└──────────────────┘        └──────────────────┘        └──────────────────┘
-         ▲                           ▲                           ▲
-         └────────────────── Paxos Consensus Group ──────────────┘
+                    ┌───────────────────────────────────┐
+                    │        ProxySQL ROUTER            │
+                    │  (Auto-routes & detects healthy)  │
+                    └─────────────────┬─────────────────┘
+                                      │
+          ┌───────────────────────────┼───────────────────────────┐
+          ▼                           ▼                           ▼
+ ┌──────────────────┐        ┌──────────────────┐        ┌──────────────────┐
+ │   Node A (Primary)│◀──────▶│  Node B (Replica)│◀──────▶│  Node C (Replica)│
+ │   Reads & Writes │        │  Read-Only Sync  │        │  Read-Only Sync  │
+ └──────────────────┘        └──────────────────┘        └──────────────────┘
+          ▲                           ▲                           ▲
+          └────────────────── Paxos Consensus Group ──────────────┘
 ```
 
 #### Key Architecture Concepts:
