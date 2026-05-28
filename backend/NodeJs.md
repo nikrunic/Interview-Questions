@@ -2,8 +2,7 @@
 
 This document contains a comprehensive list of 100 Node.js interview questions, categorized by difficulty (20 Basic, 30 Medium, 50 Hard). These questions are curated based on popular public Git repositories.
 
-## Basic (20 Questions)
-
+## Basic Questions
 ### 1. What is Node.js?
 **Answer:** An open-source, cross-platform, back-end JavaScript runtime environment built on Chrome's V8 engine that executes JS code outside a web browser.
 **Example:** `node app.js`
@@ -190,8 +189,7 @@ A file that is automatically generated when `package.json` changes.
 ---
 
 
-## Medium (30 Questions)
-
+## Intermediate Questions
 ### 21. How does the Event Loop work in Node.js?
 **Answer:** The Event Loop is what allows Node.js to perform non-blocking I/O operations despite being single-threaded, by offloading operations to the system kernel (libuv) whenever possible.
 **Example:** Timers phase -> Pending Callbacks -> Idle/Prepare -> Poll -> Check -> Close Callbacks.
@@ -378,8 +376,7 @@ Representational State Transfer.
 ---
 
 
-## Hard (50 Questions)
-
+## Expert Questions
 ### 41. Explain Libuv in detail.
 **Answer:** 
 **The Core Concept:**
@@ -1510,4 +1507,39 @@ app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 100 })); // Rate limiting
 **Reference:** [Node.js Security Best Practices](https://nodejs.org/en/docs/guides/security-best-practices/)
 
 ---
+
+## Technical Questions
+
+### 1. Build a basic HTTP server with the native `http` module that parses query parameters.
+
+**Example Solution:**
+```javascript
+const http = require("http");
+const url = require("url");
+
+const server = http.createServer((req, res) => {
+  const parsedUrl = url.parse(req.url, true);
+  res.writeHead(200, { "Content-Type": "application/json" });
+  res.end(JSON.stringify({ query: parsedUrl.query }));
+});
+server.listen(3000);
+```
+
+### 2. Write an Express middleware that logs request execution times to the console.
+
+**Example Solution:**
+```javascript
+const express = require("express");
+const app = express();
+
+app.use((req, res, next) => {
+  const start = process.hrtime();
+  res.on("finish", () => {
+    const diff = process.hrtime(start);
+    const ms = diff[0] * 1e3 + diff[1] * 1e-6;
+    console.log(`${req.method} ${req.url} - ${ms.toFixed(3)}ms`);
+  });
+  next();
+});
+```
 

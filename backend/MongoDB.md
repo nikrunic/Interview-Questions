@@ -4,8 +4,7 @@ This document contains a comprehensive list of 100 MongoDB interview questions, 
 
 ---
 
-## Basic (20 Questions)
-
+## Basic Questions
 ### 1. What is MongoDB?
 **Answer:** A document-oriented, open-source NoSQL database program designed for high volume data storage, scaling, and schema flexibility.
 **Example:** `mongosh` CLI allows interacting with MongoDB databases.
@@ -215,8 +214,7 @@ db.products.find().skip(10).limit(5);
 
 ---
 
-## Medium (30 Questions)
-
+## Intermediate Questions
 ### 21. What is an index in MongoDB, and why is it used?
 **Answer:** A data structure that stores a small portion of the collection's data in a traversable B-Tree to bypass full collection scans.
 **Example:**
@@ -557,8 +555,7 @@ db.users.replaceOne({ _id: 1 }, { name: "New Name" }); // Bypasses specific fiel
 
 ---
 
-## Hard (50 Questions)
-
+## Expert Questions
 ### 51. Explain the architecture of a MongoDB Replica Set in detail.
 **Answer:** 
 **The Core Concept:**
@@ -1068,3 +1065,40 @@ db.users.find().count(); // forces index scan into cache
 - Configured in `mongod.conf`.
 - Outputs in JSON or Syslog format for ingestion into SIEM tools.
 **Reference:** [Configure Database Auditing](https://www.mongodb.com/docs/manual/tutorial/configure-auditing/)
+
+---
+
+## Technical Questions
+
+### 1. Write a MongoDB Aggregation Pipeline query to group users by age and return the average score.
+
+**Example Solution:**
+```javascript
+db.users.aggregate([
+  { $group: { _id: "$age", avgScore: { $avg: "$score" } } },
+  { $sort: { _id: 1 } }
+]);
+```
+
+### 2. Implement a robust transaction in Mongoose to transfer funds between two accounts.
+
+**Example Solution:**
+```javascript
+const mongoose = require("mongoose");
+
+async function transferFunds(fromId, toId, amount) {
+  const session = await mongoose.startSession();
+  session.startTransaction();
+  try {
+    await Account.updateOne({ userId: fromId }, { $inc: { balance: -amount } }, { session });
+    await Account.updateOne({ userId: toId }, { $inc: { balance: amount } }, { session });
+    await session.commitTransaction();
+  } catch (error) {
+    await session.abortTransaction();
+    throw error;
+  } finally {
+    session.endSession();
+  }
+}
+```
+

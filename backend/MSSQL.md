@@ -2,8 +2,7 @@
 
 This document contains a comprehensive list of Microsoft SQL Server (T-SQL) interview questions, categorized by difficulty.
 
-## Basic (10 Questions)
-
+## Basic Questions
 ### 1. What is MS SQL Server?
 **Answer:** 
 **The Core Concept:**
@@ -128,8 +127,7 @@ A CTE provides a temporary result set that you can reference within a `SELECT`, 
 
 ---
 
-## Medium (10 Questions)
-
+## Intermediate Questions
 ### 11. What is a Window Function?
 **Answer:** 
 **The Core Concept:**
@@ -260,8 +258,7 @@ Using `TRY...CATCH` blocks.
 
 ---
 
-## Hard (10 Questions)
-
+## Expert Questions
 ### 21. What is an Execution Plan?
 **Answer:** 
 **The Core Concept:**
@@ -1411,4 +1408,30 @@ ALTER TABLE Users ADD CONSTRAINT UQ_Users_Email UNIQUE (Email);
 **Reference:** [Unique Constraints](https://learn.microsoft.com/en-us/sql/relational-databases/tables/unique-constraints-and-check-constraints)
 
 ---
+
+## Technical Questions
+
+### 1. Write a T-SQL query using a Common Table Expression (CTE) and `DENSE_RANK()` to find the second highest salary.
+
+**Example Solution:**
+```sql
+WITH SalaryCTE AS (
+  SELECT Name, Salary, DENSE_RANK() OVER (ORDER BY Salary DESC) AS Rank
+  FROM Employees
+)
+SELECT Name, Salary 
+FROM SalaryCTE 
+WHERE Rank = 2;
+```
+
+### 2. Write a T-SQL query demonstrating dynamic pagination using `OFFSET` and `FETCH NEXT`.
+
+**Example Solution:**
+```sql
+SELECT EmployeeId, Name, Salary
+FROM Employees
+ORDER BY EmployeeId
+OFFSET 10 ROWS
+FETCH NEXT 10 ROWS ONLY;
+```
 

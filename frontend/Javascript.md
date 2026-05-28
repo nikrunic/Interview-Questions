@@ -689,8 +689,7 @@ class Dog extends Animal {
 
 This document contains a comprehensive list of 100 JavaScript interview questions, categorized by difficulty (20 Basic, 30 Medium, 50 Hard). These questions are curated based on popular public Git repositories (e.g., sudheerj/javascript-interview-questions).
 
-## Basic (20 Questions)
-
+## Basic Questions
 ### 1. What are the possible ways to create objects in JavaScript?
 **Answer:** Object literals `{}`, `Object.create()`, Constructor functions, ES6 Classes, and `new Object()`.
 **Example:** `const obj = {};`
@@ -867,8 +866,7 @@ Document Object Model.
 ---
 
 
-## Medium (30 Questions)
-
+## Intermediate Questions
 ### 21. What is the difference between `localStorage`, `sessionStorage`, and `cookies`?
 **Answer:** 
 **The Core Concept:**
@@ -1126,8 +1124,7 @@ Refers to the object that is currently executing the code.
 ---
 
 
-## Hard (50 Questions)
-
+## Expert Questions
 ### 51. Explain the mechanism of Garbage Collection in JavaScript.
 **Answer:** 
 **The Core Concept:**
@@ -1979,8 +1976,7 @@ A closure is the combination of a function bundled together (enclosed) with refe
 
 This document contains a comprehensive list of 100 Core JavaScript interview questions, categorized by difficulty (20 Basic, 30 Medium, 50 Hard). These questions are curated based on popular public Git repositories, focusing specifically on deep, core language mechanics.
 
-## Basic (20 Questions)
-
+## Basic Questions
 ### 1. What are the primitive data types in JavaScript?
 **Answer:** String, Number, BigInt, Boolean, Undefined, Symbol, and Null.
 **Example:** `let num = 42; let str = "Hello";`
@@ -2163,8 +2159,7 @@ Determines whether a value is NaN (Not-a-Number).
 ---
 
 
-## Medium (30 Questions)
-
+## Intermediate Questions
 ### 21. Explain Prototypal Inheritance.
 **Answer:** 
 **The Core Concept:**
@@ -2363,8 +2358,7 @@ Native way: `structuredClone(obj)`.
 ---
 
 
-## Hard (50 Questions)
-
+## Expert Questions
 ### 41. Describe V8 Garbage Collection mechanics.
 **Answer:** 
 **The Core Concept:**
@@ -2932,4 +2926,42 @@ const obj = {
 **Reference:** [MDN Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 
 ---
+
+## Practice Questions
+
+### 1. Write a custom implementation of `Array.prototype.map()`.
+
+**Example Solution:**
+```javascript
+Array.prototype.myMap = function(callback) {
+  const result = [];
+  for (let i = 0; i < this.length; i++) {
+    result.push(callback(this[i], i, this));
+  }
+  return result;
+};
+```
+
+### 2. Implement a debounce helper function in JavaScript.
+
+**Example Solution:**
+```javascript
+function debounce(func, delay) {
+  let timerId;
+  return function(...args) {
+    clearTimeout(timerId);
+    timerId = setTimeout(() => func.apply(this, args), delay);
+  };
+}
+```
+
+### 3. Write a function to check if a string is a palindrome.
+
+**Example Solution:**
+```javascript
+function isPalindrome(str) {
+  const clean = str.toLowerCase().replace(/[^a-z0-9]/g, "");
+  return clean === clean.split("").reverse().join("");
+}
+```
 

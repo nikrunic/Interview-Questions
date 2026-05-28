@@ -2,8 +2,7 @@
 
 This document contains a comprehensive list of MySQL interview questions, categorized by difficulty.
 
-## Basic (10 Questions)
-
+## Basic Questions
 ### 1. What is MySQL?
 **Answer:** 
 **The Core Concept:**
@@ -134,8 +133,7 @@ The `HAVING` clause is used to filter records that work on summarized `GROUP BY`
 
 ---
 
-## Medium (10 Questions)
-
+## Intermediate Questions
 ### 11. What are ACID properties in a database?
 **Answer:** 
 **The Core Concept:**
@@ -265,8 +263,7 @@ This is a classic interview query to test pagination and sorting knowledge.
 
 ---
 
-## Hard (10 Questions)
-
+## Expert Questions
 ### 21. What is an Execution Plan (EXPLAIN statement)?
 **Answer:** 
 **The Core Concept:**
@@ -1272,3 +1269,28 @@ InnoDB uses Multi-Version Concurrency Control (MVCC) to provide high concurrency
 **Reference:** [Documentation](https://dev.mysql.com/doc/refman/8.0/en/innodb-transaction-isolation-levels.html)
 
 ---
+
+## Technical Questions
+
+### 1. Write a SQL query to find all duplicate emails in a `Users` table.
+
+**Example Solution:**
+```sql
+SELECT email, COUNT(email) 
+FROM Users 
+GROUP BY email 
+HAVING COUNT(email) > 1;
+```
+
+### 2. Write a SQL query using `INNER JOIN` to fetch the top 5 customers by total order spend.
+
+**Example Solution:**
+```sql
+SELECT c.CustomerId, c.Name, SUM(o.TotalAmount) AS TotalSpend
+FROM Customers c
+INNER JOIN Orders o ON c.CustomerId = o.CustomerId
+GROUP BY c.CustomerId, c.Name
+ORDER BY TotalSpend DESC
+LIMIT 5;
+```
+

@@ -2,8 +2,7 @@
 
 This document contains a comprehensive list of 100 TypeScript interview questions, categorized by difficulty (20 Basic, 30 Medium, 50 Hard). These questions are curated based on popular public Git repositories and front-end interview handbooks.
 
-## Basic (20 Questions)
-
+## Basic Questions
 ### 1. What is TypeScript?
 **Answer:** 
 **The Core Concept:**
@@ -186,8 +185,7 @@ A syntactic contract that an entity should conform to.
 ---
 
 
-## Medium (30 Questions)
-
+## Intermediate Questions
 ### 21. What is a Union Type?
 **Answer:** A type formed from two or more other types, representing values that may be *any one* of those types.
 **Example:** `function printId(id: number | string) { ... }`
@@ -364,8 +362,7 @@ An internal TypeScript mechanism for organizing code and preventing global scope
 ---
 
 
-## Hard (50 Questions)
-
+## Expert Questions
 ### 41. What is Declaration Merging?
 **Answer:** 
 **The Core Concept:**
@@ -889,4 +886,35 @@ type AppFeatures = OptionsFlags<FeatureFlags>;
 **Reference:** [TS Mapped Types](https://www.typescriptlang.org/docs/handbook/2/mapped-types.html)
 
 ---
+
+## Practice Questions
+
+### 1. Implement a custom `Omit<T, K>` utility type using mapped and conditional types.
+
+**Example Solution:**
+```javascript
+Array.prototype.myMap = function(callback) {
+  const result = [];
+  for (let i = 0; i < this.length; i++) {
+    result.push(callback(this[i], i, this));
+  }
+  return result;
+};
+```
+
+### 2. Create a type-safe API response wrapper using Generics.
+
+**Example Solution:**
+```typescript
+interface ApiResponse<T> {
+  data: T;
+  status: number;
+  message: string;
+}
+
+async function apiCall<T>(url: string): Promise<ApiResponse<T>> {
+  const res = await fetch(url);
+  return res.json();
+}
+```
 

@@ -1062,8 +1062,7 @@ See also: [JavaScript guide](./Javascript.md) Part 1 and Part 3.
 
 This document contains a comprehensive list of 100 React.js interview questions, categorized by difficulty (20 Basic, 30 Medium, 50 Hard). These questions are curated based on popular public Git repositories (e.g., sudheerj/reactjs-interview-questions).
 
-## Basic (20 Questions)
-
+## Basic Questions
 ### 1. What is React?
 **Answer:** A declarative, efficient, and flexible JavaScript library for building user interfaces, maintained by Meta.
 **Example:** `function App() { return <h1>Hi</h1>; }`
@@ -1260,8 +1259,7 @@ An in-memory representation of the Real DOM.
 ---
 
 
-## Medium (30 Questions)
-
+## Intermediate Questions
 ### 21. How Virtual DOM works?
 **Answer:** 
 **The Core Concept:**
@@ -1566,8 +1564,7 @@ It lets you render a dynamic import as a regular component, enabling code-splitt
 ---
 
 
-## Hard (50 Questions)
-
+## Expert Questions
 ### 51. How does the Diffing algorithm work exactly?
 **Answer:** 
 **The Core Concept:**
@@ -2927,3 +2924,44 @@ This section contains a high-yield, visual cheatsheet of 42 essential React.js c
   2. **useMemo & useCallback**: Cache expensive computations and callback references.
   3. **Code Splitting**: Dynamic imports using `React.lazy` and `Suspense`.
   4. **Windowing / Virtualization**: Use libraries like `react-window` to render only the visible viewport items in extremely long lists.
+
+---
+
+## Practice Questions
+
+### 1. Write a custom React hook `useFetch` to handle API requests and caching.
+
+**Example Solution:**
+```javascript
+import { useState, useEffect } from "react";
+
+function useFetch(url) {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        setData(data);
+        setLoading(false);
+      });
+  }, [url]);
+
+  return { data, loading };
+}
+```
+
+### 2. Implement a search component with debounced text input.
+
+**Example Solution:**
+```javascript
+function debounce(func, delay) {
+  let timerId;
+  return function(...args) {
+    clearTimeout(timerId);
+    timerId = setTimeout(() => func.apply(this, args), delay);
+  };
+}
+```
+

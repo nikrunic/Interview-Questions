@@ -4,14 +4,20 @@ This guide compiles 20 essential NoSQL, Amazon DynamoDB, and Redis interview que
 
 ---
 
-## Table of contents
 
-- [Part 1 — DynamoDB Questions (1–10)](#part-1--dynamodb-questions-110)
-- [Part 2 — Redis Questions (11–20)](#part-2--redis-questions-1120)
 
 ---
 
-# Part 1 — DynamoDB Questions (1–10)
+## Table of Contents
+
+- [Basic Questions](#basic-questions)
+- [Intermediate Questions](#intermediate-questions)
+- [Expert Questions](#expert-questions)
+- [Technical Questions](#technical-questions)
+
+---
+
+## Basic Questions
 
 ### 1. Difference between Query and Scan / When to use which?
 
@@ -51,6 +57,8 @@ const scanRes = await ddbDocClient.send(new ScanCommand({
 
 ---
 
+---
+
 ### 2. What is a Partition Key (PK) in DynamoDB?
 
 **Answer:**
@@ -77,6 +85,8 @@ const putCommand = {
 ```
 
 **Reference:** [AWS Partition Keys](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.Partitions.html)
+
+---
 
 ---
 
@@ -109,187 +119,7 @@ const queryOrders = {
 
 ---
 
-### 4. What is a KeyConditionExpression in DynamoDB?
-
-**Answer:**
-**The Core Concept:**
-A **KeyConditionExpression** is a query parameter string that specifies the key values for the items to be read. It specifies the partition key match and optional sort key range limits.
-
-**Key Details:**
-- **Validation:** You *must* specify the partition key name and exact value in this expression using equality (`=`).
-- **Sort Key Operators:** You can optionally include the sort key and operators like `>` or `begins_with()` to narrow the subset of items.
-- **Efficiency:** The KeyConditionExpression is processed *before* capacity consumption is calculated, making it highly efficient.
-
-**Example:**
-```javascript
-const params = {
-  TableName: "ForumPosts",
-  // userId is PK, category#date is SK
-  KeyConditionExpression: "userId = :uid AND begins_with(categoryDate, :category)",
-  ExpressionAttributeValues: {
-    ":uid": "user_456",
-    ":category": "TECH"
-  }
-};
-```
-
-**Reference:** [KeyConditionExpression Syntax](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.html#Query.KeyConditionExpression)
-
 ---
-
-### 5. Difference between FilterExpression and Scan?
-
-**Answer:**
-**The Core Concept:**
-A **FilterExpression** is applied to a Query or Scan *after* the initial data is read from the physical partition but *before* results are returned to the client. A **Scan** is the operation that reads the entire table.
-
-**Key Details:**
-- **Capacity Billing:** A FilterExpression does **not** save money or capacity units (RCUs); billing is based on the data size read *prior* to filtering.
-- **Client Bandwidth:** It only saves network bandwidth by sending a smaller filtered array to the client instead of the full payload.
-- **Limitation:** If a Scan with a filter hits the 1MB evaluation limit, you must paginate even if zero filtered items are returned.
-
-**Example:**
-```javascript
-// Consumes capacity for ALL user_123 items, but only returns active ones to the client
-const queryWithFilter = {
-  TableName: "Users",
-  KeyConditionExpression: "userId = :uid",
-  FilterExpression: "accountStatus = :status",
-  ExpressionAttributeValues: {
-    ":uid": "user_123",
-    ":status": "ACTIVE"
-  }
-};
-```
-
-**Reference:** [AWS Query Filter Expressions](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.html#Query.FilterExpression)
-
----
-
-### 6. What is BatchWriteItem and BatchGetItem in DynamoDB?
-
-**Answer:**
-**The Core Concept:**
-**BatchGetItem** reads up to 100 items across multiple tables in a single API call. **BatchWriteItem** puts or deletes up to 25 items in a single call.
-
-**Key Details:**
-- **Network Efficiency:** Dramatically reduces network round-trip overhead compared to making individual `GetItem` or `PutItem` calls.
-- **Transaction Difference:** Unlike transactions, batches do **not** succeed or fail as a single unit. If some items fail, they are returned in an `UnprocessedKeys` array for you to retry.
-- **Limits:** BatchGetItem is capped at 16MB of data; BatchWriteItem is capped at 16MB and cannot perform conditional updates.
-
-**Example:**
-```javascript
-const { BatchGetCommand } = require("@aws-sdk/lib-dynamodb");
-
-const batchRes = await ddbDocClient.send(new BatchGetCommand({
-  RequestItems: {
-    "Users": {
-      Keys: [
-        { userId: "user_1" },
-        { userId: "user_2" }
-      ]
-    }
-  }
-}));
-```
-
-**Reference:** [AWS Batch Operations](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/batchops.html)
-
----
-
-### 7. What is the difference between a Global Secondary Index (GSI) and a Local Secondary Index (LSI)?
-
-**Answer:**
-**The Core Concept:**
-Secondary indexes allow querying data using attributes other than the main primary keys. An **LSI** shares the same Partition Key as the main table but has a different Sort Key. A **GSI** can have an entirely different Partition Key and Sort Key.
-
-**Key Details:**
-- **Creation Time:** LSIs must be created during table creation and cannot be deleted later. GSIs can be created or deleted at any time.
-- **Throughput:** LSIs share the capacity units (RCUs/WCUs) of the main table. GSIs have their own provisioned throughput capacity.
-- **Consistency:** LSIs support both strong and eventual consistency. GSIs only support eventual consistency.
-
-**Comparison Table:**
-| Feature | Local Secondary Index (LSI) | Global Secondary Index (GSI) |
-|---------|-----------------------------|------------------------------|
-| **Partition Key** | Must be same as main table | Can be entirely different |
-| **Capacity Units**| Shared with main table | Separate and dedicated |
-| **Consistency** | Strongly or Eventually Consistent | Eventually Consistent only |
-
-**Reference:** [AWS Secondary Indexes](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SecondaryIndexes.html)
-
----
-
-### 8. What is a DynamoDB Stream?
-
-**Answer:**
-**The Core Concept:**
-A **DynamoDB Stream** is a time-ordered log that captures item-level mutations (inserts, updates, deletes) in a DynamoDB table in real time, persisting them for up to 24 hours.
-
-**Key Details:**
-- **Trigger Lambda:** Commonly integrated with AWS Lambda to trigger serverless workflows (event-driven architecture) on record mutations.
-- **View Types:** Can capture just the modified keys, the new image (after update), the old image (before update), or both.
-- **Use Cases:** Ideal for replication, sending real-time emails upon user creation, or auditing user changes.
-
-**Example:**
-```json
-// Conceptual Stream Record representing an INSERT
-{
-  "eventName": "INSERT",
-  "dynamodb": {
-    "Keys": { "userId": { "S": "user_123" } },
-    "NewImage": {
-      "userId": { "S": "user_123" },
-      "email": { "S": "alex@gmail.com" }
-    }
-  }
-}
-```
-
-**Reference:** [AWS DynamoDB Streams](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html)
-
----
-
-### 9. What is Eventual Consistency vs Strong Consistency in DynamoDB?
-
-**Answer:**
-**The Core Concept:**
-By default, DynamoDB reads are **Eventually Consistent**, meaning a read request immediately following a write might return stale data because updates take time to replicate across all database nodes. **Strongly Consistent** reads guarantee that the most up-to-date write is returned.
-
-**Key Details:**
-- **Replication Lag:** DynamoDB replicates data across 3 Availability Zones. Eventually Consistent reads query any random node; Strongly Consistent reads query at least two nodes to return the absolute latest consensus.
-- **Cost:** Strongly Consistent reads consume **double** the capacity units (RCUs) of Eventually Consistent reads.
-- **Index Limit:** Secondary indexes (GSIs) do not support Strongly Consistent reads.
-
-**Example:**
-```javascript
-// Strongly Consistent Read
-const stronglyRes = await ddbDocClient.send(new GetCommand({
-  TableName: "Users",
-  Key: { userId: "user_123" },
-  ConsistentRead: true // Consumes double RCUs!
-}));
-```
-
-**Reference:** [AWS Read Consistency](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadConsistency.html)
-
----
-
-### 10. How does DynamoDB scaling work?
-
-**Answer:**
-**The Core Concept:**
-DynamoDB scales seamlessly by dividing table data across multiple physical partitions. As data size (exceeding 10GB per partition) or throughput demands (exceeding 1000 WCUs or 3000 RCUs) increase, DynamoDB automatically splits partitions.
-
-**Key Details:**
-- **Billing Modes:** Offers two capacity modes: **Provisioned** (you specify RCUs and WCUs, with auto-scaling boundaries) and **On-Demand** (scales instantly to match traffic, billed per request).
-- **Hot Partition Issue:** If queries are concentrated on a single Partition Key value, that specific partition will throttle even if the table has overall high provisioned capacity.
-- **Mitigation:** Use synthetic partition keys (e.g. adding a random suffix `_1` to `_9` to the PK) to spread hot keys across physical hardware.
-
-**Reference:** [AWS Scaling and Partitioning](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.Partitions.html)
-
----
-
-# Part 2 — Redis Questions (11–20)
 
 ### 11. What is Redis?
 
@@ -322,6 +152,8 @@ await client.hSet("user:123", {
 
 ---
 
+---
+
 ### 12. Redis vs. Traditional Database (SQL/NoSQL)
 
 **Answer:**
@@ -334,6 +166,8 @@ The key difference is storage medium and durability. Traditional databases (like
 - **Query Flexibility:** SQL databases offer dynamic joins and complex queries; Redis is key-value based, meaning records are retrieved only via explicit keys.
 
 **Reference:** [Redis vs SQL](https://aws.amazon.com/nosql/key-value/)
+
+---
 
 ---
 
@@ -373,6 +207,104 @@ async function getUserData(userId) {
 
 ---
 
+---
+
+## Intermediate Questions
+
+### 4. What is a KeyConditionExpression in DynamoDB?
+
+**Answer:**
+**The Core Concept:**
+A **KeyConditionExpression** is a query parameter string that specifies the key values for the items to be read. It specifies the partition key match and optional sort key range limits.
+
+**Key Details:**
+- **Validation:** You *must* specify the partition key name and exact value in this expression using equality (`=`).
+- **Sort Key Operators:** You can optionally include the sort key and operators like `>` or `begins_with()` to narrow the subset of items.
+- **Efficiency:** The KeyConditionExpression is processed *before* capacity consumption is calculated, making it highly efficient.
+
+**Example:**
+```javascript
+const params = {
+  TableName: "ForumPosts",
+  // userId is PK, category#date is SK
+  KeyConditionExpression: "userId = :uid AND begins_with(categoryDate, :category)",
+  ExpressionAttributeValues: {
+    ":uid": "user_456",
+    ":category": "TECH"
+  }
+};
+```
+
+**Reference:** [KeyConditionExpression Syntax](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.html#Query.KeyConditionExpression)
+
+---
+
+---
+
+### 5. Difference between FilterExpression and Scan?
+
+**Answer:**
+**The Core Concept:**
+A **FilterExpression** is applied to a Query or Scan *after* the initial data is read from the physical partition but *before* results are returned to the client. A **Scan** is the operation that reads the entire table.
+
+**Key Details:**
+- **Capacity Billing:** A FilterExpression does **not** save money or capacity units (RCUs); billing is based on the data size read *prior* to filtering.
+- **Client Bandwidth:** It only saves network bandwidth by sending a smaller filtered array to the client instead of the full payload.
+- **Limitation:** If a Scan with a filter hits the 1MB evaluation limit, you must paginate even if zero filtered items are returned.
+
+**Example:**
+```javascript
+// Consumes capacity for ALL user_123 items, but only returns active ones to the client
+const queryWithFilter = {
+  TableName: "Users",
+  KeyConditionExpression: "userId = :uid",
+  FilterExpression: "accountStatus = :status",
+  ExpressionAttributeValues: {
+    ":uid": "user_123",
+    ":status": "ACTIVE"
+  }
+};
+```
+
+**Reference:** [AWS Query Filter Expressions](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.html#Query.FilterExpression)
+
+---
+
+---
+
+### 6. What is BatchWriteItem and BatchGetItem in DynamoDB?
+
+**Answer:**
+**The Core Concept:**
+**BatchGetItem** reads up to 100 items across multiple tables in a single API call. **BatchWriteItem** puts or deletes up to 25 items in a single call.
+
+**Key Details:**
+- **Network Efficiency:** Dramatically reduces network round-trip overhead compared to making individual `GetItem` or `PutItem` calls.
+- **Transaction Difference:** Unlike transactions, batches do **not** succeed or fail as a single unit. If some items fail, they are returned in an `UnprocessedKeys` array for you to retry.
+- **Limits:** BatchGetItem is capped at 16MB of data; BatchWriteItem is capped at 16MB and cannot perform conditional updates.
+
+**Example:**
+```javascript
+const { BatchGetCommand } = require("@aws-sdk/lib-dynamodb");
+
+const batchRes = await ddbDocClient.send(new BatchGetCommand({
+  RequestItems: {
+    "Users": {
+      Keys: [
+        { userId: "user_1" },
+        { userId: "user_2" }
+      ]
+    }
+  }
+}));
+```
+
+**Reference:** [AWS Batch Operations](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/batchops.html)
+
+---
+
+---
+
 ### 14. What is Redis Persistence? (RDB vs AOF)
 
 **Answer:**
@@ -385,6 +317,8 @@ Since RAM is volatile, Redis provides two optional persistence mechanisms to rec
 - **Production Best Practice:** Run both simultaneously; use AOF for high durability and RDB for quick backups and recovery.
 
 **Reference:** [Redis Persistence Guide](https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/)
+
+---
 
 ---
 
@@ -418,6 +352,8 @@ await pubClient.publish("chat_channel", "Hello World!");
 
 ---
 
+---
+
 ### 16. What is TTL (Time-To-Live) in Redis?
 
 **Answer:**
@@ -443,6 +379,8 @@ console.log(ttl); // e.g., 29
 
 ---
 
+---
+
 ### 17. What is Cache Invalidation?
 
 **Answer:**
@@ -458,6 +396,110 @@ console.log(ttl); // e.g., 29
 
 ---
 
+---
+
+## Expert Questions
+
+### 7. What is the difference between a Global Secondary Index (GSI) and a Local Secondary Index (LSI)?
+
+**Answer:**
+**The Core Concept:**
+Secondary indexes allow querying data using attributes other than the main primary keys. An **LSI** shares the same Partition Key as the main table but has a different Sort Key. A **GSI** can have an entirely different Partition Key and Sort Key.
+
+**Key Details:**
+- **Creation Time:** LSIs must be created during table creation and cannot be deleted later. GSIs can be created or deleted at any time.
+- **Throughput:** LSIs share the capacity units (RCUs/WCUs) of the main table. GSIs have their own provisioned throughput capacity.
+- **Consistency:** LSIs support both strong and eventual consistency. GSIs only support eventual consistency.
+
+**Comparison Table:**
+| Feature | Local Secondary Index (LSI) | Global Secondary Index (GSI) |
+|---------|-----------------------------|------------------------------|
+| **Partition Key** | Must be same as main table | Can be entirely different |
+| **Capacity Units**| Shared with main table | Separate and dedicated |
+| **Consistency** | Strongly or Eventually Consistent | Eventually Consistent only |
+
+**Reference:** [AWS Secondary Indexes](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SecondaryIndexes.html)
+
+---
+
+---
+
+### 8. What is a DynamoDB Stream?
+
+**Answer:**
+**The Core Concept:**
+A **DynamoDB Stream** is a time-ordered log that captures item-level mutations (inserts, updates, deletes) in a DynamoDB table in real time, persisting them for up to 24 hours.
+
+**Key Details:**
+- **Trigger Lambda:** Commonly integrated with AWS Lambda to trigger serverless workflows (event-driven architecture) on record mutations.
+- **View Types:** Can capture just the modified keys, the new image (after update), the old image (before update), or both.
+- **Use Cases:** Ideal for replication, sending real-time emails upon user creation, or auditing user changes.
+
+**Example:**
+```json
+// Conceptual Stream Record representing an INSERT
+{
+  "eventName": "INSERT",
+  "dynamodb": {
+    "Keys": { "userId": { "S": "user_123" } },
+    "NewImage": {
+      "userId": { "S": "user_123" },
+      "email": { "S": "alex@gmail.com" }
+    }
+  }
+}
+```
+
+**Reference:** [AWS DynamoDB Streams](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html)
+
+---
+
+---
+
+### 9. What is Eventual Consistency vs Strong Consistency in DynamoDB?
+
+**Answer:**
+**The Core Concept:**
+By default, DynamoDB reads are **Eventually Consistent**, meaning a read request immediately following a write might return stale data because updates take time to replicate across all database nodes. **Strongly Consistent** reads guarantee that the most up-to-date write is returned.
+
+**Key Details:**
+- **Replication Lag:** DynamoDB replicates data across 3 Availability Zones. Eventually Consistent reads query any random node; Strongly Consistent reads query at least two nodes to return the absolute latest consensus.
+- **Cost:** Strongly Consistent reads consume **double** the capacity units (RCUs) of Eventually Consistent reads.
+- **Index Limit:** Secondary indexes (GSIs) do not support Strongly Consistent reads.
+
+**Example:**
+```javascript
+// Strongly Consistent Read
+const stronglyRes = await ddbDocClient.send(new GetCommand({
+  TableName: "Users",
+  Key: { userId: "user_123" },
+  ConsistentRead: true // Consumes double RCUs!
+}));
+```
+
+**Reference:** [AWS Read Consistency](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadConsistency.html)
+
+---
+
+---
+
+### 10. How does DynamoDB scaling work?
+
+**Answer:**
+**The Core Concept:**
+DynamoDB scales seamlessly by dividing table data across multiple physical partitions. As data size (exceeding 10GB per partition) or throughput demands (exceeding 1000 WCUs or 3000 RCUs) increase, DynamoDB automatically splits partitions.
+
+**Key Details:**
+- **Billing Modes:** Offers two capacity modes: **Provisioned** (you specify RCUs and WCUs, with auto-scaling boundaries) and **On-Demand** (scales instantly to match traffic, billed per request).
+- **Hot Partition Issue:** If queries are concentrated on a single Partition Key value, that specific partition will throttle even if the table has overall high provisioned capacity.
+- **Mitigation:** Use synthetic partition keys (e.g. adding a random suffix `_1` to `_9` to the PK) to spread hot keys across physical hardware.
+
+**Reference:** [AWS Scaling and Partitioning](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.Partitions.html)
+
+---
+
+---
+
 ### 18. What is Distributed Caching?
 
 **Answer:**
@@ -470,6 +512,8 @@ A **Distributed Cache** is a caching deployment where the cached data is spread 
 - **High Availability:** Supports master-replica replication to ensure the cache stays online if a single node fails.
 
 **Reference:** [Redis Cluster Specs](https://redis.io/docs/latest/operate/oss_and_stack/reference/cluster-spec/)
+
+---
 
 ---
 
@@ -492,6 +536,8 @@ While both are highly performant in-memory caches, **Memcached** is a simple, mu
 | **Persistence** | None (purely volatile) | Optional (RDB & AOF) |
 
 **Reference:** [AWS Redis vs Memcached](https://aws.amazon.com/elasticache/redis-vs-memcached/)
+
+---
 
 ---
 
@@ -522,3 +568,25 @@ async function isRateLimited(ipAddress) {
 ```
 
 **Reference:** [Redis Enterprise Use Cases](https://redis.io/solutions/)
+
+---
+
+## Technical Questions
+
+### 1. Write a Node.js function using `@aws-sdk/client-dynamodb` to query orders within a date range.
+
+**Example Solution:**
+### 2. Implement an API sliding-window rate limiter in Node.js using Redis `INCR` and `EXPIRE`.
+
+**Example Solution:**
+```javascript
+async function isRateLimited(redisClient, ipAddress) {
+  const key = `rate:${ipAddress}`;
+  const count = await redisClient.incr(key);
+  if (count === 1) {
+    await redisClient.expire(key, 60);
+  }
+  return count > 100; // limit to 100 requests per minute
+}
+```
+
