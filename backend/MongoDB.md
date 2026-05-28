@@ -5,10 +5,13 @@ This document contains a comprehensive list of 100 MongoDB interview questions, 
 ---
 
 ## Basic Questions
+
 ### 1. What is MongoDB?
 **Answer:** A document-oriented, open-source NoSQL database program designed for high volume data storage, scaling, and schema flexibility.
 **Example:** `mongosh` CLI allows interacting with MongoDB databases.
 **Reference:** [What is MongoDB](https://www.mongodb.com/what-is-mongodb)
+
+---
 
 ---
 
@@ -24,6 +27,8 @@ Dynamic schema, indexing, replication, aggregation framework, and horizontal sha
 
 ---
 
+---
+
 ### 3. What is NoSQL and what are the main types?
 **Answer:** NoSQL (Not Only SQL) databases are non-relational database systems that store data in formats other than tabular relations.
 **Key Details:**
@@ -35,6 +40,8 @@ Dynamic schema, indexing, replication, aggregation framework, and horizontal sha
 
 ---
 
+---
+
 ### 4. Explain JSON vs. BSON in MongoDB.
 **Answer:** JSON is a text-based format representing key-value pairs; BSON is a binary-encoded serialization of JSON documents containing extra data types.
 **Key Details:**
@@ -42,6 +49,8 @@ Dynamic schema, indexing, replication, aggregation framework, and horizontal sha
 - BSON files are stored directly on disk by WiredTiger.
 **Example:** `{"date": "2026-05-26"}` (JSON) vs. `Date` object (BSON).
 **Reference:** [BSON Specification](https://bsonspec.org/)
+
+---
 
 ---
 
@@ -56,6 +65,8 @@ Dynamic schema, indexing, replication, aggregation framework, and horizontal sha
 
 ---
 
+---
+
 ### 6. How do you create a database and a collection in MongoDB?
 **Answer:** By utilizing the `use` command to switch database contexts, and calling `createCollection()` or inserting a document.
 **Example:**
@@ -64,6 +75,8 @@ use myNewDB;
 db.createCollection("customers");
 ```
 **Reference:** [Create Database Manual](https://www.mongodb.com/docs/manual/reference/command/create/)
+
+---
 
 ---
 
@@ -78,6 +91,8 @@ db.users.insertMany([{ name: "Bob" }, { name: "Charlie" }]);
 
 ---
 
+---
+
 ### 8. How do you find/query documents in a collection?
 **Answer:** Use the `db.collection.find(query, projection)` method with match filters.
 **Example:**
@@ -85,6 +100,8 @@ db.users.insertMany([{ name: "Bob" }, { name: "Charlie" }]);
 db.users.find({ age: { $gte: 18 } });
 ```
 **Reference:** [Query Documents](https://www.mongodb.com/docs/manual/tutorial/query-documents/)
+
+---
 
 ---
 
@@ -98,6 +115,8 @@ db.users.find({ status: "active" }, { name: 1, _id: 0 });
 
 ---
 
+---
+
 ### 10. What are basic comparison operators like `$eq`, `$ne`, `$gt`, `$lt`?
 **Answer:** Standard operators to match values against fields: equal, not equal, greater than, less than.
 **Example:**
@@ -105,6 +124,8 @@ db.users.find({ status: "active" }, { name: 1, _id: 0 });
 db.products.find({ price: { $gt: 100, $lt: 500 } });
 ```
 **Reference:** [Comparison Operators](https://www.mongodb.com/docs/manual/reference/operator/query-comparison/)
+
+---
 
 ---
 
@@ -118,6 +139,8 @@ db.users.find({ $or: [{ role: "admin" }, { status: "vip" }] });
 
 ---
 
+---
+
 ### 12. How do you update a document in MongoDB? Explain `$set`.
 **Answer:** Use `updateOne()` or `updateMany()` with the `$set` operator to modify specific field values without overwriting the whole document.
 **Example:**
@@ -128,6 +151,8 @@ db.users.updateOne({ name: "Alice" }, { $set: { age: 29 } });
 
 ---
 
+---
+
 ### 13. What is the purpose of `$unset` in an update query?
 **Answer:** A field update operator that deletes a specific field entirely from a document.
 **Example:** Delete the `nickname` field:
@@ -135,6 +160,8 @@ db.users.updateOne({ name: "Alice" }, { $set: { age: 29 } });
 db.users.updateOne({ name: "Bob" }, { $unset: { nickname: "" } });
 ```
 **Reference:** [$unset Operator](https://www.mongodb.com/docs/manual/reference/operator/update/unset/)
+
+---
 
 ---
 
@@ -152,6 +179,8 @@ db.users.updateOne({ name: "Alice" }, { $push: { tags: "developer" } });
 
 ---
 
+---
+
 ### 15. How do you delete documents in MongoDB?
 **Answer:** By using the `deleteOne()` or `deleteMany()` methods with a query filter.
 **Example:**
@@ -162,6 +191,8 @@ db.users.deleteMany({ status: "inactive" });
 
 ---
 
+---
+
 ### 16. What is the difference between `deleteOne()` and `deleteMany()`?
 **Answer:** `deleteOne()` deletes the first document matching the query; `deleteMany()` deletes all matching documents in the collection.
 **Example:**
@@ -169,6 +200,8 @@ db.users.deleteMany({ status: "inactive" });
 db.logs.deleteOne({ level: "error" }); // Removes only one log
 ```
 **Reference:** [db.collection.deleteOne](https://www.mongodb.com/docs/manual/reference/method/db.collection.deleteOne/)
+
+---
 
 ---
 
@@ -186,6 +219,8 @@ db.users.updateOne(
 
 ---
 
+---
+
 ### 18. How do you sort query results in MongoDB?
 **Answer:** Use the `.sort()` modifier on the query cursor, passing `1` for ascending and `-1` for descending order.
 **Example:**
@@ -193,6 +228,8 @@ db.users.updateOne(
 db.products.find().sort({ price: 1, name: -1 });
 ```
 **Reference:** [Sort Cursor Results](https://www.mongodb.com/docs/manual/reference/method/cursor.sort/)
+
+---
 
 ---
 
@@ -206,6 +243,8 @@ db.products.find().skip(10).limit(5);
 
 ---
 
+---
+
 ### 20. What is a schema-less database, and what are its trade-offs?
 **Answer:** A database that does not require pre-defined tables or schemas, allowing documents in the same collection to have unique attributes.
 **Key Details:**
@@ -215,6 +254,11 @@ db.products.find().skip(10).limit(5);
 ---
 
 ## Intermediate Questions
+
+---
+
+## Intermediate Questions
+
 ### 21. What is an index in MongoDB, and why is it used?
 **Answer:** A data structure that stores a small portion of the collection's data in a traversable B-Tree to bypass full collection scans.
 **Example:**
@@ -222,6 +266,8 @@ db.products.find().skip(10).limit(5);
 db.users.createIndex({ email: 1 });
 ```
 **Reference:** [Indexes Manual](https://www.mongodb.com/docs/manual/indexes/)
+
+---
 
 ---
 
@@ -236,6 +282,8 @@ db.users.getIndexes();
 
 ---
 
+---
+
 ### 23. What is a compound index?
 **Answer:** An index constructed on multiple fields within a single collection, optimizing queries that filter or sort by these multiple fields.
 **Example:**
@@ -246,10 +294,14 @@ db.orders.createIndex({ customer_id: 1, created_at: -1 });
 
 ---
 
+---
+
 ### 24. What is the left-prefix rule in compound indexes?
 **Answer:** MongoDB can only use a compound index if the query contains the leftmost fields in the exact order they are listed in the index.
 **Example:** Index on `{ A: 1, B: 1, C: 1 }` matches queries for `{ A }` or `{ A, B }` but NOT `{ B }` or `{ B, C }`.
 **Reference:** [Prefixes of Compound Indexes](https://www.mongodb.com/docs/manual/core/index-compound/#prefixes)
+
+---
 
 ---
 
@@ -263,6 +315,8 @@ db.orders.createIndex({ customer_id: 1, created_at: -1 });
 
 ---
 
+---
+
 ### 26. What is a multikey index, and when is it automatically created?
 **Answer:** An index created on a field that contains an array, mapping individual index entries to every element inside that array.
 **Example:** Indexing `skills` array on users automatically generates a multikey index.
@@ -270,6 +324,8 @@ db.orders.createIndex({ customer_id: 1, created_at: -1 });
 db.users.createIndex({ skills: 1 });
 ```
 **Reference:** [Multikey Indexes](https://www.mongodb.com/docs/manual/core/index-multikey/)
+
+---
 
 ---
 
@@ -286,6 +342,8 @@ db.users.find({ username: "alice" }, { username: 1, _id: 0 }); // if username is
 
 ---
 
+---
+
 ### 28. What is the difference between embedding documents and referencing documents?
 **Answer:** Embedding nests related data directly within the parent document (denormalized); referencing uses references (`ObjectId` pointers) to point to other collections (normalized).
 **Key Details:**
@@ -295,11 +353,15 @@ db.users.find({ username: "alice" }, { username: 1, _id: 0 }); // if username is
 
 ---
 
+---
+
 ### 29. How do you implement 1-to-Many relationships in MongoDB?
 **Answer:** 
 - **Embedded**: Nest child documents if the count is small and bounded (e.g. up to 10 addresses).
 - **Referenced**: Store child document references in an array, or store parent ID reference in the child document if count is unbounded (e.g. thousands of comments).
 **Reference:** [Model One-to-Many Relationships](https://www.mongodb.com/docs/manual/tutorial/model-embedded-one-to-many-relationships-between-documents/)
+
+---
 
 ---
 
@@ -316,6 +378,8 @@ db.users.find({ username: "alice" }, { username: 1, _id: 0 }); // if username is
 
 ---
 
+---
+
 ### 31. What is the Aggregation Framework?
 **Answer:** A framework that processes large volumes of documents through a multi-stage data transformation pipeline on the server.
 **Example:**
@@ -323,6 +387,8 @@ db.users.find({ username: "alice" }, { username: 1, _id: 0 }); // if username is
 db.sales.aggregate([ { $match: { year: 2026 } } ]);
 ```
 **Reference:** [Aggregation Pipelines](https://www.mongodb.com/docs/manual/aggregation/)
+
+---
 
 ---
 
@@ -336,6 +402,8 @@ db.sales.aggregate([ { $match: { year: 2026 } } ]);
 
 ---
 
+---
+
 ### 33. What does `$group` do in an aggregation pipeline?
 **Answer:** Groups incoming documents by a specified key expression and performs calculations like counts, sums, or averages.
 **Example:** Group by category and sum prices:
@@ -343,6 +411,8 @@ db.sales.aggregate([ { $match: { year: 2026 } } ]);
 { $group: { _id: "$category", total: { $sum: "$price" } } }
 ```
 **Reference:** [$group Stage Reference](https://www.mongodb.com/docs/manual/reference/operator/aggregation/group/)
+
+---
 
 ---
 
@@ -356,6 +426,8 @@ db.sales.aggregate([ { $match: { year: 2026 } } ]);
 
 ---
 
+---
+
 ### 35. What is the purpose of the `$unwind` stage?
 **Answer:** Deconstructs an array field from the input documents to output a document for each element of the array.
 **Example:**
@@ -363,6 +435,8 @@ db.sales.aggregate([ { $match: { year: 2026 } } ]);
 { $unwind: "$skills" } // A document with 3 skills becomes 3 documents
 ```
 **Reference:** [$unwind Stage Reference](https://www.mongodb.com/docs/manual/reference/operator/aggregation/unwind/)
+
+---
 
 ---
 
@@ -383,6 +457,8 @@ db.sales.aggregate([ { $match: { year: 2026 } } ]);
 
 ---
 
+---
+
 ### 37. What is the `$addFields` stage in an aggregation pipeline?
 **Answer:** Appends new fields or overrides existing fields in the output document without redefining the entire document.
 **Example:**
@@ -393,12 +469,16 @@ db.sales.aggregate([ { $match: { year: 2026 } } ]);
 
 ---
 
+---
+
 ### 38. Explain how the aggregation pipeline optimizations work internally (e.g., stage coalescing).
 **Answer:** MongoDB analyzes pipeline stages and attempts to reorder, coalesce, or merge them to reduce CPU and disk reads.
 **Key Details:**
 - `$match` is moved to the front whenever possible to leverage indexes.
 - Adjacent `$sort` and `$limit` stages are coalesced to perform top-K sorts in memory.
 **Reference:** [Pipeline Optimization](https://www.mongodb.com/docs/manual/core/aggregation-pipeline-optimization/)
+
+---
 
 ---
 
@@ -415,6 +495,8 @@ session.startTransaction();
 session.commitTransaction();
 ```
 **Reference:** [Transactions Manual](https://www.mongodb.com/docs/manual/core/transactions/)
+
+---
 
 ---
 
@@ -439,6 +521,8 @@ db.createCollection("users", {
 
 ---
 
+---
+
 ### 41. What is a TTL (Time-To-Live) index, and when should you use it?
 **Answer:** A single-field index that automatically deletes documents from a collection after a specified amount of time.
 **Example:** Deletes documents 1 hour (3600 seconds) after creation:
@@ -446,6 +530,8 @@ db.createCollection("users", {
 db.sessions.createIndex({ created_at: 1 }, { expireAfterSeconds: 3600 });
 ```
 **Reference:** [Expire Data via TTL Indexes](https://www.mongodb.com/docs/manual/core/index-ttl/)
+
+---
 
 ---
 
@@ -457,6 +543,8 @@ db.posts.createIndex({ content: "text" });
 db.posts.find({ $text: { $search: "mongodb database" } });
 ```
 **Reference:** [Text Indexes](https://www.mongodb.com/docs/manual/core/index-text/)
+
+---
 
 ---
 
@@ -473,6 +561,8 @@ db.users.createIndex(
 
 ---
 
+---
+
 ### 44. What is a sparse index?
 **Answer:** An index that only includes entries for documents where the indexed field actually exists.
 **Example:**
@@ -480,6 +570,8 @@ db.users.createIndex(
 db.users.createIndex({ tax_id: 1 }, { sparse: true });
 ```
 **Reference:** [Sparse Indexes](https://www.mongodb.com/docs/manual/core/index-sparse/)
+
+---
 
 ---
 
@@ -501,6 +593,8 @@ db.stores.find({
 
 ---
 
+---
+
 ### 46. What is the purpose of `$facet` in aggregation?
 **Answer:** Allows executing multiple parallel aggregation pipelines on the same set of input documents within a single stage.
 **Example:**
@@ -516,6 +610,8 @@ db.stores.find({
 
 ---
 
+---
+
 ### 47. What is the `$merge` stage in aggregation?
 **Answer:** Writes the aggregation pipeline output directly into a specified collection, allowing updates, inserts, or replacements.
 **Example:**
@@ -523,6 +619,8 @@ db.stores.find({
 { $merge: { into: "monthly_reports", on: "_id", whenMatched: "replace" } }
 ```
 **Reference:** [$merge Aggregation Reference](https://www.mongodb.com/docs/manual/reference/operator/aggregation/merge/)
+
+---
 
 ---
 
@@ -536,12 +634,16 @@ db.createCollection("logs", { capped: true, size: 10485760 });
 
 ---
 
+---
+
 ### 49. How does MongoDB handle data concurrency under the hood?
 **Answer:** MongoDB uses reader-writer locks, allowing multiple readers to access data concurrently, but granting exclusive access to a single writer.
 **Key Details:**
 - Implemented at the global, database, collection, and document level.
 - WiredTiger uses ticket controls to manage read/write thread concurrency in memory.
 **Reference:** [MongoDB Concurrency and Locks](https://www.mongodb.com/docs/manual/faq/concurrency/)
+
+---
 
 ---
 
@@ -556,6 +658,11 @@ db.users.replaceOne({ _id: 1 }, { name: "New Name" }); // Bypasses specific fiel
 ---
 
 ## Expert Questions
+
+---
+
+## Expert Questions
+
 ### 51. Explain the architecture of a MongoDB Replica Set in detail.
 **Answer:** 
 **The Core Concept:**
@@ -565,6 +672,8 @@ A cluster of `mongod` nodes maintaining the same dataset to provide redundancy a
 - **Secondary Nodes**: Replicate data from primary's oplog and can serve read queries.
 - **Arbiters**: Do not store data; exist solely to provide a majority vote during primary elections.
 **Reference:** [Replica Set Architecture](https://www.mongodb.com/docs/manual/replication/)
+
+---
 
 ---
 
@@ -578,6 +687,8 @@ A cluster of `mongod` nodes maintaining the same dataset to provide redundancy a
 
 ---
 
+---
+
 ### 53. What is the purpose of an Arbiter in a replica set?
 **Answer:** An Arbiter is a lightweight process that does not store database files but maintains a vote in elections.
 **Key Details:**
@@ -588,12 +699,16 @@ A cluster of `mongod` nodes maintaining the same dataset to provide redundancy a
 
 ---
 
+---
+
 ### 54. Explain what the `oplog` is, how it works, and why it is critical for replication.
 **Answer:** The Operation Log is a capped collection in the local database that records all write statements that modify database data.
 **Key Details:**
 - Secondary nodes read the oplog of their sync source asynchronously to replay updates.
 - If a secondary falls too far behind the size of the primary's oplog window, it must perform a full initial sync from scratch.
 **Reference:** [Replica Set Oplog](https://www.mongodb.com/docs/manual/core/replica-set-oplog/)
+
+---
 
 ---
 
@@ -607,6 +722,8 @@ A cluster of `mongod` nodes maintaining the same dataset to provide redundancy a
 
 ---
 
+---
+
 ### 56. Explain the concept of Read Concern, detailing `local`, `majority`, and `linearizable`.
 **Answer:** Configures consistency and isolation levels for read operations.
 **Key Details:**
@@ -614,6 +731,8 @@ A cluster of `mongod` nodes maintaining the same dataset to provide redundancy a
 - `majority`: Return data confirmed by a majority of nodes; prevents dirty reads.
 - `linearizable`: Node pings other nodes to verify it is still the primary before returning, ensuring absolute consistency.
 **Reference:** [Read Concern Reference](https://www.mongodb.com/docs/manual/reference/read-concern/)
+
+---
 
 ---
 
@@ -629,12 +748,16 @@ A cluster of `mongod` nodes maintaining the same dataset to provide redundancy a
 
 ---
 
+---
+
 ### 58. What is a rollback in replica sets, and when does it occur?
 **Answer:** Reverting writes executed on a former primary that crashed before syncing those writes to the secondaries.
 **Key Details:**
 - Occurs when the crashed primary rejoins as a secondary and discovers its oplog diverges from the new primary.
 - Reverted documents are written to rollback files on disk for manual recovery.
 **Reference:** [Rollbacks During Replica Set Failover](https://www.mongodb.com/docs/manual/core/replica-set-rollbacks/)
+
+---
 
 ---
 
@@ -647,12 +770,16 @@ A cluster of `mongod` nodes maintaining the same dataset to provide redundancy a
 
 ---
 
+---
+
 ### 60. What are Config Servers in a sharded cluster, and what metadata do they store?
 **Answer:** A dedicated replica set that maintains the configuration settings and mapping data for the entire sharded cluster.
 **Key Details:**
 - Stores mapping of routing keys to physical shard addresses.
 - Active during chunk splits, migrations, and cluster rebalancing.
 **Reference:** [Config Servers](https://www.mongodb.com/docs/manual/core/sharded-cluster-config-servers/)
+
+---
 
 ---
 
@@ -663,6 +790,8 @@ A cluster of `mongod` nodes maintaining the same dataset to provide redundancy a
 - Queries config servers to locate target shards and routes client queries.
 - Aggregates multi-shard results (scatter-gather) back to the client.
 **Reference:** [mongos Router](https://www.mongodb.com/docs/manual/core/sharded-cluster-query-router/)
+
+---
 
 ---
 
@@ -677,6 +806,8 @@ Selecting a shard key that provides high cardinality, low frequency, and avoids 
 
 ---
 
+---
+
 ### 63. What is the jumbo chunk problem in MongoDB sharding, and how do you prevent or fix it?
 **Answer:** A chunk that grows past the maximum configured chunk size (default 64MB) and cannot be split because all documents share the exact same shard key value.
 **Key Details:**
@@ -686,12 +817,16 @@ Selecting a shard key that provides high cardinality, low frequency, and avoids 
 
 ---
 
+---
+
 ### 64. How does the MongoDB balancer work in a sharded cluster?
 **Answer:** A background process running on the primary config server that monitors chunk distribution and migrates chunks from overloaded shards to underloaded shards.
 **Key Details:**
 - Migrations occur online without application downtime.
 - Minimizes imbalances in disk space utilization.
 **Reference:** [Sharded Cluster Balancer](https://www.mongodb.com/docs/manual/core/sharding-balancer-administration/)
+
+---
 
 ---
 
@@ -705,6 +840,8 @@ Selecting a shard key that provides high cardinality, low frequency, and avoids 
 
 ---
 
+---
+
 ### 66. How does WiredTiger utilize memory caching, and how do you configure its cache size?
 **Answer:** It uses the WiredTiger Cache to store uncompressed index pages and document structures in memory.
 **Key Details:**
@@ -712,6 +849,8 @@ Selecting a shard key that provides high cardinality, low frequency, and avoids 
 - Defaults to 50% of (total RAM minus 1 GB).
 - Insufficient cache size triggers aggressive disk page evictions, driving up CPU and disk latency.
 **Reference:** [WiredTiger Cache Sizing](https://www.mongodb.com/docs/manual/core/wiredtiger/#memory-use)
+
+---
 
 ---
 
@@ -725,6 +864,8 @@ Selecting a shard key that provides high cardinality, low frequency, and avoids 
 
 ---
 
+---
+
 ### 68. What are index intersections, and when does MongoDB use them?
 **Answer:** When a query filters by multiple fields, MongoDB can perform index scans on two separate indexes and intersect the matches in memory.
 **Key Details:**
@@ -734,12 +875,16 @@ Selecting a shard key that provides high cardinality, low frequency, and avoids 
 
 ---
 
+---
+
 ### 69. What is a stage scan vs an index scan (`COLLSCAN` vs `IXSCAN`)?
 **Answer:** `COLLSCAN` requires reading every document in a collection from disk; `IXSCAN` reads the B-Tree index pages first to target the exact document addresses.
 **Example:**
 - `COLLSCAN` matches O(N) complexity.
 - `IXSCAN` matches O(log N) complexity.
 **Reference:** [Query Optimization Concepts](https://www.mongodb.com/docs/manual/core/query-optimization/)
+
+---
 
 ---
 
@@ -753,6 +898,8 @@ db.currentOp({ "active": true, "secs_running": { $gt: 10 } });
 db.killOp(45291);
 ```
 **Reference:** [Terminate Active Operations](https://www.mongodb.com/docs/manual/reference/method/db.killOp/)
+
+---
 
 ---
 
@@ -770,12 +917,16 @@ changeStream.on("change", next => console.log(next));
 
 ---
 
+---
+
 ### 72. Explain GridFS, its architecture, and when it should be used instead of regular documents.
 **Answer:** A specification for storing large files that exceed the 16MB BSON document limit.
 **Key Details:**
 - Splits file into two collections: `fs.files` (metadata) and `fs.chunks` (255KB binary chunks).
 - Use for large media files (videos, heavy archives) where direct HTTP stream slicing is required.
 **Reference:** [GridFS Specification](https://www.mongodb.com/docs/manual/core/gridfs/)
+
+---
 
 ---
 
@@ -788,11 +939,15 @@ changeStream.on("change", next => console.log(next));
 
 ---
 
+---
+
 ### 74. Explain the difference between replica set sync types: initial sync and replication sync.
 **Answer:** 
 - **Initial Sync**: A secondary copies the entire database snapshot from the primary or another member to seed its storage.
 - **Replication Sync**: Continuous asynchronous replication process where the secondary fetches and applies oplog changes in real-time.
 **Reference:** [Replica Set Syncing](https://www.mongodb.com/docs/manual/core/replica-set-sync/)
+
+---
 
 ---
 
@@ -805,6 +960,8 @@ changeStream.on("change", next => console.log(next));
 
 ---
 
+---
+
 ### 76. What are the key considerations when migrating a database from SQL (e.g. MySQL) to MongoDB?
 **Answer:**
 **The Core Concept:**
@@ -814,6 +971,8 @@ Moving from normalized tables to denormalized, access-pattern-driven document sc
 - **No Foreign Key Constraints**: Referential integrity must be managed at the application level.
 - **No Schema Enforcement by default**: Use JSON Schema Validator if strict typing is required.
 **Reference:** [Migrate to MongoDB](https://www.mongodb.com/docs/manual/tutorial/migrate-to-mongodb/)
+
+---
 
 ---
 
@@ -831,12 +990,16 @@ db.createUser({
 
 ---
 
+---
+
 ### 78. How does MongoDB implement Encryption at Rest (WiredTiger encryption)?
 **Answer:** WiredTiger secures database files by encrypting disk sectors using symmetric keys before writing to the file system.
 **Key Details:**
 - Supports AES-256 in CBC or GCM modes.
 - Managed via KMIP (Key Management Interoperability Protocol) or Amazon KMS.
 **Reference:** [Encryption at Rest](https://www.mongodb.com/docs/manual/core/security-encryption-at-rest/)
+
+---
 
 ---
 
@@ -849,6 +1012,8 @@ db.createUser({
 
 ---
 
+---
+
 ### 80. How do you perform Point-In-Time Recovery (PITR) in MongoDB?
 **Answer:** Restoring the database to a specific millisecond using filesystem snapshots or oplog archives.
 **Key Details:**
@@ -858,12 +1023,16 @@ db.createUser({
 
 ---
 
+---
+
 ### 81. What is the performance impact of using the `$lookup` stage, and how do you optimize it?
 **Answer:** `$lookup` behaves like an unindexed left outer join, which can lead to O(N*M) scans if the joined collection is large.
 **Key Details:**
 - **Optimization**: Ensure the foreign field in the target collection is indexed.
 - Use `$lookup` pipelines with `$match` limits to reduce joined document counts.
 **Reference:** [$lookup Performance Tuning](https://www.mongodb.com/docs/manual/reference/operator/aggregation/lookup/#performance-considerations)
+
+---
 
 ---
 
@@ -877,12 +1046,16 @@ db.users.aggregate([ { $indexStats: {} } ]);
 
 ---
 
+---
+
 ### 83. What is a covered index query, and what are the exact criteria to achieve it?
 **Answer:** An ultra-fast index query that returns values directly from index nodes without touching data pages.
 **Key Details:**
 - The index must contain all fields queried in `find` or `match`.
 - The projection must explicitly return only indexed fields and exclude `_id`.
 **Reference:** [Covered Index Queries](https://www.mongodb.com/docs/manual/core/query-optimization/#covered-queries)
+
+---
 
 ---
 
@@ -895,11 +1068,15 @@ db.users.aggregate([ { $indexStats: {} } ]);
 
 ---
 
+---
+
 ### 85. What are the limits on MongoDB document sizes and collection counts?
 **Answer:** 
 - **Document Size**: Exactly 16MB for a single BSON document.
 - **Collection Count**: There is no hard limit, though system resources (file descriptors, WiredTiger catalog size) define practical performance limits.
 **Reference:** [MongoDB Limits and Thresholds](https://www.mongodb.com/docs/manual/reference/limits/)
+
+---
 
 ---
 
@@ -921,6 +1098,8 @@ db.users.aggregate([ { $indexStats: {} } ]);
 
 ---
 
+---
+
 ### 87. How does the aggregation stage `$bucket` work, and when is it preferred over manual `$group`?
 **Answer:** Categorizes incoming documents into structured range groups (buckets) based on defined boundaries.
 **Example:** Group items into age brackets:
@@ -937,11 +1116,15 @@ db.users.aggregate([ { $indexStats: {} } ]);
 
 ---
 
+---
+
 ### 88. What is the difference between Hashed Sharding and Ranged Sharding regarding query scatter-gather?
 **Answer:** 
 - **Ranged Sharding**: Allows `mongos` to direct ranged queries (`$gt`) to a single shard.
 - **Hashed Sharding**: Scatters writes perfectly, but forces `mongos` to query every shard (scatter-gather) for ranged matches.
 **Reference:** [Scatter-Gather Queries](https://www.mongodb.com/docs/manual/core/sharded-cluster-query-router/#scatter-gather-queries)
+
+---
 
 ---
 
@@ -955,11 +1138,15 @@ db.users.aggregate([ { $indexStats: {} } ]);
 
 ---
 
+---
+
 ### 90. What is a write conflict in WiredTiger, and how does the engine handle it?
 **Answer:** Occurs when two concurrent threads attempt to write to the exact same document simultaneously.
 **Key Details:**
 - WiredTiger detects conflict, aborts one thread transaction, and transparently retries the write operation without bubbling an error to the user application.
 **Reference:** [WiredTiger Concurrency](https://www.mongodb.com/docs/manual/faq/concurrency/#how-does-wiredtiger-handle-concurrent-writes-)
+
+---
 
 ---
 
@@ -973,6 +1160,8 @@ db.logs.find().sort({ $natural: 1 });
 
 ---
 
+---
+
 ### 92. How does the `$expr` operator allow comparison of fields from the same document?
 **Answer:** It enables using aggregation expressions within standard find queries to perform field-to-field comparisons.
 **Example:** Find orders where shipping charge exceeds product cost:
@@ -983,12 +1172,16 @@ db.orders.find({ $expr: { $gt: ["$shipping", "$cost"] } });
 
 ---
 
+---
+
 ### 93. What is the impact of using `$regex` queries without anchors on index performance?
 **Answer:** A regex query without prefix anchors (e.g. `.*word.*`) cannot use index bounds, triggering a full index scan or collection scan.
 **Example:**
 - Unanchored `/word/`: Slow full scan.
 - Anchored `/^word/`: Fast index prefix lookup.
 **Reference:** [$regex Index Limitations](https://www.mongodb.com/docs/manual/reference/operator/query/regex/#index-use)
+
+---
 
 ---
 
@@ -1002,6 +1195,8 @@ db.orders.insertOne({ price: NumberDecimal("199.99") });
 
 ---
 
+---
+
 ### 95. What are schema design anti-patterns in MongoDB? Give three examples.
 **Answer:** 
 **Key Details:**
@@ -1012,12 +1207,16 @@ db.orders.insertOne({ price: NumberDecimal("199.99") });
 
 ---
 
+---
+
 ### 96. How do you handle schema migrations or updates in a production MongoDB database?
 **Answer:** Through schema evolution or background bulk migrations using cursor streams.
 **Key Details:**
 - **Evolution**: Let application logic handle legacy document forms dynamically (lazy migration).
 - **Active Migration**: Run background update scripts batching changes via `$set` to prevent write locks.
 **Reference:** [Schema Migration in MongoDB](https://www.mongodb.com/docs/manual/core/data-modeling-introduction/)
+
+---
 
 ---
 
@@ -1032,12 +1231,16 @@ db.users.find().count(); // forces index scan into cache
 
 ---
 
+---
+
 ### 98. What is the role of the journal file, and how does it relate to write durability?
 **Answer:** The journal is a write-ahead log file that records all data changes before applying them to physical database data pages.
 **Key Details:**
 - Guarantees durability in crash scenarios.
 - Written to disk every 100ms by default.
 **Reference:** [Journaling in MongoDB](https://www.mongodb.com/docs/manual/core/journaling/)
+
+---
 
 ---
 
@@ -1059,12 +1262,54 @@ db.users.find().count(); // forces index scan into cache
 
 ---
 
+---
+
 ### 100. How do you perform security audits in a production MongoDB deployment?
 **Answer:** By enabling database auditing to record security operations (authentication, role creations, authorization changes) to audit log files.
 **Key Details:**
 - Configured in `mongod.conf`.
 - Outputs in JSON or Syslog format for ingestion into SIEM tools.
 **Reference:** [Configure Database Auditing](https://www.mongodb.com/docs/manual/tutorial/configure-auditing/)
+
+---
+
+## Technical Questions
+
+---
+
+### 1. Write a MongoDB Aggregation Pipeline query to group users by age and return the average score.
+
+**Example Solution:**
+```javascript
+db.users.aggregate([
+  { $group: { _id: "$age", avgScore: { $avg: "$score" } } },
+  { $sort: { _id: 1 } }
+]);
+```
+
+---
+
+### 2. Implement a robust transaction in Mongoose to transfer funds between two accounts.
+
+**Example Solution:**
+```javascript
+const mongoose = require("mongoose");
+
+async function transferFunds(fromId, toId, amount) {
+  const session = await mongoose.startSession();
+  session.startTransaction();
+  try {
+    await Account.updateOne({ userId: fromId }, { $inc: { balance: -amount } }, { session });
+    await Account.updateOne({ userId: toId }, { $inc: { balance: amount } }, { session });
+    await session.commitTransaction();
+  } catch (error) {
+    await session.abortTransaction();
+    throw error;
+  } finally {
+    session.endSession();
+  }
+}
+```
 
 ---
 
@@ -1101,4 +1346,131 @@ async function transferFunds(fromId, toId, amount) {
   }
 }
 ```
+
+### 3. Create a Mongoose schema validation rule with custom validator and compound index.
+
+**Example Solution:**
+```javascript
+const userSchema = new mongoose.Schema({
+  email: {
+    type: String,
+    required: true,
+    validate: {
+      validator: (v) => /\S+@\S+\.\S+/.test(v),
+      message: props => `\${props.value} is not a valid email!`
+    }
+  },
+  tenantId: mongoose.Schema.Types.ObjectId
+});
+
+userSchema.index({ email: 1, tenantId: 1 }, { unique: true });
+```
+
+### 4. [Self-Practice] Design a high-throughput, fault-tolerant system leveraging key principles of MongoDB Databases.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 5. [Self-Practice] Write a custom utility to validate input schemas and sanitize payloads in MongoDB Databases.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 6. [Self-Practice] Implement a comprehensive error-boundary and logging module for a MongoDB Databases application.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 7. [Self-Practice] Optimize memory consumption and execution hot-paths under high load in MongoDB Databases.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 8. [Self-Practice] Write an automated unit testing suite targeting complex race-conditions in MongoDB Databases.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 9. [Self-Practice] Create a localized internationalization (i18n) helper integrated with MongoDB Databases.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 10. [Self-Practice] Build a secure token-based authentication handshake flow within MongoDB Databases.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 11. [Self-Practice] Design a distributed caching and invalidation strategy for heavy MongoDB Databases operations.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 12. [Self-Practice] Create a CLI tool to automate scaffolding and deployment of MongoDB Databases configurations.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 13. [Self-Practice] Implement a real-time event-driven pub/sub handler using MongoDB Databases event structures.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 14. [Self-Practice] Draft an architectural decision record (ADR) comparing MongoDB Databases with its primary competitors.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 15. [Self-Practice] Create a mock framework to isolate and test external integrations in MongoDB Databases.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 16. [Self-Practice] Write a custom telemetry wrapper to output MongoDB Databases performance metrics to Prometheus/Grafana.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 17. [Self-Practice] Design a zero-downtime blue-green roll-out plan for a database or service utilizing MongoDB Databases.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 18. [Self-Practice] Implement a circuit-breaker pattern to gracefully degrade service during MongoDB Databases failures.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 19. [Self-Practice] Write an automated script to detect memory leaks and unhandled promise rejections in MongoDB Databases.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 20. [Self-Practice] Build a user-friendly audit log tracking all state mutations and access events in MongoDB Databases.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 21. [Self-Practice] Design an API gateway integration mapping REST inputs to MongoDB Databases data layers.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 22. [Self-Practice] Implement a rate-limiter with custom sliding-window configurations in MongoDB Databases.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 23. [Self-Practice] Create a backup and recovery automated script for preserving MongoDB Databases state repositories.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 24. [Self-Practice] Design a microservice boundary that encapsulates MongoDB Databases logic without tight coupling.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 25. [Self-Practice] Build a role-based access control (RBAC) middleware verifying permissions on MongoDB Databases.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 26. [Self-Practice] Write an optimized compiler or parser configuration to bundle MongoDB Databases files for web browsers.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 27. [Self-Practice] Implement a dead-letter queue (DLQ) pattern for handling corrupted messages in MongoDB Databases.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 28. [Self-Practice] Create an automated health-check endpoint monitor checking MongoDB Databases connection integrity.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 29. [Self-Practice] Implement a secure CORS and CSP policy wrapper for endpoints exposing MongoDB Databases.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 30. [Self-Practice] Refactor a legacy monolithic module into modern, modular ES modules using MongoDB Databases.
+
+*(Challenge question for self-study and practical project implementation.)*
 

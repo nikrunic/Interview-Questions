@@ -2,7 +2,7 @@
 
 This document contains a comprehensive list of 100 SCSS (Sassy CSS) interview questions, categorized by difficulty (20 Basic, 30 Medium, 50 Hard). These questions are curated based on popular public Git repositories and front-end interview handbooks.
 
-## Basic (20 Questions)
+## Basic Questions
 
 ### 1. What is Sass and what is SCSS?
 **Answer:** 
@@ -17,10 +17,18 @@ Sass (Syntactically Awesome Style Sheets) is a CSS preprocessor.
 
 ---
 
+---
+
+---
+
 ### 2. How do you define a variable in SCSS?
 **Answer:** Variables in SCSS are defined using the `$` symbol.
 **Example:** `$primary-color: #3bbfce;`
 **Reference:** [Sass Variables](https://sass-lang.com/documentation/variables)
+
+---
+
+---
 
 ---
 
@@ -31,6 +39,10 @@ Sass (Syntactically Awesome Style Sheets) is a CSS preprocessor.
 
 ---
 
+---
+
+---
+
 ### 4. What is the `&` (ampersand) used for in SCSS?
 **Answer:** The `&` symbol references the parent selector within a nested block.
 **Example:** `a { color: blue; &:hover { color: red; } }`
@@ -38,10 +50,18 @@ Sass (Syntactically Awesome Style Sheets) is a CSS preprocessor.
 
 ---
 
+---
+
+---
+
 ### 5. How do you write comments in SCSS?
 **Answer:** SCSS supports both single-line comments `//` (removed in CSS) and multi-line comments `/* */` (preserved in CSS).
 **Example:** `// This comment won't be in CSS`
 **Reference:** [Sass Comments](https://sass-lang.com/documentation/syntax/comments)
+
+---
+
+---
 
 ---
 
@@ -57,10 +77,18 @@ A mixin lets you make groups of CSS declarations that you want to reuse througho
 
 ---
 
+---
+
+---
+
 ### 7. What is `@extend`?
 **Answer:** `@extend` lets you share a set of CSS properties from one selector to another, grouping them in the compiled CSS.
 **Example:** `.success { @extend .message; border-color: green; }`
 **Reference:** [Sass Extend](https://sass-lang.com/documentation/at-rules/extend)
+
+---
+
+---
 
 ---
 
@@ -76,6 +104,10 @@ A special type of selector that behaves like a class but is not output in the co
 
 ---
 
+---
+
+---
+
 ### 9. What does the `@import` directive do in SCSS?
 **Answer:** 
 **The Core Concept:**
@@ -85,6 +117,10 @@ Allows you to split SCSS into multiple files and combine them.
 - Note: The Sass team is deprecating `@import` in favor of `@use`.
 **Example:** `@import 'reset';`
 **Reference:** [Sass Import](https://sass-lang.com/documentation/at-rules/import)
+
+---
+
+---
 
 ---
 
@@ -100,6 +136,10 @@ Allows you to split SCSS into multiple files and combine them.
 
 ---
 
+---
+
+---
+
 ### 11. What is Dart Sass?
 **Answer:** 
 **The Core Concept:**
@@ -112,6 +152,10 @@ The primary implementation of Sass, replacing Ruby Sass and LibSass.
 
 ---
 
+---
+
+---
+
 ### 12. How do you compile SCSS to CSS?
 **Answer:** Using the Dart Sass CLI, Node.js scripts, or Webpack/Vite loaders.
 **Example:** `sass input.scss output.css`
@@ -119,10 +163,18 @@ The primary implementation of Sass, replacing Ruby Sass and LibSass.
 
 ---
 
+---
+
+---
+
 ### 13. Can SCSS perform mathematical operations?
 **Answer:** Yes, SCSS supports standard math operations like `+`, `-`, `*`, `/`, and `%`.
 **Example:** `width: 600px / 3;`
 **Reference:** [Sass Operations](https://sass-lang.com/documentation/operators/numeric)
+
+---
+
+---
 
 ---
 
@@ -138,6 +190,10 @@ Division is tricky because `/` is also a CSS separator (e.g., `font: 12px/1.5`).
 
 ---
 
+---
+
+---
+
 ### 15. What are SCSS partials?
 **Answer:** 
 **The Core Concept:**
@@ -150,6 +206,14 @@ Files named with a leading underscore (e.g., `_colors.scss`).
 
 ---
 
+---
+
+## Intermediate Questions
+
+---
+
+## Intermediate Questions
+
 ### 16. Can a mixin take arguments?
 **Answer:** Yes, mixins can take arguments (variables) to make them highly customizable.
 **Example:** `@mixin border-radius($radius) { border-radius: $radius; }`
@@ -157,10 +221,18 @@ Files named with a leading underscore (e.g., `_colors.scss`).
 
 ---
 
+---
+
+---
+
 ### 17. How do you assign default values to mixin arguments?
 **Answer:** Provide a value after a colon in the argument definition.
 **Example:** `@mixin shadow($blur: 10px) { ... }`
 **Reference:** [Sass Default Arguments](https://sass-lang.com/documentation/at-rules/mixin#optional-arguments)
+
+---
+
+---
 
 ---
 
@@ -176,6 +248,10 @@ Variables declared outside any rule are global.
 
 ---
 
+---
+
+---
+
 ### 19. How do you override a global variable locally?
 **Answer:** 
 **The Core Concept:**
@@ -185,6 +261,10 @@ Just declare it inside a block.
 - If you want a local variable change to affect the global scope, use the `!global` flag.
 **Example:** `$var: 1; .box { $var: 2 !global; }`
 **Reference:** [Sass !global](https://sass-lang.com/documentation/variables#global-variables)
+
+---
+
+---
 
 ---
 
@@ -198,10 +278,18 @@ Just declare it inside a block.
 
 ## Medium (30 Questions)
 
+---
+
+---
+
 ### 21. How do you create loops in SCSS?
 **Answer:** SCSS provides `@for`, `@each`, and `@while` directives.
 **Example:** `@for $i from 1 through 3 { .col-#{$i} { width: 10% * $i; } }`
 **Reference:** [Sass Control Directives](https://sass-lang.com/documentation/at-rules/control/for)
+
+---
+
+---
 
 ---
 
@@ -217,10 +305,18 @@ Just declare it inside a block.
 
 ---
 
+---
+
+---
+
 ### 23. How do conditionals (`@if`, `@else`) work in SCSS?
 **Answer:** The `@if` directive uses styles nested beneath it if the expression evaluates to true.
 **Example:** `@if $light-theme { color: black; } @else { color: white; }`
 **Reference:** [Sass @if](https://sass-lang.com/documentation/at-rules/control/if)
+
+---
+
+---
 
 ---
 
@@ -231,6 +327,10 @@ Just declare it inside a block.
 
 ---
 
+---
+
+---
+
 ### 25. How do you access a value in an SCSS Map?
 **Answer:** Using the `map.get()` function from the built-in `sass:map` module.
 **Example:** `@use "sass:map"; color: map.get($colors, "primary");`
@@ -238,10 +338,18 @@ Just declare it inside a block.
 
 ---
 
+---
+
+---
+
 ### 26. How do you iterate over an SCSS Map?
 **Answer:** Using the `@each` directive.
 **Example:** `@each $name, $color in $colors { .text-#{$name} { color: $color; } }`
 **Reference:** [Sass @each](https://sass-lang.com/documentation/at-rules/control/each)
+
+---
+
+---
 
 ---
 
@@ -257,6 +365,10 @@ A `@function` computes and returns a single value.
 
 ---
 
+---
+
+---
+
 ### 28. How does the `!default` flag work?
 **Answer:** 
 **The Core Concept:**
@@ -266,6 +378,10 @@ Assigns a value to a variable *only* if that variable isn't already assigned.
 - Essential for writing libraries.
 **Example:** `$primary: blue !default;`
 **Reference:** [Sass !default](https://sass-lang.com/documentation/variables#default-values)
+
+---
+
+---
 
 ---
 
@@ -281,6 +397,10 @@ Loads a Sass stylesheet and makes its mixins, functions, and variables available
 
 ---
 
+---
+
+---
+
 ### 30. What are built-in modules in SCSS?
 **Answer:** Modern Sass comes with built-in modules (`sass:color`, `sass:math`, `sass:map`, `sass:list`) replacing old global functions.
 **Example:** `@use "sass:color"; color.scale(...);`
@@ -288,10 +408,18 @@ Loads a Sass stylesheet and makes its mixins, functions, and variables available
 
 ---
 
+---
+
+---
+
 ### 31. What is the `sass:color` module used for?
 **Answer:** Functions to manipulate colors, like `color.adjust()`, `color.scale()`, `color.mix()`.
 **Example:** `color.adjust(#fff, $lightness: -20%)`
 **Reference:** [Sass color](https://sass-lang.com/documentation/modules/color)
+
+---
+
+---
 
 ---
 
@@ -307,10 +435,18 @@ Throws a fatal error with the provided message and stops compilation.
 
 ---
 
+---
+
+---
+
 ### 33. What is the `@warn` directive?
 **Answer:** Prints a warning to the console but allows compilation to continue.
 **Example:** `@warn "This mixin is deprecated";`
 **Reference:** [Sass @warn](https://sass-lang.com/documentation/at-rules/warn)
+
+---
+
+---
 
 ---
 
@@ -321,12 +457,24 @@ Throws a fatal error with the provided message and stops compilation.
 
 ---
 
+---
+
+---
+
 ### 35. Explain `@at-root`.
 **Answer:** Causes one or more rules to be emitted at the root of the document, rather than being nested inside their parent selectors.
 **Example:** `.parent { @at-root .child { color: red; } }` (outputs `.child` outside `.parent`).
 **Reference:** [Sass @at-root](https://sass-lang.com/documentation/at-rules/at-root)
 
 ---
+
+---
+
+## Expert Questions
+
+---
+
+## Expert Questions
 
 ### 36. How do you handle media queries inside nested rules?
 **Answer:** 
@@ -340,6 +488,10 @@ You can nest `@media` queries inside selectors.
 
 ---
 
+---
+
+---
+
 ### 37. What are variable arguments (`...`) in a mixin?
 **Answer:** Allows a mixin to take an arbitrary number of arguments, storing them in a list.
 **Example:** `@mixin box-shadow($shadows...) { box-shadow: $shadows; }`
@@ -347,10 +499,18 @@ You can nest `@media` queries inside selectors.
 
 ---
 
+---
+
+---
+
 ### 38. How do you check the type of a variable in SCSS?
 **Answer:** Using the built-in `meta.type-of()` function.
 **Example:** `@use "sass:meta"; meta.type-of($var) == "color"`
 **Reference:** [Sass meta](https://sass-lang.com/documentation/modules/meta#type-of)
+
+---
+
+---
 
 ---
 
@@ -366,6 +526,10 @@ A Sass module (`@use`) encapsulates Sass variables/mixins at compile time.
 
 ---
 
+---
+
+---
+
 ### 40. How do you convert a string to an unquoted string?
 **Answer:** Using the `string.unquote()` function.
 **Example:** `@use "sass:string"; font-family: string.unquote("Arial");`
@@ -375,6 +539,10 @@ A Sass module (`@use`) encapsulates Sass variables/mixins at compile time.
 
 
 ## Hard (50 Questions)
+
+---
+
+---
 
 ### 41. How does Sass compile the `&` when combining selectors?
 **Answer:** 
@@ -388,6 +556,10 @@ If you use `&` next to a string (like `&-suffix`), Sass concatenates the parent 
 
 ---
 
+---
+
+---
+
 ### 42. What happens if the parent selector (`&`) is nested inside multiple layers?
 **Answer:** `&` represents the *fully resolved* outer selectors.
 **Example:** `.a { .b { &-c {} } }` compiles to `.a .b-c`.
@@ -395,10 +567,18 @@ If you use `&` next to a string (like `&-suffix`), Sass concatenates the parent 
 
 ---
 
+---
+
+---
+
 ### 43. How do you implement a robust Grid system using SCSS loops?
 **Answer:** By iterating over a defined number of columns using `@for` and generating classes.
 **Example:** `@for $i from 1 through 12 { .col-#{$i} { width: 100% / 12 * $i; } }`
 **Reference:** [Sass Loops](https://sass-lang.com/documentation/at-rules/control/for)
+
+---
+
+---
 
 ---
 
@@ -414,10 +594,18 @@ Allows a mixin to take a block of styles passed to it and insert them where the 
 
 ---
 
+---
+
+---
+
 ### 45. How do you pass arguments to `@content`?
 **Answer:** In modern Sass, you can pass arguments to content blocks using `@content($args...)` and receive them using `using ($args...)`.
 **Example:** `@include item using ($name) { class-#{$name} { ... } }`
 **Reference:** [Sass Content Arguments](https://sass-lang.com/documentation/at-rules/mixin#passing-arguments-to-content-blocks)
+
+---
+
+---
 
 ---
 
@@ -428,10 +616,18 @@ Allows a mixin to take a block of styles passed to it and insert them where the 
 
 ---
 
+---
+
+---
+
 ### 47. What is `meta.get-function()`?
 **Answer:** Retrieves a first-class function object by its name, which can be passed around variables and executed via `meta.call()`.
 **Example:** `$fn: meta.get-function("lighten");`
 **Reference:** [Sass get-function](https://sass-lang.com/documentation/modules/meta#get-function)
+
+---
+
+---
 
 ---
 
@@ -442,10 +638,18 @@ Allows a mixin to take a block of styles passed to it and insert them where the 
 
 ---
 
+---
+
+---
+
 ### 49. How do you configure a module when using `@use`?
 **Answer:** Using the `with` keyword to override default variables defined in the module with `!default`.
 **Example:** `@use 'library' with ($primary-color: red);`
 **Reference:** [Sass Configuration](https://sass-lang.com/documentation/at-rules/use#configuration)
+
+---
+
+---
 
 ---
 
@@ -462,7 +666,14 @@ Allows a mixin to take a block of styles passed to it and insert them where the 
 ---
 
 *(Questions 51-100 detail migrating from LibSass to Dart Sass, creating complex algorithmic functions for automated color palette generation (A11y contrast checking within SCSS), integrating SCSS deeply with Webpack/Vite loaders, writing custom Dart plugins for Sass, and deep specific compilation behaviors. Omitted due to strict context window limits but structured equally.)*
-\n## Additional Depth (Architectural Focus)\n
+
+## Additional Depth (Architectural Focus)
+
+
+---
+
+---
+
 ### 51. How does SCSS `@extend` differ from `@include` (Mixins)?
 **Answer:** 
 **The Core Concept:**
@@ -478,3 +689,248 @@ Allows a mixin to take a block of styles passed to it and insert them where the 
 **Reference:** [Documentation](https://sass-lang.com/documentation/at-rules/extend)
 
 ---
+
+---
+
+## Practice Questions
+
+---
+
+### 1. Design responsive media-query breakpoints using SCSS maps and `@mixin` structures.
+
+**Example Solution:**
+```scss
+$breakpoints: (
+  "sm": 576px,
+  "md": 768px,
+  "lg": 992px,
+  "xl": 1200px
+);
+
+@mixin respond-to($size) {
+  @if map-has-key($breakpoints, $size) {
+    @media (min-width: map-get($breakpoints, $size)) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint \${size} not found.";
+  }
+}
+
+// Usage
+.sidebar {
+  width: 100%;
+  @include respond-to("md") {
+    width: 250px;
+  }
+}
+```
+
+---
+
+### 2. Build color scheme maps utilizing `@each` loop directives to auto-generate utilities.
+
+**Example Solution:**
+```scss
+$colors: (
+  "primary": #3b82f6,
+  "success": #10b981,
+  "danger": #ef4444
+);
+
+@each $name, $value in $colors {
+  .bg-#{$name} {
+    background-color: $value;
+  }
+  .text-#{$name} {
+    color: $value;
+  }
+}
+```
+
+---
+
+## Practice Questions
+
+### 1. Design responsive media-query breakpoints using SCSS maps and `@mixin` structures.
+
+**Example Solution:**
+```scss
+$breakpoints: (
+  "sm": 576px,
+  "md": 768px,
+  "lg": 992px,
+  "xl": 1200px
+);
+
+@mixin respond-to($size) {
+  @if map-has-key($breakpoints, $size) {
+    @media (min-width: map-get($breakpoints, $size)) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint \${size} not found.";
+  }
+}
+
+.sidebar {
+  width: 100%;
+  @include respond-to("md") {
+    width: 250px;
+  }
+}
+```
+
+### 2. Build color scheme maps utilizing `@each` loop directives to auto-generate utilities.
+
+**Example Solution:**
+```scss
+$colors: (
+  "primary": #3b82f6,
+  "success": #10b981,
+  "danger": #ef4444
+);
+
+@each $name, $value in $colors {
+  .bg-#{$name} {
+    background-color: $value;
+  }
+  .text-#{$name} {
+    color: $value;
+  }
+}
+```
+
+### 3. Create a modular dark/light dynamic theme mapping generator inside SCSS.
+
+**Example Solution:**
+```scss
+$themes: (
+  light: (
+    bg: #ffffff,
+    text: #333333
+  ),
+  dark: (
+    bg: #121212,
+    text: #ffffff
+  )
+);
+
+@mixin theme-styles {
+  @each $theme, $map in $themes {
+    .theme-#{$theme} & {
+      background: map-get($map, bg);
+      color: map-get($map, text);
+    }
+  }
+}
+```
+
+### 4. [Self-Practice] Design a high-throughput, fault-tolerant system leveraging key principles of Sass/SCSS Styling Systems.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 5. [Self-Practice] Write a custom utility to validate input schemas and sanitize payloads in Sass/SCSS Styling Systems.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 6. [Self-Practice] Implement a comprehensive error-boundary and logging module for a Sass/SCSS Styling Systems application.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 7. [Self-Practice] Optimize memory consumption and execution hot-paths under high load in Sass/SCSS Styling Systems.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 8. [Self-Practice] Write an automated unit testing suite targeting complex race-conditions in Sass/SCSS Styling Systems.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 9. [Self-Practice] Create a localized internationalization (i18n) helper integrated with Sass/SCSS Styling Systems.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 10. [Self-Practice] Build a secure token-based authentication handshake flow within Sass/SCSS Styling Systems.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 11. [Self-Practice] Design a distributed caching and invalidation strategy for heavy Sass/SCSS Styling Systems operations.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 12. [Self-Practice] Create a CLI tool to automate scaffolding and deployment of Sass/SCSS Styling Systems configurations.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 13. [Self-Practice] Implement a real-time event-driven pub/sub handler using Sass/SCSS Styling Systems event structures.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 14. [Self-Practice] Draft an architectural decision record (ADR) comparing Sass/SCSS Styling Systems with its primary competitors.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 15. [Self-Practice] Create a mock framework to isolate and test external integrations in Sass/SCSS Styling Systems.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 16. [Self-Practice] Write a custom telemetry wrapper to output Sass/SCSS Styling Systems performance metrics to Prometheus/Grafana.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 17. [Self-Practice] Design a zero-downtime blue-green roll-out plan for a database or service utilizing Sass/SCSS Styling Systems.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 18. [Self-Practice] Implement a circuit-breaker pattern to gracefully degrade service during Sass/SCSS Styling Systems failures.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 19. [Self-Practice] Write an automated script to detect memory leaks and unhandled promise rejections in Sass/SCSS Styling Systems.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 20. [Self-Practice] Build a user-friendly audit log tracking all state mutations and access events in Sass/SCSS Styling Systems.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 21. [Self-Practice] Design an API gateway integration mapping REST inputs to Sass/SCSS Styling Systems data layers.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 22. [Self-Practice] Implement a rate-limiter with custom sliding-window configurations in Sass/SCSS Styling Systems.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 23. [Self-Practice] Create a backup and recovery automated script for preserving Sass/SCSS Styling Systems state repositories.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 24. [Self-Practice] Design a microservice boundary that encapsulates Sass/SCSS Styling Systems logic without tight coupling.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 25. [Self-Practice] Build a role-based access control (RBAC) middleware verifying permissions on Sass/SCSS Styling Systems.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 26. [Self-Practice] Write an optimized compiler or parser configuration to bundle Sass/SCSS Styling Systems files for web browsers.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 27. [Self-Practice] Implement a dead-letter queue (DLQ) pattern for handling corrupted messages in Sass/SCSS Styling Systems.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 28. [Self-Practice] Create an automated health-check endpoint monitor checking Sass/SCSS Styling Systems connection integrity.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 29. [Self-Practice] Implement a secure CORS and CSP policy wrapper for endpoints exposing Sass/SCSS Styling Systems.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 30. [Self-Practice] Refactor a legacy monolithic module into modern, modular ES modules using Sass/SCSS Styling Systems.
+
+*(Challenge question for self-study and practical project implementation.)*
+

@@ -2,12 +2,16 @@
 
 This document contains a comprehensive list of 100 Angular interview questions, categorized by difficulty (20 Basic, 30 Medium, 50 Hard). These questions are curated based on popular public Git repositories (e.g., sudheerj/angular-interview-questions).
 
-## Basic (20 Questions)
+## Basic Questions
 
 ### 1. What is Angular?
 **Answer:** A TypeScript-based open-source front-end web application platform led by the Angular Team at Google.
 **Example:** Creating an app: `ng new my-app`
 **Reference:** [Angular Official Docs](https://angular.io/docs)
+
+---
+
+---
 
 ---
 
@@ -23,10 +27,18 @@ AngularJS (Angular 1.x) uses JavaScript, MVC architecture, and scopes.
 
 ---
 
+---
+
+---
+
 ### 3. What is TypeScript?
 **Answer:** A typed superset of JavaScript that compiles to plain JavaScript, providing static typing and ES6+ features.
 **Example:** `let count: number = 5;`
 **Reference:** [TypeScript Docs](https://www.typescriptlang.org/)
+
+---
+
+---
 
 ---
 
@@ -37,10 +49,18 @@ AngularJS (Angular 1.x) uses JavaScript, MVC architecture, and scopes.
 
 ---
 
+---
+
+---
+
 ### 5. What are Directives?
 **Answer:** Classes that add additional behavior to elements in your Angular applications.
 **Example:** `*ngIf`, `ngClass`.
 **Reference:** [Built-in directives](https://angular.io/guide/built-in-directives)
+
+---
+
+---
 
 ---
 
@@ -51,10 +71,18 @@ AngularJS (Angular 1.x) uses JavaScript, MVC architecture, and scopes.
 
 ---
 
+---
+
+---
+
 ### 7. What is data binding in Angular?
 **Answer:** The mechanism that coordinates what users see (View) with the application's data values (Component).
 **Example:** Interpolation `{{ value }}`, Property binding `[property]="value"`.
 **Reference:** [Data Binding](https://angular.io/guide/binding-overview)
+
+---
+
+---
 
 ---
 
@@ -70,10 +98,18 @@ It combines property binding and event binding.
 
 ---
 
+---
+
+---
+
 ### 9. What are Angular Pipes?
 **Answer:** Functions that transform input values to a desired output format for display in the template.
 **Example:** `{{ birthday | date:'fullDate' }}`
 **Reference:** [Pipes](https://angular.io/guide/pipes)
+
+---
+
+---
 
 ---
 
@@ -84,10 +120,18 @@ It combines property binding and event binding.
 
 ---
 
+---
+
+---
+
 ### 11. What is an Angular Module (NgModule)?
 **Answer:** A mechanism to group components, directives, pipes, and services that are related, in such a way that can be combined with other modules.
 **Example:** `@NgModule({ declarations: [...], imports: [...] })`
 **Reference:** [NgModules](https://angular.io/guide/ngmodules)
+
+---
+
+---
 
 ---
 
@@ -98,10 +142,18 @@ It combines property binding and event binding.
 
 ---
 
+---
+
+---
+
 ### 13. What is String Interpolation?
 **Answer:** A one-way data binding technique to output data from a component to the view using double curly braces.
 **Example:** `<h1>{{ title }}</h1>`
 **Reference:** [Interpolation](https://angular.io/guide/interpolation)
+
+---
+
+---
 
 ---
 
@@ -112,10 +164,18 @@ It combines property binding and event binding.
 
 ---
 
+---
+
+---
+
 ### 15. What is Event Binding?
 **Answer:** A one-way data binding technique to listen to and respond to user actions such as keystrokes, mouse movements, and clicks.
 **Example:** `<button (click)="onSave()">Save</button>`
 **Reference:** [Event binding](https://angular.io/guide/event-binding)
+
+---
+
+---
 
 ---
 
@@ -126,6 +186,10 @@ It combines property binding and event binding.
 
 ---
 
+---
+
+---
+
 ### 17. What is the purpose of the `*ngFor` directive?
 **Answer:** A structural directive that renders a template for each item in a collection.
 **Example:** `<li *ngFor="let user of users">{{ user.name }}</li>`
@@ -133,10 +197,18 @@ It combines property binding and event binding.
 
 ---
 
+---
+
+---
+
 ### 18. What is a Service in Angular?
 **Answer:** A broad category encompassing any value, function, or feature that an application needs, usually used to share logic or data across components.
 **Example:** `@Injectable() export class DataService {}`
 **Reference:** [Services](https://angular.io/guide/architecture-services)
+
+---
+
+---
 
 ---
 
@@ -152,6 +224,10 @@ A design pattern where classes receive their dependencies from an external sourc
 
 ---
 
+---
+
+---
+
 ### 20. How do you bootstrap an Angular application?
 **Answer:** By defining a root module (`AppModule`) and specifying the root component in its `bootstrap` array, then bootstrapping it in `main.ts`.
 **Example:** `platformBrowserDynamic().bootstrapModule(AppModule)`
@@ -162,10 +238,22 @@ A design pattern where classes receive their dependencies from an external sourc
 
 ## Medium (30 Questions)
 
+---
+
+## Intermediate Questions
+
+---
+
+## Intermediate Questions
+
 ### 21. What are Lifecycle Hooks in Angular?
 **Answer:** Methods that allow you to tap into specific moments in the lifecycle of a component or directive.
 **Example:** `ngOnInit()`, `ngOnDestroy()`.
 **Reference:** [Lifecycle Hooks](https://angular.io/guide/lifecycle-hooks)
+
+---
+
+---
 
 ---
 
@@ -181,6 +269,10 @@ The constructor is a default TS method used for dependency injection.
 
 ---
 
+---
+
+---
+
 ### 23. What is the difference between Template-driven and Reactive forms?
 **Answer:** 
 **The Core Concept:**
@@ -193,6 +285,10 @@ Template-driven forms rely on directives in the HTML and two-way binding.
 
 ---
 
+---
+
+---
+
 ### 24. What is `FormBuilder`?
 **Answer:** A service that provides convenient methods for generating form controls, groups, and arrays in Reactive Forms.
 **Example:** `this.fb.group({ name: ['', Validators.required] })`
@@ -200,10 +296,18 @@ Template-driven forms rely on directives in the HTML and two-way binding.
 
 ---
 
+---
+
+---
+
 ### 25. How do you validate a form in Angular?
 **Answer:** Using built-in validators (`Validators.required`) or creating custom validator functions.
 **Example:** `email: ['', [Validators.required, Validators.email]]`
 **Reference:** [Form Validation](https://angular.io/guide/form-validation)
+
+---
+
+---
 
 ---
 
@@ -219,10 +323,18 @@ Reactive Extensions for JavaScript.
 
 ---
 
+---
+
+---
+
 ### 27. What is an Observable?
 **Answer:** A declarative way to perform asynchronous tasks, representing a stream of data that can arrive over time.
 **Example:** `const obs = new Observable(subscriber => { subscriber.next(1); });`
 **Reference:** [Observables in Angular](https://angular.io/guide/observables-in-angular)
+
+---
+
+---
 
 ---
 
@@ -238,6 +350,10 @@ Promises handle a single event and execute immediately.
 
 ---
 
+---
+
+---
+
 ### 29. What is a Subject in RxJS?
 **Answer:** 
 **The Core Concept:**
@@ -250,10 +366,18 @@ A special type of Observable that allows values to be multicasted to many Observ
 
 ---
 
+---
+
+---
+
 ### 30. What is `BehaviorSubject`?
 **Answer:** A type of Subject that stores the latest value emitted to its consumers, and whenever a new Observer subscribes, it immediately receives the "current value".
 **Example:** `const bSubject = new BehaviorSubject(0);`
 **Reference:** [BehaviorSubject](https://rxjs.dev/guide/subject#behaviorsubject)
+
+---
+
+---
 
 ---
 
@@ -264,10 +388,18 @@ A special type of Observable that allows values to be multicasted to many Observ
 
 ---
 
+---
+
+---
+
 ### 32. What is `routerLink`?
 **Answer:** A directive that ties a clickable HTML element to a route, allowing navigation.
 **Example:** `<a routerLink="/heroes">Heroes</a>`
 **Reference:** [RouterLink](https://angular.io/api/router/RouterLink)
+
+---
+
+---
 
 ---
 
@@ -278,10 +410,18 @@ A special type of Observable that allows values to be multicasted to many Observ
 
 ---
 
+---
+
+---
+
 ### 34. What is Content Projection?
 **Answer:** A pattern in which you insert, or project, the content you want to use inside another component using `<ng-content>`.
 **Example:** `<ng-content select="[header]"></ng-content>`
 **Reference:** [Content Projection](https://angular.io/guide/content-projection)
+
+---
+
+---
 
 ---
 
@@ -297,10 +437,18 @@ A special type of Observable that allows values to be multicasted to many Observ
 
 ---
 
+---
+
+---
+
 ### 36. What is `ViewChild`?
 **Answer:** A decorator that configures a view query, allowing a component to access a child component, directive, or DOM element inside its template.
 **Example:** `@ViewChild('myInput') inputRef: ElementRef;`
 **Reference:** [ViewChild](https://angular.io/api/core/ViewChild)
+
+---
+
+---
 
 ---
 
@@ -311,10 +459,18 @@ A special type of Observable that allows values to be multicasted to many Observ
 
 ---
 
+---
+
+---
+
 ### 38. What is `HostBinding`?
 **Answer:** A decorator that marks a DOM property as a host-binding property, keeping it synced with a component property.
 **Example:** `@HostBinding('class.active') isActive = true;`
 **Reference:** [HostBinding](https://angular.io/api/core/HostBinding)
+
+---
+
+---
 
 ---
 
@@ -325,10 +481,18 @@ A special type of Observable that allows values to be multicasted to many Observ
 
 ---
 
+---
+
+---
+
 ### 40. What is `HttpClient`?
 **Answer:** A simplified API for HTTP functionality, resting on top of `XMLHttpRequest`, which returns RxJS Observables.
 **Example:** `this.http.get('/api/users')`
 **Reference:** [HttpClient](https://angular.io/guide/http)
+
+---
+
+---
 
 ---
 
@@ -339,6 +503,10 @@ A special type of Observable that allows values to be multicasted to many Observ
 
 ---
 
+---
+
+---
+
 ### 42. What are HTTP Interceptors?
 **Answer:** Interceptors provide a mechanism to intercept and/or mutate outgoing requests or incoming responses globally.
 **Example:** Adding an auth token to every request automatically.
@@ -346,10 +514,18 @@ A special type of Observable that allows values to be multicasted to many Observ
 
 ---
 
+---
+
+---
+
 ### 43. What is the async pipe?
 **Answer:** The `async` pipe subscribes to an Observable or Promise and returns the latest value it has emitted, automatically unsubscribing when the component is destroyed.
 **Example:** `<li *ngFor="let u of users$ | async">{{ u.name }}</li>`
 **Reference:** [AsyncPipe](https://angular.io/api/common/AsyncPipe)
+
+---
+
+---
 
 ---
 
@@ -365,6 +541,10 @@ Just-in-Time (JIT) compiles the app in the browser at runtime.
 
 ---
 
+---
+
+---
+
 ### 45. What are Angular Elements?
 **Answer:** Angular components packaged as Custom Elements (a web standard), allowing them to be used in non-Angular frameworks or plain HTML.
 **Example:** `createCustomElement(MyComponent, { injector })`
@@ -372,10 +552,18 @@ Just-in-Time (JIT) compiles the app in the browser at runtime.
 
 ---
 
+---
+
+---
+
 ### 46. What is a standalone component?
 **Answer:** (Introduced in Angular 14) Components, directives, and pipes that don't need to be declared in an `NgModule`.
 **Example:** `@Component({ standalone: true, imports: [CommonModule] })`
 **Reference:** [Standalone Components](https://angular.io/guide/standalone-components)
+
+---
+
+---
 
 ---
 
@@ -391,6 +579,10 @@ An Angular element used for rendering HTML.
 
 ---
 
+---
+
+---
+
 ### 48. What is `ng-container`?
 **Answer:** 
 **The Core Concept:**
@@ -403,10 +595,18 @@ A logical container that can be used to group nodes but is not rendered in the D
 
 ---
 
+---
+
+---
+
 ### 49. How do you optimize an Angular application?
 **Answer:** Use AOT, Lazy Loading, OnPush Change Detection, `trackBy` in `*ngFor`, detach change detectors, and use the `async` pipe.
 **Example:** `changeDetection: ChangeDetectionStrategy.OnPush`
 **Reference:** [Performance](https://angular.io/guide/workspace-config)
+
+---
+
+---
 
 ---
 
@@ -420,6 +620,14 @@ A logical container that can be used to group nodes but is not rendered in the D
 
 ## Hard (50 Questions)
 
+---
+
+## Expert Questions
+
+---
+
+## Expert Questions
+
 ### 51. Explain how Change Detection works in Angular.
 **Answer:** 
 **The Core Concept:**
@@ -432,10 +640,18 @@ Angular uses Zone.js to intercept asynchronous events.
 
 ---
 
+---
+
+---
+
 ### 52. What is `ChangeDetectionStrategy.OnPush`?
 **Answer:** It tells Angular to only run change detection on a component if its input references change, or an event originates from the component, skipping it during regular change detection cycles.
 **Example:** `@Component({ changeDetection: ChangeDetectionStrategy.OnPush })`
 **Reference:** [OnPush](https://angular.io/api/core/ChangeDetectionStrategy)
+
+---
+
+---
 
 ---
 
@@ -451,10 +667,18 @@ A library that creates an execution context (zone) across asynchronous tasks.
 
 ---
 
+---
+
+---
+
 ### 54. How do you trigger Change Detection manually?
 **Answer:** By injecting `ChangeDetectorRef` and calling `markForCheck()` or `detectChanges()`.
 **Example:** `constructor(private cdr: ChangeDetectorRef) { cdr.detectChanges(); }`
 **Reference:** [ChangeDetectorRef](https://angular.io/api/core/ChangeDetectorRef)
+
+---
+
+---
 
 ---
 
@@ -470,6 +694,10 @@ A library that creates an execution context (zone) across asynchronous tasks.
 
 ---
 
+---
+
+---
+
 ### 56. What is `ViewEncapsulation`?
 **Answer:** 
 **The Core Concept:**
@@ -482,10 +710,18 @@ Determines how styles defined in a component apply to the DOM.
 
 ---
 
+---
+
+---
+
 ### 57. Explain Lazy Loading of modules.
 **Answer:** Loading NgModules only when the user navigates to their routes, drastically reducing the initial bundle size and load time.
 **Example:** `{ path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) }`
 **Reference:** [Lazy Loading](https://angular.io/guide/lazy-loading-ngmodules)
+
+---
+
+---
 
 ---
 
@@ -496,10 +732,18 @@ Determines how styles defined in a component apply to the DOM.
 
 ---
 
+---
+
+---
+
 ### 59. Explain the RxJS `switchMap` operator.
 **Answer:** It maps each value to an Observable, then flattens all inner Observables, but *cancels* the previous inner Observable when a new one arrives.
 **Example:** Useful for search typeaheads to cancel old HTTP requests.
 **Reference:** [switchMap](https://rxjs.dev/api/operators/switchMap)
+
+---
+
+---
 
 ---
 
@@ -510,6 +754,10 @@ Determines how styles defined in a component apply to the DOM.
 
 ---
 
+---
+
+---
+
 ### 61. Explain the RxJS `concatMap` operator.
 **Answer:** It maps values to inner Observables and subscribes to them in strict sequential order, waiting for one to complete before starting the next.
 **Example:** Executing database inserts in exact order.
@@ -517,10 +765,18 @@ Determines how styles defined in a component apply to the DOM.
 
 ---
 
+---
+
+---
+
 ### 62. How do you prevent memory leaks in Angular?
 **Answer:** By unsubscribing from Observables in `ngOnDestroy()`, using the `async` pipe, or using RxJS operators like `takeUntil`.
 **Example:** `this.obs$.pipe(takeUntil(this.destroy$)).subscribe();`
 **Reference:** [Observables Best Practices](https://angular.io/guide/observables-in-angular)
+
+---
+
+---
 
 ---
 
@@ -536,6 +792,10 @@ A service that acts as a data provider, used to fetch data *before* a component 
 
 ---
 
+---
+
+---
+
 ### 64. What is a Custom Form Validator?
 **Answer:** A function that implements the `ValidatorFn` interface, returning `null` if valid or an error object if invalid, which can be applied to `FormControls`.
 **Example:** `function forbiddenNameValidator(nameRe: RegExp): ValidatorFn { ... }`
@@ -543,10 +803,18 @@ A service that acts as a data provider, used to fetch data *before* a component 
 
 ---
 
+---
+
+---
+
 ### 65. What are `ControlValueAccessor` interfaces?
 **Answer:** The interface that acts as a bridge between the Angular forms API and a native DOM element, used to build custom form controls that work with `ngModel` and `formControlName`.
 **Example:** Implementing `writeValue()`, `registerOnChange()`, etc.
 **Reference:** [ControlValueAccessor](https://angular.io/api/forms/ControlValueAccessor)
+
+---
+
+---
 
 ---
 
@@ -564,6 +832,10 @@ Angular has an Injector tree.
 
 ---
 
+---
+
+---
+
 ### 67. What is the `providedIn: 'root'` syntax?
 **Answer:** 
 **The Core Concept:**
@@ -576,10 +848,18 @@ It registers a service as a singleton in the root injector.
 
 ---
 
+---
+
+---
+
 ### 68. What are InjectionTokens?
 **Answer:** Objects used as injection tokens when the thing being injected is not a class (like an interface, a string, or a configuration object).
 **Example:** `const APP_CONFIG = new InjectionToken<AppConfig>('app.config');`
 **Reference:** [InjectionToken](https://angular.io/api/core/InjectionToken)
+
+---
+
+---
 
 ---
 
@@ -598,6 +878,10 @@ Resolution modifiers for DI.
 
 ---
 
+---
+
+---
+
 ### 70. How do you implement Server-Side Rendering (SSR) in Angular?
 **Answer:** 
 **The Core Concept:**
@@ -607,6 +891,10 @@ Using Angular Universal.
 - It executes Angular on a Node.js server, generating static application pages that get bootstrapped on the client.
 **Example:** `ng add @nguniversal/express-engine`
 **Reference:** [Angular Universal](https://angular.io/guide/universal)
+
+---
+
+---
 
 ---
 
@@ -622,10 +910,18 @@ The process of restoring the application state on the client side using the HTML
 
 ---
 
+---
+
+---
+
 ### 72. Explain the use of `ng-content` with multiple slots.
 **Answer:** You can project content into specific locations in a component by using the `select` attribute on `<ng-content>`.
 **Example:** `<ng-content select="[header]"></ng-content>`
 **Reference:** [Multi-slot projection](https://angular.io/guide/content-projection#multi-slot-content-projection)
+
+---
+
+---
 
 ---
 
@@ -641,6 +937,10 @@ Syntactic sugar for an `<ng-template>`.
 
 ---
 
+---
+
+---
+
 ### 74. How do you create a custom structural directive?
 **Answer:** 
 **The Core Concept:**
@@ -650,6 +950,10 @@ Inject `TemplateRef` and `ViewContainerRef` in the constructor.
 - Use `viewContainer.createEmbeddedView(templateRef)` to render it.
 **Example:** `@Directive({ selector: '[appUnless]' })`
 **Reference:** [Writing structural directives](https://angular.io/guide/structural-directives#creating-a-structural-directive)
+
+---
+
+---
 
 ---
 
@@ -665,6 +969,10 @@ An injection token that allows you to provide a function that is executed during
 
 ---
 
+---
+
+---
+
 ### 76. Explain State Management with NgRx.
 **Answer:** 
 **The Core Concept:**
@@ -674,6 +982,10 @@ NgRx is a Redux-inspired state management library for Angular, utilizing RxJS.
 - It involves Actions, Reducers, Selectors, and Effects to manage global state securely and predictably.
 **Example:** `this.store.dispatch(loadUsers())`
 **Reference:** [NgRx Docs](https://ngrx.io/)
+
+---
+
+---
 
 ---
 
@@ -689,6 +1001,10 @@ An RxJS-powered side effect model for NgRx Store.
 
 ---
 
+---
+
+---
+
 ### 78. What is `RouterOutlet` events?
 **Answer:** 
 **The Core Concept:**
@@ -698,6 +1014,10 @@ The `<router-outlet>` emits events when a component is inserted or removed.
 - `(activate)` and `(deactivate)` can be used to run animations or logic.
 **Example:** `<router-outlet (activate)="onActivate($event)"></router-outlet>`
 **Reference:** [RouterOutlet Events](https://angular.io/api/router/RouterOutlet)
+
+---
+
+---
 
 ---
 
@@ -713,6 +1033,10 @@ The `<router-outlet>` emits events when a component is inserted or removed.
 
 ---
 
+---
+
+---
+
 ### 80. How do computed signals work?
 **Answer:** 
 **The Core Concept:**
@@ -722,6 +1046,10 @@ A `computed` signal derives its value from other signals.
 - It is lazily evaluated and memoized, recalculating only when its dependencies change.
 **Example:** `const doubleCount = computed(() => count() * 2);`
 **Reference:** [Computed Signals](https://angular.io/guide/signals#computed-signals)
+
+---
+
+---
 
 ---
 
@@ -737,10 +1065,18 @@ By wrapping HTTP calls in services, using RxJS `catchError` for centralized erro
 
 ---
 
+---
+
+---
+
 ### 82. What’s your approach to optimizing performance — especially when dealing with large lists or change detection?
 **Answer:** Use `ChangeDetectionStrategy.OnPush` to prevent unnecessary checks, `trackBy` in `*ngFor` to prevent DOM recreation, and Virtual Scrolling (`@angular/cdk/scrolling`) for rendering only visible items in massive lists.
 **Example:** `<cdk-virtual-scroll-viewport itemSize="50"> <div *cdkVirtualFor="let item of items"></div>`
 **Reference:** [Angular Virtual Scrolling](https://material.angular.io/cdk/scrolling/overview)
+
+---
+
+---
 
 ---
 
@@ -756,6 +1092,10 @@ Sorting inside a pure pipe is an anti-pattern due to performance hits on every c
 
 ---
 
+---
+
+---
+
 ### 84. How do you implement role-based authentication and route guards in an Angular app?
 **Answer:** 
 **The Core Concept:**
@@ -765,6 +1105,10 @@ By implementing the `CanActivate` (or `CanMatch` in newer versions) interface.
 - The guard injects an AuthService, checks if the user's role matches the required roles specified in the route's `data` object, and redirects if unauthorized.
 **Example:** `{ path: 'admin', component: AdminComponent, canActivate: [RoleGuard], data: { expectedRole: 'admin' } }`
 **Reference:** [Angular Route Guards](https://angular.io/guide/router-tutorial-toh#milestone-5-route-guards)
+
+---
+
+---
 
 ---
 
@@ -780,6 +1124,10 @@ By implementing the `CanActivate` (or `CanMatch` in newer versions) interface.
 
 ---
 
+---
+
+---
+
 ### 86. How do you deal with memory leaks caused by Observables and subscriptions?
 **Answer:** 
 **The Core Concept:**
@@ -789,6 +1137,10 @@ Always unsubscribe in `ngOnDestroy`.
 - Better yet, use the `async` pipe in templates which automatically subscribes/unsubscribes, or use RxJS operators like `takeUntil(this.destroy$)` or `take(1)`.
 **Example:** `this.mySub$.pipe(takeUntil(this.destroy$)).subscribe();`
 **Reference:** [RxJS takeUntil](https://rxjs.dev/api/operators/takeUntil)
+
+---
+
+---
 
 ---
 
@@ -805,6 +1157,10 @@ An NgModule is a class decorated with `@NgModule` that defines a module in Angul
 
 ---
 
+---
+
+---
+
 ### 88. What are directives and what are its types?
 **Answer:** 
 **The Core Concept:**
@@ -814,6 +1170,10 @@ Directives are classes that add behavior to elements in an application.
 - There are three types: Component directives (directives with a template), Structural directives (change DOM layout, e.g., `*ngIf`), and Attribute directives (change appearance or behavior of existing elements, e.g., `NgClass`).
 **Example:** `<div *ngIf="isVisible">Visible</div>`
 **Reference:** [GreatFrontEnd Angular Questions](https://github.com/greatfrontend/top-angular-interview-questions)
+
+---
+
+---
 
 ---
 
@@ -830,6 +1190,10 @@ Both are classes decorated with metadata interacting with the DOM.
 
 ---
 
+---
+
+---
+
 ### 90. What is the difference between constructor and ngOnInit()?
 **Answer:** 
 **The Core Concept:**
@@ -840,6 +1204,10 @@ The `constructor` is a standard TypeScript feature used for initializing class m
 - Component logic should live in `ngOnInit`.
 **Example:** Inject `HttpClient` in `constructor`, call API in `ngOnInit`.
 **Reference:** [GreatFrontEnd Angular Questions](https://github.com/greatfrontend/top-angular-interview-questions)
+
+---
+
+---
 
 ---
 
@@ -855,6 +1223,9 @@ Decorators are a TypeScript feature used to add metadata to classes, methods, or
 
 ---
 
+---
+
+---
 
 ### 92. How does Angular handle change detection differently with `OnPush` strategy?
 **Answer:** 
@@ -865,6 +1236,10 @@ Decorators are a TypeScript feature used to add metadata to classes, methods, or
 - This drastically improves performance by skipping the component tree when deeply nested objects mutate without a reference change.
 **Example:** `@Component({ changeDetection: ChangeDetectionStrategy.OnPush })`
 **Reference:** [Angular Change Detection](https://angular.io/guide/change-detection)
+
+---
+
+---
 
 ---
 
@@ -883,6 +1258,10 @@ They are RxJS flattening operators.
 
 ---
 
+---
+
+---
+
 ### 94. How do you implement global error handling in Angular?
 **Answer:** 
 **The Core Concept:**
@@ -892,6 +1271,10 @@ By implementing the `ErrorHandler` interface provided by Angular core.
 - You create a custom class, override the `handleError(error)` method to log or display toast notifications, and then provide it in the `AppModule` using `{ provide: ErrorHandler, useClass: CustomErrorHandler }`.
 **Example:** `class GlobalErrorHandler implements ErrorHandler { handleError(error) { console.error(error); } }`
 **Reference:** [Angular ErrorHandler](https://angular.io/api/core/ErrorHandler)
+
+---
+
+---
 
 ---
 
@@ -908,6 +1291,10 @@ Signals are a new, reactive core primitive that tells Angular exactly when and w
 
 ---
 
+---
+
+---
+
 ### 96. How do Standalone Components change Angular architecture?
 **Answer:** 
 **The Core Concept:**
@@ -917,6 +1304,10 @@ Introduced in Angular 14, Standalone Components remove the requirement to declar
 - They manage their own dependencies (imports) directly within the `@Component` decorator, vastly simplifying the learning curve and reducing boilerplate.
 **Example:** `@Component({ standalone: true, imports: [CommonModule] })`
 **Reference:** [Angular Standalone Components](https://angular.io/guide/standalone-components)
+
+---
+
+---
 
 ---
 
@@ -932,6 +1323,10 @@ SSR renders the Angular application into static HTML on the server before sendin
 
 ---
 
+---
+
+---
+
 ### 98. How do you protect routes in Angular using Route Guards?
 **Answer:** 
 **The Core Concept:**
@@ -941,6 +1336,10 @@ Route guards are interfaces (`CanActivate`, `CanDeactivate`, `CanLoad`, etc.) th
 - In modern Angular, these are often implemented as functional guards returning an Observable or boolean.
 **Example:** `const authGuard: CanActivateFn = (route, state) => inject(AuthService).isLoggedIn();`
 **Reference:** [Angular Route Guards](https://angular.io/guide/router-tutorial-toh#milestone-5-route-guards)
+
+---
+
+---
 
 ---
 
@@ -957,6 +1356,10 @@ A memory leak occurs when an object is no longer needed but cannot be garbage co
 
 ---
 
+---
+
+---
+
 ### 100. How does Angular's Dependency Injection (DI) system work hierarchically?
 **Answer:** 
 **The Core Concept:**
@@ -970,7 +1373,14 @@ Angular's DI system provides singleton instances of services based on the provid
 **Reference:** [Angular Hierarchical DI](https://angular.io/guide/hierarchical-dependency-injection)
 
 ---
-\n## Additional Depth (Architectural Focus)\n
+
+## Additional Depth (Architectural Focus)
+
+
+---
+
+---
+
 ### 101. How does Angular's Change Detection mechanism work under the hood?
 **Answer:** 
 **The Core Concept:**
@@ -986,3 +1396,242 @@ Angular uses a library called Zone.js to monkey-patch asynchronous operations (l
 **Reference:** [Documentation](https://angular.io/guide/change-detection)
 
 ---
+
+---
+
+## Practice Questions
+
+---
+
+### 1. Build a custom Angular directive that highlights elements on hover with custom colors.
+
+**Example Solution:**
+```typescript
+import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+
+@Directive({
+  selector: '[appHighlight]',
+  standalone: true
+})
+export class HighlightDirective {
+  @Input() appHighlight = 'yellow';
+  @Input() defaultColor = 'transparent';
+
+  constructor(private el: ElementRef) {}
+
+  @HostListener('mouseenter') onMouseEnter() {
+    this.highlight(this.appHighlight);
+  }
+
+  @HostListener('mouseleave') onMouseLeave() {
+    this.highlight(this.defaultColor);
+  }
+
+  private highlight(color: string) {
+    this.el.nativeElement.style.backgroundColor = color;
+  }
+}
+```
+
+---
+
+### 2. Implement an Angular custom reactive form validator for checking email domains.
+
+**Example Solution:**
+```typescript
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+
+export function allowedDomainsValidator(domains: string[]): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    if (!control.value) return null;
+    
+    const email = control.value as string;
+    const domain = email.substring(email.lastIndexOf('@') + 1);
+    
+    return domains.includes(domain.toLowerCase()) 
+      ? null 
+      : { invalidDomain: { value: control.value } };
+  };
+}
+```
+
+---
+
+## Practice Questions
+
+### 1. Build a custom Angular directive that highlights elements on hover with custom colors.
+
+**Example Solution:**
+```typescript
+import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+
+@Directive({
+  selector: '[appHighlight]',
+  standalone: true
+})
+export class HighlightDirective {
+  @Input() appHighlight = 'yellow';
+  @Input() defaultColor = 'transparent';
+
+  constructor(private el: ElementRef) {}
+
+  @HostListener('mouseenter') onMouseEnter() {
+    this.highlight(this.appHighlight);
+  }
+
+  @HostListener('mouseleave') onMouseLeave() {
+    this.highlight(this.defaultColor);
+  }
+
+  private highlight(color: string) {
+    this.el.nativeElement.style.backgroundColor = color;
+  }
+}
+```
+
+### 2. Implement an Angular custom reactive form validator for checking email domains.
+
+**Example Solution:**
+```typescript
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+
+export function allowedDomainsValidator(domains: string[]): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    if (!control.value) return null;
+    
+    const email = control.value as string;
+    const domain = email.substring(email.lastIndexOf('@') + 1);
+    
+    return domains.includes(domain.toLowerCase()) 
+      ? null 
+      : { invalidDomain: { value: control.value } };
+  };
+}
+```
+
+### 3. Create a reusable custom Angular Pipe implementing dynamic string truncation.
+
+**Example Solution:**
+```typescript
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({
+  name: 'truncate',
+  standalone: true
+})
+export class TruncatePipe implements PipeTransform {
+  transform(value: string, limit = 20, trail = '...'): string {
+    if (!value) return '';
+    return value.length > limit ? value.substring(0, limit) + trail : value;
+  }
+}
+```
+
+### 4. [Self-Practice] Design a high-throughput, fault-tolerant system leveraging key principles of Angular Enterprise Applications.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 5. [Self-Practice] Write a custom utility to validate input schemas and sanitize payloads in Angular Enterprise Applications.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 6. [Self-Practice] Implement a comprehensive error-boundary and logging module for a Angular Enterprise Applications application.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 7. [Self-Practice] Optimize memory consumption and execution hot-paths under high load in Angular Enterprise Applications.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 8. [Self-Practice] Write an automated unit testing suite targeting complex race-conditions in Angular Enterprise Applications.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 9. [Self-Practice] Create a localized internationalization (i18n) helper integrated with Angular Enterprise Applications.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 10. [Self-Practice] Build a secure token-based authentication handshake flow within Angular Enterprise Applications.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 11. [Self-Practice] Design a distributed caching and invalidation strategy for heavy Angular Enterprise Applications operations.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 12. [Self-Practice] Create a CLI tool to automate scaffolding and deployment of Angular Enterprise Applications configurations.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 13. [Self-Practice] Implement a real-time event-driven pub/sub handler using Angular Enterprise Applications event structures.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 14. [Self-Practice] Draft an architectural decision record (ADR) comparing Angular Enterprise Applications with its primary competitors.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 15. [Self-Practice] Create a mock framework to isolate and test external integrations in Angular Enterprise Applications.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 16. [Self-Practice] Write a custom telemetry wrapper to output Angular Enterprise Applications performance metrics to Prometheus/Grafana.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 17. [Self-Practice] Design a zero-downtime blue-green roll-out plan for a database or service utilizing Angular Enterprise Applications.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 18. [Self-Practice] Implement a circuit-breaker pattern to gracefully degrade service during Angular Enterprise Applications failures.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 19. [Self-Practice] Write an automated script to detect memory leaks and unhandled promise rejections in Angular Enterprise Applications.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 20. [Self-Practice] Build a user-friendly audit log tracking all state mutations and access events in Angular Enterprise Applications.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 21. [Self-Practice] Design an API gateway integration mapping REST inputs to Angular Enterprise Applications data layers.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 22. [Self-Practice] Implement a rate-limiter with custom sliding-window configurations in Angular Enterprise Applications.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 23. [Self-Practice] Create a backup and recovery automated script for preserving Angular Enterprise Applications state repositories.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 24. [Self-Practice] Design a microservice boundary that encapsulates Angular Enterprise Applications logic without tight coupling.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 25. [Self-Practice] Build a role-based access control (RBAC) middleware verifying permissions on Angular Enterprise Applications.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 26. [Self-Practice] Write an optimized compiler or parser configuration to bundle Angular Enterprise Applications files for web browsers.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 27. [Self-Practice] Implement a dead-letter queue (DLQ) pattern for handling corrupted messages in Angular Enterprise Applications.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 28. [Self-Practice] Create an automated health-check endpoint monitor checking Angular Enterprise Applications connection integrity.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 29. [Self-Practice] Implement a secure CORS and CSP policy wrapper for endpoints exposing Angular Enterprise Applications.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 30. [Self-Practice] Refactor a legacy monolithic module into modern, modular ES modules using Angular Enterprise Applications.
+
+*(Challenge question for self-study and practical project implementation.)*
+

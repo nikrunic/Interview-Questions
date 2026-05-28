@@ -2,7 +2,7 @@
 
 This document contains interview questions focused on Vue.js, the progressive JavaScript framework.
 
-## Basic (Easy)
+## Basic Questions
 
 ### 1. What is Vue.js?
 **Answer:** 
@@ -16,6 +16,10 @@ Vue.js is an open-source model–view–viewmodel (MVVM) front end JavaScript fr
 **Example:** `const app = Vue.createApp({});`
 
 **Reference:** [Vue.js Introduction](https://vuejs.org/guide/introduction.html)
+
+---
+
+---
 
 ---
 
@@ -34,6 +38,10 @@ Directives are special attributes with the `v-` prefix that apply reactive side 
 
 ---
 
+---
+
+---
+
 ### 3. What is the Vue instance lifecycle?
 **Answer:** 
 **The Core Concept:**
@@ -48,7 +56,14 @@ Every Vue component instance goes through a series of initialization steps when 
 **Reference:** [Vue Lifecycle Hooks](https://vuejs.org/guide/essentials/lifecycle.html)
 
 ---
-\n## Additional Depth (Architectural Focus)\n
+
+## Additional Depth (Architectural Focus)
+
+
+---
+
+---
+
 ### 4. What is the Composition API and how does it compare to the Options API?
 **Answer:** 
 **The Core Concept:**
@@ -62,6 +77,10 @@ The Composition API is a set of additive, function-based APIs introduced in Vue 
 `import { ref, computed } from 'vue';`
 
 **Reference:** [Documentation](https://vuejs.org/guide/extras/composition-api-faq.html)
+
+---
+
+---
 
 ---
 
@@ -81,6 +100,10 @@ Vue 3 overhauled its reactivity system by replacing Object.defineProperty with E
 
 ---
 
+---
+
+---
+
 ### 6. What is the difference between `v-if` and `v-show`?
 **Answer:** 
 **The Core Concept:**
@@ -94,6 +117,10 @@ Both directives conditionally display elements, but they do so fundamentally dif
 `<div v-if="isLoaded">Full DOM mount</div> <div v-show="isVisible">CSS display toggle</div>`
 
 **Reference:** [Documentation](https://vuejs.org/guide/essentials/conditional.html#v-if-vs-v-show)
+
+---
+
+---
 
 ---
 
@@ -113,6 +140,10 @@ Computed properties are cached based on their reactive dependencies, meaning the
 
 ---
 
+---
+
+---
+
 ### 8. How do `watch` and `watchEffect` differ in the Composition API?
 **Answer:** 
 **The Core Concept:**
@@ -126,6 +157,12 @@ Computed properties are cached based on their reactive dependencies, meaning the
 `watch(count, (newVal, oldVal) => { console.log(newVal); }); watchEffect(() => console.log(count.value));`
 
 **Reference:** [Documentation](https://vuejs.org/guide/essentials/watchers.html)
+
+---
+
+---
+
+## Intermediate Questions
 
 ---
 
@@ -145,6 +182,10 @@ Vue strictly enforces a one-way data flow. Parents pass data down to children us
 
 ---
 
+---
+
+---
+
 ### 10. What is Provide / Inject?
 **Answer:** 
 **The Core Concept:**
@@ -158,6 +199,10 @@ Provide and Inject solve the 'prop drilling' problem in Vue by allowing an ances
 `provide('theme', themeRef); const theme = inject('theme');`
 
 **Reference:** [Documentation](https://vuejs.org/guide/components/provide-inject.html)
+
+---
+
+---
 
 ---
 
@@ -177,6 +222,10 @@ Pinia is the modern, official state management library for Vue, succeeding Vuex.
 
 ---
 
+---
+
+---
+
 ### 12. How does Scoped CSS work in Vue Single-File Components (SFCs)?
 **Answer:** 
 **The Core Concept:**
@@ -190,6 +239,10 @@ When a `<style>` tag has the `scoped` attribute, its CSS applies exclusively to 
 `<style scoped> .title { color: red; } :deep(.child-el) { color: blue; } </style>`
 
 **Reference:** [Documentation](https://vuejs.org/api/sfc-css-features.html#scoped-css)
+
+---
+
+---
 
 ---
 
@@ -209,6 +262,10 @@ Slots are a mechanism for component content distribution, allowing a parent to i
 
 ---
 
+---
+
+---
+
 ### 14. What is the `<Teleport>` component?
 **Answer:** 
 **The Core Concept:**
@@ -222,6 +279,10 @@ Teleport is a built-in Vue component that allows you to render a part of a compo
 `<Teleport to="body"> <div class="modal">...</div> </Teleport>`
 
 **Reference:** [Documentation](https://vuejs.org/guide/built-ins/teleport.html)
+
+---
+
+---
 
 ---
 
@@ -241,6 +302,12 @@ Suspense is a built-in component that orchestrates async dependencies in the com
 
 ---
 
+---
+
+---
+
+## Intermediate Questions
+
 ### 16. How does `v-model` work on custom components in Vue 3?
 **Answer:** 
 **The Core Concept:**
@@ -254,6 +321,12 @@ In Vue 3, `v-model` is syntactic sugar for passing a `modelValue` prop and liste
 `<Child v-model="text" /> // equivalent to :modelValue="text" @update:modelValue="text = $event"`
 
 **Reference:** [Documentation](https://vuejs.org/guide/components/v-model.html)
+
+---
+
+---
+
+## Expert Questions
 
 ---
 
@@ -273,6 +346,10 @@ Mixins were the primary way to reuse logic in Vue 2, but they suffered from seve
 
 ---
 
+---
+
+---
+
 ### 18. Why is the `key` attribute required in `v-for`?
 **Answer:** 
 **The Core Concept:**
@@ -286,6 +363,10 @@ The `key` attribute provides Vue's virtual DOM diffing algorithm with a unique i
 `<li v-for="item in items" :key="item.id">{{ item.name }}</li>`
 
 **Reference:** [Documentation](https://vuejs.org/guide/essentials/list.html#maintaining-state-with-key)
+
+---
+
+---
 
 ---
 
@@ -305,6 +386,10 @@ The `key` attribute provides Vue's virtual DOM diffing algorithm with a unique i
 
 ---
 
+---
+
+---
+
 ### 20. What is `nextTick` in Vue?
 **Answer:** 
 **The Core Concept:**
@@ -318,6 +403,10 @@ The `key` attribute provides Vue's virtual DOM diffing algorithm with a unique i
 `message.value = 'updated'; await nextTick(); console.log(document.getElementById('msg').textContent);`
 
 **Reference:** [Documentation](https://vuejs.org/api/general.html#nexttick)
+
+---
+
+---
 
 ---
 
@@ -337,6 +426,10 @@ Navigation guards are hooks provided by Vue Router that allow you to intercept a
 
 ---
 
+---
+
+---
+
 ### 22. How do Custom Directives work in Vue 3?
 **Answer:** 
 **The Core Concept:**
@@ -350,6 +443,10 @@ Custom directives allow developers to encapsulate low-level DOM access and manip
 `const vFocus = { mounted: (el) => el.focus() };`
 
 **Reference:** [Documentation](https://vuejs.org/guide/reusability/custom-directives.html)
+
+---
+
+---
 
 ---
 
@@ -369,6 +466,10 @@ The Virtual DOM is a lightweight JavaScript representation of the actual DOM. Vu
 
 ---
 
+---
+
+---
+
 ### 24. How do you handle global state without Pinia/Vuex?
 **Answer:** 
 **The Core Concept:**
@@ -384,3 +485,228 @@ In Vue 3, you can easily create lightweight global state management by exporting
 **Reference:** [Documentation](https://vuejs.org/guide/scaling-up/state-management.html)
 
 ---
+
+---
+
+## Practice Questions
+
+---
+
+### 1. Create a custom reusable Composition API helper hook `useLocalStorage` in Vue 3.
+
+**Example Solution:**
+```typescript
+import { ref, watch, Ref } from "vue";
+
+export function useLocalStorage<T>(key: string, defaultValue: T): Ref<T> {
+  const storedValue = localStorage.getItem(key);
+  const data = ref<T>(storedValue ? JSON.parse(storedValue) : defaultValue) as Ref<T>;
+
+  watch(data, (newValue) => {
+    localStorage.setItem(key, JSON.stringify(newValue));
+  }, { deep: true });
+
+  return data;
+}
+```
+
+---
+
+### 2. Build a debounced search input component using `<script setup>` in Vue 3.
+
+**Example Solution:**
+```html
+<script setup lang="ts">
+import { ref, watch } from "vue";
+
+const search = ref("");
+const debouncedSearch = ref("");
+let timeoutId: ReturnType<typeof setTimeout>;
+
+watch(search, (newVal) => {
+  clearTimeout(timeoutId);
+  timeoutId = setTimeout(() => {
+    debouncedSearch.value = newVal;
+  }, 300);
+});
+</script>
+
+<template>
+  <div class="search-box">
+    <input v-model="search" placeholder="Type to search..." class="border p-2 rounded" />
+    <p>Searching for: {{ debouncedSearch }}</p>
+  </div>
+</template>
+```
+
+---
+
+## Expert Questions
+
+## Practice Questions
+
+### 1. Create a custom reusable Composition API helper hook `useLocalStorage` in Vue 3.
+
+**Example Solution:**
+```typescript
+import { ref, watch, Ref } from "vue";
+
+export function useLocalStorage<T>(key: string, defaultValue: T): Ref<T> {
+  const storedValue = localStorage.getItem(key);
+  const data = ref<T>(storedValue ? JSON.parse(storedValue) : defaultValue) as Ref<T>;
+
+  watch(data, (newValue) => {
+    localStorage.setItem(key, JSON.stringify(newValue));
+  }, { deep: true });
+
+  return data;
+}
+```
+
+### 2. Build a debounced search input component using `<script setup>` in Vue 3.
+
+**Example Solution:**
+```html
+<script setup lang="ts">
+import { ref, watch } from "vue";
+
+const search = ref("");
+const debouncedSearch = ref("");
+let timeoutId: ReturnType<typeof setTimeout>;
+
+watch(search, (newVal) => {
+  clearTimeout(timeoutId);
+  timeoutId = setTimeout(() => {
+    debouncedSearch.value = newVal;
+  }, 300);
+});
+</script>
+
+<template>
+  <div class="search-box">
+    <input v-model="search" placeholder="Type to search..." class="border p-2 rounded" />
+    <p>Searching for: {{ debouncedSearch }}</p>
+  </div>
+</template>
+```
+
+### 3. Create a Vue 3 custom directive managing element auto-focus behaviors.
+
+**Example Solution:**
+```typescript
+const vFocus = {
+  mounted: (el: HTMLElement) => {
+    el.focus();
+  }
+};
+// Use as: <input v-focus />
+```
+
+### 4. [Self-Practice] Design a high-throughput, fault-tolerant system leveraging key principles of Vue.js Reactive Framework.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 5. [Self-Practice] Write a custom utility to validate input schemas and sanitize payloads in Vue.js Reactive Framework.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 6. [Self-Practice] Implement a comprehensive error-boundary and logging module for a Vue.js Reactive Framework application.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 7. [Self-Practice] Optimize memory consumption and execution hot-paths under high load in Vue.js Reactive Framework.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 8. [Self-Practice] Write an automated unit testing suite targeting complex race-conditions in Vue.js Reactive Framework.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 9. [Self-Practice] Create a localized internationalization (i18n) helper integrated with Vue.js Reactive Framework.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 10. [Self-Practice] Build a secure token-based authentication handshake flow within Vue.js Reactive Framework.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 11. [Self-Practice] Design a distributed caching and invalidation strategy for heavy Vue.js Reactive Framework operations.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 12. [Self-Practice] Create a CLI tool to automate scaffolding and deployment of Vue.js Reactive Framework configurations.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 13. [Self-Practice] Implement a real-time event-driven pub/sub handler using Vue.js Reactive Framework event structures.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 14. [Self-Practice] Draft an architectural decision record (ADR) comparing Vue.js Reactive Framework with its primary competitors.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 15. [Self-Practice] Create a mock framework to isolate and test external integrations in Vue.js Reactive Framework.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 16. [Self-Practice] Write a custom telemetry wrapper to output Vue.js Reactive Framework performance metrics to Prometheus/Grafana.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 17. [Self-Practice] Design a zero-downtime blue-green roll-out plan for a database or service utilizing Vue.js Reactive Framework.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 18. [Self-Practice] Implement a circuit-breaker pattern to gracefully degrade service during Vue.js Reactive Framework failures.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 19. [Self-Practice] Write an automated script to detect memory leaks and unhandled promise rejections in Vue.js Reactive Framework.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 20. [Self-Practice] Build a user-friendly audit log tracking all state mutations and access events in Vue.js Reactive Framework.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 21. [Self-Practice] Design an API gateway integration mapping REST inputs to Vue.js Reactive Framework data layers.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 22. [Self-Practice] Implement a rate-limiter with custom sliding-window configurations in Vue.js Reactive Framework.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 23. [Self-Practice] Create a backup and recovery automated script for preserving Vue.js Reactive Framework state repositories.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 24. [Self-Practice] Design a microservice boundary that encapsulates Vue.js Reactive Framework logic without tight coupling.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 25. [Self-Practice] Build a role-based access control (RBAC) middleware verifying permissions on Vue.js Reactive Framework.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 26. [Self-Practice] Write an optimized compiler or parser configuration to bundle Vue.js Reactive Framework files for web browsers.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 27. [Self-Practice] Implement a dead-letter queue (DLQ) pattern for handling corrupted messages in Vue.js Reactive Framework.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 28. [Self-Practice] Create an automated health-check endpoint monitor checking Vue.js Reactive Framework connection integrity.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 29. [Self-Practice] Implement a secure CORS and CSP policy wrapper for endpoints exposing Vue.js Reactive Framework.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 30. [Self-Practice] Refactor a legacy monolithic module into modern, modular ES modules using Vue.js Reactive Framework.
+
+*(Challenge question for self-study and practical project implementation.)*
+

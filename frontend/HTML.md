@@ -2,12 +2,16 @@
 
 This document contains a comprehensive list of 100 HTML interview questions, categorized by difficulty (20 Basic, 30 Medium, 50 Hard). These questions are curated based on popular public Git repositories and front-end interview handbooks.
 
-## Basic (20 Questions)
+## Basic Questions
 
 ### 1. What does HTML stand for?
 **Answer:** HyperText Markup Language.
 **Example:** `<!DOCTYPE html><html>...</html>`
 **Reference:** [MDN HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
+
+---
+
+---
 
 ---
 
@@ -18,10 +22,18 @@ This document contains a comprehensive list of 100 HTML interview questions, cat
 
 ---
 
+---
+
+---
+
 ### 3. What is an HTML attribute?
 **Answer:** Modifiers of HTML elements that provide additional information.
 **Example:** `<img src="image.jpg">` (`src` is the attribute).
 **Reference:** [MDN Attribute](https://developer.mozilla.org/en-US/docs/Glossary/Attribute)
+
+---
+
+---
 
 ---
 
@@ -37,6 +49,10 @@ It tells the browser what version of HTML the page is written in.
 
 ---
 
+---
+
+---
+
 ### 5. What is the difference between an element and a tag?
 **Answer:** An element is the entire object (start tag, content, end tag), whereas tags are just the markers (`<p>` and `</p>`).
 **Example:** `<p>Text</p>` is an element.
@@ -44,10 +60,18 @@ It tells the browser what version of HTML the page is written in.
 
 ---
 
+---
+
+---
+
 ### 6. What is Semantic HTML?
 **Answer:** Using HTML markup to reinforce the meaning of the information, rather than just defining its appearance.
 **Example:** Using `<article>` instead of `<div class="article">`.
 **Reference:** [MDN Semantics](https://developer.mozilla.org/en-US/docs/Glossary/Semantics)
+
+---
+
+---
 
 ---
 
@@ -63,10 +87,18 @@ Block elements start on a new line and take full width.
 
 ---
 
+---
+
+---
+
 ### 8. How do you create a hyperlink?
 **Answer:** Using the `<a>` (anchor) tag and the `href` attribute.
 **Example:** `<a href="https://example.com">Link</a>`
 **Reference:** [MDN a tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a)
+
+---
+
+---
 
 ---
 
@@ -77,6 +109,10 @@ Block elements start on a new line and take full width.
 
 ---
 
+---
+
+---
+
 ### 10. How do you insert a comment in HTML?
 **Answer:** By wrapping text in `<!--` and `-->`.
 **Example:** `<!-- Note -->`
@@ -84,10 +120,18 @@ Block elements start on a new line and take full width.
 
 ---
 
+---
+
+---
+
 ### 11. What is a table in HTML?
 **Answer:** A structured set of data made of rows and columns using `<table>`, `<tr>`, `<td>`, and `<th>`.
 **Example:** `<table><tr><td>Data</td></tr></table>`
 **Reference:** [MDN table](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table)
+
+---
+
+---
 
 ---
 
@@ -104,10 +148,18 @@ Ordered lists (`<ol>`) are numbered.
 
 ---
 
+---
+
+---
+
 ### 13. What is an iframe?
 **Answer:** Used to embed another document within the current HTML document.
 **Example:** `<iframe src="page.html"></iframe>`
 **Reference:** [MDN iframe](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe)
+
+---
+
+---
 
 ---
 
@@ -120,6 +172,10 @@ Ordered lists (`<ol>`) are numbered.
 - `<body>` contains the visible content of the page.
 **Example:** `<head><title>Doc</title></head><body>Content</body>`
 **Reference:** [MDN Document structure](https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/Document_and_website_structure)
+
+---
+
+---
 
 ---
 
@@ -136,6 +192,10 @@ Bold: `<strong>` or `<b>`.
 
 ---
 
+---
+
+---
+
 ### 16. What is a form?
 **Answer:** A section of a document containing interactive controls for submitting information to a web server.
 **Example:** `<form action="/submit"><input></form>`
@@ -143,10 +203,18 @@ Bold: `<strong>` or `<b>`.
 
 ---
 
+---
+
+---
+
 ### 17. What are the common input types?
 **Answer:** text, password, email, number, checkbox, radio, submit, button.
 **Example:** `<input type="email">`
 **Reference:** [MDN Input types](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input)
+
+---
+
+---
 
 ---
 
@@ -162,10 +230,18 @@ Inserts a single line break.
 
 ---
 
+---
+
+---
+
 ### 19. What does `<hr>` do?
 **Answer:** Represents a thematic break, typically rendered as a horizontal line.
 **Example:** `<p>Topic 1</p><hr><p>Topic 2</p>`
 **Reference:** [MDN hr](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/hr)
+
+---
+
+---
 
 ---
 
@@ -179,10 +255,22 @@ Inserts a single line break.
 
 ## Medium (30 Questions)
 
+---
+
+## Intermediate Questions
+
+---
+
+## Intermediate Questions
+
 ### 21. What are meta tags?
 **Answer:** Tags that provide metadata about the HTML document, not displayed on the page but machine-parsable.
 **Example:** `<meta name="viewport" content="width=device-width, initial-scale=1.0">`
 **Reference:** [MDN meta](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta)
+
+---
+
+---
 
 ---
 
@@ -193,10 +281,18 @@ Inserts a single line break.
 
 ---
 
+---
+
+---
+
 ### 23. What are data attributes (`data-*`)?
 **Answer:** They allow you to store extra information on standard HTML elements without hacks.
 **Example:** `<div data-id="123">`
 **Reference:** [MDN Data attributes](https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes)
+
+---
+
+---
 
 ---
 
@@ -212,10 +308,18 @@ An `id` must be unique on the page and identifies a single element.
 
 ---
 
+---
+
+---
+
 ### 25. What is the `action` attribute in a form?
 **Answer:** It specifies where to send the form-data when a form is submitted (usually a URL).
 **Example:** `<form action="/login">`
 **Reference:** [MDN form action](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action)
+
+---
+
+---
 
 ---
 
@@ -226,10 +330,18 @@ An `id` must be unique on the page and identifies a single element.
 
 ---
 
+---
+
+---
+
 ### 27. What is `figure` and `figcaption`?
 **Answer:** `<figure>` encapsulates media (like images) and `<figcaption>` provides a caption for it, associating them semantically.
 **Example:** `<figure><img src="pic.jpg"><figcaption>A picture</figcaption></figure>`
 **Reference:** [MDN figure](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figure)
+
+---
+
+---
 
 ---
 
@@ -240,10 +352,18 @@ An `id` must be unique on the page and identifies a single element.
 
 ---
 
+---
+
+---
+
 ### 29. What is the `canvas` element?
 **Answer:** Used to draw graphics, on the fly, via scripting (usually JavaScript).
 **Example:** `<canvas id="myCanvas"></canvas>`
 **Reference:** [MDN canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API)
+
+---
+
+---
 
 ---
 
@@ -260,6 +380,10 @@ Scalable Vector Graphics.
 
 ---
 
+---
+
+---
+
 ### 31. What is the difference between `<script>`, `<script defer>`, and `<script async>`?
 **Answer:** 
 **The Core Concept:**
@@ -270,6 +394,10 @@ Normal script blocks parsing.
 - `defer` downloads in parallel but executes after parsing finishes.
 **Example:** `<script src="app.js" defer></script>`
 **Reference:** [MDN script](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script)
+
+---
+
+---
 
 ---
 
@@ -285,10 +413,18 @@ Specifies where to open the linked document.
 
 ---
 
+---
+
+---
+
 ### 33. Why use `rel="noopener noreferrer"` with `target="_blank"`?
 **Answer:** For security (`noopener` prevents the new page from accessing `window.opener`) and privacy (`noreferrer` hides referrer info).
 **Example:** `<a href="..." target="_blank" rel="noopener noreferrer">`
 **Reference:** [MDN rel](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel)
+
+---
+
+---
 
 ---
 
@@ -299,10 +435,18 @@ Specifies where to open the linked document.
 
 ---
 
+---
+
+---
+
 ### 35. What is the `srcset` attribute?
 **Answer:** Used on `<img>` or `<source>` to specify different image files for different screen resolutions (like Retina displays).
 **Example:** `<img srcset="img-1x.jpg 1x, img-2x.jpg 2x">`
 **Reference:** [MDN srcset](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images)
+
+---
+
+---
 
 ---
 
@@ -313,6 +457,10 @@ Specifies where to open the linked document.
 
 ---
 
+---
+
+---
+
 ### 37. What is the `required` attribute?
 **Answer:** A boolean attribute that specifies that an input field must be filled out before submitting the form.
 **Example:** `<input type="text" required>`
@@ -320,10 +468,18 @@ Specifies where to open the linked document.
 
 ---
 
+---
+
+---
+
 ### 38. What is `tabindex`?
 **Answer:** An attribute that indicates if an element can be focused, and if so, specifies the order in which it receives focus during keyboard navigation.
 **Example:** `<div tabindex="0">`
 **Reference:** [MDN tabindex](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex)
+
+---
+
+---
 
 ---
 
@@ -339,10 +495,18 @@ Represents a caption for an item in a user interface.
 
 ---
 
+---
+
+---
+
 ### 40. What is `aria-label`?
 **Answer:** An ARIA attribute used to define a string that labels the current element for screen readers when there is no visible text.
 **Example:** `<button aria-label="Close">X</button>`
 **Reference:** [MDN aria-label](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label)
+
+---
+
+---
 
 ---
 
@@ -353,10 +517,18 @@ Represents a caption for an item in a user interface.
 
 ---
 
+---
+
+---
+
 ### 42. What is the `<nav>` tag?
 **Answer:** A semantic tag representing a section of a page whose purpose is to provide navigation links.
 **Example:** `<nav><ul><li>Link</li></ul></nav>`
 **Reference:** [MDN nav](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav)
+
+---
+
+---
 
 ---
 
@@ -372,10 +544,18 @@ A semantic tag representing the dominant content of the `<body>`.
 
 ---
 
+---
+
+---
+
 ### 44. What are `header` and `footer`?
 **Answer:** Semantic tags for introductory content (header) and closing content (footer) for a document or a section.
 **Example:** `<footer>Copyright 2023</footer>`
 **Reference:** [MDN footer](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/footer)
+
+---
+
+---
 
 ---
 
@@ -391,10 +571,18 @@ A semantic tag representing the dominant content of the `<body>`.
 
 ---
 
+---
+
+---
+
 ### 46. What does `<base>` tag do?
 **Answer:** Specifies the base URL and/or target for all relative URLs in a document.
 **Example:** `<base href="https://example.com/dir/">`
 **Reference:** [MDN base](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base)
+
+---
+
+---
 
 ---
 
@@ -410,6 +598,10 @@ Use the `disabled` attribute.
 
 ---
 
+---
+
+---
+
 ### 48. What is the difference between `readonly` and `disabled`?
 **Answer:** 
 **The Core Concept:**
@@ -422,10 +614,18 @@ Use the `disabled` attribute.
 
 ---
 
+---
+
+---
+
 ### 49. What is a hidden field?
 **Answer:** An input of type `hidden` lets web developers include data that cannot be seen or modified by users when a form is submitted.
 **Example:** `<input type="hidden" name="token" value="abc">`
 **Reference:** [MDN input hidden](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/hidden)
+
+---
+
+---
 
 ---
 
@@ -439,6 +639,14 @@ Use the `disabled` attribute.
 
 ## Hard (50 Questions)
 
+---
+
+## Expert Questions
+
+---
+
+## Expert Questions
+
 ### 51. Explain the HTML parsing process.
 **Answer:** 
 **The Core Concept:**
@@ -451,10 +659,18 @@ Bytes -> Characters -> Tokens (Tokenization) -> Nodes -> DOM Tree.
 
 ---
 
+---
+
+---
+
 ### 52. What is the Shadow DOM?
 **Answer:** A web standard that encapsulates a component's DOM and CSS styling, keeping them hidden and separate from the rest of the document.
 **Example:** Used heavily in Web Components.
 **Reference:** [MDN Shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM)
+
+---
+
+---
 
 ---
 
@@ -465,10 +681,18 @@ Bytes -> Characters -> Tokens (Tokenization) -> Nodes -> DOM Tree.
 
 ---
 
+---
+
+---
+
 ### 54. What is the `<template>` tag?
 **Answer:** A mechanism for holding HTML that is not to be rendered immediately when a page is loaded but may be instantiated subsequently during runtime using JavaScript.
 **Example:** `<template id="my-tmpl"><p>Hidden</p></template>`
 **Reference:** [MDN template](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template)
+
+---
+
+---
 
 ---
 
@@ -479,10 +703,18 @@ Bytes -> Characters -> Tokens (Tokenization) -> Nodes -> DOM Tree.
 
 ---
 
+---
+
+---
+
 ### 56. What are HTML5 Server-Sent Events (SSE)?
 **Answer:** A standard describing how servers can initiate data transmission towards clients once an initial client connection has been established (unidirectional).
 **Example:** EventSource API in JS relies on SSE.
 **Reference:** [MDN SSE](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events)
+
+---
+
+---
 
 ---
 
@@ -498,10 +730,18 @@ The accessibility tree is derived from the DOM and used by screen readers.
 
 ---
 
+---
+
+---
+
 ### 58. Explain `aria-hidden="true"`.
 **Answer:** Hides an element and its descendants from assistive technologies (like screen readers), but the element remains visible visually.
 **Example:** `<i class="icon" aria-hidden="true"></i>`
 **Reference:** [MDN aria-hidden](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-hidden)
+
+---
+
+---
 
 ---
 
@@ -517,10 +757,18 @@ Removes the semantic meaning of an element from the accessibility tree.
 
 ---
 
+---
+
+---
+
 ### 60. How do you implement resource preloading in HTML?
 **Answer:** Using `<link rel="preload">` to tell the browser to download a critical resource early before it's discovered in the HTML parse.
 **Example:** `<link rel="preload" href="font.woff2" as="font">`
 **Reference:** [MDN Preload](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel/preload)
+
+---
+
+---
 
 ---
 
@@ -537,10 +785,18 @@ Removes the semantic meaning of an element from the accessibility tree.
 
 ---
 
+---
+
+---
+
 ### 62. What is Content Security Policy (CSP)?
 **Answer:** An added layer of security via HTTP header or `<meta>` tag that mitigates XSS by specifying which dynamic resources are allowed to load.
 **Example:** `<meta http-equiv="Content-Security-Policy" content="default-src 'self'">`
 **Reference:** [MDN CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
+
+---
+
+---
 
 ---
 
@@ -551,10 +807,18 @@ Removes the semantic meaning of an element from the accessibility tree.
 
 ---
 
+---
+
+---
+
 ### 64. What is the `translate` attribute?
 **Answer:** Specifies whether the content of an element should be translated by browsers/translation tools.
 **Example:** `<span translate="no">BrandName</span>`
 **Reference:** [MDN translate](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/translate)
+
+---
+
+---
 
 ---
 
@@ -570,6 +834,10 @@ A global attribute indicating if the element should be editable by the user.
 
 ---
 
+---
+
+---
+
 ### 66. How does the browser determine Document Mode (Quirks vs Standard)?
 **Answer:** 
 **The Core Concept:**
@@ -579,6 +847,10 @@ Based on the presence and format of the `<!DOCTYPE>`.
 - Without a proper DOCTYPE, browsers render in Quirks mode (emulating IE5 bugs).
 **Example:** Omit DOCTYPE -> Quirks Mode.
 **Reference:** [MDN Quirks Mode](https://developer.mozilla.org/en-US/docs/Web/HTML/Quirks_Mode_and_Standards_Mode)
+
+---
+
+---
 
 ---
 
@@ -595,6 +867,10 @@ Based on the presence and format of the `<!DOCTYPE>`.
 
 ---
 
+---
+
+---
+
 ### 68. What are Custom Elements?
 **Answer:** 
 **The Core Concept:**
@@ -604,6 +880,10 @@ Part of Web Components.
 - They allow developers to define their own HTML tags and their associated behavior via JavaScript classes extending `HTMLElement`.
 **Example:** `customElements.define('word-count', WordCount);`
 **Reference:** [MDN Custom Elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements)
+
+---
+
+---
 
 ---
 
@@ -619,10 +899,18 @@ It tells the browser whether to autofill fields based on previously entered data
 
 ---
 
+---
+
+---
+
 ### 70. What is Microdata?
 **Answer:** A specification used to nest metadata within existing content on web pages to provide structured data for search engines (like Schema.org).
 **Example:** `<div itemscope itemtype="http://schema.org/Person">`
 **Reference:** [MDN Microdata](https://developer.mozilla.org/en-US/docs/Web/HTML/Microdata)
+
+---
+
+---
 
 ---
 
@@ -638,6 +926,10 @@ While visual styling can be handled by CSS, Semantic HTML (`<header>`, `<main>`,
 
 ---
 
+---
+
+---
+
 ### 72. How does the native `<dialog>` API improve accessibility and architecture over custom JS modals?
 **Answer:** 
 **The Core Concept:**
@@ -647,6 +939,10 @@ The native `<dialog>` element provides built-in accessibility, focus-trapping, k
 - This completely eliminates the need for massive third-party modal libraries and complex `z-index` management.
 **Example:** `<dialog id="myModal">Hello</dialog>` opened via `document.getElementById('myModal').showModal();`
 **Reference:** [MDN dialog](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog)
+
+---
+
+---
 
 ---
 
@@ -662,10 +958,18 @@ The Popover API provides native browser management for tooltips, dropdowns, and 
 
 ---
 
+---
+
+---
+
 ### 74. How does the View Transitions API improve UX without heavy JavaScript libraries?
 **Answer:** The View Transitions API enables native, smooth visual transitions between different DOM states or pages (SPA-like navigation) directly within the browser engine, eliminating the need for complex, heavy JS animation libraries to cross-fade UI states.
 **Example:** `document.startViewTransition(() => updateDOM());`
 **Reference:** [MDN View Transitions](https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API)
+
+---
+
+---
 
 ---
 
@@ -681,6 +985,10 @@ The sequence of steps the browser goes through to convert HTML, CSS, and JS into
 
 ---
 
+---
+
+---
+
 ### 76. What is the DOM (Document Object Model)?
 **Answer:** 
 **The Core Concept:**
@@ -690,6 +998,10 @@ An object-oriented representation of the web page, which can be modified with a 
 - It represents the document as nodes and objects.
 **Example:** `document.getElementById('app')` interacts with the DOM.
 **Reference:** [MDN DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)
+
+---
+
+---
 
 ---
 
@@ -706,6 +1018,10 @@ The doctype declaration tells the browser which version of HTML the document is 
 
 ---
 
+---
+
+---
+
 ### 78. What are `data-*` attributes and when should they be used?
 **Answer:** 
 **The Core Concept:**
@@ -718,10 +1034,18 @@ They allow you to store extra, custom information on standard, semantic HTML ele
 
 ---
 
+---
+
+---
+
 ### 79. Explain the use of the `<colgroup>` element.
 **Answer:** Used within a `<table>` to specify common styles for an entire column or group of columns, preventing the need to repeat styling on every `<td>` within that column.
 **Example:** `<colgroup><col style="background-color: red;"></colgroup>`
 **Reference:** [MDN colgroup](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/colgroup)
+
+---
+
+---
 
 ---
 
@@ -737,6 +1061,10 @@ Used on `<th>` elements to define whether the header cell relates to a row, colu
 
 ---
 
+---
+
+---
+
 ### 81. How does the HTML5 native validation API work?
 **Answer:** 
 **The Core Concept:**
@@ -746,6 +1074,10 @@ HTML5 introduced attributes like `required`, `pattern`, `min`, `max`, and specif
 - The browser handles validation automatically before form submission, and exposes the `ValidityState` API to JavaScript for custom validation messaging.
 **Example:** `<input type="email" required pattern=".*@example\.com">`
 **Reference:** [MDN Form Validation](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation)
+
+---
+
+---
 
 ---
 
@@ -761,6 +1093,10 @@ HTML5 introduced attributes like `required`, `pattern`, `min`, `max`, and specif
 
 ---
 
+---
+
+---
+
 ### 83. Explain the `<time>` element and its `datetime` attribute.
 **Answer:** 
 **The Core Concept:**
@@ -773,10 +1109,18 @@ Represents a specific period in time.
 
 ---
 
+---
+
+---
+
 ### 84. What is `<noscript>` used for?
 **Answer:** Defines an alternate content section to be displayed to users that have disabled scripts in their browser or have a browser that doesn't support scripts.
 **Example:** `<noscript>Please enable JavaScript to use this site.</noscript>`
 **Reference:** [MDN noscript](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/noscript)
+
+---
+
+---
 
 ---
 
@@ -793,6 +1137,10 @@ Search engines use heading tags to understand the structure and context of the c
 
 ---
 
+---
+
+---
+
 ### 86. How do you embed an SVG directly into HTML?
 **Answer:** 
 **The Core Concept:**
@@ -805,10 +1153,18 @@ You can write the `<svg>` tag directly into the HTML document.
 
 ---
 
+---
+
+---
+
 ### 87. What is the `<output>` element?
 **Answer:** Represents the result of a calculation or user action, typically associated with a `<form>` and dynamically updated via JavaScript.
 **Example:** `<output name="result" for="a b"></output>`
 **Reference:** [MDN output](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/output)
+
+---
+
+---
 
 ---
 
@@ -824,10 +1180,18 @@ A space-separated list of URLs to which the browser will send `POST` requests in
 
 ---
 
+---
+
+---
+
 ### 89. What is a "Skip to Content" link?
 **Answer:** An accessibility best practice where the very first focusable element on the page is an anchor link that jumps over repetitive navigation menus directly to the `<main>` content, aiding keyboard users.
 **Example:** `<a href="#main" class="sr-only focus:not-sr-only">Skip to content</a>`
 **Reference:** [WebAim Skip Navigation](https://webaim.org/techniques/skipnav/)
+
+---
+
+---
 
 ---
 
@@ -838,6 +1202,10 @@ A space-separated list of URLs to which the browser will send `POST` requests in
 
 ---
 
+---
+
+---
+
 ### 91. What is the `<kbd>` element?
 **Answer:** Represents inline text denoting user input from a keyboard, voice input, or any other text entry device.
 **Example:** `Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to copy.`
@@ -845,10 +1213,18 @@ A space-separated list of URLs to which the browser will send `POST` requests in
 
 ---
 
+---
+
+---
+
 ### 92. What is the `translate` attribute?
 **Answer:** Specifies whether the content of an element should be translated when the page is localized (e.g., using Google Translate).
 **Example:** `<span translate="no">BrandName</span>`
 **Reference:** [MDN translate](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/translate)
+
+---
+
+---
 
 ---
 
@@ -864,10 +1240,18 @@ Bidirectional Isolation.
 
 ---
 
+---
+
+---
+
 ### 94. What is the `<ruby>` element?
 **Answer:** Used to provide pronunciation, translation, or transliteration annotations alongside base text (common in East Asian typography).
 **Example:** `<ruby>漢<rt>kan</rt>字<rt>ji</rt></ruby>`
 **Reference:** [MDN ruby](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ruby)
+
+---
+
+---
 
 ---
 
@@ -884,10 +1268,18 @@ Both download scripts without blocking HTML parsing.
 
 ---
 
+---
+
+---
+
 ### 96. What is the `download` attribute on an anchor tag?
 **Answer:** Instructs the browser to download a URL instead of navigating to it, prompting the user to save it as a local file.
 **Example:** `<a href="file.pdf" download="report.pdf">Download</a>`
 **Reference:** [MDN anchor download](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#download)
+
+---
+
+---
 
 ---
 
@@ -903,10 +1295,18 @@ Word Break Opportunity.
 
 ---
 
+---
+
+---
+
 ### 98. What is the purpose of the `<object>` element?
 **Answer:** Used to embed external resources like PDFs, Flash (historically), or even other HTML documents inside the current document.
 **Example:** `<object data="file.pdf" type="application/pdf"></object>`
 **Reference:** [MDN object](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/object)
+
+---
+
+---
 
 ---
 
@@ -922,13 +1322,24 @@ Instructs the browser to defer loading of the image until it reaches a calculate
 
 ---
 
+---
+
+---
+
 ### 100. What is an iframe sandbox?
 **Answer:** The `sandbox` attribute restricts the actions that the embedded iframe content can perform (like executing scripts, submitting forms, or opening popups), heavily improving security against malicious third-party embeds.
 **Example:** `<iframe sandbox="allow-scripts" src="..."></iframe>`
 **Reference:** [MDN iframe sandbox](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#sandbox)
 
 ---
-\n## Additional Depth (Architectural Focus)\n
+
+## Additional Depth (Architectural Focus)
+
+
+---
+
+---
+
 ### 101. What is the significance of semantic HTML5 elements like `<article>` and `<section>`?
 **Answer:** 
 **The Core Concept:**
@@ -944,3 +1355,221 @@ Semantic HTML introduces meaning to the web page structure rather than just defi
 **Reference:** [Documentation](https://developer.mozilla.org/en-US/docs/Glossary/Semantics)
 
 ---
+
+---
+
+## Practice Questions
+
+---
+
+### 1. Design a fully semantic, SEO-friendly HTML5 article structure.
+
+**Example Solution:**
+```html
+<article itemscope itemtype="https://schema.org/BlogPosting">
+  <header>
+    <h1 itemprop="headline">Deep Dive into CSS Container Queries</h1>
+    <p>Published on <time itemprop="datePublished" datetime="2026-05-28">May 28, 2026</time></p>
+  </header>
+  
+  <section itemprop="articleBody">
+    <p>Container queries allow developers to style elements based on the size of their parent...</p>
+    <aside>
+      <h4>Tip</h4>
+      <p>Always declare <code>container-type: inline-size</code> on the parent.</p>
+    </aside>
+  </section>
+  
+  <footer>
+    <address>Written by <span itemprop="author">Nik Runic</span></address>
+  </footer>
+</article>
+```
+
+---
+
+### 2. Implement progressive enhancement video fallback elements in HTML5.
+
+**Example Solution:**
+```html
+<video controls width="640" height="360" poster="/assets/hero-poster.jpg">
+  <source src="/assets/intro.webm" type="video/webm">
+  <source src="/assets/intro.mp4" type="video/mp4">
+  <track src="/assets/captions_en.vtt" kind="captions" srclang="en" label="English">
+  <p>Your browser does not support the video tag. 
+     You can <a href="/assets/intro.mp4">download the video file</a> instead.</p>
+</video>
+```
+
+---
+
+## Practice Questions
+
+### 1. Design a fully semantic, SEO-friendly HTML5 article structure.
+
+**Example Solution:**
+```html
+<article itemscope itemtype="https://schema.org/BlogPosting">
+  <header>
+    <h1 itemprop="headline">Deep Dive into CSS Container Queries</h1>
+    <p>Published on <time itemprop="datePublished" datetime="2026-05-28">May 28, 2026</time></p>
+  </header>
+  
+  <section itemprop="articleBody">
+    <p>Container queries allow developers to style elements based on the size of their parent...</p>
+    <aside>
+      <h4>Tip</h4>
+      <p>Always declare <code>container-type: inline-size</code> on the parent.</p>
+    </aside>
+  </section>
+  
+  <footer>
+    <address>Written by <span itemprop="author">Nik Runic</span></address>
+  </footer>
+</article>
+```
+
+### 2. Implement progressive enhancement video fallback elements in HTML5.
+
+**Example Solution:**
+```html
+<video controls width="640" height="360" poster="/assets/hero-poster.jpg">
+  <source src="/assets/intro.webm" type="video/webm">
+  <source src="/assets/intro.mp4" type="video/mp4">
+  <track src="/assets/captions_en.vtt" kind="captions" srclang="en" label="English">
+  <p>Your browser does not support the video tag. 
+     You can <a href="/assets/intro.mp4">download the video file</a> instead.</p>
+</video>
+```
+
+### 3. Design an accessible, responsive HTML5 data table with row and column scopes.
+
+**Example Solution:**
+```html
+<table>
+  <caption>Company Quarterly Sales (2026)</caption>
+  <thead>
+    <tr>
+      <th scope="col">Quarter</th>
+      <th scope="col">Sales</th>
+      <th scope="col">Target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Q1</th>
+      <td>$12,000</td>
+      <td>$10,000</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+### 4. [Self-Practice] Design a high-throughput, fault-tolerant system leveraging key principles of Semantic HTML5 & DOM.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 5. [Self-Practice] Write a custom utility to validate input schemas and sanitize payloads in Semantic HTML5 & DOM.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 6. [Self-Practice] Implement a comprehensive error-boundary and logging module for a Semantic HTML5 & DOM application.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 7. [Self-Practice] Optimize memory consumption and execution hot-paths under high load in Semantic HTML5 & DOM.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 8. [Self-Practice] Write an automated unit testing suite targeting complex race-conditions in Semantic HTML5 & DOM.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 9. [Self-Practice] Create a localized internationalization (i18n) helper integrated with Semantic HTML5 & DOM.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 10. [Self-Practice] Build a secure token-based authentication handshake flow within Semantic HTML5 & DOM.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 11. [Self-Practice] Design a distributed caching and invalidation strategy for heavy Semantic HTML5 & DOM operations.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 12. [Self-Practice] Create a CLI tool to automate scaffolding and deployment of Semantic HTML5 & DOM configurations.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 13. [Self-Practice] Implement a real-time event-driven pub/sub handler using Semantic HTML5 & DOM event structures.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 14. [Self-Practice] Draft an architectural decision record (ADR) comparing Semantic HTML5 & DOM with its primary competitors.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 15. [Self-Practice] Create a mock framework to isolate and test external integrations in Semantic HTML5 & DOM.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 16. [Self-Practice] Write a custom telemetry wrapper to output Semantic HTML5 & DOM performance metrics to Prometheus/Grafana.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 17. [Self-Practice] Design a zero-downtime blue-green roll-out plan for a database or service utilizing Semantic HTML5 & DOM.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 18. [Self-Practice] Implement a circuit-breaker pattern to gracefully degrade service during Semantic HTML5 & DOM failures.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 19. [Self-Practice] Write an automated script to detect memory leaks and unhandled promise rejections in Semantic HTML5 & DOM.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 20. [Self-Practice] Build a user-friendly audit log tracking all state mutations and access events in Semantic HTML5 & DOM.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 21. [Self-Practice] Design an API gateway integration mapping REST inputs to Semantic HTML5 & DOM data layers.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 22. [Self-Practice] Implement a rate-limiter with custom sliding-window configurations in Semantic HTML5 & DOM.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 23. [Self-Practice] Create a backup and recovery automated script for preserving Semantic HTML5 & DOM state repositories.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 24. [Self-Practice] Design a microservice boundary that encapsulates Semantic HTML5 & DOM logic without tight coupling.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 25. [Self-Practice] Build a role-based access control (RBAC) middleware verifying permissions on Semantic HTML5 & DOM.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 26. [Self-Practice] Write an optimized compiler or parser configuration to bundle Semantic HTML5 & DOM files for web browsers.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 27. [Self-Practice] Implement a dead-letter queue (DLQ) pattern for handling corrupted messages in Semantic HTML5 & DOM.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 28. [Self-Practice] Create an automated health-check endpoint monitor checking Semantic HTML5 & DOM connection integrity.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 29. [Self-Practice] Implement a secure CORS and CSP policy wrapper for endpoints exposing Semantic HTML5 & DOM.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 30. [Self-Practice] Refactor a legacy monolithic module into modern, modular ES modules using Semantic HTML5 & DOM.
+
+*(Challenge question for self-study and practical project implementation.)*
+

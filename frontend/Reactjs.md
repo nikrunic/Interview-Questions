@@ -1063,10 +1063,13 @@ See also: [JavaScript guide](./Javascript.md) Part 1 and Part 3.
 This document contains a comprehensive list of 100 React.js interview questions, categorized by difficulty (20 Basic, 30 Medium, 50 Hard). These questions are curated based on popular public Git repositories (e.g., sudheerj/reactjs-interview-questions).
 
 ## Basic Questions
+
 ### 1. What is React?
 **Answer:** A declarative, efficient, and flexible JavaScript library for building user interfaces, maintained by Meta.
 **Example:** `function App() { return <h1>Hi</h1>; }`
 **Reference:** [React Docs](https://react.dev/)
+
+---
 
 ---
 
@@ -1077,10 +1080,14 @@ This document contains a comprehensive list of 100 React.js interview questions,
 
 ---
 
+---
+
 ### 3. What is JSX?
 **Answer:** JSX is a syntax extension to JavaScript allowing XML-like syntax inside JS files.
 **Example:** `const element = <h1>Hello</h1>;`
 **Reference:** [JSX in React](https://react.dev/learn/writing-markup-with-jsx)
+
+---
 
 ---
 
@@ -1096,10 +1103,14 @@ An Element is a plain object describing what you want to see on screen.
 
 ---
 
+---
+
 ### 5. How to create components in React?
 **Answer:** Function Components (using JS functions) and Class Components (extending `React.Component`).
 **Example:** `const Comp = () => <div>Hi</div>;`
 **Reference:** [Your First Component](https://react.dev/learn/your-first-component)
+
+---
 
 ---
 
@@ -1115,6 +1126,8 @@ With the introduction of Hooks in React 16.8, functional components can do almos
 
 ---
 
+---
+
 ### 7. What are Pure Components?
 **Answer:** Components that do not re-render if their props and state have not changed (they implement `shouldComponentUpdate` with a shallow prop/state comparison).
 **Example:** `class MyComp extends React.PureComponent`
@@ -1122,10 +1135,14 @@ With the introduction of Hooks in React 16.8, functional components can do almos
 
 ---
 
+---
+
 ### 8. What is state in React?
 **Answer:** State is an object that holds some information that may change over the lifetime of the component.
 **Example:** `const [count, setCount] = useState(0);`
 **Reference:** [State: A component's memory](https://react.dev/learn/state-a-components-memory)
+
+---
 
 ---
 
@@ -1141,6 +1158,8 @@ Props (properties) are inputs to a component.
 
 ---
 
+---
+
 ### 10. What is the difference between state and props?
 **Answer:** 
 **The Core Concept:**
@@ -1150,6 +1169,8 @@ State is managed internally by the component itself and can change.
 - Props are passed from the parent and are read-only.
 **Example:** State: `setCount(1)`. Props: `props.name`.
 **Reference:** [State vs Props](https://react.dev/learn/state-a-components-memory)
+
+---
 
 ---
 
@@ -1165,6 +1186,8 @@ Mutating state directly won't cause the component to re-render.
 
 ---
 
+---
+
 ### 12. What is the purpose of callback function as an argument of `setState()`?
 **Answer:** 
 **The Core Concept:**
@@ -1174,6 +1197,8 @@ The callback executes immediately after the state has been updated and the compo
 - In Hooks, `useEffect` serves this purpose.
 **Example:** `this.setState({ name: 'John' }, () => console.log('Updated'));`
 **Reference:** [setState](https://legacy.reactjs.org/docs/react-component.html#setstate)
+
+---
 
 ---
 
@@ -1189,10 +1214,14 @@ React events are named using camelCase, rather than lowercase.
 
 ---
 
+---
+
 ### 14. How to bind methods or event handlers in JSX callbacks?
 **Answer:** Arrow functions in class properties, arrow functions in the callback, or `bind(this)` in the constructor.
 **Example:** `onClick={() => this.handleClick()}`
 **Reference:** [Handling Events](https://legacy.reactjs.org/docs/handling-events.html)
+
+---
 
 ---
 
@@ -1208,6 +1237,8 @@ SyntheticEvent is a cross-browser wrapper around the browser's native event.
 
 ---
 
+---
+
 ### 16. What are inline conditional expressions?
 **Answer:** 
 **The Core Concept:**
@@ -1217,6 +1248,8 @@ Using the JS logical `&&` operator or ternary `?
 - :` operator to conditionally render elements in JSX.
 **Example:** `{show && <div>Visible</div>}`
 **Reference:** [Conditional Rendering](https://react.dev/learn/conditional-rendering)
+
+---
 
 ---
 
@@ -1232,6 +1265,8 @@ A key is a special string attribute needed when creating lists.
 
 ---
 
+---
+
 ### 18. What is the use of `refs`?
 **Answer:** Refs provide a way to access DOM nodes or React elements created in the render method directly.
 **Example:** `const myRef = useRef(); <input ref={myRef} />`
@@ -1239,10 +1274,14 @@ A key is a special string attribute needed when creating lists.
 
 ---
 
+---
+
 ### 19. What are forward refs?
 **Answer:** Forwarding refs is a technique for passing a ref through a component to one of its children.
 **Example:** `const FancyButton = React.forwardRef((props, ref) => <button ref={ref}>{props.children}</button>);`
 **Reference:** [forwardRef](https://react.dev/reference/react/forwardRef)
+
+---
 
 ---
 
@@ -1260,6 +1299,11 @@ An in-memory representation of the Real DOM.
 
 
 ## Intermediate Questions
+
+---
+
+## Intermediate Questions
+
 ### 21. How Virtual DOM works?
 **Answer:** 
 **The Core Concept:**
@@ -1270,6 +1314,8 @@ When data changes, a new Virtual DOM is created.
 - Then it calculates the minimum steps needed to update the Real DOM (Reconciliation).
 **Example:** React diffing algorithm.
 **Reference:** [Reconciliation](https://legacy.reactjs.org/docs/reconciliation.html)
+
+---
 
 ---
 
@@ -1285,6 +1331,8 @@ Virtual DOM is a concept of keeping a virtual representation of the UI in memory
 
 ---
 
+---
+
 ### 23. What is React Fiber?
 **Answer:** 
 **The Core Concept:**
@@ -1297,10 +1345,14 @@ Fiber is the new reconciliation engine in React 16.
 
 ---
 
+---
+
 ### 24. What are controlled components?
 **Answer:** Form inputs whose value is controlled by React state.
 **Example:** `<input value={name} onChange={e => setName(e.target.value)} />`
 **Reference:** [Controlled Components](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components)
+
+---
 
 ---
 
@@ -1311,10 +1363,14 @@ Fiber is the new reconciliation engine in React 16.
 
 ---
 
+---
+
 ### 26. What is lifting state up?
 **Answer:** When several components need to share the same changing data, you move the state up to their closest common ancestor.
 **Example:** Moving `activeIndex` to a parent `Accordion` component.
 **Reference:** [Sharing State](https://react.dev/learn/sharing-state-between-components)
+
+---
 
 ---
 
@@ -1330,6 +1386,8 @@ Fiber is the new reconciliation engine in React 16.
 
 ---
 
+---
+
 ### 28. What are Higher-Order Components (HOC)?
 **Answer:** 
 **The Core Concept:**
@@ -1342,6 +1400,8 @@ An advanced technique for reusing component logic.
 
 ---
 
+---
+
 ### 29. What is context in React?
 **Answer:** Context provides a way to pass data through the component tree without having to pass props down manually at every level.
 **Example:** `const ThemeContext = React.createContext('light');`
@@ -1349,10 +1409,14 @@ An advanced technique for reusing component logic.
 
 ---
 
+---
+
 ### 30. What is children prop?
 **Answer:** A special prop that allows you to pass components as data to other components.
 **Example:** `<Layout><Header /></Layout>` (`Header` is `props.children`).
 **Reference:** [Passing JSX as children](https://react.dev/learn/passing-props-to-a-component#passing-jsx-as-children)
+
+---
 
 ---
 
@@ -1368,6 +1432,8 @@ The only required method in a class component.
 
 ---
 
+---
+
 ### 32. Explain the lifecycle methods of components.
 **Answer:** `componentDidMount` (after mount), `componentDidUpdate` (after update), `componentWillUnmount` (before unmount).
 **Example:** Used in class components.
@@ -1375,10 +1441,14 @@ The only required method in a class component.
 
 ---
 
+---
+
 ### 33. What are React Hooks?
 **Answer:** Functions that let you "hook into" React state and lifecycle features from function components.
 **Example:** `useState`, `useEffect`.
 **Reference:** [Hooks](https://react.dev/reference/react)
+
+---
 
 ---
 
@@ -1394,6 +1464,8 @@ Only call Hooks at the top level (not inside loops or conditions).
 
 ---
 
+---
+
 ### 35. How does `useState` work?
 **Answer:** 
 **The Core Concept:**
@@ -1403,6 +1475,8 @@ It declares a state variable.
 - It takes the initial state and returns an array with the current state and a function to update it.
 **Example:** `const [age, setAge] = useState(20);`
 **Reference:** [useState](https://react.dev/reference/react/useState)
+
+---
 
 ---
 
@@ -1418,6 +1492,8 @@ It lets you perform side effects in function components.
 
 ---
 
+---
+
 ### 37. What is the dependency array in `useEffect`?
 **Answer:** 
 **The Core Concept:**
@@ -1430,6 +1506,8 @@ The second argument to `useEffect`.
 
 ---
 
+---
+
 ### 38. What is a custom hook?
 **Answer:** 
 **The Core Concept:**
@@ -1439,6 +1517,8 @@ A JS function whose name starts with "use" and that calls other hooks.
 - Used to extract reusable stateful logic.
 **Example:** `function useFetch(url) { ... return data; }`
 **Reference:** [Custom Hooks](https://react.dev/learn/reusing-logic-with-custom-hooks)
+
+---
 
 ---
 
@@ -1455,6 +1535,8 @@ A JS function whose name starts with "use" and that calls other hooks.
 
 ---
 
+---
+
 ### 40. Why do we need to pass a function to `setState` sometimes?
 **Answer:** 
 **The Core Concept:**
@@ -1464,6 +1546,8 @@ Because `setState` is asynchronous.
 - If the new state depends on the previous state, passing a function ensures you get the most up-to-date state value.
 **Example:** `setCount(prevCount => prevCount + 1);`
 **Reference:** [Updating state based on previous state](https://react.dev/reference/react/useState#updating-state-based-on-the-previous-state)
+
+---
 
 ---
 
@@ -1480,10 +1564,14 @@ Because `setState` is asynchronous.
 
 ---
 
+---
+
 ### 42. What is `React.memo`?
 **Answer:** A higher-order component that memoizes the rendered output of the wrapped component, skipping unnecessary re-renders if props haven't changed.
 **Example:** `const MemoizedComp = React.memo(MyComp);`
 **Reference:** [memo](https://react.dev/reference/react/memo)
+
+---
 
 ---
 
@@ -1494,6 +1582,8 @@ Because `setState` is asynchronous.
 
 ---
 
+---
+
 ### 44. What is `useCallback`?
 **Answer:** A hook that lets you cache a function definition between re-renders.
 **Example:** `const fn = useCallback(() => doSomething(a), [a]);`
@@ -1501,10 +1591,14 @@ Because `setState` is asynchronous.
 
 ---
 
+---
+
 ### 45. What is Portals in React?
 **Answer:** A first-class way to render children into a DOM node that exists outside the DOM hierarchy of the parent component.
 **Example:** `ReactDOM.createPortal(child, container)`
 **Reference:** [createPortal](https://react.dev/reference/react-dom/createPortal)
+
+---
 
 ---
 
@@ -1520,10 +1614,14 @@ Alternative to `useState` for complex state logic that involves multiple sub-val
 
 ---
 
+---
+
 ### 47. What are Error Boundaries?
 **Answer:** React components that catch JS errors anywhere in their child component tree, log them, and display a fallback UI.
 **Example:** Implementing `static getDerivedStateFromError()`.
 **Reference:** [Error Boundaries](https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary)
+
+---
 
 ---
 
@@ -1539,6 +1637,8 @@ Passing props down multiple levels to nested components.
 
 ---
 
+---
+
 ### 49. What is React Router?
 **Answer:** 
 **The Core Concept:**
@@ -1548,6 +1648,8 @@ A standard library for routing in React.
 - It enables navigation between views, keeps UI in sync with the URL.
 **Example:** `<Route path="/home" component={Home} />`
 **Reference:** [React Router](https://reactrouter.com/)
+
+---
 
 ---
 
@@ -1565,6 +1667,11 @@ It lets you render a dynamic import as a regular component, enabling code-splitt
 
 
 ## Expert Questions
+
+---
+
+## Expert Questions
+
 ### 51. How does the Diffing algorithm work exactly?
 **Answer:** 
 **The Core Concept:**
@@ -1576,6 +1683,8 @@ React compares root elements.
 - For children, it recurses, using `key` props to match elements efficiently.
 **Example:** Adding `key` to lists.
 **Reference:** [Reconciliation](https://legacy.reactjs.org/docs/reconciliation.html)
+
+---
 
 ---
 
@@ -1592,10 +1701,14 @@ Without keys, React compares children iteratively.
 
 ---
 
+---
+
 ### 53. Explain the closure trap in `useEffect`.
 **Answer:** If you use a state variable inside `useEffect` but omit it from the dependency array, the effect captures the state value from the render when it was created (stale closure).
 **Example:** `useEffect(() => { setInterval(() => console.log(count), 1000) }, []);` (count will always be 0).
 **Reference:** [Stale closures](https://react.dev/learn/lifecycle-of-reactive-effects)
+
+---
 
 ---
 
@@ -1611,6 +1724,8 @@ You shouldn't normally.
 
 ---
 
+---
+
 ### 55. What is the difference between `React.cloneElement` and `children` rendering?
 **Answer:** 
 **The Core Concept:**
@@ -1623,10 +1738,14 @@ You shouldn't normally.
 
 ---
 
+---
+
 ### 56. What is the Profiler API?
 **Answer:** A built-in React component that measures the rendering cost of a React tree to identify performance bottlenecks.
 **Example:** `<Profiler id="Nav" onRender={callback}><Nav /></Profiler>`
 **Reference:** [Profiler](https://react.dev/reference/react/Profiler)
+
+---
 
 ---
 
@@ -1637,6 +1756,8 @@ You shouldn't normally.
 
 ---
 
+---
+
 ### 58. What is hydration?
 **Answer:** The process of attaching React event listeners to the static HTML markup generated by Server-Side Rendering (SSR).
 **Example:** `hydrateRoot(domNode, reactNode)`
@@ -1644,10 +1765,14 @@ You shouldn't normally.
 
 ---
 
+---
+
 ### 59. Explain Concurrent Mode in React.
 **Answer:** A set of new features that help React apps stay responsive and gracefully adjust to the user's device capabilities and network speed by interrupting rendering to handle high-priority events.
 **Example:** React 18 `useTransition`.
 **Reference:** [Concurrent React](https://react.dev/blog/2022/03/29/react-v18#what-is-concurrent-react)
+
+---
 
 ---
 
@@ -1663,6 +1788,8 @@ It lets you mark a state update as a non-blocking transition.
 
 ---
 
+---
+
 ### 61. What does `useDeferredValue` do?
 **Answer:** 
 **The Core Concept:**
@@ -1675,10 +1802,14 @@ It lets you defer updating a part of the UI.
 
 ---
 
+---
+
 ### 62. How do you implement Server-Side Rendering (SSR) from scratch?
 **Answer:** Using `ReactDOMServer.renderToString()` on a Node server to convert React trees to HTML strings, sending it, then using `hydrateRoot` on the client.
 **Example:** Express server returning `ReactDOMServer.renderToString(<App />)`.
 **Reference:** [ReactDOMServer](https://react.dev/reference/react-dom/server)
+
+---
 
 ---
 
@@ -1691,6 +1822,8 @@ Customizes the instance value that is exposed to parent components when using `r
 - It is used with `forwardRef`.
 **Example:** Exposing a `focus` and `scrollIntoView` method from a complex custom input component.
 **Reference:** [useImperativeHandle](https://react.dev/reference/react/useImperativeHandle)
+
+---
 
 ---
 
@@ -1707,10 +1840,14 @@ Both handle side-effects in Redux.
 
 ---
 
+---
+
 ### 65. What is the "Zustand" library compared to Redux?
 **Answer:** Zustand is a smaller, simpler, and unopinionated state-management solution for React built around hooks, without boilerplate like reducers or dispatchers.
 **Example:** `const useStore = create(set => ({ bears: 0 }))`
 **Reference:** [Zustand](https://github.com/pmndrs/zustand)
+
+---
 
 ---
 
@@ -1726,6 +1863,8 @@ React groups multiple state updates into a single re-render for better performan
 
 ---
 
+---
+
 ### 67. Explain the Flux Architecture.
 **Answer:** 
 **The Core Concept:**
@@ -1738,10 +1877,14 @@ A pattern involving Action -> Dispatcher -> Store -> View.
 
 ---
 
+---
+
 ### 68. What are custom renderers in React?
 **Answer:** Packages that implement React's reconciler to target platforms other than the DOM.
 **Example:** React Native (iOS/Android), React Three Fiber (WebGL), Ink (Terminal).
 **Reference:** [React Reconciler](https://github.com/facebook/react/tree/main/packages/react-reconciler)
+
+---
 
 ---
 
@@ -1752,6 +1895,8 @@ A pattern involving Action -> Dispatcher -> Store -> View.
 
 ---
 
+---
+
 ### 70. What is an isomorphic React application?
 **Answer:** An application where the same code can run both on the server (for SSR) and the client (for hydration).
 **Example:** Next.js pages.
@@ -1759,10 +1904,14 @@ A pattern involving Action -> Dispatcher -> Store -> View.
 
 ---
 
+---
+
 ### 71. How do you test React Hooks?
 **Answer:** Using `@testing-library/react-hooks` or `renderHook` from React Testing Library to render the hook in isolation and assert its state changes.
 **Example:** `const { result } = renderHook(() => useCounter());`
 **Reference:** [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+
+---
 
 ---
 
@@ -1778,6 +1927,8 @@ A function that forces React to flush any pending work and update the DOM synchr
 
 ---
 
+---
+
 ### 73. Explain the Compound Components pattern.
 **Answer:** Components that work together to share implicit state via Context, allowing flexible markup.
 **Example:** `<Menu> <Menu.Item/> </Menu>`
@@ -1785,10 +1936,14 @@ A function that forces React to flush any pending work and update the DOM synchr
 
 ---
 
+---
+
 ### 74. What is the Render Props pattern?
 **Answer:** Passing a function as a prop to a component so it can dictate what to render, passing its internal state to the function.
 **Example:** `<Mouse render={mouse => <Cat mouse={mouse} />} />`
 **Reference:** [Render Props](https://legacy.reactjs.org/docs/render-props.html)
+
+---
 
 ---
 
@@ -1801,6 +1956,8 @@ Webpack bundles JSX, JS, CSS, and images into static assets.
 - It relies on Babel loader to transpile JSX into standard JS `React.createElement` calls.
 **Example:** `babel-loader` in `webpack.config.js`.
 **Reference:** [Webpack](https://webpack.js.org/)
+
+---
 
 ---
 
@@ -1817,6 +1974,8 @@ Context is a dependency injection system, not state management.
 
 ---
 
+---
+
 ### 77. What is Suspense for Data Fetching?
 **Answer:** 
 **The Core Concept:**
@@ -1829,10 +1988,14 @@ Allows components to "wait" for something (like data fetching) before rendering,
 
 ---
 
+---
+
 ### 78. What are React Fragments and why use them?
 **Answer:** They let you group a list of children without adding extra nodes to the DOM.
 **Example:** `<> <ChildA/> <ChildB/> </>`
 **Reference:** [Fragment](https://react.dev/reference/react/Fragment)
+
+---
 
 ---
 
@@ -1845,6 +2008,8 @@ By attaching an `IntersectionObserver` to a dummy element at the bottom of the l
 - When it intersects, fetch more data and append to state.
 **Example:** `useIntersectionObserver(ref, fetchMore)`
 **Reference:** [MDN IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)
+
+---
 
 ---
 
@@ -1861,6 +2026,8 @@ React automatically escapes string variables in JSX.
 
 ---
 
+---
+
 ### 81. What is reconciliation? How does React's diffing algorithm work?
 **Answer:** 
 **The Core Concept:**
@@ -1871,6 +2038,8 @@ Reconciliation is the process through which React updates the browser DOM.
 - It assumes elements of different types produce different trees, and uses `key` props to track list items across renders.
 **Example:** Changing an `<a>` to a `<span>` triggers a full rebuild of that subtree.
 **Reference:** [React Reconciliation](https://legacy.reactjs.org/docs/reconciliation.html)
+
+---
 
 ---
 
@@ -1886,6 +2055,8 @@ Reconciliation is the process through which React updates the browser DOM.
 
 ---
 
+---
+
 ### 83. What is the Context API? When should you use it instead of prop drilling?
 **Answer:** 
 **The Core Concept:**
@@ -1898,6 +2069,8 @@ The Context API is a built-in mechanism for passing data deeply through the comp
 
 ---
 
+---
+
 ### 84. What is React.memo? How is it different from useMemo and useCallback?
 **Answer:** 
 **The Core Concept:**
@@ -1907,6 +2080,8 @@ The Context API is a built-in mechanism for passing data deeply through the comp
 - `useMemo` memoizes the result of a calculation within a component, and `useCallback` memoizes a function definition.
 **Example:** `const MemoizedChild = React.memo(ChildComponent);`
 **Reference:** [React memo](https://react.dev/reference/react/memo)
+
+---
 
 ---
 
@@ -1924,6 +2099,8 @@ Portals provide a way to render children into a DOM node that exists completely 
 
 *(Questions 86-100 continue the deep dive into advanced hooks, concurrent rendering, architecture, memory optimization, React Native bridging, testing methodologies, micro-frontends, state machines (XState), module federation, and React compiler optimization concepts, omitted here to fit strict output limitations, but following the exact same rigorous standard.)*
 
+---
+
 ### 86. What is the difference between Shadow DOM and Virtual DOM?
 **Answer:** 
 **The Core Concept:**
@@ -1933,6 +2110,8 @@ The Shadow DOM is a browser technology designed for scoping variables and CSS in
 - The Virtual DOM is a concept implemented by libraries like React in JS to create an in-memory representation of the Real DOM for efficient UI rendering and diffing.
 **Example:** Shadow DOM is used for `<video>` internal controls, while Virtual DOM is used by React to minimize DOM paints.
 **Reference:** [React Virtual DOM](https://reactjs.org/docs/faq-internals.html)
+
+---
 
 ---
 
@@ -1948,6 +2127,8 @@ In a controlled component, form data is handled by the React component state (`u
 
 ---
 
+---
+
 ### 88. What is the difference between createElement and cloneElement?
 **Answer:** 
 **The Core Concept:**
@@ -1957,6 +2138,8 @@ In a controlled component, form data is handled by the React component state (`u
 - `React.cloneElement` takes an *existing* React element and clones it, allowing you to pass new props or override existing ones without modifying the original element directly.
 **Example:** `React.cloneElement(child, { addedProp: true })`
 **Reference:** [React cloneElement API](https://react.dev/reference/react/cloneElement)
+
+---
 
 ---
 
@@ -1972,6 +2155,8 @@ An HOC is a pure function that takes a component and returns a new enhanced comp
 
 ---
 
+---
+
 ### 90. Does the React.lazy function support named exports?
 **Answer:** 
 **The Core Concept:**
@@ -1981,6 +2166,8 @@ No, `React.lazy` currently only supports default exports.
 - To use named exports, you must create an intermediate module that re-exports the named component as a default export, preserving tree-shaking capabilities.
 **Example:** `export { MyComponent as default } from './MyComponent';`
 **Reference:** [React lazy named exports](https://react.dev/reference/react/lazy#importing-named-exports)
+
+---
 
 ---
 
@@ -1996,6 +2183,8 @@ A higher-order component (HOC) is a function that takes a component and returns 
 
 ---
 
+---
+
 ### 92. Write a component that uses the useReducer hook.
 **Answer:** 
 **The Core Concept:**
@@ -2005,6 +2194,8 @@ The `useReducer` hook is used to manage complex state logic in React components.
 - It provides a more structured way to handle state updates than `useState` by using a reducer function that receives the current state and an action, and returns the new state.
 **Example:** `const [state, dispatch] = useReducer(reducer, { count: 0 });`
 **Reference:** [Internshala React Interview Questions](https://internshala.com/blog/react-js-coding-interview-questions/)
+
+---
 
 ---
 
@@ -2020,6 +2211,8 @@ The `useMemo` hook is used to optimize performance by memoizing expensive calcul
 
 ---
 
+---
+
 ### 94. Write a component that implements infinite scrolling.
 **Answer:** 
 **The Core Concept:**
@@ -2029,6 +2222,8 @@ Infinite scrolling can be implemented by adding a scroll event listener to the `
 - If so, we increment the page number and fetch more data.
 **Example:** `useEffect(() => { window.addEventListener('scroll', handleScroll); return () => window.removeEventListener('scroll', handleScroll); }, []);`
 **Reference:** [Internshala React Interview Questions](https://internshala.com/blog/react-js-coding-interview-questions/)
+
+---
 
 ---
 
@@ -2044,6 +2239,8 @@ A React application can be optimized by minimizing unnecessary re-renders using 
 
 ---
 
+---
+
 ### 96. What are React Server Components (RSC) introduced in modern React?
 **Answer:** 
 **The Core Concept:**
@@ -2053,6 +2250,8 @@ React Server Components (RSC) allow components to be rendered exclusively on the
 - This reduces the client-side JavaScript bundle size and allows direct access to backend resources like databases without needing client-side fetching hooks.
 **Example:** An async component fetching data from a DB: `async function DataList() { const data = await db.query(); return <ul>...</ul>; }`
 **Reference:** [React Server Components](https://react.dev/blog/2020/12/21/data-fetching-with-react-server-components)
+
+---
 
 ---
 
@@ -2069,6 +2268,8 @@ The `use` hook allows you to read the value of a resource like a Promise or Cont
 
 ---
 
+---
+
 ### 98. What is Redux Toolkit (RTK) and why is it preferred over traditional Redux?
 **Answer:** 
 **The Core Concept:**
@@ -2078,6 +2279,8 @@ Redux Toolkit is the official, opinionated toolset for Redux.
 - It simplifies setup by providing tools like `configureStore` (with built-in DevTools and middleware) and `createSlice` (which auto-generates action creators and uses Immer to let you write "mutative" state updates, significantly reducing boilerplate).
 **Example:** `const userSlice = createSlice({ name: 'user', initialState, reducers: { setName: (state, action) => { state.name = action.payload; } } });`
 **Reference:** [Redux Toolkit](https://redux-toolkit.js.org/)
+
+---
 
 ---
 
@@ -2093,6 +2296,8 @@ Vite significantly improves the development experience by using native ES Module
 
 ---
 
+---
+
 ### 100. What are the key differences between the Pages Router and the App Router in Next.js?
 **Answer:** 
 **The Core Concept:**
@@ -2104,7 +2309,11 @@ The Pages Router routes based on the file system within the `pages` directory an
 **Reference:** [Next.js App Router](https://nextjs.org/docs/app)
 
 ---
-\n## Additional Depth (Architectural Focus)\n
+
+## Additional Depth (Architectural Focus)
+
+---
+
 ### 101. How does React 18's Automatic Batching improve performance?
 **Answer:** 
 **The Core Concept:**
@@ -2118,6 +2327,8 @@ Batching is when React groups multiple state updates into a single re-render for
 `setTimeout(() => { setCount(1); setFlag(true); }, 1000); // Only 1 render in React 18`
 
 **Reference:** [Documentation](https://react.dev/blog/2022/03/29/react-v18#new-feature-automatic-batching)
+
+---
 
 ---
 
@@ -2140,6 +2351,8 @@ useEffect(() => {
 ```
 
 **Reference:** [React Lifecycle](https://react.dev/learn/synchronizing-with-effects)
+
+---
 
 ---
 
@@ -2170,6 +2383,8 @@ function ParentComponent() {
 
 ---
 
+---
+
 ### 104. Why does React need the `key` prop in lists?
 **Answer:** 
 **The Core Concept:**
@@ -2188,6 +2403,8 @@ React uses the `key` prop to identify which items in a list have changed, been a
 ```
 
 **Reference:** [React Keys](https://react.dev/learn/rendering-lists#keeping-list-items-in-order-with-key)
+
+---
 
 ---
 
@@ -2212,6 +2429,8 @@ const inputRef = useRef(null);
 ```
 
 **Reference:** [React Controlled vs Uncontrolled](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components)
+
+---
 
 ---
 
@@ -2240,6 +2459,8 @@ return (
 
 ---
 
+---
+
 ### 107. Difference between `useEffect` and `useLayoutEffect`
 **Answer:** 
 **The Core Concept:**
@@ -2258,6 +2479,8 @@ useLayoutEffect(() => {
 ```
 
 **Reference:** [React useLayoutEffect](https://react.dev/reference/react/useLayoutEffect)
+
+---
 
 ---
 
@@ -2287,6 +2510,8 @@ function App() {
 
 ---
 
+---
+
 ### 109. What is Prop Drilling and how do you avoid it?
 **Answer:** 
 **The Core Concept:**
@@ -2303,6 +2528,8 @@ Prop drilling is the process of passing props through multiple levels of interme
 ```
 
 **Reference:** [React Passing Props](https://react.dev/learn/passing-props-to-a-component)
+
+---
 
 ---
 
@@ -2337,6 +2564,8 @@ function useOnlineStatus() {
 
 ---
 
+---
+
 ### 111. What is Memoization in React?
 **Answer:** 
 **The Core Concept:**
@@ -2354,6 +2583,8 @@ const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 ```
 
 **Reference:** [React useMemo](https://react.dev/reference/react/useMemo)
+
+---
 
 ---
 
@@ -2383,6 +2614,8 @@ function App() {
 
 ---
 
+---
+
 ### 113. What is a Higher-Order Component (HOC)?
 **Answer:** 
 **The Core Concept:**
@@ -2406,6 +2639,8 @@ const withAuth = (WrappedComponent) => {
 
 ---
 
+---
+
 ### 114. Client-Side Rendering (CSR) vs Server-Side Rendering (SSR)
 **Answer:** 
 **The Core Concept:**
@@ -2420,6 +2655,8 @@ CSR downloads a blank HTML frame and compiles the UI directly inside the browser
 - Frameworks like Next.js or Remix provide hybrid SSR.
 
 **Reference:** [Next.js Rendering Modes](https://nextjs.org/docs/app/building-your-application/rendering)
+
+---
 
 ---
 
@@ -2446,6 +2683,8 @@ This section contains a high-yield, visual cheatsheet of 42 essential React.js c
 
 ## React.js Cheatsheet Cards
 
+---
+
 ### 1. Component Lifecycle
 - **Q**: What is the component lifecycle in React?
 - **A**: Every React component goes through a lifecycle consisting of three main phases:
@@ -2464,6 +2703,8 @@ This section contains a high-yield, visual cheatsheet of 42 essential React.js c
 
 ---
 
+---
+
 ### 2. What is JSX? (JavaScript XML)
 - **Q**: What is JSX?
 - **A**: JSX is a XML-like syntax extension to JavaScript that allows you to write HTML-like structures directly inside your JavaScript code. Since browsers cannot understand JSX directly, it is compiled into native `React.createElement()` function calls by transpilers (e.g., Babel).
@@ -2476,6 +2717,8 @@ This section contains a high-yield, visual cheatsheet of 42 essential React.js c
 
 ---
 
+---
+
 ### 3. Class Components vs Functional Components
 - **Q**: What is the difference between Class and Functional components?
 - **A**:
@@ -2484,11 +2727,15 @@ This section contains a high-yield, visual cheatsheet of 42 essential React.js c
 
 ---
 
+---
+
 ### 4. Props vs State in React
 - **Q**: What is the difference between props and state?
 - **A**:
   - **Props** (Properties): Immutable, read-only configuration data passed from a parent component down to a child component. They cannot be modified by the child.
   - **State**: A mutable, internally managed object owned by the component itself. It holds local data that can change over time (e.g., user input) and automatically triggers a UI re-render when updated.
+
+---
 
 ---
 
@@ -2506,6 +2753,8 @@ This section contains a high-yield, visual cheatsheet of 42 essential React.js c
 
 ---
 
+---
+
 ### 6. Routing in React (React Router)
 - **Q**: How does routing work in React applications?
 - **A**: React Router is the standard library used to enable dynamic, declarative routing in React. It keeps the UI synchronized with the browser URL without requiring a full-page reload.
@@ -2515,6 +2764,8 @@ This section contains a high-yield, visual cheatsheet of 42 essential React.js c
   - `<Route>`: Maps a specific URL path to a specific component.
   - `<Link>`: Provides client-side navigation (prevents full-page refresh).
   - `useNavigate()`: A hook used to transition routes programmatically.
+
+---
 
 ---
 
@@ -2528,11 +2779,15 @@ This section contains a high-yield, visual cheatsheet of 42 essential React.js c
 
 ---
 
+---
+
 ### 8. Form Handling in React (Controlled vs Uncontrolled)
 - **Q**: What is the difference between controlled and uncontrolled inputs?
 - **A**:
   - **Controlled Components**: Inputs whose values are fully controlled by React state. The value is bound to the state, and updates are handled via `onChange` handlers. React remains the single source of truth.
   - **Uncontrolled Components**: Inputs that maintain their own internal state in the DOM. The value is accessed on demand (like on submit) directly from the DOM using a React `Ref`.
+
+---
 
 ---
 
@@ -2544,11 +2799,15 @@ This section contains a high-yield, visual cheatsheet of 42 essential React.js c
 
 ---
 
+---
+
 ### 10. Virtual DOM and Reconciliation
 - **Q**: What is the Virtual DOM and how does reconciliation work?
 - **A**:
   - **Virtual DOM**: A lightweight, virtual representation of the real browser DOM kept in memory.
   - **Reconciliation**: When state or props change, React generates a new Virtual DOM tree and compares it with the previous tree using a **diffing algorithm**. It then calculates the minimal number of updates required and patches only those specific elements in the real DOM to maximize efficiency.
+
+---
 
 ---
 
@@ -2562,9 +2821,13 @@ This section contains a high-yield, visual cheatsheet of 42 essential React.js c
 
 ---
 
+---
+
 ### 12. Error Boundaries in React
 - **Q**: What are Error Boundaries?
 - **A**: Error Boundaries are class-based React components that catch uncaught JavaScript runtime errors anywhere in their child component tree, log the errors, and render a fallback UI instead of allowing the entire application to crash (white-screen).
+
+---
 
 ---
 
@@ -2576,9 +2839,13 @@ This section contains a high-yield, visual cheatsheet of 42 essential React.js c
 
 ---
 
+---
+
 ### 14. Webpack & Bundling
 - **Q**: What is Webpack and why is it used?
 - **A**: Webpack is a static module bundler for modern JavaScript applications. It analyzes your application's dependency graph (including JS, CSS, images, and other assets) and compiles/bundles them into small, optimized bundles suited for fast browser loading.
+
+---
 
 ---
 
@@ -2590,11 +2857,15 @@ This section contains a high-yield, visual cheatsheet of 42 essential React.js c
 
 ---
 
+---
+
 ### 16. dependencies vs devDependencies
 - **Q**: What is the difference between dependencies and devDependencies?
 - **A**:
   - **dependencies**: Essential packages required to run the application in a production environment (e.g., `react`, `react-dom`, `axios`).
   - **devDependencies**: Packages only used during local development and build processes, excluded from production bundles (e.g., `typescript`, `jest`, `eslint`, `webpack`).
+
+---
 
 ---
 
@@ -2607,12 +2878,16 @@ This section contains a high-yield, visual cheatsheet of 42 essential React.js c
 
 ---
 
+---
+
 ### 18. Redux & State Management Architecture
 - **Q**: What are the core components of Redux's state architecture?
 - **A**: Redux operates on three primary core concepts:
   1. **Store**: A single, global state tree representing the application's entire truth.
   2. **Action**: A plain JavaScript object that informs the store of an event, carrying a mandatory `type` and optional `payload` (e.g., `{ type: 'INCREMENT' }`).
   3. **Reducer**: A pure function `(state, action) => newState` that computes the next state without mutating the previous state.
+
+---
 
 ---
 
@@ -2624,6 +2899,8 @@ This section contains a high-yield, visual cheatsheet of 42 essential React.js c
 
 ---
 
+---
+
 ### 20. Server-Side Rendering (SSR) vs Client-Side Rendering (CSR)
 - **Q**: What is the difference between SSR and CSR?
 - **A**:
@@ -2632,9 +2909,13 @@ This section contains a high-yield, visual cheatsheet of 42 essential React.js c
 
 ---
 
+---
+
 ### 21. TypeScript in React
 - **Q**: What are the main benefits of TypeScript in React applications?
 - **A**: TypeScript adds optional static typing to JavaScript. In React, it checks for bugs at compile-time (e.g., invalid props passed to a component), provides powerful code autocomplete, facilitates self-documenting code, and increases refactoring safety in large teams.
+
+---
 
 ---
 
@@ -2646,9 +2927,13 @@ This section contains a high-yield, visual cheatsheet of 42 essential React.js c
 
 ---
 
+---
+
 ### 23. async/await vs Promises
 - **Q**: How do async/await and Promises compare?
 - **A**: Promises are standard JavaScript objects representing the eventual outcome of asynchronous operations. `async/await` is syntactic sugar on top of Promises, enabling asynchronous code to be written sequentially in a clean, synchronous-like syntax, resolving callback nesting issues and allowing standard `try/catch` block error handling.
+
+---
 
 ---
 
@@ -2663,9 +2948,13 @@ This section contains a high-yield, visual cheatsheet of 42 essential React.js c
 
 ---
 
+---
+
 ### 25. Does useRef re-render the DOM?
 - **Q**: Does changing a Ref's value trigger a component re-render?
 - **A**: **No.** Modifying the `.current` property of a ref is a direct assignment that does not trigger a React component re-render. It is highly useful for storing and persisting values (such as timer IDs or previous state values) that are needed across renders but do not affect the visual UI.
+
+---
 
 ---
 
@@ -2688,6 +2977,8 @@ This section contains a high-yield, visual cheatsheet of 42 essential React.js c
 
 ---
 
+---
+
 ### 27. Diffing Algorithm
 - **Q**: How does React's diffing algorithm work?
 - **A**: The diffing algorithm compares the new Virtual DOM with the previous one. It operates on $O(N)$ time complexity using two main heuristic assumptions:
@@ -2696,9 +2987,13 @@ This section contains a high-yield, visual cheatsheet of 42 essential React.js c
 
 ---
 
+---
+
 ### 28. Key Prop under the hood
 - **Q**: Why does React need the `key` prop under the hood?
 - **A**: React uses the `key` prop to identify which items in a list have changed, been added, or been removed. Without unique keys, React compares children index-by-index, resulting in unnecessary DOM mutations and state bugs during list modifications (like inserting at the beginning of a list). Unique keys allow for highly efficient $O(1)$ matching.
+
+---
 
 ---
 
@@ -2722,11 +3017,15 @@ This section contains a high-yield, visual cheatsheet of 42 essential React.js c
 
 ---
 
+---
+
 ### 30. RSC vs Client Components
 - **Q**: What is the difference between React Server Components (RSC) and Client Components?
 - **A**:
   - **Server Components**: Rendered exclusively on the server, they do not ship JavaScript to the client (yielding zero bundle size contribution). They can access backend databases or file systems directly.
   - **Client Components**: Defined using `"use client"`. They are sent to the client, hydrated, and allow client-side interactivity (event listeners, states, context, and standard browser APIs).
+
+---
 
 ---
 
@@ -2743,6 +3042,8 @@ This section contains a high-yield, visual cheatsheet of 42 essential React.js c
     return <div>{data.message}</div>;
   }
   ```
+
+---
 
 ---
 
@@ -2764,6 +3065,8 @@ This section contains a high-yield, visual cheatsheet of 42 essential React.js c
 
 ---
 
+---
+
 ### 33. Vite vs CRA
 - **Q**: Why is Vite commonly preferred over Create React App (CRA)?
 - **A**:
@@ -2772,11 +3075,15 @@ This section contains a high-yield, visual cheatsheet of 42 essential React.js c
 
 ---
 
+---
+
 ### 34. Pages vs App Router in Next.js
 - **Q**: What is the difference between the Pages Router and App Router in Next.js?
 - **A**:
   - **Pages Router**: Routes are mapped to files in the `pages` directory. Employs special lifecycle functions (`getServerSideProps`, `getStaticProps`) for data fetching.
   - **App Router**: Routes are mapped to files in the `app` directory. Built natively on React Server Components, supports nested layouts, and uses standard `async/await` data fetching directly inside server components.
+
+---
 
 ---
 
@@ -2791,6 +3098,8 @@ This section contains a high-yield, visual cheatsheet of 42 essential React.js c
     setFlag(f => !f);
   }, 1000);
   ```
+
+---
 
 ---
 
@@ -2810,6 +3119,8 @@ This section contains a high-yield, visual cheatsheet of 42 essential React.js c
 
 ---
 
+---
+
 ### 37. Named exports in React.lazy
 - **Q**: Does `React.lazy` support named exports?
 - **A**: **No.** `React.lazy` only supports default exports. If you need to lazy-load a component that is exported as a named export, you must import the named export in an intermediate module and re-export it as the default export.
@@ -2820,6 +3131,8 @@ This section contains a high-yield, visual cheatsheet of 42 essential React.js c
     import('./components').then(module => ({ default: module.MyComponent }))
   );
   ```
+
+---
 
 ---
 
@@ -2837,6 +3150,8 @@ This section contains a high-yield, visual cheatsheet of 42 essential React.js c
     };
   };
   ```
+
+---
 
 ---
 
@@ -2869,6 +3184,8 @@ This section contains a high-yield, visual cheatsheet of 42 essential React.js c
 
 ---
 
+---
+
 ### 40. useMemo Example
 - **Q**: Write a component that uses the `useMemo` hook.
 - **A**: `useMemo` is used to cache the result of an expensive calculation to prevent it from re-running on every render unless its dependencies change.
@@ -2887,6 +3204,8 @@ This section contains a high-yield, visual cheatsheet of 42 essential React.js c
     return <div>Sum: {heavySum}</div>;
   }
   ```
+
+---
 
 ---
 
@@ -2917,6 +3236,8 @@ This section contains a high-yield, visual cheatsheet of 42 essential React.js c
 
 ---
 
+---
+
 ### 42. React Performance Optimizations
 - **Q**: How do you optimize a React application to improve performance?
 - **A**: Performance in React is optimized by preventing unnecessary renders and keeping bundle sizes minimal:
@@ -2928,6 +3249,8 @@ This section contains a high-yield, visual cheatsheet of 42 essential React.js c
 ---
 
 ## Practice Questions
+
+---
 
 ### 1. Write a custom React hook `useFetch` to handle API requests and caching.
 
@@ -2952,6 +3275,8 @@ function useFetch(url) {
 }
 ```
 
+---
+
 ### 2. Implement a search component with debounced text input.
 
 **Example Solution:**
@@ -2964,4 +3289,188 @@ function debounce(func, delay) {
   };
 }
 ```
+
+---
+
+## Practice Questions
+
+### 1. Write a custom React hook `useFetch` to handle API requests and caching.
+
+**Example Solution:**
+```javascript
+import { useState, useEffect } from "react";
+
+function useFetch(url) {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let active = true;
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        if (active) {
+          setData(data);
+          setLoading(false);
+        }
+      });
+    return () => { active = false; };
+  }, [url]);
+
+  return { data, loading };
+}
+```
+
+### 2. Implement a search component with debounced text input using standard state hook.
+
+**Example Solution:**
+```javascript
+import React, { useState, useEffect } from "react";
+
+function SearchBox({ onSearch }) {
+  const [query, setQuery] = useState("");
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      onSearch(query);
+    }, 300);
+    return () => clearTimeout(handler);
+  }, [query, onSearch]);
+
+  return <input value={query} onChange={e => setQuery(e.target.value)} placeholder="Search..." />;
+}
+```
+
+### 3. Create a ThemeContext and ThemeProvider to toggle dark/light CSS variables.
+
+**Example Solution:**
+```javascript
+import React, { createContext, useState, useEffect } from "react";
+
+export const ThemeContext = createContext();
+
+export function ThemeProvider({ children }) {
+  const [theme, setTheme] = useState("light");
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => setTheme(prev => prev === "light" ? "dark" : "light");
+
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+}
+```
+
+### 4. [Self-Practice] Design a high-throughput, fault-tolerant system leveraging key principles of React.js State & Components.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 5. [Self-Practice] Write a custom utility to validate input schemas and sanitize payloads in React.js State & Components.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 6. [Self-Practice] Implement a comprehensive error-boundary and logging module for a React.js State & Components application.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 7. [Self-Practice] Optimize memory consumption and execution hot-paths under high load in React.js State & Components.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 8. [Self-Practice] Write an automated unit testing suite targeting complex race-conditions in React.js State & Components.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 9. [Self-Practice] Create a localized internationalization (i18n) helper integrated with React.js State & Components.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 10. [Self-Practice] Build a secure token-based authentication handshake flow within React.js State & Components.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 11. [Self-Practice] Design a distributed caching and invalidation strategy for heavy React.js State & Components operations.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 12. [Self-Practice] Create a CLI tool to automate scaffolding and deployment of React.js State & Components configurations.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 13. [Self-Practice] Implement a real-time event-driven pub/sub handler using React.js State & Components event structures.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 14. [Self-Practice] Draft an architectural decision record (ADR) comparing React.js State & Components with its primary competitors.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 15. [Self-Practice] Create a mock framework to isolate and test external integrations in React.js State & Components.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 16. [Self-Practice] Write a custom telemetry wrapper to output React.js State & Components performance metrics to Prometheus/Grafana.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 17. [Self-Practice] Design a zero-downtime blue-green roll-out plan for a database or service utilizing React.js State & Components.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 18. [Self-Practice] Implement a circuit-breaker pattern to gracefully degrade service during React.js State & Components failures.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 19. [Self-Practice] Write an automated script to detect memory leaks and unhandled promise rejections in React.js State & Components.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 20. [Self-Practice] Build a user-friendly audit log tracking all state mutations and access events in React.js State & Components.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 21. [Self-Practice] Design an API gateway integration mapping REST inputs to React.js State & Components data layers.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 22. [Self-Practice] Implement a rate-limiter with custom sliding-window configurations in React.js State & Components.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 23. [Self-Practice] Create a backup and recovery automated script for preserving React.js State & Components state repositories.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 24. [Self-Practice] Design a microservice boundary that encapsulates React.js State & Components logic without tight coupling.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 25. [Self-Practice] Build a role-based access control (RBAC) middleware verifying permissions on React.js State & Components.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 26. [Self-Practice] Write an optimized compiler or parser configuration to bundle React.js State & Components files for web browsers.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 27. [Self-Practice] Implement a dead-letter queue (DLQ) pattern for handling corrupted messages in React.js State & Components.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 28. [Self-Practice] Create an automated health-check endpoint monitor checking React.js State & Components connection integrity.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 29. [Self-Practice] Implement a secure CORS and CSP policy wrapper for endpoints exposing React.js State & Components.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 30. [Self-Practice] Refactor a legacy monolithic module into modern, modular ES modules using React.js State & Components.
+
+*(Challenge question for self-study and practical project implementation.)*
 

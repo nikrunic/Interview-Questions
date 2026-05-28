@@ -3,6 +3,7 @@
 This document contains a comprehensive list of Microsoft SQL Server (T-SQL) interview questions, categorized by difficulty.
 
 ## Basic Questions
+
 ### 1. What is MS SQL Server?
 **Answer:** 
 **The Core Concept:**
@@ -15,6 +16,8 @@ Microsoft SQL Server is a comprehensive, enterprise-level Relational Database Ma
 
 ---
 
+---
+
 ### 2. What is T-SQL?
 **Answer:** 
 **The Core Concept:**
@@ -24,6 +27,8 @@ Transact-SQL is Microsoft's proprietary extension to standard SQL.
 - While standard SQL is great for interacting with data, T-SQL adds programming constructs like `IF...ELSE`, `WHILE` loops, `TRY...CATCH` blocks, and local variables using the `@` symbol.
 **Example:** `DECLARE @MyVar INT; SET @MyVar = 10;`
 **Reference:** [T-SQL Reference](https://learn.microsoft.com/en-us/sql/t-sql/tutorial-writing-transact-sql-statements)
+
+---
 
 ---
 
@@ -40,6 +45,8 @@ Both store variable-length string data, but they differ in character encoding.
 
 ---
 
+---
+
 ### 4. What is an Identity Column?
 **Answer:** 
 **The Core Concept:**
@@ -50,6 +57,8 @@ A column property that automatically generates unique numeric values for new row
 - Equivalent to `AUTO_INCREMENT` in MySQL.
 **Example:** `ID INT IDENTITY(1,1) PRIMARY KEY`
 **Reference:** [IDENTITY property](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql-identity-property)
+
+---
 
 ---
 
@@ -66,6 +75,8 @@ Indexes speed up data retrieval.
 
 ---
 
+---
+
 ### 6. What is the `COALESCE` function?
 **Answer:** 
 **The Core Concept:**
@@ -78,6 +89,8 @@ It evaluates the arguments in order and returns the first non-null value.
 
 ---
 
+---
+
 ### 7. What is the `ISNULL` function?
 **Answer:** 
 **The Core Concept:**
@@ -87,6 +100,8 @@ Similar to `COALESCE`, but specific to SQL Server. It replaces NULL with a speci
 - Unlike `COALESCE` which takes many arguments, `ISNULL` only takes two arguments: `ISNULL(check_expression, replacement_value)`.
 **Example:** `SELECT ISNULL(Salary, 0) FROM Employees;`
 **Reference:** [ISNULL](https://learn.microsoft.com/en-us/sql/t-sql/functions/isnull-transact-sql)
+
+---
 
 ---
 
@@ -103,6 +118,8 @@ Both retrieve the last generated identity value.
 
 ---
 
+---
+
 ### 9. What is a CTE (Common Table Expression)?
 **Answer:** 
 **The Core Concept:**
@@ -112,6 +129,8 @@ A CTE provides a temporary result set that you can reference within a `SELECT`, 
 - Defined using the `WITH` keyword. It drastically improves the readability of complex queries by breaking them down into logical blocks compared to heavily nested subqueries.
 **Example:** `WITH SalesCTE AS (SELECT ... ) SELECT * FROM SalesCTE;`
 **Reference:** [WITH common_table_expression](https://learn.microsoft.com/en-us/sql/t-sql/queries/with-common-table-expression-transact-sql)
+
+---
 
 ---
 
@@ -128,6 +147,9 @@ A CTE provides a temporary result set that you can reference within a `SELECT`, 
 ---
 
 ## Intermediate Questions
+
+---
+
 ### 11. What is a Window Function?
 **Answer:** 
 **The Core Concept:**
@@ -137,6 +159,8 @@ A window function performs a calculation across a set of table rows that are som
 - Unlike aggregate functions (which collapse rows into a single group), window functions do not cause rows to become grouped into a single output row. The rows retain their separate identities.
 **Example:** `SUM(Salary) OVER (PARTITION BY DepartmentId)`
 **Reference:** [Window Functions](https://learn.microsoft.com/en-us/sql/t-sql/queries/select-over-clause-transact-sql)
+
+---
 
 ---
 
@@ -154,6 +178,8 @@ They are window functions used to assign an ordered number to rows within a part
 
 ---
 
+---
+
 ### 13. What is a Stored Procedure vs a User Defined Function (UDF)?
 **Answer:** 
 **The Core Concept:**
@@ -164,6 +190,8 @@ Both encapsulate reusable logic, but have different rules.
 - **Stored Procedure:** Can return zero or multiple values. Can modify database state. Cannot be called inside a `SELECT` query (must use `EXEC`).
 **Example:** `EXEC MyProcedure` vs `SELECT dbo.MyFunction()`.
 **Reference:** [UDFs](https://learn.microsoft.com/en-us/sql/relational-databases/user-defined-functions/user-defined-functions)
+
+---
 
 ---
 
@@ -181,6 +209,8 @@ A special kind of stored procedure that executes automatically when an event occ
 
 ---
 
+---
+
 ### 15. What are the `inserted` and `deleted` magic tables?
 **Answer:** 
 **The Core Concept:**
@@ -192,6 +222,8 @@ Temporary, memory-resident tables available only inside DML triggers.
 - During an `UPDATE`, the original rows are in `deleted` and the new, updated rows are in `inserted`.
 **Example:** Comparing `deleted.Salary` to `inserted.Salary` to calculate the raise amount.
 **Reference:** [Use the inserted and deleted Tables](https://learn.microsoft.com/en-us/sql/relational-databases/triggers/use-the-inserted-and-deleted-tables)
+
+---
 
 ---
 
@@ -208,6 +240,8 @@ They are tables stored in `tempdb` and automatically dropped when no longer need
 
 ---
 
+---
+
 ### 17. What is a Table Variable?
 **Answer:** 
 **The Core Concept:**
@@ -221,6 +255,8 @@ A variable that allows you to store a set of rows temporarily, similar to a temp
 
 ---
 
+---
+
 ### 18. What is the `PIVOT` operator?
 **Answer:** 
 **The Core Concept:**
@@ -230,6 +266,8 @@ It transforms rows into columns.
 - It aggregates data and rotates rows into columns to create cross-tabulation reports. (e.g., turning a column of "Months" into 12 individual columns for each month).
 **Example:** Pivoting sales data to show monthly columns.
 **Reference:** [PIVOT and UNPIVOT](https://learn.microsoft.com/en-us/sql/t-sql/queries/from-using-pivot-and-unpivot)
+
+---
 
 ---
 
@@ -246,6 +284,8 @@ A JOIN without any joining condition.
 
 ---
 
+---
+
 ### 20. How do you handle errors in T-SQL?
 **Answer:** 
 **The Core Concept:**
@@ -259,6 +299,11 @@ Using `TRY...CATCH` blocks.
 ---
 
 ## Expert Questions
+
+---
+
+## Intermediate Questions
+
 ### 21. What is an Execution Plan?
 **Answer:** 
 **The Core Concept:**
@@ -268,6 +313,8 @@ The visual or textual roadmap showing exactly how the SQL Server Query Optimizer
 - It shows the operations performed (Index Seek, Table Scan, Hash Match) and their estimated/actual cost. It is the single most important tool for database performance tuning.
 **Example:** Viewing the Actual Execution Plan in SSMS.
 **Reference:** [Execution Plans](https://learn.microsoft.com/en-us/sql/relational-databases/performance/execution-plans)
+
+---
 
 ---
 
@@ -281,6 +328,8 @@ Indicators in an execution plan showing how an index was used.
 - **Index Scan:** The optimizer has to read through the *entire* index from top to bottom to find the data. Slower, often indicating a missing index or non-sargable predicate.
 **Example:** Seek = finding a word in the dictionary. Scan = reading every word in the dictionary to find words ending in 'z'.
 **Reference:** [Execution Plan Operators](https://learn.microsoft.com/en-us/sql/relational-databases/showplan-logical-and-physical-operators-reference)
+
+---
 
 ---
 
@@ -298,6 +347,8 @@ Search Argument Able. A condition that allows the query optimizer to use an Inde
 
 ---
 
+---
+
 ### 24. What are Statistics in SQL Server?
 **Answer:** 
 **The Core Concept:**
@@ -307,6 +358,8 @@ Blobs of data that describe the distribution of values in one or more columns of
 - The Query Optimizer relies entirely on these statistics to estimate how many rows a query will return. This estimation dictates whether it chooses to do an Index Seek or a Table Scan. If statistics are outdated, the optimizer will make terrible execution choices.
 **Example:** `UPDATE STATISTICS Users;`
 **Reference:** [Statistics](https://learn.microsoft.com/en-us/sql/relational-databases/statistics/statistics)
+
+---
 
 ---
 
@@ -323,6 +376,8 @@ Fill Factor determines how much empty space is left on a data page when an index
 
 ---
 
+---
+
 ### 26. What is NOLOCK (Read Uncommitted)?
 **Answer:** 
 **The Core Concept:**
@@ -333,6 +388,8 @@ A table hint that allows a query to read data without issuing shared locks.
 - However, it can read "Dirty Data" (uncommitted data that might be rolled back a millisecond later), leading to phantom reads or duplicated rows.
 **Example:** `SELECT * FROM Orders WITH (NOLOCK);`
 **Reference:** [Table Hints](https://learn.microsoft.com/en-us/sql/t-sql/queries/hints-transact-sql-table)
+
+---
 
 ---
 
@@ -348,6 +405,8 @@ A Common Table Expression that references itself.
 
 ---
 
+---
+
 ### 28. What is the `MERGE` statement?
 **Answer:** 
 **The Core Concept:**
@@ -357,6 +416,8 @@ Also known as an "Upsert". It performs `INSERT`, `UPDATE`, or `DELETE` operation
 - It synchronizes two tables in a single statement. If the record matches, `UPDATE`. If not matched by target, `INSERT`. If not matched by source, `DELETE`.
 **Example:** Syncing a staging data warehouse table into the production table.
 **Reference:** [MERGE](https://learn.microsoft.com/en-us/sql/t-sql/statements/merge-transact-sql)
+
+---
 
 ---
 
@@ -373,6 +434,8 @@ An expensive operation shown in an execution plan.
 
 ---
 
+---
+
 ### 30. How do you implement Pagination efficiently in SQL Server?
 **Answer:** 
 **The Core Concept:**
@@ -386,6 +449,7 @@ Retrieving a small chunk of rows (e.g., Page 3, 50 items per page).
 
 ---
 
+---
 
 ### 31. What is the `VARCHAR(MAX)` and `NVARCHAR(MAX)` data type?
 **Answer:** 
@@ -396,6 +460,8 @@ Replacements for the deprecated `TEXT` and `NTEXT` data types.
 - They can store up to 2 GB of string data. Unlike the old `TEXT` types, they can be used with all standard string functions and operators (like `LIKE` and `=`).
 **Example:** Use for storing large JSON payloads or document bodies.
 **Reference:** [char and varchar](https://learn.microsoft.com/en-us/sql/t-sql/data-types/char-and-varchar-transact-sql)
+
+---
 
 ---
 
@@ -412,6 +478,8 @@ Commands for removing data from a table.
 
 ---
 
+---
+
 ### 33. What is the `@@ROWCOUNT` variable?
 **Answer:** 
 **The Core Concept:**
@@ -424,6 +492,8 @@ A system variable that returns the number of rows affected by the last statement
 
 ---
 
+---
+
 ### 34. What is an `UPDATE` trigger?
 **Answer:** 
 **The Core Concept:**
@@ -433,6 +503,8 @@ A DML trigger that executes automatically after an `UPDATE` statement.
 - You can use the `UPDATE()` function inside the trigger to check if a specific column was modified, allowing you to run expensive audit logic *only* if critical columns (like Salary) were changed.
 **Example:** `IF UPDATE(Salary) BEGIN ... END`
 **Reference:** [UPDATE()](https://learn.microsoft.com/en-us/sql/t-sql/functions/update-trigger-functions-transact-sql)
+
+---
 
 ---
 
@@ -449,6 +521,8 @@ Functions used to convert an expression from one data type to another.
 
 ---
 
+---
+
 ### 36. What is the `HAVING` clause?
 **Answer:** 
 **The Core Concept:**
@@ -461,6 +535,8 @@ Used to filter the results of a `GROUP BY` clause.
 
 ---
 
+---
+
 ### 37. What is a Schema in SQL Server?
 **Answer:** 
 **The Core Concept:**
@@ -470,6 +546,8 @@ A logical container for database objects.
 - It acts like a namespace. Objects are referenced using `SchemaName.ObjectName` (e.g., `dbo.Users`). It helps organize large databases and provides a layer for security (granting permissions to an entire schema instead of individual tables).
 **Example:** `sales.Orders` vs `hr.Employees`.
 **Reference:** [Schemas](https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/create-a-database-schema)
+
+---
 
 ---
 
@@ -486,6 +564,8 @@ The default schema in MS SQL Server.
 
 ---
 
+---
+
 ### 39. What is the `UNIQUEIDENTIFIER` data type?
 **Answer:** 
 **The Core Concept:**
@@ -496,6 +576,8 @@ A 16-byte GUID (Globally Unique Identifier).
 - Highly problematic as a Clustered Index (Primary Key) because random GUIDs cause massive index fragmentation (Page Splits) upon insertion.
 **Example:** `ID UNIQUEIDENTIFIER DEFAULT NEWID()`
 **Reference:** [uniqueidentifier](https://learn.microsoft.com/en-us/sql/t-sql/data-types/uniqueidentifier-transact-sql)
+
+---
 
 ---
 
@@ -512,6 +594,8 @@ Methods for generating GUIDs.
 
 ---
 
+---
+
 ### 41. What is the `OUTPUT` clause?
 **Answer:** 
 **The Core Concept:**
@@ -521,6 +605,8 @@ Returns information from rows affected by an `INSERT`, `UPDATE`, `DELETE`, or `M
 - Highly useful for returning the generated Identity values after a bulk insert, or returning the old values deleted during a cleanup operation. It accesses the `inserted` and `deleted` virtual tables.
 **Example:** `INSERT INTO Users (Name) OUTPUT inserted.Id VALUES ('John');`
 **Reference:** [OUTPUT Clause](https://learn.microsoft.com/en-us/sql/t-sql/queries/output-clause-transact-sql)
+
+---
 
 ---
 
@@ -537,6 +623,8 @@ Used to invoke a table-valued function for each row returned by an outer table q
 
 ---
 
+---
+
 ### 43. What are Magic Tables in SQL Server?
 **Answer:** 
 **The Core Concept:**
@@ -546,6 +634,8 @@ The virtual tables `inserted` and `deleted` used in triggers.
 - They reside in memory and hold the state of rows exactly as they were before and after an operation. They cannot be modified directly.
 **Example:** Used to track old values vs new values for auditing.
 **Reference:** [inserted and deleted](https://learn.microsoft.com/en-us/sql/relational-databases/triggers/use-the-inserted-and-deleted-tables)
+
+---
 
 ---
 
@@ -562,6 +652,8 @@ Different types of nested queries.
 
 ---
 
+---
+
 ### 45. What is the `FOR XML` clause?
 **Answer:** 
 **The Core Concept:**
@@ -574,6 +666,8 @@ Formats the results of a query as XML data.
 
 ---
 
+---
+
 ### 46. What is the `STRING_AGG` function?
 **Answer:** 
 **The Core Concept:**
@@ -583,6 +677,8 @@ Concatenates the values of string expressions and places separator values betwee
 - Introduced in SQL Server 2017, it replaces the massive hack of using `FOR XML PATH` and `STUFF` to create comma-separated lists from grouped data. Equivalent to `GROUP_CONCAT` in MySQL.
 **Example:** `SELECT STRING_AGG(RoleName, ', ') FROM Roles;`
 **Reference:** [STRING_AGG](https://learn.microsoft.com/en-us/sql/t-sql/functions/string-agg-transact-sql)
+
+---
 
 ---
 
@@ -599,6 +695,8 @@ Operators for checking if values are contained in a subquery.
 
 ---
 
+---
+
 ### 48. What is Dynamic SQL?
 **Answer:** 
 **The Core Concept:**
@@ -609,6 +707,8 @@ SQL code constructed as a string variable at runtime and then executed.
 - Extremely dangerous if not handled correctly due to SQL Injection risks.
 **Example:** `EXEC sp_executesql N'SELECT * FROM ' + @TableName;`
 **Reference:** [sp_executesql](https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-executesql-transact-sql)
+
+---
 
 ---
 
@@ -625,6 +725,8 @@ Ensuring user inputs cannot execute malicious code.
 
 ---
 
+---
+
 ### 50. What is the difference between an Error and an Exception in T-SQL?
 **Answer:** 
 **The Core Concept:**
@@ -638,6 +740,10 @@ Error handling mechanisms.
 
 ---
 
+---
+
+## Expert Questions
+
 ### 51. What is an Execution Plan?
 **Answer:** 
 **The Core Concept:**
@@ -647,6 +753,8 @@ The visual roadmap of how the Query Optimizer retrieved the data.
 - It is the most important tool for performance tuning. It reveals Index Scans vs Seeks, Hash Matches vs Nested Loops, Key Lookups, and missing index warnings.
 **Example:** Pressing `Ctrl + M` in SSMS before executing a query.
 **Reference:** [Execution Plans](https://learn.microsoft.com/en-us/sql/relational-databases/performance/execution-plans)
+
+---
 
 ---
 
@@ -660,6 +768,8 @@ How SQL Server navigates an index B-Tree.
 - **Scan:** The optimizer reads every single row in the index from beginning to end to find the data. Very slow on large tables; usually indicates a missing index or non-SARGable `WHERE` clause.
 **Example:** `WHERE LastName = 'Smith'` (Seek) vs `WHERE LastName LIKE '%Smith'` (Scan).
 **Reference:** [Showplan Operators](https://learn.microsoft.com/en-us/sql/relational-databases/showplan-logical-and-physical-operators-reference)
+
+---
 
 ---
 
@@ -677,6 +787,8 @@ Search ARGument ABLE. A query structured so the optimizer can use an Index Seek.
 
 ---
 
+---
+
 ### 54. What are Statistics in SQL Server?
 **Answer:** 
 **The Core Concept:**
@@ -686,6 +798,8 @@ Histograms detailing the distribution of data values in a column.
 - The Query Optimizer relies on these statistics to estimate how many rows will be returned. This estimate determines whether it chooses a Nested Loop Join or a Hash Join, and whether to Seek or Scan. If statistics are outdated, the optimizer will create disastrous execution plans.
 **Example:** `UPDATE STATISTICS dbo.Users;`
 **Reference:** [Statistics](https://learn.microsoft.com/en-us/sql/relational-databases/statistics/statistics)
+
+---
 
 ---
 
@@ -702,6 +816,8 @@ A performance issue related to Stored Procedure execution plans.
 
 ---
 
+---
+
 ### 56. What is a Bookmark Lookup (Key Lookup)?
 **Answer:** 
 **The Core Concept:**
@@ -714,6 +830,8 @@ A costly operation shown in an execution plan.
 
 ---
 
+---
+
 ### 57. What is a Covering Index?
 **Answer:** 
 **The Core Concept:**
@@ -723,6 +841,8 @@ A non-clustered index that includes all columns required by a specific query.
 - Using the `INCLUDE` keyword, you can add non-key columns to the leaf level of the index. If the query is completely "covered" by the index, SQL Server never touches the actual data table, resulting in maximum performance.
 **Example:** `CREATE INDEX idx ON Users (LastName) INCLUDE (FirstName, Email);`
 **Reference:** [Indexes with Included Columns](https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-indexes-with-included-columns)
+
+---
 
 ---
 
@@ -739,6 +859,8 @@ A setting that dictates how full data pages are when an index is created or rebu
 
 ---
 
+---
+
 ### 59. What is Index Fragmentation?
 **Answer:** 
 **The Core Concept:**
@@ -748,6 +870,8 @@ When the logical ordering of index pages does not match the physical ordering on
 - Caused by Page Splits resulting from inserts, updates, or deletes. High fragmentation forces the disk to work harder to read data. Fixed by `ALTER INDEX REORGANIZE` (for < 30% fragmentation) or `REBUILD` (for > 30%).
 **Example:** Maintaining indexes via SQL Server Agent jobs.
 **Reference:** [Resolve index fragmentation](https://learn.microsoft.com/en-us/sql/relational-databases/indexes/reorganize-and-rebuild-indexes)
+
+---
 
 ---
 
@@ -764,6 +888,8 @@ A situation where two transactions hold locks on resources the other needs, bloc
 
 ---
 
+---
+
 ### 61. What is the `NOLOCK` table hint?
 **Answer:** 
 **The Core Concept:**
@@ -777,6 +903,8 @@ Instructs the query to read data without acquiring shared locks.
 
 ---
 
+---
+
 ### 62. What is RCSI (Read Committed Snapshot Isolation)?
 **Answer:** 
 **The Core Concept:**
@@ -786,6 +914,8 @@ A database-level setting that solves blocking without the dangers of `NOLOCK`.
 - It uses Row Versioning (stored in `tempdb`). When a transaction updates a row, the old version is kept. Readers will read the old, consistent version instead of being blocked by the writer or reading dirty data. It provides Oracle-like MVCC concurrency.
 **Example:** `ALTER DATABASE MyDB SET READ_COMMITTED_SNAPSHOT ON;`
 **Reference:** [Snapshot Isolation](https://learn.microsoft.com/en-us/dotnet/framework/data/adonet/sql/snapshot-isolation-in-sql-server)
+
+---
 
 ---
 
@@ -804,6 +934,8 @@ They define how isolated a transaction is from data modified by other transactio
 
 ---
 
+---
+
 ### 64. What is a Phantom Read?
 **Answer:** 
 **The Core Concept:**
@@ -814,6 +946,8 @@ A concurrency phenomenon.
 - Prevented by the `SERIALIZABLE` isolation level via Range Locks.
 **Example:** Concurrency anomalies.
 **Reference:** [Concurrency Effects](https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide)
+
+---
 
 ---
 
@@ -829,6 +963,8 @@ Combines `INSERT`, `UPDATE`, and `DELETE` into a single statement.
 
 ---
 
+---
+
 ### 66. How do you implement Pagination in SQL Server?
 **Answer:** 
 **The Core Concept:**
@@ -838,6 +974,8 @@ Retrieving rows in chunks (e.g., Page 2, 50 items per page).
 - Before 2012, this required complex `ROW_NUMBER()` logic. Modern T-SQL uses the `OFFSET ... FETCH NEXT` clause natively attached to the `ORDER BY` statement.
 **Example:** `ORDER BY Id OFFSET 50 ROWS FETCH NEXT 50 ROWS ONLY;`
 **Reference:** [OFFSET FETCH](https://learn.microsoft.com/en-us/sql/t-sql/queries/select-order-by-clause-transact-sql)
+
+---
 
 ---
 
@@ -853,6 +991,8 @@ Splitting a massive table across multiple physical filegroups while it continues
 
 ---
 
+---
+
 ### 68. What is a Recursive CTE?
 **Answer:** 
 **The Core Concept:**
@@ -862,6 +1002,8 @@ A CTE that references itself, used to traverse hierarchical data.
 - It consists of an "Anchor Member" (the base query, like the CEO of a company) and a "Recursive Member" (which joins back to the CTE to find direct reports), combined with a `UNION ALL`.
 **Example:** Querying an Employee-Manager organizational chart or category trees.
 **Reference:** [Recursive CTEs](https://learn.microsoft.com/en-us/sql/t-sql/queries/with-common-table-expression-transact-sql)
+
+---
 
 ---
 
@@ -877,6 +1019,8 @@ Performing aggregates without losing row-level details.
 
 ---
 
+---
+
 ### 70. What is an Indexed View?
 **Answer:** 
 **The Core Concept:**
@@ -886,6 +1030,8 @@ A View that has a Unique Clustered Index applied to it.
 - Normally, a View is just a saved query. When queried, it runs the underlying SQL. If you add an index to it, SQL Server actually executes the View and materializes the result set to disk. Massive performance boost for heavy aggregation Views, but slows down inserts to the underlying tables.
 **Example:** Equivalent to "Materialized Views" in Oracle/Postgres.
 **Reference:** [Indexed Views](https://learn.microsoft.com/en-us/sql/relational-databases/views/create-indexed-views)
+
+---
 
 ---
 
@@ -901,6 +1047,8 @@ A system database that holds temporary objects.
 
 ---
 
+---
+
 ### 72. What are Columnstore Indexes?
 **Answer:** 
 **The Core Concept:**
@@ -913,6 +1061,8 @@ The standard for storing and querying large data warehousing fact tables.
 
 ---
 
+---
+
 ### 73. What is the Transaction Log?
 **Answer:** 
 **The Core Concept:**
@@ -922,6 +1072,8 @@ The file (.ldf) that records all transactions and database modifications made by
 - It guarantees ACID properties. In the event of a crash, SQL Server uses the log to roll forward committed transactions and roll back uncommitted ones. If a database is in "Full Recovery Mode", the log will grow infinitely until a Log Backup is taken.
 **Example:** Shrinking a bloated LDF file.
 **Reference:** [Transaction Log](https://learn.microsoft.com/en-us/sql/relational-databases/logs/the-transaction-log-sql-server)
+
+---
 
 ---
 
@@ -938,6 +1090,8 @@ Settings dictating how the Transaction Log is maintained.
 
 ---
 
+---
+
 ### 75. What is the `@@TRANCOUNT` variable?
 **Answer:** 
 **The Core Concept:**
@@ -947,6 +1101,8 @@ Returns the number of active `BEGIN TRANSACTION` statements that have occurred o
 - Highly important in nested stored procedures. `BEGIN TRAN` increments it, `COMMIT TRAN` decrements it. `ROLLBACK TRAN` forces it to 0 and cancels the entire transaction chain regardless of nesting.
 **Example:** `IF @@TRANCOUNT > 0 COMMIT TRANSACTION;`
 **Reference:** [@@TRANCOUNT](https://learn.microsoft.com/en-us/sql/t-sql/functions/trancount-transact-sql)
+
+---
 
 ---
 
@@ -963,6 +1119,8 @@ Tools used to troubleshoot performance and blocking.
 
 ---
 
+---
+
 ### 77. What are Wait Statistics?
 **Answer:** 
 **The Core Concept:**
@@ -975,6 +1133,8 @@ Metrics tracked by SQL Server detailing exactly why a query had to pause executi
 
 ---
 
+---
+
 ### 78. What is a Filtered Index?
 **Answer:** 
 **The Core Concept:**
@@ -984,6 +1144,8 @@ A nonclustered index optimized for queries that select a well-defined subset of 
 - It uses a filter predicate to index a portion of rows. E.g., if you only ever search for "Active" users, a filtered index on `LastName WHERE IsActive = 1` takes up significantly less disk space and maintenance overhead than indexing the whole table.
 **Example:** `CREATE INDEX idx ON Users(LastName) WHERE IsActive = 1;`
 **Reference:** [Filtered Indexes](https://learn.microsoft.com/en-us/sql/relational-databases/indexes/create-filtered-indexes)
+
+---
 
 ---
 
@@ -1000,6 +1162,8 @@ Table combinations.
 
 ---
 
+---
+
 ### 80. What is Query Folding in Linked Servers?
 **Answer:** 
 **The Core Concept:**
@@ -1009,6 +1173,8 @@ How SQL Server executes queries directed at an external Linked Server (like an O
 - If folding works, SQL Server sends the entire query to the remote server, and only the small result set is returned over the network. If the remote server doesn't support the syntax, SQL Server pulls the *entire remote table* across the network and filters it locally, destroying performance.
 **Example:** `SELECT * FROM [RemoteServer].[DB].[dbo].[Users] WHERE Id = 1`
 **Reference:** [Linked Servers](https://learn.microsoft.com/en-us/sql/relational-databases/linked-servers/linked-servers-database-engine)
+
+---
 
 ---
 
@@ -1024,6 +1190,8 @@ The recommended system stored procedure for executing Dynamic SQL.
 
 ---
 
+---
+
 ### 82. What is `MAXDOP`?
 **Answer:** 
 **The Core Concept:**
@@ -1036,6 +1204,8 @@ Maximum Degree of Parallelism.
 
 ---
 
+---
+
 ### 83. What are In-Memory OLTP Tables?
 **Answer:** 
 **The Core Concept:**
@@ -1045,6 +1215,8 @@ Tables that reside entirely in memory (RAM) rather than on disk.
 - Introduced in 2014, they use lock-free data structures. Extremely fast for high-concurrency, high-throughput transaction scenarios (like session state or IoT data ingestion). They can be configured as durable (survive restarts) or non-durable.
 **Example:** `CREATE TABLE ... WITH (MEMORY_OPTIMIZED = ON);`
 **Reference:** [In-Memory OLTP](https://learn.microsoft.com/en-us/sql/relational-databases/in-memory-oltp/in-memory-oltp-in-memory-optimization)
+
+---
 
 ---
 
@@ -1061,6 +1233,8 @@ Functions used to detect changes in a row or encrypt passwords.
 
 ---
 
+---
+
 ### 85. What is Change Data Capture (CDC)?
 **Answer:** 
 **The Core Concept:**
@@ -1070,6 +1244,8 @@ A feature that records insert, update, and delete activity applied to tables.
 - Instead of using triggers (which slow down transactions), CDC reads the Transaction Log asynchronously and writes the changes to specific tracking tables. Ideal for ETL pipelines syncing SQL Server to a Data Warehouse or Elasticsearch.
 **Example:** Enabling CDC on the `Orders` table.
 **Reference:** [Change Data Capture](https://learn.microsoft.com/en-us/sql/relational-databases/track-changes/about-change-data-capture-sql-server)
+
+---
 
 ---
 
@@ -1085,6 +1261,8 @@ Tables that automatically keep a full history of data changes.
 
 ---
 
+---
+
 ### 87. What is an Aggregate Window Function?
 **Answer:** 
 **The Core Concept:**
@@ -1094,6 +1272,8 @@ Aggregates like `SUM()` applied over a window of rows.
 - Using `ORDER BY` inside the `OVER()` clause creates a running total. `SUM(Sales) OVER (ORDER BY Date)` will sum the current row with all previous rows, creating a cumulative calculation instantly without subqueries.
 **Example:** Calculating a running bank balance.
 **Reference:** [OVER Clause](https://learn.microsoft.com/en-us/sql/t-sql/queries/select-over-clause-transact-sql)
+
+---
 
 ---
 
@@ -1109,6 +1289,8 @@ Returns the item at the specified index from a list of values.
 
 ---
 
+---
+
 ### 89. What is the `IIF` function?
 **Answer:** 
 **The Core Concept:**
@@ -1118,6 +1300,8 @@ A shorthand for a simple `CASE` expression.
 - Borrowed from Access/Excel syntax. It evaluates a boolean expression and returns one value if true, another if false.
 **Example:** `SELECT IIF(Score > 50, 'Pass', 'Fail') FROM Exams;`
 **Reference:** [IIF](https://learn.microsoft.com/en-us/sql/t-sql/functions/logical-functions-iif-transact-sql)
+
+---
 
 ---
 
@@ -1134,6 +1318,8 @@ Safe data type conversions.
 
 ---
 
+---
+
 ### 91. Explain Always On Availability Groups.
 **Answer:** 
 **The Core Concept:**
@@ -1143,6 +1329,8 @@ The premier High Availability (HA) and Disaster Recovery (DR) solution in SQL Se
 - Replaces database mirroring. It replicates transactions from a Primary replica to up to 8 Secondary replicas. It allows automatic failover and allows the Secondary replicas to be queried for read-only workloads (offloading reporting from the master).
 **Example:** Enterprise data redundancy.
 **Reference:** [Always On](https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/always-on-availability-groups-sql-server)
+
+---
 
 ---
 
@@ -1158,6 +1346,8 @@ A user-defined schema-bound object that generates a sequence of numeric values.
 
 ---
 
+---
+
 ### 93. What is a Table-Valued Parameter (TVP)?
 **Answer:** 
 **The Core Concept:**
@@ -1170,6 +1360,8 @@ A way to pass multiple rows of data to a stored procedure.
 
 ---
 
+---
+
 ### 94. What is the Query Store?
 **Answer:** 
 **The Core Concept:**
@@ -1179,6 +1371,8 @@ A built-in feature that captures a history of queries, execution plans, and runt
 - Before Query Store, if a query suddenly became slow, diagnosing it was almost impossible if the bad plan was already flushed from memory. Query Store persists this history, allowing DBAs to instantly see performance regressions and force SQL Server to use a known-good past execution plan with one click.
 **Example:** Forcing a good plan over a regressed plan.
 **Reference:** [Query Store](https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitoring-performance-by-using-the-query-store)
+
+---
 
 ---
 
@@ -1195,6 +1389,8 @@ How SQL Server handles memory-to-disk writes.
 
 ---
 
+---
+
 ### 96. What is the difference between `Varchar(Max)` and `NVARCHAR(Max)`?
 **Answer:** 
 **The Core Concept:**
@@ -1208,6 +1404,8 @@ Storage for massive text fields.
 
 ---
 
+---
+
 ### 97. What is `sp_configure`?
 **Answer:** 
 **The Core Concept:**
@@ -1217,6 +1415,8 @@ A system stored procedure used to view or change global SQL Server configuration
 - Used to enable advanced options, configure maximum memory limits, change MAXDOP, or enable CLR integration. Requires the `RECONFIGURE` statement to apply changes.
 **Example:** `EXEC sp_configure 'show advanced options', 1; RECONFIGURE;`
 **Reference:** [sp_configure](https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-configure-transact-sql)
+
+---
 
 ---
 
@@ -1233,6 +1433,8 @@ Strategies for handling massive data scale.
 
 ---
 
+---
+
 ### 99. What are Graph Tables in SQL Server?
 **Answer:** 
 **The Core Concept:**
@@ -1242,6 +1444,8 @@ Native capabilities for node and edge relationships.
 - Introduced in 2017, they allow you to query complex many-to-many relationships (like social networks or recommendation engines) using the `MATCH()` function, which is vastly simpler and faster than writing deeply recursive CTEs or dozens of `JOIN`s.
 **Example:** `SELECT * FROM Person1 MATCH (Person1-(FriendOf)->Person2);`
 **Reference:** [SQL Graph](https://learn.microsoft.com/en-us/sql/relational-databases/graphs/sql-graph-architecture)
+
+---
 
 ---
 
@@ -1256,7 +1460,11 @@ A Dynamic Management View that suggests performance improvements.
 **Reference:** [Missing Indexes](https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-db-missing-index-details-transact-sql)
 
 ---
-\n## Additional Depth (Architectural Focus)\n
+
+## Additional Depth (Architectural Focus)
+
+---
+
 ### 101. What is the difference between a Clustered and Non-Clustered Index?
 **Answer:** 
 **The Core Concept:**
@@ -1270,6 +1478,8 @@ A Clustered Index determines the physical order of data rows in a table, meaning
 `CREATE CLUSTERED INDEX IX_EmpId ON Employees(EmpId);`
 
 **Reference:** [Documentation](https://learn.microsoft.com/en-us/sql/relational-databases/indexes/clustered-and-nonclustered-indexes-described)
+
+---
 
 ---
 
@@ -1296,6 +1506,8 @@ COMMIT TRANSACTION;
 
 ---
 
+---
+
 ### 103. What is Database Normalization?
 **Answer:** 
 **The Core Concept:**
@@ -1319,6 +1531,8 @@ Database Normalization is the structured process of organizing database tables t
 
 ---
 
+---
+
 ### 104. What is Database Indexing?
 **Answer:** 
 **The Core Concept:**
@@ -1330,6 +1544,8 @@ Database indexing is an optimization technique that creates specialized auxiliar
 - **Indexes in SQL**: `CREATE INDEX IX_TableName_Column ON TableName(ColumnName);`
 
 **Reference:** [SQL Server Index Architecture](https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-index-design-guide)
+
+---
 
 ---
 
@@ -1350,6 +1566,8 @@ Transaction B: Locks Table 2 ---> Needs Table 1 (Blocked)
 ```
 
 **Reference:** [Deadlock Analysis](https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide#deadlocks)
+
+---
 
 ---
 
@@ -1375,6 +1593,8 @@ SELECT * FROM Users u LEFT JOIN Profiles p ON u.Id = p.UserId;
 
 ---
 
+---
+
 ### 107. What is Database Replication?
 **Answer:** 
 **The Core Concept:**
@@ -1386,6 +1606,8 @@ Database Replication is the automatic process of copying and distributing data f
 - **Replication latency**: The sync delay between primary writes and secondary reads, which can lead to eventual consistency read-skew bugs.
 
 **Reference:** [SQL Server Replication](https://learn.microsoft.com/en-us/sql/relational-databases/replication/sql-server-replication)
+
+---
 
 ---
 
@@ -1406,6 +1628,38 @@ ALTER TABLE Users ADD CONSTRAINT UQ_Users_Email UNIQUE (Email);
 ```
 
 **Reference:** [Unique Constraints](https://learn.microsoft.com/en-us/sql/relational-databases/tables/unique-constraints-and-check-constraints)
+
+---
+
+## Technical Questions
+
+---
+
+### 1. Write a T-SQL query using a Common Table Expression (CTE) and `DENSE_RANK()` to find the second highest salary.
+
+**Example Solution:**
+```sql
+WITH SalaryCTE AS (
+  SELECT Name, Salary, DENSE_RANK() OVER (ORDER BY Salary DESC) AS Rank
+  FROM Employees
+)
+SELECT Name, Salary 
+FROM SalaryCTE 
+WHERE Rank = 2;
+```
+
+---
+
+### 2. Write a T-SQL query demonstrating dynamic pagination using `OFFSET` and `FETCH NEXT`.
+
+**Example Solution:**
+```sql
+SELECT EmployeeId, Name, Salary
+FROM Employees
+ORDER BY EmployeeId
+OFFSET 10 ROWS
+FETCH NEXT 10 ROWS ONLY;
+```
 
 ---
 
@@ -1434,4 +1688,134 @@ ORDER BY EmployeeId
 OFFSET 10 ROWS
 FETCH NEXT 10 ROWS ONLY;
 ```
+
+### 3. Implement a TRY...CATCH transaction handler with error logging in MSSQL.
+
+**Example Solution:**
+```sql
+BEGIN TRY
+    BEGIN TRANSACTION;
+        UPDATE Accounts SET Balance = Balance - 100 WHERE AccountId = 1;
+        UPDATE Accounts SET Balance = Balance + 100 WHERE AccountId = 2;
+    COMMIT TRANSACTION;
+END TRY
+BEGIN CATCH
+    IF @@TRANCOUNT > 0
+        ROLLBACK TRANSACTION;
+    
+    DECLARE @ErrorMessage NVARCHAR(4000) = ERROR_MESSAGE();
+    DECLARE @ErrorSeverity INT = ERROR_SEVERITY();
+    DECLARE @ErrorState INT = ERROR_STATE();
+    
+    RAISERROR(@ErrorMessage, @ErrorSeverity, @ErrorState);
+END CATCH;
+```
+
+### 4. [Self-Practice] Design a high-throughput, fault-tolerant system leveraging key principles of Microsoft SQL Server & T-SQL.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 5. [Self-Practice] Write a custom utility to validate input schemas and sanitize payloads in Microsoft SQL Server & T-SQL.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 6. [Self-Practice] Implement a comprehensive error-boundary and logging module for a Microsoft SQL Server & T-SQL application.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 7. [Self-Practice] Optimize memory consumption and execution hot-paths under high load in Microsoft SQL Server & T-SQL.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 8. [Self-Practice] Write an automated unit testing suite targeting complex race-conditions in Microsoft SQL Server & T-SQL.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 9. [Self-Practice] Create a localized internationalization (i18n) helper integrated with Microsoft SQL Server & T-SQL.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 10. [Self-Practice] Build a secure token-based authentication handshake flow within Microsoft SQL Server & T-SQL.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 11. [Self-Practice] Design a distributed caching and invalidation strategy for heavy Microsoft SQL Server & T-SQL operations.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 12. [Self-Practice] Create a CLI tool to automate scaffolding and deployment of Microsoft SQL Server & T-SQL configurations.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 13. [Self-Practice] Implement a real-time event-driven pub/sub handler using Microsoft SQL Server & T-SQL event structures.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 14. [Self-Practice] Draft an architectural decision record (ADR) comparing Microsoft SQL Server & T-SQL with its primary competitors.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 15. [Self-Practice] Create a mock framework to isolate and test external integrations in Microsoft SQL Server & T-SQL.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 16. [Self-Practice] Write a custom telemetry wrapper to output Microsoft SQL Server & T-SQL performance metrics to Prometheus/Grafana.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 17. [Self-Practice] Design a zero-downtime blue-green roll-out plan for a database or service utilizing Microsoft SQL Server & T-SQL.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 18. [Self-Practice] Implement a circuit-breaker pattern to gracefully degrade service during Microsoft SQL Server & T-SQL failures.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 19. [Self-Practice] Write an automated script to detect memory leaks and unhandled promise rejections in Microsoft SQL Server & T-SQL.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 20. [Self-Practice] Build a user-friendly audit log tracking all state mutations and access events in Microsoft SQL Server & T-SQL.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 21. [Self-Practice] Design an API gateway integration mapping REST inputs to Microsoft SQL Server & T-SQL data layers.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 22. [Self-Practice] Implement a rate-limiter with custom sliding-window configurations in Microsoft SQL Server & T-SQL.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 23. [Self-Practice] Create a backup and recovery automated script for preserving Microsoft SQL Server & T-SQL state repositories.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 24. [Self-Practice] Design a microservice boundary that encapsulates Microsoft SQL Server & T-SQL logic without tight coupling.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 25. [Self-Practice] Build a role-based access control (RBAC) middleware verifying permissions on Microsoft SQL Server & T-SQL.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 26. [Self-Practice] Write an optimized compiler or parser configuration to bundle Microsoft SQL Server & T-SQL files for web browsers.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 27. [Self-Practice] Implement a dead-letter queue (DLQ) pattern for handling corrupted messages in Microsoft SQL Server & T-SQL.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 28. [Self-Practice] Create an automated health-check endpoint monitor checking Microsoft SQL Server & T-SQL connection integrity.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 29. [Self-Practice] Implement a secure CORS and CSP policy wrapper for endpoints exposing Microsoft SQL Server & T-SQL.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 30. [Self-Practice] Refactor a legacy monolithic module into modern, modular ES modules using Microsoft SQL Server & T-SQL.
+
+*(Challenge question for self-study and practical project implementation.)*
 

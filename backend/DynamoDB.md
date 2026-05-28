@@ -6,6 +6,8 @@ This document contains a comprehensive list of essential Amazon DynamoDB intervi
 
 ## Core Concepts & Schema Design
 
+## Basic Questions
+
 ### 1. What is Amazon DynamoDB?
 **Answer:** Amazon DynamoDB is a fully managed, serverless, key-value and document NoSQL database service offered by AWS. It is designed to provide high-performance, single-digit millisecond latency at any scale.
 
@@ -18,6 +20,10 @@ This document contains a comprehensive list of essential Amazon DynamoDB intervi
 Storing and retrieving session states or real-time user profiles with sub-second lookups.
 
 **Reference:** [What is Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html)
+
+---
+
+---
 
 ---
 
@@ -40,6 +46,14 @@ In a messaging application, `userId` is the Partition Key, and `messageTimestamp
 
 ## Querying and Operations
 
+---
+
+## Intermediate Questions
+
+---
+
+## Intermediate Questions
+
 ### 3. What is the difference between a `Query` and a `Scan` operation?
 **Answer:** 
 **The Core Concept:**
@@ -59,6 +73,10 @@ In a messaging application, `userId` is the Partition Key, and `messageTimestamp
 | **Mandatory Input** | Partition Key (`KeyConditionExpression`) | None |
 
 **Reference:** [Query vs Scan in DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-query-scan.html)
+
+---
+
+---
 
 ---
 
@@ -87,6 +105,14 @@ await dynamoDb.scan(params).promise();
 
 ---
 
+---
+
+## Expert Questions
+
+---
+
+## Expert Questions
+
 ### 5. What is a Key Condition Expression?
 **Answer:** 
 **The Core Concept:**
@@ -111,6 +137,10 @@ await dynamoDb.query(params).promise();
 ```
 
 **Reference:** [Query Key Condition Expression](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.html#Query.KeyConditionExpression)
+
+---
+
+---
 
 ---
 
@@ -144,3 +174,270 @@ const res = await dynamoDb.batchWrite(params).promise();
 **Reference:** [DynamoDB Batch Operations](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/best-practices-many-items.html)
 
 ---
+
+---
+
+## Technical Questions
+
+---
+
+### 1. Write a Node.js script to query DynamoDB using the AWS SDK v3.
+
+**Example Solution:**
+```javascript
+const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
+const { DynamoDBDocumentClient, QueryCommand } = require("@aws-sdk/lib-dynamodb");
+
+const client = new DynamoDBClient({ region: "us-east-1" });
+const ddbDocClient = DynamoDBDocumentClient.from(client);
+
+async function getOrdersByCustomer(customerId) {
+  const command = new QueryCommand({
+    TableName: "OrdersTable",
+    KeyConditionExpression: "CustomerId = :customerId AND OrderDate >= :since",
+    ExpressionAttributeValues: {
+      ":customerId": customerId,
+      ":since": "2026-01-01"
+    }
+  });
+
+  const response = await ddbDocClient.send(command);
+  return response.Items;
+}
+```
+
+---
+
+### 2. Implement Transactional Writes (TransactWriteItems) in DynamoDB.
+
+**Example Solution:**
+```javascript
+const { TransactWriteCommand } = require("@aws-sdk/lib-dynamodb");
+
+async function purchaseProduct(customerId, productId, price) {
+  const command = new TransactWriteCommand({
+    TransactItems: [
+      {
+        Update: {
+          TableName: "UsersTable",
+          Key: { CustomerId: customerId },
+          UpdateExpression: "SET balance = balance - :price",
+          ConditionExpression: "balance >= :price",
+          ExpressionAttributeValues: { ":price": price }
+        }
+      },
+      {
+        Put: {
+          TableName: "OrdersTable",
+          Item: {
+            OrderId: `ORD#\${Date.now()}`,
+            CustomerId: customerId,
+            ProductId: productId,
+            Price: price,
+            PurchaseDate: new Date().toISOString()
+          }
+        }
+      }
+    ]
+  });
+
+  await ddbDocClient.send(command);
+}
+```
+
+---
+
+## Technical Questions
+
+### 1. Write a Node.js script to query DynamoDB using the AWS SDK v3.
+
+**Example Solution:**
+```javascript
+const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
+const { DynamoDBDocumentClient, QueryCommand } = require("@aws-sdk/lib-dynamodb");
+
+const client = new DynamoDBClient({ region: "us-east-1" });
+const ddbDocClient = DynamoDBDocumentClient.from(client);
+
+async function getOrdersByCustomer(customerId) {
+  const command = new QueryCommand({
+    TableName: "OrdersTable",
+    KeyConditionExpression: "CustomerId = :customerId AND OrderDate >= :since",
+    ExpressionAttributeValues: {
+      ":customerId": customerId,
+      ":since": "2026-01-01"
+    }
+  });
+
+  const response = await ddbDocClient.send(command);
+  return response.Items;
+}
+```
+
+### 2. Implement Transactional Writes (TransactWriteItems) in DynamoDB.
+
+**Example Solution:**
+```javascript
+const { TransactWriteCommand } = require("@aws-sdk/lib-dynamodb");
+
+async function purchaseProduct(customerId, productId, price) {
+  const command = new TransactWriteCommand({
+    TransactItems: [
+      {
+        Update: {
+          TableName: "UsersTable",
+          Key: { CustomerId: customerId },
+          UpdateExpression: "SET balance = balance - :price",
+          ConditionExpression: "balance >= :price",
+          ExpressionAttributeValues: { ":price": price }
+        }
+      },
+      {
+        Put: {
+          TableName: "OrdersTable",
+          Item: {
+            OrderId: `ORD#\${Date.now()}`,
+            CustomerId: customerId,
+            ProductId: productId,
+            Price: price,
+            PurchaseDate: new Date().toISOString()
+          }
+        }
+      }
+    ]
+  });
+
+  await ddbDocClient.send(command);
+}
+```
+
+### 3. Write a conditional update script utilizing optimistic locking in DynamoDB.
+
+**Example Solution:**
+```javascript
+const { UpdateCommand } = require("@aws-sdk/lib-dynamodb");
+
+async function updateInventory(productId, quantity, expectedVersion) {
+  const command = new UpdateCommand({
+    TableName: "Inventory",
+    Key: { ProductId: productId },
+    UpdateExpression: "SET qty = qty - :qty, version = version + :one",
+    ConditionExpression: "version = :expectedVersion AND qty >= :qty",
+    ExpressionAttributeValues: {
+      ":qty": quantity,
+      ":expectedVersion": expectedVersion,
+      ":one": 1
+    }
+  });
+  await ddbDocClient.send(command);
+}
+```
+
+### 4. [Self-Practice] Design a high-throughput, fault-tolerant system leveraging key principles of DynamoDB & NoSQL Modeling.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 5. [Self-Practice] Write a custom utility to validate input schemas and sanitize payloads in DynamoDB & NoSQL Modeling.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 6. [Self-Practice] Implement a comprehensive error-boundary and logging module for a DynamoDB & NoSQL Modeling application.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 7. [Self-Practice] Optimize memory consumption and execution hot-paths under high load in DynamoDB & NoSQL Modeling.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 8. [Self-Practice] Write an automated unit testing suite targeting complex race-conditions in DynamoDB & NoSQL Modeling.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 9. [Self-Practice] Create a localized internationalization (i18n) helper integrated with DynamoDB & NoSQL Modeling.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 10. [Self-Practice] Build a secure token-based authentication handshake flow within DynamoDB & NoSQL Modeling.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 11. [Self-Practice] Design a distributed caching and invalidation strategy for heavy DynamoDB & NoSQL Modeling operations.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 12. [Self-Practice] Create a CLI tool to automate scaffolding and deployment of DynamoDB & NoSQL Modeling configurations.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 13. [Self-Practice] Implement a real-time event-driven pub/sub handler using DynamoDB & NoSQL Modeling event structures.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 14. [Self-Practice] Draft an architectural decision record (ADR) comparing DynamoDB & NoSQL Modeling with its primary competitors.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 15. [Self-Practice] Create a mock framework to isolate and test external integrations in DynamoDB & NoSQL Modeling.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 16. [Self-Practice] Write a custom telemetry wrapper to output DynamoDB & NoSQL Modeling performance metrics to Prometheus/Grafana.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 17. [Self-Practice] Design a zero-downtime blue-green roll-out plan for a database or service utilizing DynamoDB & NoSQL Modeling.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 18. [Self-Practice] Implement a circuit-breaker pattern to gracefully degrade service during DynamoDB & NoSQL Modeling failures.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 19. [Self-Practice] Write an automated script to detect memory leaks and unhandled promise rejections in DynamoDB & NoSQL Modeling.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 20. [Self-Practice] Build a user-friendly audit log tracking all state mutations and access events in DynamoDB & NoSQL Modeling.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 21. [Self-Practice] Design an API gateway integration mapping REST inputs to DynamoDB & NoSQL Modeling data layers.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 22. [Self-Practice] Implement a rate-limiter with custom sliding-window configurations in DynamoDB & NoSQL Modeling.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 23. [Self-Practice] Create a backup and recovery automated script for preserving DynamoDB & NoSQL Modeling state repositories.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 24. [Self-Practice] Design a microservice boundary that encapsulates DynamoDB & NoSQL Modeling logic without tight coupling.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 25. [Self-Practice] Build a role-based access control (RBAC) middleware verifying permissions on DynamoDB & NoSQL Modeling.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 26. [Self-Practice] Write an optimized compiler or parser configuration to bundle DynamoDB & NoSQL Modeling files for web browsers.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 27. [Self-Practice] Implement a dead-letter queue (DLQ) pattern for handling corrupted messages in DynamoDB & NoSQL Modeling.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 28. [Self-Practice] Create an automated health-check endpoint monitor checking DynamoDB & NoSQL Modeling connection integrity.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 29. [Self-Practice] Implement a secure CORS and CSP policy wrapper for endpoints exposing DynamoDB & NoSQL Modeling.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 30. [Self-Practice] Refactor a legacy monolithic module into modern, modular ES modules using DynamoDB & NoSQL Modeling.
+
+*(Challenge question for self-study and practical project implementation.)*
+

@@ -2,7 +2,7 @@
 
 This document contains a comprehensive list of C# interview questions, categorized by difficulty.
 
-## Basic (10 Questions)
+## Basic Questions
 
 ### 1. What is C#?
 **Answer:** 
@@ -14,6 +14,10 @@ C# (pronounced "C-Sharp") is a modern, object-oriented, and type-safe programmin
 - It is heavily inspired by C++ and Java.
 **Example:** `Console.WriteLine("Hello World");`
 **Reference:** [C# Docs](https://learn.microsoft.com/en-us/dotnet/csharp/)
+
+---
+
+---
 
 ---
 
@@ -31,6 +35,10 @@ A `class` is a reference type, while a `struct` is a value type.
 
 ---
 
+---
+
+---
+
 ### 3. What are Value Types and Reference Types?
 **Answer:** 
 **The Core Concept:**
@@ -41,6 +49,10 @@ Value types directly contain their data, while reference types store a reference
 - Reference types (string, class, array, delegate) are stored on the heap.
 **Example:** `int a = 5;` (Value) vs `string b = "Hello";` (Reference)
 **Reference:** [Value Types vs Reference Types](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-types)
+
+---
+
+---
 
 ---
 
@@ -57,6 +69,10 @@ Both are used to pass arguments by reference rather than by value.
 
 ---
 
+---
+
+---
+
 ### 5. What are Properties in C#?
 **Answer:** 
 **The Core Concept:**
@@ -69,6 +85,10 @@ Properties are members that provide a flexible mechanism to read, write, or comp
 
 ---
 
+---
+
+---
+
 ### 6. What is the purpose of the `using` statement?
 **Answer:** 
 **The Core Concept:**
@@ -78,6 +98,10 @@ It ensures that unmanaged resources are correctly and immediately disposed of wh
 - It is syntactic sugar for a `try-finally` block that calls the `Dispose()` method of objects implementing `IDisposable`.
 **Example:** `using (var reader = new StreamReader("file.txt")) { ... }`
 **Reference:** [using Statement](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/using)
+
+---
+
+---
 
 ---
 
@@ -94,6 +118,10 @@ An interface contains only the signatures of methods, properties, events, or ind
 
 ---
 
+---
+
+---
+
 ### 8. What is Enum in C#?
 **Answer:** 
 **The Core Concept:**
@@ -107,6 +135,10 @@ An enumeration (`enum`) is a distinct value type consisting of a set of named co
 
 ---
 
+---
+
+---
+
 ### 9. What is a Namespace?
 **Answer:** 
 **The Core Concept:**
@@ -117,6 +149,10 @@ A namespace is used to organize code and prevent naming conflicts.
 - Accessed using the `using` directive at the top of a file.
 **Example:** `namespace MyApplication { class Program {} }`
 **Reference:** [Namespaces](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/namespaces)
+
+---
+
+---
 
 ---
 
@@ -135,6 +171,10 @@ The `static` modifier declares a member that belongs to the type itself rather t
 
 ## Medium (10 Questions)
 
+---
+
+---
+
 ### 11. What is Boxing and Unboxing?
 **Answer:** 
 **The Core Concept:**
@@ -145,6 +185,10 @@ Boxing is the process of converting a value type to the `object` reference type.
 - Unboxing extracts the value from the object. Both operations are computationally expensive and should be avoided in performance-critical code.
 **Example:** `int i = 123; object o = i; // Boxing`
 **Reference:** [Boxing and Unboxing](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/types/boxing-and-unboxing)
+
+---
+
+---
 
 ---
 
@@ -161,6 +205,10 @@ A delegate is a type that represents references to methods with a particular par
 
 ---
 
+---
+
+---
+
 ### 13. What is the difference between `String` and `StringBuilder`?
 **Answer:** 
 **The Core Concept:**
@@ -171,6 +219,10 @@ A delegate is a type that represents references to methods with a particular par
 - `StringBuilder` dynamically expands its memory buffer, making it much faster for repetitive string manipulations.
 **Example:** `StringBuilder sb = new StringBuilder(); sb.Append("Hello");`
 **Reference:** [StringBuilder Class](https://learn.microsoft.com/en-us/dotnet/api/system.text.stringbuilder)
+
+---
+
+---
 
 ---
 
@@ -186,6 +238,10 @@ Generics allow you to design classes and methods that defer the specification of
 
 ---
 
+---
+
+---
+
 ### 15. What is LINQ?
 **Answer:** 
 **The Core Concept:**
@@ -195,6 +251,10 @@ Language Integrated Query (LINQ) provides a consistent querying syntax directly 
 - It allows you to query various data sources (Collections, SQL databases, XML) using a SQL-like syntax or method chaining natively in code.
 **Example:** `var adults = users.Where(u => u.Age >= 18);`
 **Reference:** [LINQ](https://learn.microsoft.com/en-us/dotnet/csharp/linq/)
+
+---
+
+---
 
 ---
 
@@ -210,6 +270,10 @@ Extension methods allow you to "add" methods to existing types without creating 
 
 ---
 
+---
+
+---
+
 ### 17. What is the `virtual` keyword?
 **Answer:** 
 **The Core Concept:**
@@ -219,6 +283,10 @@ The `virtual` keyword is used to modify a method, property, or event declaration
 - Unlike abstract methods, virtual methods must have a default implementation.
 **Example:** `public virtual void Draw() { }`
 **Reference:** [Virtual](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/virtual)
+
+---
+
+---
 
 ---
 
@@ -235,6 +303,10 @@ An interface is an empty contract, while an abstract class can provide some base
 
 ---
 
+---
+
+---
+
 ### 19. What is Reflection in C#?
 **Answer:** 
 **The Core Concept:**
@@ -245,6 +317,10 @@ Reflection is the ability of managed code to read its own metadata to find assem
 - Used heavily by ORMs and dependency injection frameworks, though it has a performance cost.
 **Example:** `Type t = typeof(MyClass);`
 **Reference:** [Reflection](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/reflection)
+
+---
+
+---
 
 ---
 
@@ -262,6 +338,14 @@ These keywords are used for asynchronous programming, allowing the main thread (
 
 ## Hard (10 Questions)
 
+---
+
+## Intermediate Questions
+
+---
+
+## Intermediate Questions
+
 ### 21. How does Garbage Collection (GC) work in C#?
 **Answer:** 
 **The Core Concept:**
@@ -272,6 +356,10 @@ The GC manages the allocation and release of memory for an application automatic
 - It helps prevent memory leaks but can cause application pauses during "Stop the World" collections.
 **Example:** `GC.Collect(); // Forces collection (not recommended)`
 **Reference:** [Garbage Collection](https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/)
+
+---
+
+---
 
 ---
 
@@ -288,6 +376,10 @@ A `Thread` is a low-level OS construct, while a `Task` is a higher-level abstrac
 
 ---
 
+---
+
+---
+
 ### 23. What is the `yield` keyword?
 **Answer:** 
 **The Core Concept:**
@@ -298,6 +390,10 @@ The `yield` keyword is used to perform custom, stateful iteration over a collect
 - It enables lazy evaluation of collections, saving massive amounts of memory.
 **Example:** `IEnumerable<int> GetNumbers() { yield return 1; yield return 2; }`
 **Reference:** [yield](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/yield)
+
+---
+
+---
 
 ---
 
@@ -314,6 +410,10 @@ DI is a design pattern used to implement Inversion of Control (IoC), allowing th
 
 ---
 
+---
+
+---
+
 ### 25. What is the difference between `IQueryable` and `IEnumerable`?
 **Answer:** 
 **The Core Concept:**
@@ -327,6 +427,10 @@ Both are interfaces for iterating collections, but `IQueryable` is specifically 
 
 ---
 
+---
+
+---
+
 ### 26. What are Expression Trees?
 **Answer:** 
 **The Core Concept:**
@@ -336,6 +440,10 @@ Expression trees represent code in a tree-like data structure, where each node i
 - Instead of compiling code into executable IL immediately, it compiles it into a data structure that can be inspected, modified, or translated into another language (like SQL via Entity Framework) at runtime.
 **Example:** `Expression<Func<int, bool>> expr = num => num < 5;`
 **Reference:** [Expression Trees](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/expression-trees/)
+
+---
+
+---
 
 ---
 
@@ -352,6 +460,10 @@ The `lock` statement acquires the mutual-exclusion lock for a given object, exec
 
 ---
 
+---
+
+---
+
 ### 28. What are covariance and contravariance in C#?
 **Answer:** 
 **The Core Concept:**
@@ -362,6 +474,10 @@ They define how generic type parameters handle inheritance hierarchies.
 - Contravariance (`in`) allows you to use a more generic (less derived) type (e.g., passing `Action<Base>` to `Action<Derived>`).
 **Example:** `IEnumerable<out T>` vs `IComparer<in T>`.
 **Reference:** [Covariance and Contravariance](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/covariance-contravariance/)
+
+---
+
+---
 
 ---
 
@@ -378,6 +494,10 @@ Both are used to free unmanaged resources, but `Dispose` is deterministic while 
 
 ---
 
+---
+
+---
+
 ### 30. What is `volatile` keyword?
 **Answer:** 
 **The Core Concept:**
@@ -390,6 +510,9 @@ The `volatile` keyword indicates that a field might be modified by multiple thre
 
 ---
 
+---
+
+---
 
 ### 31. What is the `readonly` keyword?
 **Answer:** 
@@ -401,6 +524,10 @@ A modifier that prevents a field from being modified after it is initialized.
 - Unlike `const`, it can be initialized dynamically at runtime.
 **Example:** `public readonly int MaxUsers;`
 **Reference:** [readonly](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/readonly)
+
+---
+
+---
 
 ---
 
@@ -417,6 +544,10 @@ A modifier that declares a field or local variable as a compile-time constant.
 
 ---
 
+---
+
+---
+
 ### 33. What is the difference between `throw` and `throw ex`?
 **Answer:** 
 **The Core Concept:**
@@ -430,6 +561,10 @@ They dictate how exceptions are propagated up the call stack.
 
 ---
 
+---
+
+---
+
 ### 34. What is a Tuple in C#?
 **Answer:** 
 **The Core Concept:**
@@ -439,6 +574,10 @@ A lightweight data structure that contains a specific number and sequence of ele
 - Introduced in C# 7, modern tuples use `ValueTuple` under the hood, making them value types that are great for returning multiple values from a method without creating `out` parameters or dedicated DTO classes.
 **Example:** `public (int sum, int count) GetStats() { return (10, 2); }`
 **Reference:** [Tuple types](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-tuples)
+
+---
+
+---
 
 ---
 
@@ -455,6 +594,10 @@ A type that bypasses compile-time type checking.
 
 ---
 
+---
+
+---
+
 ### 36. What is the `var` keyword?
 **Answer:** 
 **The Core Concept:**
@@ -465,6 +608,10 @@ Implicitly types a local variable.
 - It cannot be used for fields at the class level or for method return types.
 **Example:** `var list = new List<string>();`
 **Reference:** [Implicitly typed local variables](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/implicitly-typed-local-variables)
+
+---
+
+---
 
 ---
 
@@ -481,6 +628,10 @@ Attributes are declarative tags used to convey metadata about types, methods, pr
 
 ---
 
+---
+
+---
+
 ### 38. What is the difference between Array and ArrayList?
 **Answer:** 
 **The Core Concept:**
@@ -491,6 +642,10 @@ Attributes are declarative tags used to convey metadata about types, methods, pr
 - `ArrayList` stores everything as `object`, requiring boxing/unboxing. It is considered legacy and replaced by `List<T>`.
 **Example:** `int[] arr = new int[5];` vs `ArrayList al = new ArrayList();`
 **Reference:** [ArrayList Class](https://learn.microsoft.com/en-us/dotnet/api/system.collections.arraylist)
+
+---
+
+---
 
 ---
 
@@ -506,6 +661,10 @@ The foundational interface for all non-generic collections that can be enumerate
 
 ---
 
+---
+
+---
+
 ### 40. What is an Indexer?
 **Answer:** 
 **The Core Concept:**
@@ -515,6 +674,10 @@ Indexers allow instances of a class or struct to be indexed just like arrays.
 - They are defined using the `this` keyword. They are essentially properties that take parameters (usually an `int` or `string`).
 **Example:** `public string this[int index] { get { return arr[index]; } set { arr[index] = value; } }`
 **Reference:** [Indexers](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/indexers/)
+
+---
+
+---
 
 ---
 
@@ -531,6 +694,10 @@ Both check for equality, but they operate differently under the hood for referen
 
 ---
 
+---
+
+---
+
 ### 42. Explain the Null-conditional Operator (`?.`).
 **Answer:** 
 **The Core Concept:**
@@ -541,6 +708,10 @@ It provides a safe way to access members of an object that might be null.
 - It drastically reduces the need for nested `if (obj != null)` checks.
 **Example:** `int? length = user?.Name?.Length;`
 **Reference:** [Null-conditional operators](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/member-access-operators#null-conditional-operators--and-)
+
+---
+
+---
 
 ---
 
@@ -557,6 +728,10 @@ It returns the left-hand operand if it isn't null; otherwise, it evaluates and r
 
 ---
 
+---
+
+---
+
 ### 44. What is a Destructor (Finalizer)?
 **Answer:** 
 **The Core Concept:**
@@ -567,6 +742,10 @@ A special method invoked by the Garbage Collector before an object is destroyed 
 - It is generally used as a fallback to release unmanaged resources if `Dispose()` was not called.
 **Example:** `~MyClass() { // cleanup code }`
 **Reference:** [Finalizers](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/destructors)
+
+---
+
+---
 
 ---
 
@@ -583,6 +762,10 @@ The `partial` keyword allows a class, struct, or interface to be split across mu
 
 ---
 
+---
+
+---
+
 ### 46. What is the difference between `break` and `continue`?
 **Answer:** 
 **The Core Concept:**
@@ -593,6 +776,10 @@ Both are jump statements used inside loops.
 - `continue` skips the remaining code in the current iteration and jumps to the next iteration of the loop.
 **Example:** `if (skip) continue;`
 **Reference:** [Jump Statements](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/jump-statements)
+
+---
+
+---
 
 ---
 
@@ -609,6 +796,10 @@ It allows a method to accept a variable number of arguments.
 
 ---
 
+---
+
+---
+
 ### 48. What is Method Overloading?
 **Answer:** 
 **The Core Concept:**
@@ -618,6 +809,10 @@ A type of static (compile-time) polymorphism where multiple methods can share th
 - They must have different signatures (different number of parameters, different types of parameters, or different parameter order). The return type alone cannot be the differentiator.
 **Example:** `public void Print(int i)` and `public void Print(string s)`
 **Reference:** [Method Overloading](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/methods)
+
+---
+
+---
 
 ---
 
@@ -634,6 +829,10 @@ A type of dynamic (runtime) polymorphism where a derived class provides a specif
 
 ---
 
+---
+
+---
+
 ### 50. Explain the `new` keyword in method hiding.
 **Answer:** 
 **The Core Concept:**
@@ -646,6 +845,14 @@ The `new` modifier hides a member inherited from a base class.
 
 ---
 
+---
+
+## Expert Questions
+
+---
+
+## Expert Questions
+
 ### 51. What is an Event in C#?
 **Answer:** 
 **The Core Concept:**
@@ -655,6 +862,10 @@ Events are a mechanism for a class to notify other classes when something of int
 - They are built on top of delegates. The publisher raises the event, and subscribers handle it. The `event` keyword adds a layer of protection preventing outside classes from clearing the invocation list.
 **Example:** `public event EventHandler ProcessCompleted;`
 **Reference:** [Events](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/events/)
+
+---
+
+---
 
 ---
 
@@ -671,6 +882,10 @@ They are built-in generic delegate types provided by the .NET BCL.
 
 ---
 
+---
+
+---
+
 ### 53. What is a Predicate?
 **Answer:** 
 **The Core Concept:**
@@ -683,6 +898,10 @@ A built-in delegate that represents a method that defines a set of criteria and 
 
 ---
 
+---
+
+---
+
 ### 54. What are Lambda Expressions?
 **Answer:** 
 **The Core Concept:**
@@ -692,6 +911,10 @@ An anonymous function used to create delegates or expression tree types inline.
 - Introduced in C# 3.0, they use the `=>` operator (goes to). They are heavily used in LINQ for writing concise, functional-style code.
 **Example:** `users.Where(u => u.Age > 18);`
 **Reference:** [Lambda expressions](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions)
+
+---
+
+---
 
 ---
 
@@ -708,6 +931,10 @@ Both evaluate collections, but with vast performance differences when checking f
 
 ---
 
+---
+
+---
+
 ### 56. What is Deferred Execution in LINQ?
 **Answer:** 
 **The Core Concept:**
@@ -717,6 +944,10 @@ The evaluation of a LINQ query is delayed until its realized value is actually r
 - Defining a query using `Where` or `Select` does not execute it. It is executed only when iterated over in a `foreach` loop or when a method like `ToList()`, `ToArray()`, or `Count()` is called.
 **Example:** Query parameters can be changed before calling `ToList()`.
 **Reference:** [Deferred Execution](https://learn.microsoft.com/en-us/dotnet/standard/linq/deferred-execution)
+
+---
+
+---
 
 ---
 
@@ -733,6 +964,10 @@ The evaluation of a LINQ query is delayed until its realized value is actually r
 
 ---
 
+---
+
+---
+
 ### 58. Explain the `lock` statement vs `Mutex`.
 **Answer:** 
 **The Core Concept:**
@@ -746,6 +981,10 @@ Both are used for thread synchronization to prevent race conditions.
 
 ---
 
+---
+
+---
+
 ### 59. What is the `ThreadLocal<T>` class?
 **Answer:** 
 **The Core Concept:**
@@ -755,6 +994,10 @@ It provides thread-local storage of data.
 - It ensures that every thread accessing the variable has its own independent copy of the data, completely eliminating the need for `lock` statements for thread safety.
 **Example:** `ThreadLocal<int> _threadCounter = new ThreadLocal<int>(() => 0);`
 **Reference:** [ThreadLocal](https://learn.microsoft.com/en-us/dotnet/api/system.threading.threadlocal-1)
+
+---
+
+---
 
 ---
 
@@ -771,6 +1014,10 @@ Both wait for multiple Tasks to complete.
 
 ---
 
+---
+
+---
+
 ### 61. How does `ConfigureAwait(false)` work?
 **Answer:** 
 **The Core Concept:**
@@ -781,6 +1028,10 @@ It configures an awaiter used to await a Task.
 - Passing `false` tells the runtime that the continuation does not need to resume on the original context, allowing it to run on any ThreadPool thread, preventing deadlocks and improving performance in class libraries.
 **Example:** `await httpClient.GetAsync(url).ConfigureAwait(false);`
 **Reference:** [ConfigureAwait](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.configureawait)
+
+---
+
+---
 
 ---
 
@@ -796,6 +1047,10 @@ How the compiler decides between an instance method and an extension method.
 
 ---
 
+---
+
+---
+
 ### 63. What is Reflection Emit?
 **Answer:** 
 **The Core Concept:**
@@ -805,6 +1060,10 @@ An advanced feature of the `System.Reflection.Emit` namespace.
 - While Reflection allows you to *inspect* types at runtime, Reflection Emit allows you to *generate* IL code dynamically at runtime, creating entirely new types, assemblies, and methods on the fly. Heavy used by ORMs (like EF Core) and mocking frameworks (like Moq).
 **Example:** Using `ILGenerator` to emit Opcodes.
 **Reference:** [Emitting Dynamic Methods](https://learn.microsoft.com/en-us/dotnet/framework/reflection-and-codedom/emitting-dynamic-methods-and-assemblies)
+
+---
+
+---
 
 ---
 
@@ -820,6 +1079,10 @@ A `record` is a reference type that provides built-in functionality for encapsul
 
 ---
 
+---
+
+---
+
 ### 65. What is the `with` expression?
 **Answer:** 
 **The Core Concept:**
@@ -829,6 +1092,10 @@ Used primarily with `record` types for non-destructive mutation.
 - Because records are immutable, you cannot change their properties. The `with` expression creates a clone of the record, copying all properties and modifying only the specific properties you provide.
 **Example:** `var olderPerson = person with { Age = person.Age + 1 };`
 **Reference:** [with expression](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/with-expression)
+
+---
+
+---
 
 ---
 
@@ -844,6 +1111,10 @@ A feature that tests whether an expression has a certain characteristic and, if 
 
 ---
 
+---
+
+---
+
 ### 67. What are Local Functions?
 **Answer:** 
 **The Core Concept:**
@@ -853,6 +1124,10 @@ Private methods of a type that are nested in another member.
 - They can only be called from their containing member. They are more efficient than lambdas/delegates because they do not require instantiation of a delegate object on the heap, reducing GC pressure.
 **Example:** `int Add(int a, int b) { return a + b; }` defined inside another method.
 **Reference:** [Local functions](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/local-functions)
+
+---
+
+---
 
 ---
 
@@ -868,6 +1143,10 @@ They are functionally identical.
 
 ---
 
+---
+
+---
+
 ### 69. What is String Interning?
 **Answer:** 
 **The Core Concept:**
@@ -877,6 +1156,10 @@ A mechanism the CLR uses to optimize string memory usage.
 - Because strings are immutable, the CLR maintains an "intern pool". If you create multiple string variables with the literal value "Hello", the CLR does not allocate separate memory blocks. They all point to the single "Hello" reference in the pool.
 **Example:** `object.ReferenceEquals("A", "A") // Returns true`
 **Reference:** [String.Intern](https://learn.microsoft.com/en-us/dotnet/api/system.string.intern)
+
+---
+
+---
 
 ---
 
@@ -893,6 +1176,10 @@ Interfaces used for sorting objects.
 
 ---
 
+---
+
+---
+
 ### 71. What is the `volatile` modifier in threading?
 **Answer:** 
 **The Core Concept:**
@@ -902,6 +1189,10 @@ The `volatile` keyword indicates that a field might be modified by multiple thre
 - It prevents the compiler/JIT from optimizing read/write access to that field (such as caching the value in a CPU register), forcing every read to fetch the latest value directly from main memory.
 **Example:** `private volatile bool _shouldStop;`
 **Reference:** [volatile](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/volatile)
+
+---
+
+---
 
 ---
 
@@ -918,6 +1209,10 @@ They describe how generic type parameters allow implicit reference conversion of
 
 ---
 
+---
+
+---
+
 ### 73. What is the difference between late binding and early binding?
 **Answer:** 
 **The Core Concept:**
@@ -928,6 +1223,10 @@ Relates to when the compiler resolves method calls.
 - **Late Binding (Runtime):** Using Reflection or `dynamic`, the method call is resolved at runtime. Slower, but allows interacting with unknown types or COM objects.
 **Example:** `obj.DoWork()` (Early) vs `type.GetMethod("DoWork").Invoke(obj)` (Late).
 **Reference:** [Early and Late Binding](https://learn.microsoft.com/en-us/dotnet/visual-basic/programming-guide/language-features/early-late-binding/)
+
+---
+
+---
 
 ---
 
@@ -943,6 +1242,10 @@ A convenient way to encapsulate a set of read-only properties into a single obje
 
 ---
 
+---
+
+---
+
 ### 75. Explain the `IDisposable` pattern.
 **Answer:** 
 **The Core Concept:**
@@ -952,6 +1255,10 @@ The standard way to release unmanaged resources deterministically.
 - Implements the `Dispose()` method. A proper pattern suppresses finalization (`GC.SuppressFinalize(this)`) to prevent the garbage collector from wasting time finalizing an object that has already been cleaned up.
 **Example:** `public void Dispose() { Dispose(true); GC.SuppressFinalize(this); }`
 **Reference:** [Dispose Pattern](https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose)
+
+---
+
+---
 
 ---
 
@@ -968,6 +1275,10 @@ Both copy array data, but handle instantiation differently.
 
 ---
 
+---
+
+---
+
 ### 77. What is `SemaphoreSlim`?
 **Answer:** 
 **The Core Concept:**
@@ -977,6 +1288,10 @@ A lightweight synchronization primitive that limits the number of threads that c
 - Unlike `lock` which allows 1 thread, a Semaphore allows N threads. `SemaphoreSlim` is optimized for execution within a single app, and uniquely supports `async/await` (`WaitAsync()`).
 **Example:** `await _semaphore.WaitAsync(); try { ... } finally { _semaphore.Release(); }`
 **Reference:** [SemaphoreSlim](https://learn.microsoft.com/en-us/dotnet/api/system.threading.semaphoreslim)
+
+---
+
+---
 
 ---
 
@@ -992,6 +1307,10 @@ A situation where two or more threads are blocked forever, waiting for each othe
 
 ---
 
+---
+
+---
+
 ### 79. What is a Memory Leak in C#?
 **Answer:** 
 **The Core Concept:**
@@ -1001,6 +1320,10 @@ When memory is allocated but never released, despite the application no longer n
 - Since C# has a GC, true memory leaks are rare. "Logical leaks" happen when developers keep objects alive via static references, event handler subscriptions (forgetting to unsubscribe `-=`), or unclosed unmanaged resources (forgetting `Dispose()`).
 **Example:** Subscribing to a static event and destroying the local object.
 **Reference:** [Memory Leaks](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/debug-memory-leak)
+
+---
+
+---
 
 ---
 
@@ -1016,6 +1339,10 @@ Using diagnostics tools to analyze the managed heap.
 
 ---
 
+---
+
+---
+
 ### 81. Explain what `Span<T>` and `Memory<T>` are.
 **Answer:** 
 **The Core Concept:**
@@ -1028,6 +1355,10 @@ Modern C# types introduced for high-performance memory manipulation without allo
 
 ---
 
+---
+
+---
+
 ### 82. What is `stackalloc`?
 **Answer:** 
 **The Core Concept:**
@@ -1037,6 +1368,10 @@ A keyword used in an unsafe context to allocate memory on the stack rather than 
 - Allocating on the stack is almost instantaneous and avoids Garbage Collection entirely. Modern C# allows using `stackalloc` safely with `Span<T>` without the `unsafe` keyword.
 **Example:** `Span<byte> buffer = stackalloc byte[100];`
 **Reference:** [stackalloc](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/stackalloc)
+
+---
+
+---
 
 ---
 
@@ -1053,6 +1388,10 @@ Methods to queue work to the ThreadPool.
 
 ---
 
+---
+
+---
+
 ### 84. Explain the difference between `AsEnumerable()` and `AsQueryable()`.
 **Answer:** 
 **The Core Concept:**
@@ -1063,6 +1402,10 @@ Both transition the execution model of a LINQ query.
 - `AsQueryable()` converts an in-memory collection into an `IQueryable`. Useful for mocking database contexts in unit tests.
 **Example:** `query.AsEnumerable().Select(x => MyCustomCsharpFunction(x))`
 **Reference:** [AsEnumerable](https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.asenumerable)
+
+---
+
+---
 
 ---
 
@@ -1078,6 +1421,10 @@ Introduced in C# 8, interfaces can now provide a default implementation for a me
 
 ---
 
+---
+
+---
+
 ### 86. What is the `in` parameter modifier?
 **Answer:** 
 **The Core Concept:**
@@ -1090,6 +1437,10 @@ It passes an argument by reference, but guarantees it is read-only.
 
 ---
 
+---
+
+---
+
 ### 87. What are Source Generators?
 **Answer:** 
 **The Core Concept:**
@@ -1099,6 +1450,10 @@ A compiler feature introduced in C# 9 that lets developers write code that gener
 - Unlike Reflection (which is slow and happens at runtime), Source Generators inspect the code during the build step and emit highly optimized code files dynamically. Used heavily in modern .NET for JSON serialization and DI without Reflection overhead.
 **Example:** The `System.Text.Json` source generator.
 **Reference:** [Source Generators](https://learn.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/source-generators-overview)
+
+---
+
+---
 
 ---
 
@@ -1115,6 +1470,10 @@ Both construct dynamic strings.
 
 ---
 
+---
+
+---
+
 ### 89. What is a DTO (Data Transfer Object)?
 **Answer:** 
 **The Core Concept:**
@@ -1127,6 +1486,10 @@ An object used to carry data between processes to reduce the number of method ca
 
 ---
 
+---
+
+---
+
 ### 90. Explain Boxing/Unboxing performance implications.
 **Answer:** 
 **The Core Concept:**
@@ -1136,6 +1499,10 @@ Converting a value type to a reference type (and back).
 - When boxing occurs, the CLR must allocate a new object on the heap, copy the value from the stack to the heap, and create a reference. This creates massive memory allocations and GC pressure if done inside loops. Always use Generics (`List<int>`) to avoid it.
 **Example:** `ArrayList` boxes integers, `List<int>` does not.
 **Reference:** [Boxing/Unboxing Performance](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/types/boxing-and-unboxing)
+
+---
+
+---
 
 ---
 
@@ -1152,6 +1519,10 @@ Both store dates and times, but handle time zones differently.
 
 ---
 
+---
+
+---
+
 ### 92. What is the `TaskCompletionSource<T>` class?
 **Answer:** 
 **The Core Concept:**
@@ -1161,6 +1532,10 @@ It allows you to create a `Task<T>` manually and control its state (Completed, F
 - Used heavily when wrapping legacy event-based asynchronous patterns (EAP) or old callback APIs into modern `async/await` compatible tasks.
 **Example:** Setting `tcs.SetResult(true)` inside an event handler.
 **Reference:** [TaskCompletionSource](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.taskcompletionsource-1)
+
+---
+
+---
 
 ---
 
@@ -1177,6 +1552,10 @@ Both handle thread safety without locks.
 
 ---
 
+---
+
+---
+
 ### 94. What is a Closure in C#?
 **Answer:** 
 **The Core Concept:**
@@ -1186,6 +1565,10 @@ A closure occurs when a lambda expression or anonymous method references a varia
 - The compiler creates a hidden class to hold the captured variable, meaning its lifetime is extended until the lambda is garbage collected. Capturing loop variables incorrectly in old C# versions led to the infamous "modified closure" bug.
 **Example:** `int x = 5; Action a = () => Console.Write(x);`
 **Reference:** [Closures](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/lambda-expressions#capture-of-outer-variables-and-variable-scope-in-lambda-expressions)
+
+---
+
+---
 
 ---
 
@@ -1203,6 +1586,10 @@ The full pattern used to clean up unmanaged resources (file handles, network soc
 
 ---
 
+---
+
+---
+
 ### 96. What is the difference between `System.Array` and `System.Collections.Generic.List<T>`?
 **Answer:** 
 **The Core Concept:**
@@ -1213,6 +1600,10 @@ Array is a fixed-size contiguous block of memory. List is a dynamic wrapper arou
 - Pre-sizing a List (`new List<int>(1000)`) avoids this expensive reallocation overhead.
 **Example:** `List.Capacity` vs `List.Count`.
 **Reference:** [List Class](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1)
+
+---
+
+---
 
 ---
 
@@ -1229,6 +1620,10 @@ Locking on publicly accessible objects.
 
 ---
 
+---
+
+---
+
 ### 98. What is `Task.Yield()`?
 **Answer:** 
 **The Core Concept:**
@@ -1238,6 +1633,10 @@ An asynchronous method that forces the current method to yield execution back to
 - It is used to force a method to complete asynchronously, even if it could run synchronously. Often used in UI applications to keep the UI thread responsive when entering a massive calculation loop.
 **Example:** `await Task.Yield();`
 **Reference:** [Task.Yield](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.yield)
+
+---
+
+---
 
 ---
 
@@ -1253,6 +1652,10 @@ A concise way to declare a record and its properties in one line.
 
 ---
 
+---
+
+---
+
 ### 100. What is the `ConfigureAwait` analyzer (CA2007) and why is it important for libraries?
 **Answer:** 
 **The Core Concept:**
@@ -1264,7 +1667,14 @@ A Roslyn analyzer rule enforcing the use of `ConfigureAwait(false)` in class lib
 **Reference:** [CA2007](https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca2007)
 
 ---
-\n## Additional Depth (Architectural Focus)\n
+
+## Additional Depth (Architectural Focus)
+
+
+---
+
+---
+
 ### 101. What is the difference between `IEnumerable<T>` and `IQueryable<T>`?
 **Answer:** 
 **The Core Concept:**
@@ -1280,3 +1690,301 @@ A Roslyn analyzer rule enforcing the use of `ConfigureAwait(false)` in class lib
 **Reference:** [Documentation](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/)
 
 ---
+
+---
+
+## Technical Questions
+
+---
+
+### 1. Write an allocation-free query string parser using `ReadOnlySpan<char>`.
+
+**Example Solution:**
+```csharp
+using System;
+
+public class QueryParser
+{
+    public static void ParseQuery(string queryString)
+    {
+        ReadOnlySpan<char> span = queryString.AsSpan();
+        if (span.StartsWith("?"))
+        {
+            span = span.Slice(1);
+        }
+
+        while (span.Length > 0)
+        {
+            int ampersandIdx = span.IndexOf('&');
+            ReadOnlySpan<char> pair = ampersandIdx == -1 ? span : span.Slice(0, ampersandIdx);
+            
+            int eqIdx = pair.IndexOf('=');
+            if (eqIdx != -1)
+            {
+                ReadOnlySpan<char> key = pair.Slice(0, eqIdx);
+                ReadOnlySpan<char> value = pair.Slice(eqIdx + 1);
+                Console.WriteLine($"Key: {key.ToString()}, Value: {value.ToString()}");
+            }
+
+            span = ampersandIdx == -1 ? ReadOnlySpan<char>.Empty : span.Slice(ampersandIdx + 1);
+        }
+    }
+}
+```
+
+---
+
+### 2. Implement a generic Repository Pattern in C# using Entity Framework Core.
+
+**Example Solution:**
+```csharp
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+public interface IRepository<T> where T : class
+{
+    Task<IEnumerable<T>> GetAllAsync();
+    Task<T> GetByIdAsync(int id);
+    Task AddAsync(T entity);
+    void Update(T entity);
+    void Delete(T entity);
+}
+
+public class Repository<T> : IRepository<T> where T : class
+{
+    protected readonly DbContext _context;
+    
+    public Repository(DbContext context)
+    {
+        _context = context;
+    }
+
+    public async Task<IEnumerable<T>> GetAllAsync() => await _context.Set<T>().ToListAsync();
+
+    public async Task<T> GetByIdAsync(int id) => await _context.Set<T>().FindAsync(id);
+
+    public async Task AddAsync(T entity) => await _context.Set<T>().AddAsync(entity);
+
+    public void Update(T entity) => _context.Set<T>().Update(entity);
+
+    public void Delete(T entity) => _context.Set<T>().Remove(entity);
+}
+```
+
+---
+
+## Technical Questions
+
+### 1. Write an allocation-free query string parser using `ReadOnlySpan<char>`.
+
+**Example Solution:**
+```csharp
+using System;
+
+public class QueryParser
+{
+    public static void ParseQuery(string queryString)
+    {
+        ReadOnlySpan<char> span = queryString.AsSpan();
+        if (span.StartsWith("?"))
+        {
+            span = span.Slice(1);
+        }
+
+        while (span.Length > 0)
+        {
+            int ampersandIdx = span.IndexOf('&');
+            ReadOnlySpan<char> pair = ampersandIdx == -1 ? span : span.Slice(0, ampersandIdx);
+            
+            int eqIdx = pair.IndexOf('=');
+            if (eqIdx != -1)
+            {
+                ReadOnlySpan<char> key = pair.Slice(0, eqIdx);
+                ReadOnlySpan<char> value = pair.Slice(eqIdx + 1);
+                Console.WriteLine($"Key: {key.ToString()}, Value: {value.ToString()}");
+            }
+
+            span = ampersandIdx == -1 ? ReadOnlySpan<char>.Empty : span.Slice(ampersandIdx + 1);
+        }
+    }
+}
+```
+
+### 2. Implement a generic Repository Pattern in C# using Entity Framework Core.
+
+**Example Solution:**
+```csharp
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+public interface IRepository<T> where T : class
+{
+    Task<IEnumerable<T>> GetAllAsync();
+    Task<T> GetByIdAsync(int id);
+    Task AddAsync(T entity);
+    void Update(T entity);
+    void Delete(T entity);
+}
+
+public class Repository<T> : IRepository<T> where T : class
+{
+    protected readonly DbContext _context;
+    
+    public Repository(DbContext context)
+    {
+        _context = context;
+    }
+
+    public async Task<IEnumerable<T>> GetAllAsync() => await _context.Set<T>().ToListAsync();
+
+    public async Task<T> GetByIdAsync(int id) => await _context.Set<T>().FindAsync(id);
+
+    public async Task AddAsync(T entity) => await _context.Set<T>().AddAsync(entity);
+
+    public void Update(T entity) => _context.Set<T>().Update(entity);
+
+    public void Delete(T entity) => _context.Set<T>().Remove(entity);
+}
+```
+
+### 3. Write a Thread-Safe Singleton implementation using double-check locking in C#.
+
+**Example Solution:**
+```csharp
+public sealed class DatabaseConnector
+{
+    private static DatabaseConnector _instance;
+    private static readonly object _lock = new object();
+
+    private DatabaseConnector() {}
+
+    public static DatabaseConnector Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                lock (_lock)
+                {
+                    if (_instance == null)
+                    {
+                        _instance = new DatabaseConnector();
+                    }
+                }
+            }
+            return _instance;
+        }
+    }
+}
+```
+
+### 4. [Self-Practice] Design a high-throughput, fault-tolerant system leveraging key principles of C# Programming.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 5. [Self-Practice] Write a custom utility to validate input schemas and sanitize payloads in C# Programming.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 6. [Self-Practice] Implement a comprehensive error-boundary and logging module for a C# Programming application.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 7. [Self-Practice] Optimize memory consumption and execution hot-paths under high load in C# Programming.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 8. [Self-Practice] Write an automated unit testing suite targeting complex race-conditions in C# Programming.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 9. [Self-Practice] Create a localized internationalization (i18n) helper integrated with C# Programming.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 10. [Self-Practice] Build a secure token-based authentication handshake flow within C# Programming.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 11. [Self-Practice] Design a distributed caching and invalidation strategy for heavy C# Programming operations.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 12. [Self-Practice] Create a CLI tool to automate scaffolding and deployment of C# Programming configurations.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 13. [Self-Practice] Implement a real-time event-driven pub/sub handler using C# Programming event structures.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 14. [Self-Practice] Draft an architectural decision record (ADR) comparing C# Programming with its primary competitors.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 15. [Self-Practice] Create a mock framework to isolate and test external integrations in C# Programming.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 16. [Self-Practice] Write a custom telemetry wrapper to output C# Programming performance metrics to Prometheus/Grafana.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 17. [Self-Practice] Design a zero-downtime blue-green roll-out plan for a database or service utilizing C# Programming.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 18. [Self-Practice] Implement a circuit-breaker pattern to gracefully degrade service during C# Programming failures.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 19. [Self-Practice] Write an automated script to detect memory leaks and unhandled promise rejections in C# Programming.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 20. [Self-Practice] Build a user-friendly audit log tracking all state mutations and access events in C# Programming.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 21. [Self-Practice] Design an API gateway integration mapping REST inputs to C# Programming data layers.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 22. [Self-Practice] Implement a rate-limiter with custom sliding-window configurations in C# Programming.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 23. [Self-Practice] Create a backup and recovery automated script for preserving C# Programming state repositories.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 24. [Self-Practice] Design a microservice boundary that encapsulates C# Programming logic without tight coupling.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 25. [Self-Practice] Build a role-based access control (RBAC) middleware verifying permissions on C# Programming.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 26. [Self-Practice] Write an optimized compiler or parser configuration to bundle C# Programming files for web browsers.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 27. [Self-Practice] Implement a dead-letter queue (DLQ) pattern for handling corrupted messages in C# Programming.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 28. [Self-Practice] Create an automated health-check endpoint monitor checking C# Programming connection integrity.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 29. [Self-Practice] Implement a secure CORS and CSP policy wrapper for endpoints exposing C# Programming.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 30. [Self-Practice] Refactor a legacy monolithic module into modern, modular ES modules using C# Programming.
+
+*(Challenge question for self-study and practical project implementation.)*
+

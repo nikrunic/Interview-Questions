@@ -2,7 +2,7 @@
 
 This document contains a comprehensive list of 100 REST API interview questions, categorized by difficulty (20 Basic, 30 Medium, 50 Hard). These questions are curated based on popular public Git repositories and API design handbooks.
 
-## Basic (20 Questions)
+## Basic Questions
 
 ### 1. What does REST stand for?
 **Answer:** Representational State Transfer.
@@ -11,10 +11,18 @@ This document contains a comprehensive list of 100 REST API interview questions,
 
 ---
 
+---
+
+---
+
 ### 2. What is a REST API?
 **Answer:** An architectural style for an application program interface (API) that uses HTTP requests to access and use data.
 **Example:** Fetching user data via `GET /users/1`
 **Reference:** [IBM REST API](https://www.ibm.com/topics/rest-apis)
+
+---
+
+---
 
 ---
 
@@ -30,10 +38,18 @@ Roy Fielding, in his 2000 Ph.D.
 
 ---
 
+---
+
+---
+
 ### 4. What are the six guiding constraints of REST?
 **Answer:** Client-server architecture, Statelessness, Cacheability, Layered system, Code on demand (optional), and Uniform interface.
 **Example:** N/A
 **Reference:** [REST Constraints](https://restfulapi.net/rest-architectural-constraints/)
+
+---
+
+---
 
 ---
 
@@ -49,6 +65,10 @@ The server does not store any state about the client session on the server side.
 
 ---
 
+---
+
+---
+
 ### 6. What is a Resource in REST?
 **Answer:** 
 **The Core Concept:**
@@ -58,6 +78,10 @@ The fundamental concept in REST.
 - A resource is an object with a type, associated data, relationships to other resources, and a set of methods that operate on it.
 **Example:** A "User" or a "Document".
 **Reference:** [REST Resource](https://restfulapi.net/resource-naming/)
+
+---
+
+---
 
 ---
 
@@ -73,10 +97,18 @@ Uniform Resource Identifier.
 
 ---
 
+---
+
+---
+
 ### 8. What are the common HTTP methods used in REST?
 **Answer:** GET, POST, PUT, PATCH, DELETE.
 **Example:** `POST /users` creates a user.
 **Reference:** [HTTP Methods](https://restfulapi.net/http-methods/)
+
+---
+
+---
 
 ---
 
@@ -92,10 +124,18 @@ Retrieves a representation of a resource.
 
 ---
 
+---
+
+---
+
 ### 10. What does the POST method do?
 **Answer:** Submits an entity to the specified resource, often causing a change in state or side effects on the server (creating a new resource).
 **Example:** `POST /posts`
 **Reference:** [POST Method](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST)
+
+---
+
+---
 
 ---
 
@@ -111,6 +151,10 @@ PUT replaces the entire resource with the updated representation.
 
 ---
 
+---
+
+---
+
 ### 12. What does the DELETE method do?
 **Answer:** Deletes the specified resource.
 **Example:** `DELETE /users/1`
@@ -118,10 +162,18 @@ PUT replaces the entire resource with the updated representation.
 
 ---
 
+---
+
+---
+
 ### 13. What are HTTP Status Codes?
 **Answer:** Standard response codes given by web servers on the internet to indicate whether a specific HTTP request has been successfully completed.
 **Example:** `200 OK`, `404 Not Found`.
 **Reference:** [HTTP Status Codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
+
+---
+
+---
 
 ---
 
@@ -137,6 +189,10 @@ Success.
 
 ---
 
+---
+
+---
+
 ### 15. What does a 4xx status code indicate?
 **Answer:** 
 **The Core Concept:**
@@ -146,6 +202,10 @@ Client Error.
 - The request contains bad syntax or cannot be fulfilled.
 **Example:** `400 Bad Request`, `401 Unauthorized`.
 **Reference:** [4xx Client Error](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#client_error_responses)
+
+---
+
+---
 
 ---
 
@@ -161,6 +221,10 @@ Server Error.
 
 ---
 
+---
+
+---
+
 ### 17. What is JSON?
 **Answer:** 
 **The Core Concept:**
@@ -173,6 +237,10 @@ JavaScript Object Notation.
 
 ---
 
+---
+
+---
+
 ### 18. What are HTTP Headers?
 **Answer:** Key-value pairs sent in HTTP requests and responses that provide metadata about the message, such as content type and authorization.
 **Example:** `Content-Type: application/json`
@@ -180,10 +248,18 @@ JavaScript Object Notation.
 
 ---
 
+---
+
+---
+
 ### 19. What is a Payload?
 **Answer:** The actual data pack that is sent with the GET/POST/PUT HTTP request.
 **Example:** The JSON body in a POST request.
 **Reference:** [Payload](https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages#body)
+
+---
+
+---
 
 ---
 
@@ -202,6 +278,14 @@ Create, Read, Update, Delete.
 
 ## Medium (30 Questions)
 
+---
+
+## Intermediate Questions
+
+---
+
+## Intermediate Questions
+
 ### 21. What is an Idempotent operation?
 **Answer:** An operation that will produce the same results if executed once or multiple times.
 **Example:** `GET`, `PUT`, `DELETE` are idempotent. `POST` is not.
@@ -209,10 +293,18 @@ Create, Read, Update, Delete.
 
 ---
 
+---
+
+---
+
 ### 22. Why is POST not idempotent?
 **Answer:** Making multiple identical POST requests will typically create multiple identical resources on the server.
 **Example:** Hitting a checkout endpoint twice charges the user twice.
 **Reference:** [Idempotent REST APIs](https://restfulapi.net/idempotent-rest-apis/)
+
+---
+
+---
 
 ---
 
@@ -228,6 +320,10 @@ A model that grades APIs by their RESTful maturity.
 
 ---
 
+---
+
+---
+
 ### 24. What is HATEOAS?
 **Answer:** 
 **The Core Concept:**
@@ -237,6 +333,10 @@ Hypermedia As The Engine Of Application State.
 - A constraint of REST where the client interacts with a network application dynamically via hypermedia (links) provided dynamically by the server.
 **Example:** The response includes `links: [{ rel: "next", href: "/page=2" }]`.
 **Reference:** [HATEOAS](https://restfulapi.net/hateoas/)
+
+---
+
+---
 
 ---
 
@@ -252,10 +352,18 @@ API versioning allows you to change the API without breaking existing clients.
 
 ---
 
+---
+
+---
+
 ### 26. What is Content Negotiation?
 **Answer:** The mechanism used for serving different representations of a resource at the same URI, so the client can specify which format it prefers (e.g., JSON or XML).
 **Example:** The client sends `Accept: application/json`.
 **Reference:** [Content Negotiation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Content_negotiation)
+
+---
+
+---
 
 ---
 
@@ -271,6 +379,10 @@ API versioning allows you to change the API without breaking existing clients.
 
 ---
 
+---
+
+---
+
 ### 28. What does `201 Created` mean?
 **Answer:** 
 **The Core Concept:**
@@ -280,6 +392,10 @@ The request was successful, and a new resource was created as a result.
 - Typically used after a POST.
 **Example:** Returning 201 after creating a new user account.
 **Reference:** [201 Created](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201)
+
+---
+
+---
 
 ---
 
@@ -295,10 +411,18 @@ The server successfully processed the request, but is not returning any content.
 
 ---
 
+---
+
+---
+
 ### 30. How do you implement Pagination in a REST API?
 **Answer:** Typically through Query Parameters, using `limit` and `offset` (or `page` and `size`), or using Cursor-based pagination for high performance.
 **Example:** `/users?limit=10&offset=20`
 **Reference:** [REST Pagination](https://restfulapi.net/pagination/)
+
+---
+
+---
 
 ---
 
@@ -309,10 +433,18 @@ The server successfully processed the request, but is not returning any content.
 
 ---
 
+---
+
+---
+
 ### 32. How do you implement Sorting in a REST API?
 **Answer:** Using a `sort` or `order` query parameter.
 **Example:** `/users?sort=-created_at` (descending order).
 **Reference:** [Sorting](https://restfulapi.net/rest-api-design-tutorial-with-example/#sorting)
+
+---
+
+---
 
 ---
 
@@ -329,6 +461,10 @@ A user-defined HTTP callback.
 
 ---
 
+---
+
+---
+
 ### 34. What is the difference between an API and a Webhook?
 **Answer:** 
 **The Core Concept:**
@@ -341,10 +477,18 @@ An API is pull-based (client asks server for data).
 
 ---
 
+---
+
+---
+
 ### 35. What is the `Authorization` header?
 **Answer:** The HTTP header used to contain the credentials to authenticate a user agent with a server.
 **Example:** `Authorization: Bearer <token>`
 **Reference:** [Authorization Header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization)
+
+---
+
+---
 
 ---
 
@@ -360,6 +504,10 @@ An industry-standard protocol for authorization.
 
 ---
 
+---
+
+---
+
 ### 37. What is JWT (JSON Web Token)?
 **Answer:** 
 **The Core Concept:**
@@ -369,6 +517,10 @@ A compact, URL-safe means of representing claims to be transferred between two p
 - Used for stateless authentication.
 **Example:** Three parts: Header, Payload, Signature.
 **Reference:** [JWT.io](https://jwt.io/)
+
+---
+
+---
 
 ---
 
@@ -384,10 +536,18 @@ A strategy for limiting network traffic.
 
 ---
 
+---
+
+---
+
 ### 39. What is the `Accept` header?
 **Answer:** An HTTP request header that informs the server about the types of data that can be sent back.
 **Example:** `Accept: application/json`
 **Reference:** [Accept Header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept)
+
+---
+
+---
 
 ---
 
@@ -401,6 +561,10 @@ A strategy for limiting network traffic.
 
 ## Hard (50 Questions)
 
+---
+
+---
+
 ### 41. What is the difference between REST and SOAP?
 **Answer:** 
 **The Core Concept:**
@@ -410,6 +574,10 @@ REST is an architectural style utilizing HTTP, usually returning JSON.
 - SOAP is a strict protocol utilizing XML, requiring an XML wrapper (envelope) and strict schema definitions (WSDL).
 **Example:** REST is lightweight; SOAP is heavily standardized.
 **Reference:** [REST vs SOAP](https://www.ibm.com/cloud/blog/rest-vs-soap)
+
+---
+
+---
 
 ---
 
@@ -425,6 +593,10 @@ A security mechanism by browsers that restricts cross-origin HTTP requests.
 
 ---
 
+---
+
+---
+
 ### 43. What is an API Gateway?
 **Answer:** 
 **The Core Concept:**
@@ -437,6 +609,10 @@ A server that is the single entry point into the system.
 
 ---
 
+---
+
+---
+
 ### 44. How does HTTP Caching work in REST?
 **Answer:** 
 **The Core Concept:**
@@ -446,6 +622,10 @@ Using headers like `ETag`, `Cache-Control`, `Expires`, and `Last-Modified`.
 - The client can use these to cache responses and validate if they are still fresh via conditional requests.
 **Example:** `Cache-Control: max-age=3600`
 **Reference:** [HTTP Caching](https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching)
+
+---
+
+---
 
 ---
 
@@ -462,10 +642,18 @@ Entity Tag.
 
 ---
 
+---
+
+---
+
 ### 46. What is a Conditional Request?
 **Answer:** A request that is only processed if specific headers (like `If-Match` or `If-None-Match` comparing ETags) evaluate to true.
 **Example:** `If-None-Match: "33a64df..."` returns 304 Not Modified if unchanged.
 **Reference:** [Conditional Requests](https://developer.mozilla.org/en-US/docs/Web/HTTP/Conditional_requests)
+
+---
+
+---
 
 ---
 
@@ -482,6 +670,10 @@ Using Optimistic Concurrency Control via ETags.
 
 ---
 
+---
+
+---
+
 ### 48. What is GraphQL and how does it compare to REST?
 **Answer:** 
 **The Core Concept:**
@@ -491,6 +683,10 @@ GraphQL is a query language where the client dictates the data shape.
 - It solves REST's over-fetching and under-fetching by using a single endpoint.
 **Example:** REST: `/users`, `/posts`. GraphQL: `/graphql`.
 **Reference:** [GraphQL vs REST](https://graphql.org/faq/#how-is-graphql-different-from-rest)
+
+---
+
+---
 
 ---
 
@@ -507,12 +703,25 @@ Do not block the request.
 
 ---
 
+---
+
+---
+
 ### 50. What is OpenAPI / Swagger?
 **Answer:** A widely adopted specification for machine-readable interface files for describing, producing, consuming, and visualizing RESTful web services.
 **Example:** `swagger.yaml` generating automated docs.
 **Reference:** [OpenAPI Specification](https://swagger.io/specification/)
 
 ---
+
+---
+
+## Expert Questions
+
+---
+
+## Expert Questions
+
 ### 51. What is HATEOAS?
 **Answer:** 
 **The Core Concept:**
@@ -528,6 +737,11 @@ Hypermedia As The Engine Of Application State—responses include links to relat
 **Reference:** [Documentation](https://restfulapi.net/hateoas/)
 
 ---
+
+---
+
+---
+
 ### 52. What is API versioning?
 **Answer:** 
 **The Core Concept:**
@@ -543,6 +757,11 @@ Strategy to evolve APIs without breaking clients (URI, header, query, content ne
 **Reference:** [Documentation](https://restfulapi.net/versioning/)
 
 ---
+
+---
+
+---
+
 ### 53. What is content negotiation?
 **Answer:** 
 **The Core Concept:**
@@ -558,6 +777,11 @@ Client and server agree on representation format via Accept and Content-Type hea
 **Reference:** [Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Content_negotiation)
 
 ---
+
+---
+
+---
+
 ### 54. What is 201 Created?
 **Answer:** 
 **The Core Concept:**
@@ -573,6 +797,11 @@ Success status when a resource is created, often with Location header to new res
 **Reference:** [Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201)
 
 ---
+
+---
+
+---
+
 ### 55. What is 204 No Content?
 **Answer:** 
 **The Core Concept:**
@@ -588,6 +817,11 @@ Success with empty body—common for DELETE or PUT with nothing to return.
 **Reference:** [Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204)
 
 ---
+
+---
+
+---
+
 ### 56. What is 400 vs 422?
 **Answer:** 
 **The Core Concept:**
@@ -603,6 +837,11 @@ Success with empty body—common for DELETE or PUT with nothing to return.
 **Reference:** [Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422)
 
 ---
+
+---
+
+---
+
 ### 57. What is Problem Details (RFC 7807)?
 **Answer:** 
 **The Core Concept:**
@@ -618,6 +857,11 @@ Standard JSON error format with type, title, status, detail, instance.
 **Reference:** [Documentation](https://datatracker.ietf.org/doc/html/rfc7807)
 
 ---
+
+---
+
+---
+
 ### 58. What is pagination in REST?
 **Answer:** 
 **The Core Concept:**
@@ -633,6 +877,11 @@ Splitting large collections into pages via offset/limit or cursor.
 **Reference:** [Documentation](https://www.moesif.com/blog/technical/api-design/REST-API-Design-Filtering-Sorting-and-Pagination/)
 
 ---
+
+---
+
+---
+
 ### 59. What is cursor-based pagination?
 **Answer:** 
 **The Core Concept:**
@@ -648,6 +897,11 @@ Using opaque cursor from previous response instead of page number.
 **Reference:** [Documentation](https://slack.engineering/evolving-api-pagination-at-slack/)
 
 ---
+
+---
+
+---
+
 ### 60. What is filtering and sorting?
 **Answer:** 
 **The Core Concept:**
@@ -663,6 +917,11 @@ Query parameters to narrow and order collections.
 **Reference:** [Documentation](https://restfulapi.net/filtering/)
 
 ---
+
+---
+
+---
+
 ### 61. What is sparse fieldsets?
 **Answer:** 
 **The Core Concept:**
@@ -678,6 +937,11 @@ Client requests only specific fields to reduce payload.
 **Reference:** [Documentation](https://jsonapi.org/format/#fetching-sparse-fieldsets)
 
 ---
+
+---
+
+---
+
 ### 62. What is API rate limiting?
 **Answer:** 
 **The Core Concept:**
@@ -693,6 +957,11 @@ Restricting requests per client/time window to protect availability.
 **Reference:** [Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429)
 
 ---
+
+---
+
+---
+
 ### 63. What is idempotency key?
 **Answer:** 
 **The Core Concept:**
@@ -708,6 +977,11 @@ Client-sent unique key so retried POSTs do not create duplicates.
 **Reference:** [Documentation](https://stripe.com/docs/api/idempotent_requests)
 
 ---
+
+---
+
+---
+
 ### 64. What is ETag?
 **Answer:** 
 **The Core Concept:**
@@ -723,6 +997,11 @@ Entity tag for cache validation and optimistic concurrency.
 **Reference:** [Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag)
 
 ---
+
+---
+
+---
+
 ### 65. What is conditional GET?
 **Answer:** 
 **The Core Concept:**
@@ -738,6 +1017,11 @@ Client sends If-None-Match/If-Modified-Since; server returns 304 if unchanged.
 **Reference:** [Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Conditional_requests)
 
 ---
+
+---
+
+---
+
 ### 66. What is API Gateway pattern?
 **Answer:** 
 **The Core Concept:**
@@ -753,6 +1037,11 @@ Single entry point for routing, auth, throttling, and aggregation to microservic
 **Reference:** [Documentation](https://learn.microsoft.com/en-us/azure/architecture/microservices/design/gateway)
 
 ---
+
+---
+
+---
+
 ### 67. What is BFF for REST?
 **Answer:** 
 **The Core Concept:**
@@ -768,6 +1057,11 @@ Backend for Frontend shapes REST responses per UI needs.
 **Reference:** [Documentation](https://samnewman.io/patterns/architectural/bff/)
 
 ---
+
+---
+
+---
+
 ### 68. What is chattiness in REST?
 **Answer:** 
 **The Core Concept:**
@@ -783,6 +1077,11 @@ Many round trips needed for one screen due to normalized resources.
 **Reference:** [Documentation](https://graphql.org/learn/thinking-in-graphs/)
 
 ---
+
+---
+
+---
+
 ### 69. What is over-fetching?
 **Answer:** 
 **The Core Concept:**
@@ -798,6 +1097,11 @@ API returns more data than client needs.
 **Reference:** [Documentation](https://graphql.org/faq/#how-is-graphql-different-from-rest)
 
 ---
+
+---
+
+---
+
 ### 70. What is under-fetching?
 **Answer:** 
 **The Core Concept:**
@@ -813,6 +1117,11 @@ One endpoint insufficient; client must call more endpoints.
 **Reference:** [Documentation](https://graphql.org/faq/#how-is-graphql-different-from-rest)
 
 ---
+
+---
+
+---
+
 ### 71. What is webhook?
 **Answer:** 
 **The Core Concept:**
@@ -828,6 +1137,11 @@ Server pushes event to client URL via HTTP POST when something happens.
 **Reference:** [Documentation](https://webhooks.fyi/)
 
 ---
+
+---
+
+---
+
 ### 72. What is webhook idempotency?
 **Answer:** 
 **The Core Concept:**
@@ -843,6 +1157,11 @@ Same event delivered multiple times must not double-charge or duplicate side eff
 **Reference:** [Documentation](https://stripe.com/docs/webhooks/best-practices)
 
 ---
+
+---
+
+---
+
 ### 73. What is long polling?
 **Answer:** 
 **The Core Concept:**
@@ -858,6 +1177,11 @@ Client holds request open until server has data or timeout.
 **Reference:** [Documentation](https://en.wikipedia.org/wiki/Push_technology#Long_polling)
 
 ---
+
+---
+
+---
+
 ### 74. What is Server-Sent Events (SSE)?
 **Answer:** 
 **The Core Concept:**
@@ -873,6 +1197,11 @@ One-way server push over HTTP with text/event-stream.
 **Reference:** [Documentation](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events)
 
 ---
+
+---
+
+---
+
 ### 75. What is gRPC vs REST?
 **Answer:** 
 **The Core Concept:**
@@ -888,6 +1217,11 @@ gRPC uses HTTP/2 + Protocol Buffers for strongly typed RPC; REST uses HTTP + JSO
 **Reference:** [Documentation](https://grpc.io/docs/what-is-grpc/introduction/)
 
 ---
+
+---
+
+---
+
 ### 76. What is JSON:API specification?
 **Answer:** 
 **The Core Concept:**
@@ -903,6 +1237,11 @@ Convention for JSON structure, relationships, and errors in REST APIs.
 **Reference:** [Documentation](https://jsonapi.org/)
 
 ---
+
+---
+
+---
+
 ### 77. What is HAL?
 **Answer:** 
 **The Core Concept:**
@@ -918,6 +1257,11 @@ Hypertext Application Language—JSON linking format for HATEOAS.
 **Reference:** [Documentation](https://stateless.group/hal_specification.html)
 
 ---
+
+---
+
+---
+
 ### 78. What is OData?
 **Answer:** 
 **The Core Concept:**
@@ -933,6 +1277,11 @@ Open protocol for querying REST APIs with $filter, $select, $expand.
 **Reference:** [Documentation](https://www.odata.org/)
 
 ---
+
+---
+
+---
+
 ### 79. What is API-first design?
 **Answer:** 
 **The Core Concept:**
@@ -948,6 +1297,11 @@ Design contract (OpenAPI) before implementation.
 **Reference:** [Documentation](https://swagger.io/resources/articles/adopting-an-api-first-approach/)
 
 ---
+
+---
+
+---
+
 ### 80. What is consumer-driven contract testing?
 **Answer:** 
 **The Core Concept:**
@@ -963,6 +1317,11 @@ Consumers define expected API contract; provider verifies.
 **Reference:** [Documentation](https://docs.pact.io/)
 
 ---
+
+---
+
+---
+
 ### 81. What is breaking vs non-breaking API change?
 **Answer:** 
 **The Core Concept:**
@@ -978,6 +1337,11 @@ Breaking removes/changes behavior clients rely on; non-breaking is additive.
 **Reference:** [Documentation](https://semver.org/)
 
 ---
+
+---
+
+---
+
 ### 82. What is semantic versioning for APIs?
 **Answer:** 
 **The Core Concept:**
@@ -993,6 +1357,11 @@ MAJOR for breaking, MINOR for features, PATCH for fixes.
 **Reference:** [Documentation](https://semver.org/)
 
 ---
+
+---
+
+---
+
 ### 83. What is sunset header?
 **Answer:** 
 **The Core Concept:**
@@ -1008,6 +1377,11 @@ HTTP Sunset header announces API/version retirement date.
 **Reference:** [Documentation](https://datatracker.ietf.org/doc/html/rfc8594)
 
 ---
+
+---
+
+---
+
 ### 84. What is CORS preflight?
 **Answer:** 
 **The Core Concept:**
@@ -1023,6 +1397,11 @@ OPTIONS request before actual request when using custom headers or methods.
 **Reference:** [Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
 
 ---
+
+---
+
+---
+
 ### 85. What is mTLS for APIs?
 **Answer:** 
 **The Core Concept:**
@@ -1038,6 +1417,11 @@ Mutual TLS authenticates client and server with certificates.
 **Reference:** [Documentation](https://www.cloudflare.com/learning/access-management/what-is-mutual-tls/)
 
 ---
+
+---
+
+---
+
 ### 86. What is OAuth2 for REST APIs?
 **Answer:** 
 **The Core Concept:**
@@ -1053,6 +1437,11 @@ Delegated authorization using bearer access tokens.
 **Reference:** [Documentation](https://oauth.net/2/)
 
 ---
+
+---
+
+---
+
 ### 87. What is API key vs OAuth?
 **Answer:** 
 **The Core Concept:**
@@ -1068,6 +1457,11 @@ API keys identify app; OAuth identifies user delegation.
 **Reference:** [Documentation](https://cloud.google.com/docs/authentication/api-keys)
 
 ---
+
+---
+
+---
+
 ### 88. What is scope-based authorization?
 **Answer:** 
 **The Core Concept:**
@@ -1083,6 +1477,11 @@ Permissions encoded in token scopes enforced per endpoint.
 **Reference:** [Documentation](https://oauth.net/2/scope/)
 
 ---
+
+---
+
+---
+
 ### 89. What is OWASP API Security Top 10?
 **Answer:** 
 **The Core Concept:**
@@ -1098,6 +1497,11 @@ Common API risks: BOLA, broken auth, excessive data exposure, etc.
 **Reference:** [Documentation](https://owasp.org/API-Security/)
 
 ---
+
+---
+
+---
+
 ### 90. What is input validation for APIs?
 **Answer:** 
 **The Core Concept:**
@@ -1113,6 +1517,11 @@ Validate types, lengths, enums at boundary before business logic.
 **Reference:** [Documentation](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html)
 
 ---
+
+---
+
+---
+
 ### 91. What is output encoding?
 **Answer:** 
 **The Core Concept:**
@@ -1128,6 +1537,11 @@ Encode data in responses to prevent injection in consumers.
 **Reference:** [Documentation](https://cheatsheetseries.owasp.org/cheatsheets/Error_Handling_Cheat_Sheet.html)
 
 ---
+
+---
+
+---
+
 ### 92. What is mass assignment vulnerability?
 **Answer:** 
 **The Core Concept:**
@@ -1143,6 +1557,11 @@ Client sends unexpected fields that update privileged attributes.
 **Reference:** [Documentation](https://cheatsheetseries.owasp.org/cheatsheets/Mass_Assignment_Cheat_Sheet.html)
 
 ---
+
+---
+
+---
+
 ### 93. What is file upload REST design?
 **Answer:** 
 **The Core Concept:**
@@ -1158,6 +1577,11 @@ Use multipart/form-data, virus scan, size limits, store outside web root.
 **Reference:** [Documentation](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html)
 
 ---
+
+---
+
+---
+
 ### 94. What is bulk operations API?
 **Answer:** 
 **The Core Concept:**
@@ -1173,6 +1597,11 @@ Batch create/update/delete in one request with partial success reporting.
 **Reference:** [Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/207)
 
 ---
+
+---
+
+---
+
 ### 95. What is health check endpoint?
 **Answer:** 
 **The Core Concept:**
@@ -1188,6 +1617,11 @@ GET /health or /ready for load balancers and orchestrators.
 **Reference:** [Documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/)
 
 ---
+
+---
+
+---
+
 ### 96. What is graceful shutdown?
 **Answer:** 
 **The Core Concept:**
@@ -1203,6 +1637,11 @@ Stop accepting new requests, finish in-flight, then exit.
 **Reference:** [Documentation](https://cloud.google.com/blog/products/containers-kubernetes/kubernetes-best-practices-terminating-with-grace)
 
 ---
+
+---
+
+---
+
 ### 97. What is request tracing?
 **Answer:** 
 **The Core Concept:**
@@ -1218,6 +1657,11 @@ Correlation ID (X-Request-ID) across microservices for debugging.
 **Reference:** [Documentation](https://opentelemetry.io/)
 
 ---
+
+---
+
+---
+
 ### 98. What is structured logging for APIs?
 **Answer:** 
 **The Core Concept:**
@@ -1233,6 +1677,11 @@ JSON logs with method, path, status, duration, userId.
 **Reference:** [Documentation](https://www.honeycomb.io/blog/structured-logging-and-your-team)
 
 ---
+
+---
+
+---
+
 ### 99. What is API mocking?
 **Answer:** 
 **The Core Concept:**
@@ -1248,6 +1697,11 @@ Simulate API during development (WireMock, Prism from OpenAPI).
 **Reference:** [Documentation](https://stoplight.io/open-source/prism)
 
 ---
+
+---
+
+---
+
 ### 100. What is load testing REST?
 **Answer:** 
 **The Core Concept:**
@@ -1263,3 +1717,244 @@ Tools like k6, JMeter measure throughput and latency under stress.
 **Reference:** [Documentation](https://k6.io/docs/)
 
 ---
+
+---
+
+## Technical Questions
+
+---
+
+### 1. Implement a complete REST API controller in Node.js (Express) with standard status codes.
+
+**Example Solution:**
+```javascript
+const express = require("express");
+const app = express();
+app.use(express.json());
+
+const users = [];
+
+app.post("/api/v1/users", (req, res) => {
+  const { name, email } = req.body;
+  if (!name || !email) {
+    return res.status(400).json({ error: "Missing required fields: name, email" });
+  }
+  const newUser = { id: users.length + 1, name, email };
+  users.push(newUser);
+  res.status(201).json(newUser);
+});
+
+app.get("/api/v1/users/:id", (req, res) => {
+  const user = users.find(u => u.id === parseInt(req.params.id));
+  if (!user) {
+    return res.status(404).json({ error: "User not found" });
+  }
+  res.status(200).json(user);
+});
+```
+
+---
+
+### 2. Implement an API client with dynamic exponential backoff and jitter retry mechanism.
+
+**Example Solution:**
+```javascript
+async function fetchWithRetry(url, options = {}, retries = 3, delay = 1000) {
+  try {
+    const response = await fetch(url, options);
+    if (!response.ok && retries > 0) {
+      throw new Error(`Server error: \${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    if (retries === 0) throw error;
+    // Add jitter
+    const jitter = Math.random() * 200;
+    const nextDelay = delay * 2 + jitter;
+    console.warn(`Retry failed. Retrying in \${nextDelay.toFixed(0)}ms...`);
+    await new Promise(res => setTimeout(res, nextDelay));
+    return fetchWithRetry(url, options, retries - 1, delay * 2);
+  }
+}
+```
+
+---
+
+## Technical Questions
+
+### 1. Implement a complete REST API controller in Node.js (Express) with standard status codes.
+
+**Example Solution:**
+```javascript
+const express = require("express");
+const app = express();
+app.use(express.json());
+
+const users = [];
+
+app.post("/api/v1/users", (req, res) => {
+  const { name, email } = req.body;
+  if (!name || !email) {
+    return res.status(400).json({ error: "Missing required fields: name, email" });
+  }
+  const newUser = { id: users.length + 1, name, email };
+  users.push(newUser);
+  res.status(201).json(newUser);
+});
+
+app.get("/api/v1/users/:id", (req, res) => {
+  const user = users.find(u => u.id === parseInt(req.params.id));
+  if (!user) {
+    return res.status(404).json({ error: "User not found" });
+  }
+  res.status(200).json(user);
+});
+```
+
+### 2. Implement an API client with dynamic exponential backoff and jitter retry mechanism.
+
+**Example Solution:**
+```javascript
+async function fetchWithRetry(url, options = {}, retries = 3, delay = 1000) {
+  try {
+    const response = await fetch(url, options);
+    if (!response.ok && retries > 0) {
+      throw new Error(`Server error: \${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    if (retries === 0) throw error;
+    const jitter = Math.random() * 200;
+    const nextDelay = delay * 2 + jitter;
+    console.warn(`Retry failed. Retrying in \${nextDelay.toFixed(0)}ms...`);
+    await new Promise(res => setTimeout(res, nextDelay));
+    return fetchWithRetry(url, options, retries - 1, delay * 2);
+  }
+}
+```
+
+### 3. Write a central Express error-handling middleware matching REST spec.
+
+**Example Solution:**
+```javascript
+function restErrorHandler(err, req, res, next) {
+  console.error(err.stack);
+  const statusCode = err.statusCode || 500;
+  res.status(statusCode).json({
+    error: {
+      message: err.message || "Internal Server Error",
+      code: err.code || "INTERNAL_ERROR",
+      timestamp: new Date().toISOString()
+    }
+  });
+}
+```
+
+### 4. [Self-Practice] Design a high-throughput, fault-tolerant system leveraging key principles of RESTful API Architecture.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 5. [Self-Practice] Write a custom utility to validate input schemas and sanitize payloads in RESTful API Architecture.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 6. [Self-Practice] Implement a comprehensive error-boundary and logging module for a RESTful API Architecture application.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 7. [Self-Practice] Optimize memory consumption and execution hot-paths under high load in RESTful API Architecture.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 8. [Self-Practice] Write an automated unit testing suite targeting complex race-conditions in RESTful API Architecture.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 9. [Self-Practice] Create a localized internationalization (i18n) helper integrated with RESTful API Architecture.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 10. [Self-Practice] Build a secure token-based authentication handshake flow within RESTful API Architecture.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 11. [Self-Practice] Design a distributed caching and invalidation strategy for heavy RESTful API Architecture operations.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 12. [Self-Practice] Create a CLI tool to automate scaffolding and deployment of RESTful API Architecture configurations.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 13. [Self-Practice] Implement a real-time event-driven pub/sub handler using RESTful API Architecture event structures.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 14. [Self-Practice] Draft an architectural decision record (ADR) comparing RESTful API Architecture with its primary competitors.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 15. [Self-Practice] Create a mock framework to isolate and test external integrations in RESTful API Architecture.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 16. [Self-Practice] Write a custom telemetry wrapper to output RESTful API Architecture performance metrics to Prometheus/Grafana.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 17. [Self-Practice] Design a zero-downtime blue-green roll-out plan for a database or service utilizing RESTful API Architecture.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 18. [Self-Practice] Implement a circuit-breaker pattern to gracefully degrade service during RESTful API Architecture failures.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 19. [Self-Practice] Write an automated script to detect memory leaks and unhandled promise rejections in RESTful API Architecture.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 20. [Self-Practice] Build a user-friendly audit log tracking all state mutations and access events in RESTful API Architecture.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 21. [Self-Practice] Design an API gateway integration mapping REST inputs to RESTful API Architecture data layers.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 22. [Self-Practice] Implement a rate-limiter with custom sliding-window configurations in RESTful API Architecture.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 23. [Self-Practice] Create a backup and recovery automated script for preserving RESTful API Architecture state repositories.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 24. [Self-Practice] Design a microservice boundary that encapsulates RESTful API Architecture logic without tight coupling.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 25. [Self-Practice] Build a role-based access control (RBAC) middleware verifying permissions on RESTful API Architecture.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 26. [Self-Practice] Write an optimized compiler or parser configuration to bundle RESTful API Architecture files for web browsers.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 27. [Self-Practice] Implement a dead-letter queue (DLQ) pattern for handling corrupted messages in RESTful API Architecture.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 28. [Self-Practice] Create an automated health-check endpoint monitor checking RESTful API Architecture connection integrity.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 29. [Self-Practice] Implement a secure CORS and CSP policy wrapper for endpoints exposing RESTful API Architecture.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 30. [Self-Practice] Refactor a legacy monolithic module into modern, modular ES modules using RESTful API Architecture.
+
+*(Challenge question for self-study and practical project implementation.)*
+

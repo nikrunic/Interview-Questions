@@ -2,12 +2,16 @@
 
 This document contains a comprehensive list of 100 Hasura and GraphQL interview questions, categorized by difficulty (20 Basic, 30 Medium, 50 Hard). These questions are curated based on popular public Git repositories and official documentation.
 
-## Basic (20 Questions)
+## Basic Questions
 
 ### 1. What is GraphQL?
 **Answer:** An open-source data query and manipulation language for APIs, and a runtime for fulfilling queries with existing data, developed by Facebook.
 **Example:** `query { user { id name } }`
 **Reference:** [GraphQL Org](https://graphql.org/)
+
+---
+
+---
 
 ---
 
@@ -23,6 +27,10 @@ REST uses multiple endpoints returning fixed data structures.
 
 ---
 
+---
+
+---
+
 ### 3. What is a Query in GraphQL?
 **Answer:** 
 **The Core Concept:**
@@ -32,6 +40,10 @@ A read-only operation requested by a client to fetch data from the server.
 - Equivalent to a GET request in REST.
 **Example:** `query GetUsers { users { id } }`
 **Reference:** [Queries](https://graphql.org/learn/queries/)
+
+---
+
+---
 
 ---
 
@@ -47,6 +59,10 @@ An operation used to modify server-side data (create, update, delete) and return
 
 ---
 
+---
+
+---
+
 ### 5. What is a Subscription in GraphQL?
 **Answer:** A long-lasting operation that allows clients to receive real-time updates from the server via WebSockets whenever data changes.
 **Example:** `subscription { new_messages { id text } }`
@@ -54,10 +70,18 @@ An operation used to modify server-side data (create, update, delete) and return
 
 ---
 
+---
+
+---
+
 ### 6. What is a GraphQL Schema?
 **Answer:** A strongly typed definition of the capabilities of a GraphQL server, describing all possible queries, mutations, types, and their relationships.
 **Example:** `type User { id: ID! name: String! }`
 **Reference:** [Schema](https://graphql.org/learn/schema/)
+
+---
+
+---
 
 ---
 
@@ -73,6 +97,10 @@ The base primitive types that resolve to concrete data.
 
 ---
 
+---
+
+---
+
 ### 8. What does the `!` symbol mean in a Schema?
 **Answer:** 
 **The Core Concept:**
@@ -85,10 +113,18 @@ It indicates that the field is Non-Null (required).
 
 ---
 
+---
+
+---
+
 ### 9. What is Hasura?
 **Answer:** Hasura GraphQL Engine is an open-source product that connects to databases (like PostgreSQL) and instantly generates a production-ready GraphQL API with built-in authorization.
 **Example:** Connecting Hasura to Postgres to instantly get CRUD queries.
 **Reference:** [Hasura Docs](https://hasura.io/docs/latest/index/)
+
+---
+
+---
 
 ---
 
@@ -99,10 +135,18 @@ It indicates that the field is Non-Null (required).
 
 ---
 
+---
+
+---
+
 ### 11. What databases does Hasura support?
 **Answer:** Primarily PostgreSQL, but also supports MS SQL Server, Citus, CockroachDB, BigQuery, and MySQL (via data connectors).
 **Example:** Adding Postgres connection string in Hasura console.
 **Reference:** [Supported Databases](https://hasura.io/docs/latest/databases/overview/)
+
+---
+
+---
 
 ---
 
@@ -118,10 +162,18 @@ An in-browser IDE for exploring GraphQL APIs, writing queries with autocomplete,
 
 ---
 
+---
+
+---
+
 ### 13. What are GraphQL Arguments?
 **Answer:** Values passed to fields in a query to filter or specify exactly what data is needed.
 **Example:** `user(id: "1") { name }`
 **Reference:** [Arguments](https://graphql.org/learn/queries/#arguments)
+
+---
+
+---
 
 ---
 
@@ -132,10 +184,18 @@ An in-browser IDE for exploring GraphQL APIs, writing queries with autocomplete,
 
 ---
 
+---
+
+---
+
 ### 15. What are Fragments?
 **Answer:** Reusable units of a GraphQL query that let you construct sets of fields and include them in multiple queries to keep code DRY.
 **Example:** `fragment userFields on User { id name }`
 **Reference:** [Fragments](https://graphql.org/learn/queries/#fragments)
+
+---
+
+---
 
 ---
 
@@ -151,10 +211,18 @@ A scalar type representing a unique identifier, often used to refetch an object 
 
 ---
 
+---
+
+---
+
 ### 17. How do you track a table in Hasura?
 **Answer:** After creating a table in the database, you must "track" it in the Hasura Console so Hasura knows to expose it in the GraphQL schema.
 **Example:** Clicking "Track" in the Hasura Data tab.
 **Reference:** [Tracking Tables](https://hasura.io/docs/latest/schema/postgres/tables/)
+
+---
+
+---
 
 ---
 
@@ -165,10 +233,18 @@ A scalar type representing a unique identifier, often used to refetch an object 
 
 ---
 
+---
+
+---
+
 ### 19. What is Over-fetching?
 **Answer:** When a client downloads more data than is actually needed by the UI, common in REST but solved by GraphQL.
 **Example:** Getting a full User object just to display their username.
 **Reference:** [Over-fetching](https://graphql.org/faq/#how-is-graphql-different-from-rest)
+
+---
+
+---
 
 ---
 
@@ -182,6 +258,14 @@ A scalar type representing a unique identifier, often used to refetch an object 
 
 ## Medium (30 Questions)
 
+---
+
+## Intermediate Questions
+
+---
+
+## Intermediate Questions
+
 ### 21. How do you handle relationships in Hasura?
 **Answer:** 
 **The Core Concept:**
@@ -191,6 +275,10 @@ By defining Object Relationships (1-to-1 or Many-to-1) and Array Relationships (
 - Hasura automatically suggests these based on database Foreign Keys.
 **Example:** A User has many Posts (Array Relationship).
 **Reference:** [Relationships](https://hasura.io/docs/latest/schema/postgres/table-relationships/index/)
+
+---
+
+---
 
 ---
 
@@ -206,6 +294,10 @@ Roles (e.g., `admin`, `user`, `anonymous`) define what a user is allowed to do.
 
 ---
 
+---
+
+---
+
 ### 23. How does Row-Level Security work in Hasura?
 **Answer:** 
 **The Core Concept:**
@@ -218,10 +310,18 @@ You define permission rules using boolean expressions.
 
 ---
 
+---
+
+---
+
 ### 24. What are Column-Level Permissions in Hasura?
 **Answer:** Restricting which specific columns a role can select, insert, or update, even if they have row-level access.
 **Example:** Allowing a `user` role to see `username` but hiding `password_hash`.
 **Reference:** [Column-level permissions](https://hasura.io/docs/latest/auth/authorization/permissions/)
+
+---
+
+---
 
 ---
 
@@ -237,10 +337,18 @@ A way to extend the Hasura GraphQL schema with custom REST APIs (business logic)
 
 ---
 
+---
+
+---
+
 ### 26. What are Hasura Remote Schemas?
 **Answer:** A feature that allows you to stitch a custom, external GraphQL server into the Hasura generated GraphQL API, creating a single unified endpoint.
 **Example:** Adding a Stripe GraphQL API alongside Postgres.
 **Reference:** [Remote Schemas](https://hasura.io/docs/latest/remote-schemas/overview/)
+
+---
+
+---
 
 ---
 
@@ -256,10 +364,18 @@ Webhooks triggered asynchronously by database events (INSERT, UPDATE, DELETE).
 
 ---
 
+---
+
+---
+
 ### 28. What are Scheduled Triggers in Hasura?
 **Answer:** Used to execute custom business logic (via webhooks) at specific times or intervals, functioning like a cron job.
 **Example:** A daily cron trigger at midnight to calculate reports.
 **Reference:** [Scheduled Triggers](https://hasura.io/docs/latest/scheduled-triggers/overview/)
+
+---
+
+---
 
 ---
 
@@ -275,6 +391,10 @@ A function responsible for populating the data for a single field in a GraphQL s
 
 ---
 
+---
+
+---
+
 ### 30. How does Hasura avoid the N+1 Query Problem?
 **Answer:** 
 **The Core Concept:**
@@ -287,6 +407,10 @@ Traditional GraphQL servers run a resolver for each field, causing N+1 database 
 
 ---
 
+---
+
+---
+
 ### 31. Explain Apollo Client.
 **Answer:** A comprehensive state management library for JS that enables you to manage both local and remote data with GraphQL, handling caching, loading state, and errors automatically.
 **Example:** `const { data } = useQuery(GET_USERS);`
@@ -294,10 +418,18 @@ Traditional GraphQL servers run a resolver for each field, causing N+1 database 
 
 ---
 
+---
+
+---
+
 ### 32. What are GraphQL Variables?
 **Answer:** A way to dynamically pass arguments to a query from the client dictionary, rather than string-interpolating them into the query string, preventing injection attacks.
 **Example:** `query GetUser($id: ID!) { user(id: $id) { name } }`
 **Reference:** [Variables](https://graphql.org/learn/queries/#variables)
+
+---
+
+---
 
 ---
 
@@ -313,6 +445,10 @@ Identifiers preceded by an `@` character used to alter the execution or type val
 
 ---
 
+---
+
+---
+
 ### 34. How does Hasura handle JWT Authentication?
 **Answer:** 
 **The Core Concept:**
@@ -322,6 +458,10 @@ Hasura verifies the JWT provided in the `Authorization` header using a configure
 - It then extracts custom claims (like `x-hasura-role` and `x-hasura-user-id`) from the token to resolve permissions.
 **Example:** `{ "https://hasura.io/jwt/claims": { "x-hasura-role": "user" } }`
 **Reference:** [JWT Auth](https://hasura.io/docs/latest/auth/authentication/jwt/)
+
+---
+
+---
 
 ---
 
@@ -337,10 +477,18 @@ Instead of verifying a JWT, Hasura makes a GET request to a custom webhook you p
 
 ---
 
+---
+
+---
+
 ### 36. What is the Relay specification?
 **Answer:** A GraphQL architecture standard defined by Facebook ensuring a server provides specific structures: Global Object Identification (Node interface), Connections (for pagination), and specific Mutation formats.
 **Example:** Hasura exposes a Relay API endpoint `/v1beta1/relay`.
 **Reference:** [Relay Server Spec](https://relay.dev/docs/guides/graphql-server-specification/)
+
+---
+
+---
 
 ---
 
@@ -351,10 +499,18 @@ Instead of verifying a JWT, Hasura makes a GET request to a custom webhook you p
 
 ---
 
+---
+
+---
+
 ### 38. How do you perform Sorting in Hasura?
 **Answer:** Using the `order_by` argument, which accepts an array of objects specifying ascending or descending order.
 **Example:** `query { users(order_by: {created_at: desc}) { name } }`
 **Reference:** [Sorting](https://hasura.io/docs/latest/queries/postgres/sorting/)
+
+---
+
+---
 
 ---
 
@@ -370,6 +526,10 @@ The standard format for errors in GraphQL.
 
 ---
 
+---
+
+---
+
 ### 40. How do you write a custom GraphQL scalar?
 **Answer:** You must define the scalar in the schema and provide three functions in the resolver: `serialize` (to send to client), `parseValue` (from client variables), and `parseLiteral` (from AST).
 **Example:** Creating a `Date` scalar.
@@ -379,6 +539,10 @@ The standard format for errors in GraphQL.
 
 
 ## Hard (50 Questions)
+
+---
+
+---
 
 ### 41. Explain the Hasura Metadata.
 **Answer:** 
@@ -392,6 +556,10 @@ Hasura stores its configuration (tracked tables, relationships, permissions, act
 
 ---
 
+---
+
+---
+
 ### 42. How does Hasura CLI manage Migrations?
 **Answer:** 
 **The Core Concept:**
@@ -401,6 +569,10 @@ Hasura tracks changes made to the database schema via the Console and generates 
 - These files, along with Metadata YAML files, can be committed to Git for CI/CD.
 **Example:** `hasura migrate apply`
 **Reference:** [Migrations](https://hasura.io/docs/latest/migrations-metadata-seeds/manage-migrations/)
+
+---
+
+---
 
 ---
 
@@ -417,6 +589,10 @@ Stitching manually combines multiple GraphQL APIs via custom code.
 
 ---
 
+---
+
+---
+
 ### 44. How does Hasura compile GraphQL to SQL?
 **Answer:** 
 **The Core Concept:**
@@ -426,6 +602,10 @@ Hasura parses the GraphQL AST, looks up the metadata mappings, and generates a s
 - It translates GraphQL joins into SQL `LEFT OUTER JOIN`s or `LATERAL` joins, retrieving all data in JSON format directly from the DB.
 **Example:** `SELECT json_agg(...)` is used heavily by Hasura.
 **Reference:** [Architecture Deep Dive](https://hasura.io/blog/architecture-of-a-high-performance-graphql-to-sql-server/)
+
+---
+
+---
 
 ---
 
@@ -442,6 +622,10 @@ Hasura doesn't poll for every user.
 
 ---
 
+---
+
+---
+
 ### 46. What are Computed Fields in Hasura?
 **Answer:** 
 **The Core Concept:**
@@ -454,6 +638,10 @@ Virtual fields in the GraphQL schema defined via Postgres SQL functions.
 
 ---
 
+---
+
+---
+
 ### 47. How do you mitigate Denial of Service (DoS) attacks in GraphQL?
 **Answer:** Implement Query Depth Limiting (to prevent deeply nested recursive queries), Query Complexity Analysis (assigning cost to fields), Rate Limiting, and Timeouts.
 **Example:** Setting an API Limit depth of 5.
@@ -461,10 +649,18 @@ Virtual fields in the GraphQL schema defined via Postgres SQL functions.
 
 ---
 
+---
+
+---
+
 ### 48. Does Hasura provide API Limits?
 **Answer:** Yes, Hasura Cloud/Enterprise provides API Limits including Depth limits, Node limits, Rate limits (requests per minute), and Timeouts, configurable per role.
 **Example:** Limiting the `anonymous` role to 60 requests/min.
 **Reference:** [API Limits](https://hasura.io/docs/latest/security/api-limits/)
+
+---
+
+---
 
 ---
 
@@ -480,6 +676,10 @@ A security feature where you define exactly which GraphQL query strings are perm
 
 ---
 
+---
+
+---
+
 ### 50. How do you implement GraphQL Caching?
 **Answer:** 
 **The Core Concept:**
@@ -491,6 +691,15 @@ GraphQL is POST-based, making HTTP/CDN caching hard.
 **Reference:** [Hasura Caching](https://hasura.io/docs/latest/caching/overview/)
 
 ---
+
+---
+
+## Expert Questions
+
+---
+
+## Expert Questions
+
 ### 51. What is GraphQL introspection?
 **Answer:** 
 **The Core Concept:**
@@ -506,6 +715,11 @@ Query __schema to discover types and fields—disable in production for security
 **Reference:** [Documentation](https://graphql.org/learn/introspection/)
 
 ---
+
+---
+
+---
+
 ### 52. What is a GraphQL resolver?
 **Answer:** 
 **The Core Concept:**
@@ -521,6 +735,11 @@ Function fetching data for a field; Hasura replaces most with SQL compilation.
 **Reference:** [Documentation](https://graphql.org/learn/execution/)
 
 ---
+
+---
+
+---
+
 ### 53. What is the N+1 problem?
 **Answer:** 
 **The Core Concept:**
@@ -536,6 +755,11 @@ One query for list plus N queries for related items.
 **Reference:** [Documentation](https://www.apollographql.com/docs/tech-decomposition/)
 
 ---
+
+---
+
+---
+
 ### 54. What is DataLoader?
 **Answer:** 
 **The Core Concept:**
@@ -551,6 +775,11 @@ Batches and caches loads within single request tick.
 **Reference:** [Documentation](https://github.com/graphql/dataloader)
 
 ---
+
+---
+
+---
+
 ### 55. What is GraphQL fragment?
 **Answer:** 
 **The Core Concept:**
@@ -566,6 +795,11 @@ Reusable set of fields on a type.
 **Reference:** [Documentation](https://graphql.org/learn/queries/#fragments)
 
 ---
+
+---
+
+---
+
 ### 56. What is GraphQL variable?
 **Answer:** 
 **The Core Concept:**
@@ -581,6 +815,11 @@ Parameterized queries with typed $variables.
 **Reference:** [Documentation](https://graphql.org/learn/queries/#variables)
 
 ---
+
+---
+
+---
+
 ### 57. What is GraphQL directive?
 **Answer:** 
 **The Core Concept:**
@@ -596,6 +835,11 @@ Annotates fields (@include, @skip, @deprecated, @cached in Hasura).
 **Reference:** [Documentation](https://graphql.org/learn/queries/#directives)
 
 ---
+
+---
+
+---
+
 ### 58. What is union type in GraphQL?
 **Answer:** 
 **The Core Concept:**
@@ -611,6 +855,11 @@ Field returns one of several object types.
 **Reference:** [Documentation](https://graphql.org/learn/schema/#union-types)
 
 ---
+
+---
+
+---
+
 ### 59. What is interface in GraphQL?
 **Answer:** 
 **The Core Concept:**
@@ -626,6 +875,11 @@ Abstract type implemented by multiple types.
 **Reference:** [Documentation](https://graphql.org/learn/schema/#interfaces)
 
 ---
+
+---
+
+---
+
 ### 60. What is input type?
 **Answer:** 
 **The Core Concept:**
@@ -641,6 +895,11 @@ Complex arguments for mutations as structured input.
 **Reference:** [Documentation](https://graphql.org/learn/schema/#input-types)
 
 ---
+
+---
+
+---
+
 ### 61. What is custom scalar?
 **Answer:** 
 **The Core Concept:**
@@ -656,6 +915,11 @@ User-defined scalar (DateTime, JSON).
 **Reference:** [Documentation](https://graphql.org/learn/schema/#scalar-types)
 
 ---
+
+---
+
+---
+
 ### 62. What is query complexity?
 **Answer:** 
 **The Core Concept:**
@@ -671,6 +935,11 @@ Cost analysis limiting expensive queries.
 **Reference:** [Documentation](https://hasura.io/docs/latest/security/api-limits/)
 
 ---
+
+---
+
+---
+
 ### 63. What is query depth limit?
 **Answer:** 
 **The Core Concept:**
@@ -686,6 +955,11 @@ Maximum nesting depth of selection set.
 **Reference:** [Documentation](https://hasura.io/docs/latest/security/api-limits/)
 
 ---
+
+---
+
+---
+
 ### 64. What is persisted query?
 **Answer:** 
 **The Core Concept:**
@@ -701,6 +975,11 @@ Client sends hash; server stores full query.
 **Reference:** [Documentation](https://www.apollographql.com/docs/react/api/link/persisted-queries/)
 
 ---
+
+---
+
+---
+
 ### 65. What is Apollo Client cache?
 **Answer:** 
 **The Core Concept:**
@@ -716,6 +995,11 @@ Normalized in-memory cache keyed by __typename + id.
 **Reference:** [Documentation](https://www.apollographql.com/docs/react/caching/cache-configuration/)
 
 ---
+
+---
+
+---
+
 ### 66. What is fetchPolicy?
 **Answer:** 
 **The Core Concept:**
@@ -731,6 +1015,11 @@ Controls Apollo cache interaction: cache-first, network-only, etc.
 **Reference:** [Documentation](https://www.apollographql.com/docs/react/data/queries/#fetchpolicy)
 
 ---
+
+---
+
+---
+
 ### 67. What is GraphQL over WebSocket?
 **Answer:** 
 **The Core Concept:**
@@ -746,6 +1035,11 @@ graphql-ws protocol for subscriptions.
 **Reference:** [Documentation](https://github.com/enisdenjo/graphql-ws)
 
 ---
+
+---
+
+---
+
 ### 68. What is live query in Hasura?
 **Answer:** 
 **The Core Concept:**
@@ -761,6 +1055,11 @@ Subscription-like polling or streaming of query results on change.
 **Reference:** [Documentation](https://hasura.io/docs/latest/subscriptions/postgres/live-queries/)
 
 ---
+
+---
+
+---
+
 ### 69. What is Hasura metadata?
 **Answer:** 
 **The Core Concept:**
@@ -776,6 +1075,11 @@ YAML/JSON export of tables, relationships, permissions.
 **Reference:** [Documentation](https://hasura.io/docs/latest/migrations-metadata-seeds/manage-metadata/)
 
 ---
+
+---
+
+---
+
 ### 70. What is Hasura migration?
 **Answer:** 
 **The Core Concept:**
@@ -791,6 +1095,11 @@ SQL migrations tracked alongside metadata.
 **Reference:** [Documentation](https://hasura.io/docs/latest/migrations-metadata-seeds/manage-migrations/)
 
 ---
+
+---
+
+---
+
 ### 71. What is Hasura seed data?
 **Answer:** 
 **The Core Concept:**
@@ -806,6 +1115,11 @@ SQL seed files for dev/test environments.
 **Reference:** [Documentation](https://hasura.io/docs/latest/migrations-metadata-seeds/manage-seeds/)
 
 ---
+
+---
+
+---
+
 ### 72. What is Hasura Actions?
 **Answer:** 
 **The Core Concept:**
@@ -821,6 +1135,11 @@ Extend schema with custom mutations/queries backed by HTTP webhooks.
 **Reference:** [Documentation](https://hasura.io/docs/latest/actions/overview/)
 
 ---
+
+---
+
+---
+
 ### 73. What is Hasura Event Trigger?
 **Answer:** 
 **The Core Concept:**
@@ -836,6 +1155,11 @@ Webhook on insert/update/delete with retry.
 **Reference:** [Documentation](https://hasura.io/docs/latest/event-triggers/overview/)
 
 ---
+
+---
+
+---
+
 ### 74. What is Hasura Scheduled Trigger?
 **Answer:** 
 **The Core Concept:**
@@ -851,6 +1175,11 @@ Cron-based HTTP calls to webhooks.
 **Reference:** [Documentation](https://hasura.io/docs/latest/scheduled-triggers/overview/)
 
 ---
+
+---
+
+---
+
 ### 75. What is Remote Schema?
 **Answer:** 
 **The Core Concept:**
@@ -866,6 +1195,11 @@ Stitch external GraphQL API into Hasura unified schema.
 **Reference:** [Documentation](https://hasura.io/docs/latest/remote-schemas/overview/)
 
 ---
+
+---
+
+---
+
 ### 76. What is Remote Join?
 **Answer:** 
 **The Core Concept:**
@@ -881,6 +1215,11 @@ Join Hasura data with remote schema fields.
 **Reference:** [Documentation](https://hasura.io/docs/latest/remote-schemas/remote-relationships/)
 
 ---
+
+---
+
+---
+
 ### 77. What is Hasura Authorization?
 **Answer:** 
 **The Core Concept:**
@@ -896,6 +1235,11 @@ Row-level and column-level permissions per role.
 **Reference:** [Documentation](https://hasura.io/docs/latest/auth/authorization/permissions/)
 
 ---
+
+---
+
+---
+
 ### 78. What is X-Hasura-* session variable?
 **Answer:** 
 **The Core Concept:**
@@ -911,6 +1255,11 @@ Headers mapped to SQL permission variables.
 **Reference:** [Documentation](https://hasura.io/docs/latest/auth/authentication/jwt/)
 
 ---
+
+---
+
+---
+
 ### 79. What is Hasura JWT mode?
 **Answer:** 
 **The Core Concept:**
@@ -926,6 +1275,11 @@ Validate JWT and extract claims to session variables.
 **Reference:** [Documentation](https://hasura.io/docs/latest/auth/authentication/jwt/)
 
 ---
+
+---
+
+---
+
 ### 80. What is Hasura webhook auth?
 **Answer:** 
 **The Core Concept:**
@@ -941,6 +1295,11 @@ Auth hook validates request and returns session variables.
 **Reference:** [Documentation](https://hasura.io/docs/latest/auth/authentication/webhook/)
 
 ---
+
+---
+
+---
+
 ### 81. What is anonymous role?
 **Answer:** 
 **The Core Concept:**
@@ -956,6 +1315,11 @@ Public access role with strict permissions.
 **Reference:** [Documentation](https://hasura.io/docs/latest/auth/authentication/unauthenticated-users/)
 
 ---
+
+---
+
+---
+
 ### 82. What is inherited roles?
 **Answer:** 
 **The Core Concept:**
@@ -971,6 +1335,11 @@ Role inherits permissions from other roles.
 **Reference:** [Documentation](https://hasura.io/docs/latest/auth/authorization/inherited-roles/)
 
 ---
+
+---
+
+---
+
 ### 83. What is column presets?
 **Answer:** 
 **The Core Concept:**
@@ -986,6 +1355,11 @@ Auto-set columns on insert (e.g., user_id from session).
 **Reference:** [Documentation](https://hasura.io/docs/latest/auth/authorization/permissions/)
 
 ---
+
+---
+
+---
+
 ### 84. What is aggregation permissions?
 **Answer:** 
 **The Core Concept:**
@@ -1001,6 +1375,11 @@ Allow count/sum/avg with row permissions.
 **Reference:** [Documentation](https://hasura.io/docs/latest/queries/postgres/aggregation-queries/)
 
 ---
+
+---
+
+---
+
 ### 85. What is Hasura naming convention?
 **Answer:** 
 **The Core Concept:**
@@ -1016,6 +1395,11 @@ GraphQL field names from table/column with customizable naming.
 **Reference:** [Documentation](https://hasura.io/docs/latest/schema/postgres/custom-functions/)
 
 ---
+
+---
+
+---
+
 ### 86. What is table tracking?
 **Answer:** 
 **The Core Concept:**
@@ -1031,6 +1415,11 @@ Hasura tracks Postgres tables/views to expose in GraphQL.
 **Reference:** [Documentation](https://hasura.io/docs/latest/schema/postgres/tables/)
 
 ---
+
+---
+
+---
+
 ### 87. What is foreign key relationships?
 **Answer:** 
 **The Core Concept:**
@@ -1046,6 +1435,11 @@ Object/array relationships from FK constraints.
 **Reference:** [Documentation](https://hasura.io/docs/latest/schema/postgres/relationships/)
 
 ---
+
+---
+
+---
+
 ### 88. What is manual relationship?
 **Answer:** 
 **The Core Concept:**
@@ -1061,6 +1455,11 @@ Relationship without FK using remote join columns.
 **Reference:** [Documentation](https://hasura.io/docs/latest/schema/postgres/relationships/create/)
 
 ---
+
+---
+
+---
+
 ### 89. What is Postgres view in Hasura?
 **Answer:** 
 **The Core Concept:**
@@ -1076,6 +1475,11 @@ Track views like tables with limitations on mutations.
 **Reference:** [Documentation](https://hasura.io/docs/latest/schema/postgres/views/)
 
 ---
+
+---
+
+---
+
 ### 90. What is Postgres function exposure?
 **Answer:** 
 **The Core Concept:**
@@ -1091,6 +1495,11 @@ Track SQL functions as GraphQL fields.
 **Reference:** [Documentation](https://hasura.io/docs/latest/schema/postgres/custom-functions/)
 
 ---
+
+---
+
+---
+
 ### 91. What is computed field?
 **Answer:** 
 **The Core Concept:**
@@ -1106,6 +1515,11 @@ Pseudo-column from SQL function on row.
 **Reference:** [Documentation](https://hasura.io/docs/latest/schema/postgres/computed-fields/)
 
 ---
+
+---
+
+---
+
 ### 92. What is Hasura Cloud?
 **Answer:** 
 **The Core Concept:**
@@ -1121,6 +1535,11 @@ Managed Hasura with scaling, metrics, and cloud features.
 **Reference:** [Documentation](https://hasura.io/cloud/)
 
 ---
+
+---
+
+---
+
 ### 93. What is read replica support?
 **Answer:** 
 **The Core Concept:**
@@ -1136,6 +1555,11 @@ Route read queries to replicas.
 **Reference:** [Documentation](https://hasura.io/docs/latest/databases/postgres/read-replicas/)
 
 ---
+
+---
+
+---
+
 ### 94. What is connection pooling?
 **Answer:** 
 **The Core Concept:**
@@ -1151,6 +1575,11 @@ PgBouncer or Hasura pool settings for many concurrent GraphQL requests.
 **Reference:** [Documentation](https://hasura.io/docs/latest/deployment/postgres-requirements/)
 
 ---
+
+---
+
+---
+
 ### 95. What is Hasura performance tuning?
 **Answer:** 
 **The Core Concept:**
@@ -1166,6 +1595,11 @@ Indexes on FK/filter columns, limit depth, use aggregates wisely.
 **Reference:** [Documentation](https://hasura.io/docs/latest/queries/postgres/query-performance/)
 
 ---
+
+---
+
+---
+
 ### 96. What is subscription scaling?
 **Answer:** 
 **The Core Concept:**
@@ -1181,6 +1615,11 @@ Hasura uses Postgres LISTEN/NOTIFY or polling for change detection.
 **Reference:** [Documentation](https://hasura.io/docs/latest/subscriptions/postgres/how-it-works/)
 
 ---
+
+---
+
+---
+
 ### 97. What is GraphiQL?
 **Answer:** 
 **The Core Concept:**
@@ -1196,6 +1635,11 @@ In-browser IDE for exploring GraphQL API.
 **Reference:** [Documentation](https://github.com/graphql/graphiql)
 
 ---
+
+---
+
+---
+
 ### 98. What is schema stitching?
 **Answer:** 
 **The Core Concept:**
@@ -1211,6 +1655,11 @@ Combining multiple GraphQL schemas—Hasura does via Remote Schemas.
 **Reference:** [Documentation](https://www.apollographql.com/docs/federation/)
 
 ---
+
+---
+
+---
+
 ### 99. What is Apollo Federation?
 **Answer:** 
 **The Core Concept:**
@@ -1226,6 +1675,11 @@ Distributed GraphQL with entities across subgraphs.
 **Reference:** [Documentation](https://www.apollographql.com/docs/federation/)
 
 ---
+
+---
+
+---
+
 ### 100. What is GraphQL error format?
 **Answer:** 
 **The Core Concept:**
@@ -1241,3 +1695,233 @@ errors array with message, path, extensions.
 **Reference:** [Documentation](https://spec.graphql.org/draft/#sec-Errors)
 
 ---
+
+---
+
+## Technical Questions
+
+---
+
+### 1. Write a standard Hasura GraphQL query with dynamic filters and aggregate counts.
+
+**Example Solution:**
+```graphql
+query GetProductsWithFilter($category: String!, $minPrice: numeric!) {
+  products(where: {
+    category: {_eq: $category},
+    price: {_gte: $minPrice}
+  }) {
+    id
+    name
+    price
+    category
+  }
+  products_aggregate(where: {
+    category: {_eq: $category},
+    price: {_gte: $minPrice}
+  }) {
+    aggregate {
+      count
+      avg {
+        price
+      }
+    }
+  }
+}
+```
+
+---
+
+### 2. Write a custom database action payload for Hasura metadata.
+
+**Example Solution:**
+```yaml
+- name: process_payment
+  definition:
+    kind: synchronous
+    handler: https://payment-gateway.service/hasura-action
+    forward_client_headers: true
+  payload:
+    arguments:
+      - name: payment_method_id
+        type: String!
+      - name: amount
+        type: Int!
+    type: PaymentResponse
+```
+
+---
+
+## Technical Questions
+
+### 1. Write a standard Hasura GraphQL query with dynamic filters and aggregate counts.
+
+**Example Solution:**
+```graphql
+query GetProductsWithFilter($category: String!, $minPrice: numeric!) {
+  products(where: {
+    category: {_eq: $category},
+    price: {_gte: $minPrice}
+  }) {
+    id
+    name
+    price
+    category
+  }
+  products_aggregate(where: {
+    category: {_eq: $category},
+    price: {_gte: $minPrice}
+  }) {
+    aggregate {
+      count
+      avg {
+        price
+      }
+    }
+  }
+}
+```
+
+### 2. Write a custom database action payload for Hasura metadata.
+
+**Example Solution:**
+```yaml
+- name: process_payment
+  definition:
+    kind: synchronous
+    handler: https://payment-gateway.service/hasura-action
+    forward_client_headers: true
+  payload:
+    arguments:
+      - name: payment_method_id
+        type: String!
+      - name: amount
+        type: Int!
+    type: PaymentResponse
+```
+
+### 3. Implement a GraphQL query combining parent-child relations with sorting.
+
+**Example Solution:**
+```graphql
+query GetAuthorsWithRecentBooks {
+  authors(order_by: { name: asc }) {
+    id
+    name
+    books(limit: 5, order_by: { published_date: desc }) {
+      id
+      title
+      published_date
+    }
+  }
+}
+```
+
+### 4. [Self-Practice] Design a high-throughput, fault-tolerant system leveraging key principles of GraphQL & Hasura Engines.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 5. [Self-Practice] Write a custom utility to validate input schemas and sanitize payloads in GraphQL & Hasura Engines.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 6. [Self-Practice] Implement a comprehensive error-boundary and logging module for a GraphQL & Hasura Engines application.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 7. [Self-Practice] Optimize memory consumption and execution hot-paths under high load in GraphQL & Hasura Engines.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 8. [Self-Practice] Write an automated unit testing suite targeting complex race-conditions in GraphQL & Hasura Engines.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 9. [Self-Practice] Create a localized internationalization (i18n) helper integrated with GraphQL & Hasura Engines.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 10. [Self-Practice] Build a secure token-based authentication handshake flow within GraphQL & Hasura Engines.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 11. [Self-Practice] Design a distributed caching and invalidation strategy for heavy GraphQL & Hasura Engines operations.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 12. [Self-Practice] Create a CLI tool to automate scaffolding and deployment of GraphQL & Hasura Engines configurations.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 13. [Self-Practice] Implement a real-time event-driven pub/sub handler using GraphQL & Hasura Engines event structures.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 14. [Self-Practice] Draft an architectural decision record (ADR) comparing GraphQL & Hasura Engines with its primary competitors.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 15. [Self-Practice] Create a mock framework to isolate and test external integrations in GraphQL & Hasura Engines.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 16. [Self-Practice] Write a custom telemetry wrapper to output GraphQL & Hasura Engines performance metrics to Prometheus/Grafana.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 17. [Self-Practice] Design a zero-downtime blue-green roll-out plan for a database or service utilizing GraphQL & Hasura Engines.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 18. [Self-Practice] Implement a circuit-breaker pattern to gracefully degrade service during GraphQL & Hasura Engines failures.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 19. [Self-Practice] Write an automated script to detect memory leaks and unhandled promise rejections in GraphQL & Hasura Engines.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 20. [Self-Practice] Build a user-friendly audit log tracking all state mutations and access events in GraphQL & Hasura Engines.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 21. [Self-Practice] Design an API gateway integration mapping REST inputs to GraphQL & Hasura Engines data layers.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 22. [Self-Practice] Implement a rate-limiter with custom sliding-window configurations in GraphQL & Hasura Engines.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 23. [Self-Practice] Create a backup and recovery automated script for preserving GraphQL & Hasura Engines state repositories.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 24. [Self-Practice] Design a microservice boundary that encapsulates GraphQL & Hasura Engines logic without tight coupling.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 25. [Self-Practice] Build a role-based access control (RBAC) middleware verifying permissions on GraphQL & Hasura Engines.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 26. [Self-Practice] Write an optimized compiler or parser configuration to bundle GraphQL & Hasura Engines files for web browsers.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 27. [Self-Practice] Implement a dead-letter queue (DLQ) pattern for handling corrupted messages in GraphQL & Hasura Engines.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 28. [Self-Practice] Create an automated health-check endpoint monitor checking GraphQL & Hasura Engines connection integrity.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 29. [Self-Practice] Implement a secure CORS and CSP policy wrapper for endpoints exposing GraphQL & Hasura Engines.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 30. [Self-Practice] Refactor a legacy monolithic module into modern, modular ES modules using GraphQL & Hasura Engines.
+
+*(Challenge question for self-study and practical project implementation.)*
+

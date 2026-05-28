@@ -2,7 +2,7 @@
 
 This document contains 100 interview questions focused on web security, authentication patterns (JWT, OAuth2), and session management.
 
-## Basic (Easy)
+## Basic Questions
 
 ### 1. What is the difference between Authentication and Authorization?
 **Answer:** 
@@ -16,6 +16,10 @@ Authentication verifies who a user is, while Authorization verifies what they ha
 **Example:** Logging in is Authentication; being allowed to view an admin dashboard is Authorization.
 
 **Reference:** [Auth0: Authentication vs Authorization](https://auth0.com/docs/get-started/identity-fundamentals/authentication-and-authorization)
+
+---
+
+---
 
 ---
 
@@ -34,6 +38,10 @@ JWT is an open standard that defines a compact and self-contained way for secure
 
 ---
 
+---
+
+---
+
 ### 3. What is OAuth2?
 **Answer:** 
 **The Core Concept:**
@@ -46,6 +54,10 @@ OAuth2 is an industry-standard protocol for authorization.
 **Example:** "Log in with Google" or "Log in with GitHub" buttons use OAuth2.
 
 **Reference:** [OAuth 2.0](https://oauth.net/2/)
+
+---
+
+---
 
 ---
 
@@ -64,6 +76,11 @@ OIDC is an identity layer on top of OAuth 2.0 that lets clients verify end-user 
 **Reference:** [Documentation](https://openid.net/connect/)
 
 ---
+
+---
+
+---
+
 ### 5. What is SAML?
 **Answer:** 
 **The Core Concept:**
@@ -79,6 +96,11 @@ Security Assertion Markup Language is an XML-based standard for exchanging authe
 **Reference:** [Documentation](https://wiki.oasis-open.org/security/FrontPage)
 
 ---
+
+---
+
+---
+
 ### 6. What is Single Sign-On (SSO)?
 **Answer:** 
 **The Core Concept:**
@@ -94,6 +116,11 @@ SSO allows a user to authenticate once and access multiple applications without 
 **Reference:** [Documentation](https://auth0.com/docs/authenticate/single-sign-on)
 
 ---
+
+---
+
+---
+
 ### 7. What are HttpOnly and Secure cookie flags?
 **Answer:** 
 **The Core Concept:**
@@ -109,6 +136,11 @@ HttpOnly prevents JavaScript from reading the cookie; Secure ensures the cookie 
 **Reference:** [Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies)
 
 ---
+
+---
+
+---
+
 ### 8. What is a server-side session?
 **Answer:** 
 **The Core Concept:**
@@ -124,6 +156,11 @@ The server stores session state (user id, roles) keyed by a session ID sent to t
 **Reference:** [Documentation](https://owasp.org/www-community/Session_Management_Cheat_Sheet)
 
 ---
+
+---
+
+---
+
 ### 9. What is password hashing and why not use MD5?
 **Answer:** 
 **The Core Concept:**
@@ -139,6 +176,11 @@ Password hashing is a one-way transform designed to be slow and salted so stolen
 **Reference:** [Documentation](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html)
 
 ---
+
+---
+
+---
+
 ### 10. What is bcrypt's cost factor?
 **Answer:** 
 **The Core Concept:**
@@ -154,6 +196,11 @@ The cost (work factor) controls how many iterations bcrypt runs, increasing CPU 
 **Reference:** [Documentation](https://en.wikipedia.org/wiki/Bcrypt)
 
 ---
+
+---
+
+---
+
 ### 11. What is Argon2?
 **Answer:** 
 **The Core Concept:**
@@ -169,6 +216,11 @@ Argon2 won the Password Hashing Competition and is memory-hard, resisting GPU/AS
 **Reference:** [Documentation](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html)
 
 ---
+
+---
+
+---
+
 ### 12. What is Multi-Factor Authentication (MFA)?
 **Answer:** 
 **The Core Concept:**
@@ -184,6 +236,11 @@ MFA requires two or more factors: something you know, have, or are.
 **Reference:** [Documentation](https://www.nist.gov/itl/topic/cybersecurity/multi-factor-authentication)
 
 ---
+
+---
+
+---
+
 ### 13. What is TOTP?
 **Answer:** 
 **The Core Concept:**
@@ -199,6 +256,11 @@ Time-based One-Time Password generates 6-digit codes from a shared secret and cu
 **Reference:** [Documentation](https://datatracker.ietf.org/doc/html/rfc6238)
 
 ---
+
+---
+
+---
+
 ### 14. What is WebAuthn / FIDO2?
 **Answer:** 
 **The Core Concept:**
@@ -214,6 +276,11 @@ WebAuthn is a W3C API for passwordless or second-factor authentication using pub
 **Reference:** [Documentation](https://webauthn.guide/)
 
 ---
+
+---
+
+---
+
 ### 15. What is Cross-Site Scripting (XSS)?
 **Answer:** 
 **The Core Concept:**
@@ -229,6 +296,11 @@ XSS injects malicious scripts into pages viewed by other users, often stealing c
 **Reference:** [Documentation](https://owasp.org/www-community/attacks/xss/)
 
 ---
+
+---
+
+---
+
 ### 16. What is Cross-Site Request Forgery (CSRF)?
 **Answer:** 
 **The Core Concept:**
@@ -244,6 +316,11 @@ CSRF tricks a logged-in user's browser into submitting unwanted requests using t
 **Reference:** [Documentation](https://owasp.org/www-community/attacks/csrf)
 
 ---
+
+---
+
+---
+
 ### 17. What is CORS?
 **Answer:** 
 **The Core Concept:**
@@ -259,6 +336,11 @@ Cross-Origin Resource Sharing is a browser mechanism allowing servers to declare
 **Reference:** [Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
 
 ---
+
+---
+
+---
+
 ### 18. What is the OAuth 2.0 Authorization Code flow?
 **Answer:** 
 **The Core Concept:**
@@ -274,6 +356,11 @@ The user authenticates at the IdP; the client exchanges a short-lived authorizat
 **Reference:** [Documentation](https://oauth.net/2/grant-types/authorization-code/)
 
 ---
+
+---
+
+---
+
 ### 19. What is PKCE?
 **Answer:** 
 **The Core Concept:**
@@ -289,6 +376,11 @@ Proof Key for Code Exchange adds a code_verifier/challenge pair so stolen author
 **Reference:** [Documentation](https://oauth.net/2/pkce/)
 
 ---
+
+---
+
+---
+
 ### 20. What is a refresh token?
 **Answer:** 
 **The Core Concept:**
@@ -304,6 +396,15 @@ A long-lived token used only at the token endpoint to obtain new access tokens w
 **Reference:** [Documentation](https://oauth.net/2/refresh-tokens/)
 
 ---
+
+---
+
+## Intermediate Questions
+
+---
+
+## Intermediate Questions
+
 ### 21. What is an access token?
 **Answer:** 
 **The Core Concept:**
@@ -319,6 +420,11 @@ A credential representing authorization to access resources, usually short-lived
 **Reference:** [Documentation](https://oauth.net/2/access-tokens/)
 
 ---
+
+---
+
+---
+
 ### 22. What are JWT claims?
 **Answer:** 
 **The Core Concept:**
@@ -334,6 +440,11 @@ Claims are name/value pairs in the JWT payload (registered, public, or private) 
 **Reference:** [Documentation](https://datatracker.ietf.org/doc/html/rfc7519#section-4)
 
 ---
+
+---
+
+---
+
 ### 23. How do you validate a JWT?
 **Answer:** 
 **The Core Concept:**
@@ -349,6 +460,11 @@ Verify signature with the correct key, then validate iss, aud, exp, and optional
 **Reference:** [Documentation](https://auth0.com/docs/secure/tokens/json-web-tokens/validate-json-web-tokens)
 
 ---
+
+---
+
+---
+
 ### 24. What is RBAC?
 **Answer:** 
 **The Core Concept:**
@@ -364,6 +480,11 @@ Role-Based Access Control assigns permissions to roles and roles to users.
 **Reference:** [Documentation](https://en.wikipedia.org/wiki/Role-based_access_control)
 
 ---
+
+---
+
+---
+
 ### 25. What is ABAC?
 **Answer:** 
 **The Core Concept:**
@@ -379,6 +500,11 @@ Attribute-Based Access Control decides access using attributes of user, resource
 **Reference:** [Documentation](https://en.wikipedia.org/wiki/Attribute-based_access_control)
 
 ---
+
+---
+
+---
+
 ### 26. What is the principle of least privilege?
 **Answer:** 
 **The Core Concept:**
@@ -394,6 +520,11 @@ Grant only the minimum permissions required to perform a task.
 **Reference:** [Documentation](https://csrc.nist.gov/glossary/term/least_privilege)
 
 ---
+
+---
+
+---
+
 ### 27. What is an API key?
 **Answer:** 
 **The Core Concept:**
@@ -409,6 +540,11 @@ A static secret identifying a client application, often sent in headers or query
 **Reference:** [Documentation](https://cloud.google.com/docs/authentication/api-keys)
 
 ---
+
+---
+
+---
+
 ### 28. What is HMAC authentication?
 **Answer:** 
 **The Core Concept:**
@@ -424,6 +560,11 @@ Hash-based Message Authentication Code signs requests with a shared secret to pr
 **Reference:** [Documentation](https://datatracker.ietf.org/doc/html/rfc2104)
 
 ---
+
+---
+
+---
+
 ### 29. What is mutual TLS (mTLS)?
 **Answer:** 
 **The Core Concept:**
@@ -439,6 +580,11 @@ Both client and server present X.509 certificates during TLS handshake for mutua
 **Reference:** [Documentation](https://www.cloudflare.com/learning/access-management/what-is-mutual-tls/)
 
 ---
+
+---
+
+---
+
 ### 30. What is a security token service (STS)?
 **Answer:** 
 **The Core Concept:**
@@ -454,6 +600,11 @@ A component that issues, validates, and exchanges security tokens (SAML, JWT).
 **Reference:** [Documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp.html)
 
 ---
+
+---
+
+---
+
 ### 31. What is token revocation?
 **Answer:** 
 **The Core Concept:**
@@ -469,6 +620,11 @@ Invalidating tokens before natural expiry so compromised credentials stop workin
 **Reference:** [Documentation](https://datatracker.ietf.org/doc/html/rfc7009)
 
 ---
+
+---
+
+---
+
 ### 32. What is OAuth token introspection?
 **Answer:** 
 **The Core Concept:**
@@ -484,6 +640,11 @@ RFC 7662 endpoint where resource servers ask the authorization server if a token
 **Reference:** [Documentation](https://oauth.net/2/token-introspection/)
 
 ---
+
+---
+
+---
+
 ### 33. What is the OAuth Client Credentials grant?
 **Answer:** 
 **The Core Concept:**
@@ -499,6 +660,11 @@ Machine-to-machine flow where the client authenticates with client_id/secret and
 **Reference:** [Documentation](https://oauth.net/2/grant-types/client-credentials/)
 
 ---
+
+---
+
+---
+
 ### 34. What is the Resource Owner Password Credentials grant?
 **Answer:** 
 **The Core Concept:**
@@ -514,6 +680,11 @@ Legacy grant exchanging username/password for tokens directly at the token endpo
 **Reference:** [Documentation](https://oauth.net/2/grant-types/password/)
 
 ---
+
+---
+
+---
+
 ### 35. What is the Implicit grant?
 **Answer:** 
 **The Core Concept:**
@@ -529,6 +700,11 @@ Historically returned tokens in URL fragment from authorize endpoint without cod
 **Reference:** [Documentation](https://oauth.net/2/grant-types/implicit/)
 
 ---
+
+---
+
+---
+
 ### 36. What is OIDC UserInfo endpoint?
 **Answer:** 
 **The Core Concept:**
@@ -544,6 +720,11 @@ Returns claims about the authenticated end-user when called with a valid access 
 **Reference:** [Documentation](https://openid.net/specs/openid-connect-core-1_0.html#UserInfo)
 
 ---
+
+---
+
+---
+
 ### 37. What is an ID token vs access token?
 **Answer:** 
 **The Core Concept:**
@@ -559,6 +740,11 @@ ID token proves authentication (for the client); access token authorizes API acc
 **Reference:** [Documentation](https://auth0.com/docs/secure/tokens/id-tokens)
 
 ---
+
+---
+
+---
+
 ### 38. What is audience (aud) claim?
 **Answer:** 
 **The Core Concept:**
@@ -574,6 +760,11 @@ Identifies the intended recipient of the token; APIs must reject tokens with wro
 **Reference:** [Documentation](https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.3)
 
 ---
+
+---
+
+---
+
 ### 39. What is token binding?
 **Answer:** 
 **The Core Concept:**
@@ -589,6 +780,11 @@ Cryptographically binding tokens to a TLS connection or device key to reduce the
 **Reference:** [Documentation](https://datatracker.ietf.org/doc/html/rfc9449)
 
 ---
+
+---
+
+---
+
 ### 40. What is DPoP?
 **Answer:** 
 **The Core Concept:**
@@ -604,6 +800,11 @@ Demonstrating Proof-of-Possession binds requests to a public key the client prov
 **Reference:** [Documentation](https://datatracker.ietf.org/doc/html/rfc9449)
 
 ---
+
+---
+
+---
+
 ### 41. What is a nonce in OIDC?
 **Answer:** 
 **The Core Concept:**
@@ -619,6 +820,11 @@ Random value in auth request bound to ID token to prevent replay attacks.
 **Reference:** [Documentation](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest)
 
 ---
+
+---
+
+---
+
 ### 42. What is state parameter in OAuth?
 **Answer:** 
 **The Core Concept:**
@@ -634,6 +840,11 @@ Opaque value returned unchanged to prevent CSRF on the OAuth callback.
 **Reference:** [Documentation](https://datatracker.ietf.org/doc/html/rfc6749#section-4.1.1)
 
 ---
+
+---
+
+---
+
 ### 43. What is scope in OAuth?
 **Answer:** 
 **The Core Concept:**
@@ -649,6 +860,11 @@ Space-delimited list of permissions the client requests (e.g., read:users).
 **Reference:** [Documentation](https://oauth.net/2/scope/)
 
 ---
+
+---
+
+---
+
 ### 44. What is consent screen?
 **Answer:** 
 **The Core Concept:**
@@ -664,6 +880,11 @@ UI where users approve scopes requested by a third-party client.
 **Reference:** [Documentation](https://oauth.net/2/)
 
 ---
+
+---
+
+---
+
 ### 45. What is a confidential vs public OAuth client?
 **Answer:** 
 **The Core Concept:**
@@ -679,6 +900,11 @@ Confidential clients can keep secrets (server apps); public clients cannot (SPAs
 **Reference:** [Documentation](https://oauth.net/2/client-types/)
 
 ---
+
+---
+
+---
+
 ### 46. What is ASP.NET Core Identity?
 **Answer:** 
 **The Core Concept:**
@@ -694,6 +920,11 @@ Membership system adding login UI, user store, password hashing, and 2FA to ASP.
 **Reference:** [Documentation](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/identity)
 
 ---
+
+---
+
+---
+
 ### 47. What is [Authorize] attribute?
 **Answer:** 
 **The Core Concept:**
@@ -709,6 +940,11 @@ Declares that a controller/action requires authenticated user and optional roles
 **Reference:** [Documentation](https://learn.microsoft.com/en-us/aspnet/core/security/authorization/simple)
 
 ---
+
+---
+
+---
+
 ### 48. What is policy-based authorization in ASP.NET?
 **Answer:** 
 **The Core Concept:**
@@ -724,6 +960,11 @@ Authorization policies encapsulate requirements (claims, roles, custom handlers)
 **Reference:** [Documentation](https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies)
 
 ---
+
+---
+
+---
+
 ### 49. What is claims-based identity?
 **Answer:** 
 **The Core Concept:**
@@ -739,6 +980,11 @@ Identity represented as a set of claims (type/value pairs) about the user.
 **Reference:** [Documentation](https://learn.microsoft.com/en-us/dotnet/framework/security/claims-based-identity-model-for-windows)
 
 ---
+
+---
+
+---
+
 ### 50. What is Azure AD / Entra ID?
 **Answer:** 
 **The Core Concept:**
@@ -754,6 +1000,15 @@ Microsoft cloud IdP providing SSO, MFA, conditional access, and app registration
 **Reference:** [Documentation](https://learn.microsoft.com/en-us/entra/identity/)
 
 ---
+
+---
+
+## Expert Questions
+
+---
+
+## Expert Questions
+
 ### 51. What is MSAL?
 **Answer:** 
 **The Core Concept:**
@@ -769,6 +1024,11 @@ Microsoft Authentication Library acquires tokens from Entra ID and other Microso
 **Reference:** [Documentation](https://learn.microsoft.com/en-us/entra/msal/)
 
 ---
+
+---
+
+---
+
 ### 52. What is AWS Cognito?
 **Answer:** 
 **The Core Concept:**
@@ -784,6 +1044,11 @@ Managed user directory and OAuth/OIDC provider for web and mobile apps.
 **Reference:** [Documentation](https://docs.aws.amazon.com/cognito/)
 
 ---
+
+---
+
+---
+
 ### 53. What is Keycloak?
 **Answer:** 
 **The Core Concept:**
@@ -799,6 +1064,11 @@ Open-source IdP supporting OIDC, SAML, social login, and user federation.
 **Reference:** [Documentation](https://www.keycloak.org/)
 
 ---
+
+---
+
+---
+
 ### 54. What is Auth0 / Okta?
 **Answer:** 
 **The Core Concept:**
@@ -814,6 +1084,11 @@ Commercial identity platforms providing hosted login, MFA, and social connection
 **Reference:** [Documentation](https://auth0.com/docs)
 
 ---
+
+---
+
+---
+
 ### 55. What is password salting?
 **Answer:** 
 **The Core Concept:**
@@ -829,6 +1104,11 @@ Random data combined with password before hashing so identical passwords produce
 **Reference:** [Documentation](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html)
 
 ---
+
+---
+
+---
+
 ### 56. What is pepper?
 **Answer:** 
 **The Core Concept:**
@@ -844,6 +1124,11 @@ Secret added to passwords before hashing, stored separately from the database (e
 **Reference:** [Documentation](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html)
 
 ---
+
+---
+
+---
+
 ### 57. What is account lockout?
 **Answer:** 
 **The Core Concept:**
@@ -859,6 +1144,11 @@ Temporarily blocking login after repeated failed attempts.
 **Reference:** [Documentation](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html)
 
 ---
+
+---
+
+---
+
 ### 58. What is credential stuffing?
 **Answer:** 
 **The Core Concept:**
@@ -874,6 +1164,11 @@ Attack using leaked username/password pairs from other breaches.
 **Reference:** [Documentation](https://owasp.org/www-community/attacks/Credential_stuffing)
 
 ---
+
+---
+
+---
+
 ### 59. What is brute force attack?
 **Answer:** 
 **The Core Concept:**
@@ -889,6 +1184,11 @@ Systematically guessing passwords or tokens until success.
 **Reference:** [Documentation](https://owasp.org/www-community/attacks/Brute_force_attack)
 
 ---
+
+---
+
+---
+
 ### 60. What is passwordless authentication?
 **Answer:** 
 **The Core Concept:**
@@ -904,6 +1204,11 @@ Login without user-chosen passwords using magic links, WebAuthn, or OTP.
 **Reference:** [Documentation](https://auth0.com/blog/what-is-passwordless-authentication/)
 
 ---
+
+---
+
+---
+
 ### 61. What is a magic link?
 **Answer:** 
 **The Core Concept:**
@@ -919,6 +1224,11 @@ One-time URL sent to email that establishes a session when clicked.
 **Reference:** [Documentation](https://cheatsheetseries.owasp.org/cheatsheets/Forgot_Password_Cheat_Sheet.html)
 
 ---
+
+---
+
+---
+
 ### 62. What is OTP via SMS?
 **Answer:** 
 **The Core Concept:**
@@ -934,6 +1244,11 @@ One-time password sent by text message as second factor or primary login.
 **Reference:** [Documentation](https://pages.nist.gov/800-63-3/sp800-63b.html)
 
 ---
+
+---
+
+---
+
 ### 63. What is CAPTCHA?
 **Answer:** 
 **The Core Concept:**
@@ -949,6 +1264,11 @@ Challenge distinguishing humans from bots during login or registration.
 **Reference:** [Documentation](https://www.google.com/recaptcha/)
 
 ---
+
+---
+
+---
+
 ### 64. What is rate limiting for auth endpoints?
 **Answer:** 
 **The Core Concept:**
@@ -964,6 +1284,11 @@ Throttling login, register, and password-reset to slow attacks.
 **Reference:** [Documentation](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html)
 
 ---
+
+---
+
+---
+
 ### 65. What is user enumeration?
 **Answer:** 
 **The Core Concept:**
@@ -979,6 +1304,11 @@ Learning valid usernames via different error messages or timing.
 **Reference:** [Documentation](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/03-Identity_Management_Testing/04-Testing_for_Account_Enumeration_and_Guessable_User_Account)
 
 ---
+
+---
+
+---
+
 ### 66. What is secure password reset flow?
 **Answer:** 
 **The Core Concept:**
@@ -994,6 +1324,11 @@ Verify identity via email link or MFA, issue one-time token, force session inval
 **Reference:** [Documentation](https://cheatsheetseries.owasp.org/cheatsheets/Forgot_Password_Cheat_Sheet.html)
 
 ---
+
+---
+
+---
+
 ### 67. What is session fixation?
 **Answer:** 
 **The Core Concept:**
@@ -1009,6 +1344,11 @@ Attacker sets victim's session ID before login; after login victim uses attacker
 **Reference:** [Documentation](https://owasp.org/www-community/attacks/Session_fixation)
 
 ---
+
+---
+
+---
+
 ### 68. What is session hijacking?
 **Answer:** 
 **The Core Concept:**
@@ -1024,6 +1364,11 @@ Stealing a valid session ID via XSS, network sniffing, or malware.
 **Reference:** [Documentation](https://owasp.org/www-community/attacks/Session_hijacking_attack)
 
 ---
+
+---
+
+---
+
 ### 69. What is idle vs absolute session timeout?
 **Answer:** 
 **The Core Concept:**
@@ -1039,6 +1384,11 @@ Idle timeout logs out after inactivity; absolute timeout ends session after fixe
 **Reference:** [Documentation](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html)
 
 ---
+
+---
+
+---
+
 ### 70. What is Content Security Policy (CSP)?
 **Answer:** 
 **The Core Concept:**
@@ -1054,6 +1404,11 @@ HTTP header restricting script/style sources to reduce XSS impact.
 **Reference:** [Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
 
 ---
+
+---
+
+---
+
 ### 71. What is Subresource Integrity (SRI)?
 **Answer:** 
 **The Core Concept:**
@@ -1069,6 +1424,11 @@ Hash attribute on script/link tags ensuring CDN files were not tampered with.
 **Reference:** [Documentation](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity)
 
 ---
+
+---
+
+---
+
 ### 72. What is the SameSite cookie attribute?
 **Answer:** 
 **The Core Concept:**
@@ -1084,6 +1444,11 @@ Controls whether cookies are sent on cross-site requests (Strict, Lax, None).
 **Reference:** [Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite)
 
 ---
+
+---
+
+---
+
 ### 73. What is BFF (Backend for Frontend) pattern?
 **Answer:** 
 **The Core Concept:**
@@ -1099,6 +1464,11 @@ A server-side component handles OAuth and stores tokens; browser only gets sessi
 **Reference:** [Documentation](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-browser-based-apps)
 
 ---
+
+---
+
+---
+
 ### 74. What is zero trust for APIs?
 **Answer:** 
 **The Core Concept:**
@@ -1114,6 +1484,11 @@ Never trust network location; verify identity, device, and context on every requ
 **Reference:** [Documentation](https://www.nist.gov/publications/zero-trust-architecture)
 
 ---
+
+---
+
+---
+
 ### 75. What is SPIFFE/SPIRE?
 **Answer:** 
 **The Core Concept:**
@@ -1129,6 +1504,11 @@ Standards for workload identity (SVIDs) in distributed systems.
 **Reference:** [Documentation](https://spiffe.io/)
 
 ---
+
+---
+
+---
+
 ### 76. What is secrets management?
 **Answer:** 
 **The Core Concept:**
@@ -1144,6 +1524,11 @@ Storing API keys and passwords in vaults (Azure Key Vault, HashiCorp Vault) not 
 **Reference:** [Documentation](https://learn.microsoft.com/en-us/azure/key-vault/)
 
 ---
+
+---
+
+---
+
 ### 77. What is OWASP ASVS?
 **Answer:** 
 **The Core Concept:**
@@ -1159,6 +1544,11 @@ Application Security Verification Standard checklist for secure auth/session des
 **Reference:** [Documentation](https://owasp.org/www-project-application-security-verification-standard/)
 
 ---
+
+---
+
+---
+
 ### 78. What is broken authentication?
 **Answer:** 
 **The Core Concept:**
@@ -1174,6 +1564,11 @@ OWASP Top 10 category covering weak credentials, session issues, and missing MFA
 **Reference:** [Documentation](https://owasp.org/Top10/)
 
 ---
+
+---
+
+---
+
 ### 79. What is broken access control?
 **Answer:** 
 **The Core Concept:**
@@ -1189,6 +1584,11 @@ Users acting outside their intended permissions (IDOR, privilege escalation).
 **Reference:** [Documentation](https://owasp.org/Top10/)
 
 ---
+
+---
+
+---
+
 ### 80. What is IDOR?
 **Answer:** 
 **The Core Concept:**
@@ -1204,6 +1604,11 @@ Insecure Direct Object Reference: accessing objects by manipulating identifiers 
 **Reference:** [Documentation](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/05-Authorization_Testing/04-Testing_for_Insecure_Direct_Object_References)
 
 ---
+
+---
+
+---
+
 ### 81. What is privilege escalation?
 **Answer:** 
 **The Core Concept:**
@@ -1219,6 +1624,11 @@ Gaining higher permissions than assigned (horizontal or vertical).
 **Reference:** [Documentation](https://owasp.org/www-community/attacks/Privilege_escalation)
 
 ---
+
+---
+
+---
+
 ### 82. What is horizontal vs vertical access control?
 **Answer:** 
 **The Core Concept:**
@@ -1234,6 +1644,11 @@ Horizontal: same role, different user's data. Vertical: lower role accessing adm
 **Reference:** [Documentation](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html)
 
 ---
+
+---
+
+---
+
 ### 83. What is defense in depth for auth?
 **Answer:** 
 **The Core Concept:**
@@ -1249,6 +1664,11 @@ Multiple layers: MFA, WAF, rate limits, monitoring, short tokens, and secure coo
 **Reference:** [Documentation](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html)
 
 ---
+
+---
+
+---
+
 ### 84. What is security logging for auth?
 **Answer:** 
 **The Core Concept:**
@@ -1264,6 +1684,11 @@ Audit login success/failure, lockouts, password changes, and admin actions witho
 **Reference:** [Documentation](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html)
 
 ---
+
+---
+
+---
+
 ### 85. What is anomaly detection for logins?
 **Answer:** 
 **The Core Concept:**
@@ -1279,6 +1704,11 @@ ML/rules detecting impossible travel, new device, or unusual time.
 **Reference:** [Documentation](https://auth0.com/docs/secure/tokens/token-best-practices)
 
 ---
+
+---
+
+---
+
 ### 86. What is device fingerprinting?
 **Answer:** 
 **The Core Concept:**
@@ -1294,6 +1724,11 @@ Collecting browser/device signals to recognize returning clients.
 **Reference:** [Documentation](https://owasp.org/www-community/controls/Blocking_Brute_Force_Attacks)
 
 ---
+
+---
+
+---
+
 ### 87. What is step-up authentication?
 **Answer:** 
 **The Core Concept:**
@@ -1309,6 +1744,11 @@ Re-prompting for stronger auth before sensitive actions (wire transfer, change e
 **Reference:** [Documentation](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest)
 
 ---
+
+---
+
+---
+
 ### 88. What is auth_time claim?
 **Answer:** 
 **The Core Concept:**
@@ -1324,6 +1764,11 @@ OIDC claim indicating when the user last actively authenticated.
 **Reference:** [Documentation](https://openid.net/specs/openid-connect-core-1_0.html#IDToken)
 
 ---
+
+---
+
+---
+
 ### 89. What is max_age parameter?
 **Answer:** 
 **The Core Concept:**
@@ -1339,6 +1784,11 @@ OIDC authorize parameter requiring authentication not older than specified secon
 **Reference:** [Documentation](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest)
 
 ---
+
+---
+
+---
+
 ### 90. What is logout in OIDC?
 **Answer:** 
 **The Core Concept:**
@@ -1354,6 +1804,11 @@ RP-initiated logout redirects to IdP end_session_endpoint to clear SSO session.
 **Reference:** [Documentation](https://openid.net/specs/openid-connect-session-1_0.html)
 
 ---
+
+---
+
+---
+
 ### 91. What is token storage in mobile apps?
 **Answer:** 
 **The Core Concept:**
@@ -1369,6 +1824,11 @@ Use secure enclave/Keychain (iOS) and Keystore (Android); avoid SharedPreference
 **Reference:** [Documentation](https://cheatsheetseries.owasp.org/cheatsheets/Mobile_Application_Security_Cheat_Sheet.html)
 
 ---
+
+---
+
+---
+
 ### 92. What is certificate pinning?
 **Answer:** 
 **The Core Concept:**
@@ -1384,6 +1844,11 @@ App only trusts specific server certificate/public key, mitigating rogue CA MITM
 **Reference:** [Documentation](https://owasp.org/www-community/controls/Certificate_and_Public_Key_Pinning)
 
 ---
+
+---
+
+---
+
 ### 93. What is OAuth for native apps?
 **Answer:** 
 **The Core Concept:**
@@ -1399,6 +1864,11 @@ Use system browser (ASWebAuthenticationSession) and PKCE; no embedded WebViews.
 **Reference:** [Documentation](https://datatracker.ietf.org/doc/html/rfc8252)
 
 ---
+
+---
+
+---
+
 ### 94. What is rotating refresh tokens?
 **Answer:** 
 **The Core Concept:**
@@ -1414,6 +1884,11 @@ Issuing new refresh token on each refresh and invalidating old one to detect the
 **Reference:** [Documentation](https://auth0.com/docs/secure/tokens/refresh-tokens/refresh-token-rotation)
 
 ---
+
+---
+
+---
+
 ### 95. What is JWT algorithm confusion attack?
 **Answer:** 
 **The Core Concept:**
@@ -1429,6 +1904,11 @@ Server accepts HS256 with public key as HMAC secret if misconfigured.
 **Reference:** [Documentation](https://auth0.com/blog/critical-vulnerabilities-in-json-web-token-libraries/)
 
 ---
+
+---
+
+---
+
 ### 96. What is jti claim?
 **Answer:** 
 **The Core Concept:**
@@ -1444,6 +1924,11 @@ JWT ID—a unique identifier for the token useful for replay prevention and revo
 **Reference:** [Documentation](https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.7)
 
 ---
+
+---
+
+---
+
 ### 97. What is sliding vs absolute JWT expiry?
 **Answer:** 
 **The Core Concept:**
@@ -1459,6 +1944,11 @@ Absolute: fixed exp. Sliding: extend session on activity (usually via refresh to
 **Reference:** [Documentation](https://auth0.com/docs/secure/tokens/access-tokens)
 
 ---
+
+---
+
+---
+
 ### 98. What is hybrid flow in OIDC?
 **Answer:** 
 **The Core Concept:**
@@ -1474,6 +1964,11 @@ Returns authorization code and tokens from authorize endpoint (legacy).
 **Reference:** [Documentation](https://openid.net/specs/openid-connect-core-1_0.html#HybridFlowAuth)
 
 ---
+
+---
+
+---
+
 ### 99. What is federated identity?
 **Answer:** 
 **The Core Concept:**
@@ -1489,6 +1984,11 @@ Trusting external IdP for authentication instead of local password database.
 **Reference:** [Documentation](https://en.wikipedia.org/wiki/Federated_identity)
 
 ---
+
+---
+
+---
+
 ### 100. What is SCIM?
 **Answer:** 
 **The Core Concept:**
@@ -1504,6 +2004,11 @@ System for Cross-domain Identity Management protocol for automating user provisi
 **Reference:** [Documentation](https://scim.cloud/)
 
 ---
+
+---
+
+---
+
 ### 101. What is Just-In-Time (JIT) provisioning?
 **Answer:** 
 **The Core Concept:**
@@ -1519,6 +2024,11 @@ Creating user account on first SSO login from IdP claims.
 **Reference:** [Documentation](https://learn.microsoft.com/en-us/azure/active-directory/develop/how-to-connect-fed-managed-accounts)
 
 ---
+
+---
+
+---
+
 ### 102. What is LDAP / Active Directory auth?
 **Answer:** 
 **The Core Concept:**
@@ -1534,6 +2044,11 @@ Directory protocol for bind (authenticate) and search operations in enterprises.
 **Reference:** [Documentation](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/virtual-dc/active-directory-domain-services-overview)
 
 ---
+
+---
+
+---
+
 ### 103. What is Kerberos?
 **Answer:** 
 **The Core Concept:**
@@ -1549,6 +2064,11 @@ Network authentication protocol using tickets in Windows domains.
 **Reference:** [Documentation](https://web.mit.edu/kerberos/)
 
 ---
+
+---
+
+---
+
 ### 104. What is NTLM?
 **Answer:** 
 **The Core Concept:**
@@ -1564,6 +2084,11 @@ Legacy Microsoft challenge-response auth still seen in Windows integrations.
 **Reference:** [Documentation](https://learn.microsoft.com/en-us/windows-server/security/kerberos/ntlm-overview)
 
 ---
+
+---
+
+---
+
 ### 105. What is Windows Integrated Auth?
 **Answer:** 
 **The Core Concept:**
@@ -1579,6 +2104,11 @@ IIS/ASP.NET using Kerberos/NTLM for intranet SSO without login form.
 **Reference:** [Documentation](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/windowsauth)
 
 ---
+
+---
+
+---
+
 ### 106. What is social login security?
 **Answer:** 
 **The Core Concept:**
@@ -1594,6 +2124,11 @@ Using Google/GitHub OAuth; validate state, use official SDKs, map minimal profil
 **Reference:** [Documentation](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html)
 
 ---
+
+---
+
+---
+
 ### 107. What is email verification?
 **Answer:** 
 **The Core Concept:**
@@ -1609,6 +2144,11 @@ Confirming user owns email before granting full access or sending sensitive mail
 **Reference:** [Documentation](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html)
 
 ---
+
+---
+
+---
+
 ### 108. What is terms of service / privacy consent?
 **Answer:** 
 **The Core Concept:**
@@ -1624,6 +2164,11 @@ Recording user consent for GDPR compliance at registration.
 **Reference:** [Documentation](https://gdpr.eu/)
 
 ---
+
+---
+
+---
+
 ### 109. What is GDPR impact on auth?
 **Answer:** 
 **The Core Concept:**
@@ -1639,6 +2184,11 @@ Right to erasure, data minimization, and lawful basis for processing identity da
 **Reference:** [Documentation](https://gdpr.eu/what-is-gdpr/)
 
 ---
+
+---
+
+---
+
 ### 110. What is secrets in JWT?
 **Answer:** 
 **The Core Concept:**
@@ -1654,6 +2204,11 @@ JWTs are signed not encrypted—anyone with token can read payload unless JWE us
 **Reference:** [Documentation](https://jwt.io/introduction)
 
 ---
+
+---
+
+---
+
 ### 111. What is JWE?
 **Answer:** 
 **The Core Concept:**
@@ -1669,6 +2224,11 @@ JSON Web Encryption encrypts JWT content for confidentiality.
 **Reference:** [Documentation](https://datatracker.ietf.org/doc/html/rfc7516)
 
 ---
+
+---
+
+---
+
 ### 112. What is JWKS?
 **Answer:** 
 **The Core Concept:**
@@ -1684,6 +2244,11 @@ JSON Web Key Set publishes public keys at /.well-known/jwks.json for token verif
 **Reference:** [Documentation](https://auth0.com/docs/secure/tokens/json-web-tokens/json-web-key-sets)
 
 ---
+
+---
+
+---
+
 ### 113. What is kid header in JWT?
 **Answer:** 
 **The Core Concept:**
@@ -1699,6 +2264,11 @@ Key ID indicating which key from JWKS signed the token.
 **Reference:** [Documentation](https://datatracker.ietf.org/doc/html/rfc7515#section-4.1.4)
 
 ---
+
+---
+
+---
+
 ### 114. What is clock skew for JWT?
 **Answer:** 
 **The Core Concept:**
@@ -1714,6 +2284,11 @@ Small leeway (e.g., 60s) when validating exp/nbf across distributed servers.
 **Reference:** [Documentation](https://github.com/auth0/node-jsonwebtoken#usage)
 
 ---
+
+---
+
+---
+
 ### 115. What is secure headers for auth APIs?
 **Answer:** 
 **The Core Concept:**
@@ -1729,6 +2304,11 @@ HSTS, X-Content-Type-Options, X-Frame-Options, Referrer-Policy on auth endpoints
 **Reference:** [Documentation](https://owasp.org/www-project-secure-headers/)
 
 ---
+
+---
+
+---
+
 ### 116. What is penetration testing auth?
 **Answer:** 
 **The Core Concept:**
@@ -1744,3 +2324,263 @@ Structured testing of login, session, OAuth, and password flows by security expe
 **Reference:** [Documentation](https://owasp.org/www-project-web-security-testing-guide/)
 
 ---
+
+---
+
+## Technical Questions
+
+---
+
+### 1. Implement a JWT token generation function using `crypto` in Node.js.
+
+**Example Solution:**
+```javascript
+const crypto = require("crypto");
+
+function generateJWT(payload, secret, expiresInSeconds = 3600) {
+  const header = { alg: "HS256", typ: "JWT" };
+  const exp = Math.floor(Date.now() / 1000) + expiresInSeconds;
+  const fullPayload = { ...payload, exp };
+
+  const base64UrlEncode = (obj) => {
+    return Buffer.from(JSON.stringify(obj))
+      .toString("base64")
+      .replace(/=/g, "")
+      .replace(/\+/g, "-")
+      .replace(/\//g, "_");
+  };
+
+  const encodedHeader = base64UrlEncode(header);
+  const encodedPayload = base64UrlEncode(fullPayload);
+
+  const signature = crypto
+    .createHmac("sha256", secret)
+    .update(`${encodedHeader}.${encodedPayload}`)
+    .digest("base64url");
+
+  return `${encodedHeader}.${encodedPayload}.${signature}`;
+}
+```
+
+---
+
+### 2. Implement a rate-limiting middleware in Express using an in-memory sliding window.
+
+**Example Solution:**
+```javascript
+const rateLimit = (limit = 100, windowMs = 60000) => {
+  const ipRequests = new Map();
+
+  return (req, res, next) => {
+    const ip = req.ip;
+    const now = Date.now();
+    
+    if (!ipRequests.has(ip)) {
+      ipRequests.set(ip, []);
+    }
+
+    const timestamps = ipRequests.get(ip);
+    // Filter timestamps within current window
+    const activeTimestamps = timestamps.filter(t => now - t < windowMs);
+    
+    if (activeTimestamps.length >= limit) {
+      return res.status(429).json({ error: "Too many requests. Please try again later." });
+    }
+
+    activeTimestamps.push(now);
+    ipRequests.set(ip, activeTimestamps);
+    next();
+  };
+};
+```
+
+---
+
+## Technical Questions
+
+### 1. Implement a JWT token generation function using `crypto` in Node.js.
+
+**Example Solution:**
+```javascript
+const crypto = require("crypto");
+
+function generateJWT(payload, secret, expiresInSeconds = 3600) {
+  const header = { alg: "HS256", typ: "JWT" };
+  const exp = Math.floor(Date.now() / 1000) + expiresInSeconds;
+  const fullPayload = { ...payload, exp };
+
+  const base64UrlEncode = (obj) => {
+    return Buffer.from(JSON.stringify(obj))
+      .toString("base64")
+      .replace(/=/g, "")
+      .replace(/\+/g, "-")
+      .replace(/\//g, "_");
+  };
+
+  const encodedHeader = base64UrlEncode(header);
+  const encodedPayload = base64UrlEncode(fullPayload);
+
+  const signature = crypto
+    .createHmac("sha256", secret)
+    .update(`${encodedHeader}.${encodedPayload}`)
+    .digest("base64url");
+
+  return `${encodedHeader}.${encodedPayload}.${signature}`;
+}
+```
+
+### 2. Implement a rate-limiting middleware in Express using an in-memory sliding window.
+
+**Example Solution:**
+```javascript
+const rateLimit = (limit = 100, windowMs = 60000) => {
+  const ipRequests = new Map();
+
+  return (req, res, next) => {
+    const ip = req.ip;
+    const now = Date.now();
+    
+    if (!ipRequests.has(ip)) {
+      ipRequests.set(ip, []);
+    }
+
+    const timestamps = ipRequests.get(ip);
+    const activeTimestamps = timestamps.filter(t => now - t < windowMs);
+    
+    if (activeTimestamps.length >= limit) {
+      return res.status(429).json({ error: "Too many requests. Please try again later." });
+    }
+
+    activeTimestamps.push(now);
+    ipRequests.set(ip, activeTimestamps);
+    next();
+  };
+};
+```
+
+### 3. Implement a PBKDF2 password hashing helper in Node.js.
+
+**Example Solution:**
+```javascript
+const crypto = require("crypto");
+
+function hashPassword(password) {
+  const salt = crypto.randomBytes(16).toString("hex");
+  const hash = crypto.pbkdf2Sync(password, salt, 1000, 64, "sha512").toString("hex");
+  return { salt, hash };
+}
+
+function verifyPassword(password, salt, hash) {
+  const checkHash = crypto.pbkdf2Sync(password, salt, 1000, 64, "sha512").toString("hex");
+  return hash === checkHash;
+}
+```
+
+### 4. [Self-Practice] Design a high-throughput, fault-tolerant system leveraging key principles of Web Security & Authentication.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 5. [Self-Practice] Write a custom utility to validate input schemas and sanitize payloads in Web Security & Authentication.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 6. [Self-Practice] Implement a comprehensive error-boundary and logging module for a Web Security & Authentication application.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 7. [Self-Practice] Optimize memory consumption and execution hot-paths under high load in Web Security & Authentication.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 8. [Self-Practice] Write an automated unit testing suite targeting complex race-conditions in Web Security & Authentication.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 9. [Self-Practice] Create a localized internationalization (i18n) helper integrated with Web Security & Authentication.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 10. [Self-Practice] Build a secure token-based authentication handshake flow within Web Security & Authentication.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 11. [Self-Practice] Design a distributed caching and invalidation strategy for heavy Web Security & Authentication operations.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 12. [Self-Practice] Create a CLI tool to automate scaffolding and deployment of Web Security & Authentication configurations.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 13. [Self-Practice] Implement a real-time event-driven pub/sub handler using Web Security & Authentication event structures.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 14. [Self-Practice] Draft an architectural decision record (ADR) comparing Web Security & Authentication with its primary competitors.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 15. [Self-Practice] Create a mock framework to isolate and test external integrations in Web Security & Authentication.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 16. [Self-Practice] Write a custom telemetry wrapper to output Web Security & Authentication performance metrics to Prometheus/Grafana.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 17. [Self-Practice] Design a zero-downtime blue-green roll-out plan for a database or service utilizing Web Security & Authentication.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 18. [Self-Practice] Implement a circuit-breaker pattern to gracefully degrade service during Web Security & Authentication failures.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 19. [Self-Practice] Write an automated script to detect memory leaks and unhandled promise rejections in Web Security & Authentication.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 20. [Self-Practice] Build a user-friendly audit log tracking all state mutations and access events in Web Security & Authentication.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 21. [Self-Practice] Design an API gateway integration mapping REST inputs to Web Security & Authentication data layers.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 22. [Self-Practice] Implement a rate-limiter with custom sliding-window configurations in Web Security & Authentication.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 23. [Self-Practice] Create a backup and recovery automated script for preserving Web Security & Authentication state repositories.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 24. [Self-Practice] Design a microservice boundary that encapsulates Web Security & Authentication logic without tight coupling.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 25. [Self-Practice] Build a role-based access control (RBAC) middleware verifying permissions on Web Security & Authentication.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 26. [Self-Practice] Write an optimized compiler or parser configuration to bundle Web Security & Authentication files for web browsers.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 27. [Self-Practice] Implement a dead-letter queue (DLQ) pattern for handling corrupted messages in Web Security & Authentication.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 28. [Self-Practice] Create an automated health-check endpoint monitor checking Web Security & Authentication connection integrity.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 29. [Self-Practice] Implement a secure CORS and CSP policy wrapper for endpoints exposing Web Security & Authentication.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 30. [Self-Practice] Refactor a legacy monolithic module into modern, modular ES modules using Web Security & Authentication.
+
+*(Challenge question for self-study and practical project implementation.)*
+

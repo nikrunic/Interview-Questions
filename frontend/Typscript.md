@@ -3,6 +3,7 @@
 This document contains a comprehensive list of 100 TypeScript interview questions, categorized by difficulty (20 Basic, 30 Medium, 50 Hard). These questions are curated based on popular public Git repositories and front-end interview handbooks.
 
 ## Basic Questions
+
 ### 1. What is TypeScript?
 **Answer:** 
 **The Core Concept:**
@@ -12,6 +13,8 @@ A strongly typed, object-oriented, compiled language built on top of JavaScript.
 - It is a strict syntactical superset of JS developed by Microsoft.
 **Example:** `let isDone: boolean = false;`
 **Reference:** [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
+
+---
 
 ---
 
@@ -27,10 +30,14 @@ Static typing catches errors at compile-time instead of runtime.
 
 ---
 
+---
+
 ### 3. What are the basic data types in TypeScript?
 **Answer:** `boolean`, `number`, `string`, `Array`, `Tuple`, `Enum`, `any`, `unknown`, `void`, `null`, `undefined`, and `never`.
 **Example:** `let age: number = 25;`
 **Reference:** [Basic Types](https://www.typescriptlang.org/docs/handbook/basic-types.html)
+
+---
 
 ---
 
@@ -47,6 +54,8 @@ A type that opts out of type checking.
 
 ---
 
+---
+
 ### 5. What is the difference between `any` and `unknown`?
 **Answer:** 
 **The Core Concept:**
@@ -56,6 +65,8 @@ Both accept any value.
 - However, `unknown` forces you to perform a type check before performing operations on the value, making it much safer than `any`.
 **Example:** `let u: unknown = "hello"; if (typeof u === "string") console.log(u.length);`
 **Reference:** [Unknown Type](https://www.typescriptlang.org/docs/handbook/2/functions.html#unknown)
+
+---
 
 ---
 
@@ -71,10 +82,14 @@ Types denoting a list of elements.
 
 ---
 
+---
+
 ### 7. What is a Tuple?
 **Answer:** An array with a fixed number of elements whose types are known, but need not be the same.
 **Example:** `let x: [string, number]; x = ["hello", 10];`
 **Reference:** [Tuple Types](https://www.typescriptlang.org/docs/handbook/2/objects.html#tuple-types)
+
+---
 
 ---
 
@@ -85,10 +100,14 @@ Types denoting a list of elements.
 
 ---
 
+---
+
 ### 9. What is the `void` type?
 **Answer:** Used mostly as the return type of functions that do not return a value.
 **Example:** `function warnUser(): void { console.log("Warning!"); }`
 **Reference:** [Void Type](https://www.typescriptlang.org/docs/handbook/2/functions.html#void)
+
+---
 
 ---
 
@@ -104,10 +123,14 @@ Represents the type of values that never occur.
 
 ---
 
+---
+
 ### 11. What is Type Inference?
 **Answer:** TypeScript's ability to automatically deduce the type of a variable without explicit type annotation, based on its initialization.
 **Example:** `let x = 3; // TS infers x is number`
 **Reference:** [Type Inference](https://www.typescriptlang.org/docs/handbook/type-inference.html)
+
+---
 
 ---
 
@@ -118,10 +141,14 @@ Represents the type of values that never occur.
 
 ---
 
+---
+
 ### 13. How do you define a function type?
 **Answer:** By specifying the types for arguments and the return type.
 **Example:** `let myAdd: (x: number, y: number) => number = function(x, y) { return x + y; };`
 **Reference:** [Function Types](https://www.typescriptlang.org/docs/handbook/2/functions.html#function-type-expressions)
+
+---
 
 ---
 
@@ -137,10 +164,14 @@ In TypeScript, every parameter is required by default.
 
 ---
 
+---
+
 ### 15. What are Default Parameters?
 **Answer:** Parameters assigned a default value if the user does not provide one, or passes `undefined`.
 **Example:** `function buildName(first: string, last = "Smith") { ... }`
 **Reference:** [Default Parameters](https://www.typescriptlang.org/docs/handbook/2/functions.html#optional-parameters-in-callbacks)
+
+---
 
 ---
 
@@ -156,10 +187,14 @@ A syntactic contract that an entity should conform to.
 
 ---
 
+---
+
 ### 17. Can interfaces have optional properties?
 **Answer:** Yes, denoted by a `?` at the end of the property name.
 **Example:** `interface SquareConfig { color?: string; width?: number; }`
 **Reference:** [Optional Properties](https://www.typescriptlang.org/docs/handbook/2/objects.html#optional-properties)
+
+---
 
 ---
 
@@ -170,10 +205,14 @@ A syntactic contract that an entity should conform to.
 
 ---
 
+---
+
 ### 19. What is a Class in TypeScript?
 **Answer:** TypeScript fully supports ES6 classes and adds type annotations and access modifiers (public, private, protected).
 **Example:** `class Greeter { greeting: string; constructor(message: string) { this.greeting = message; } }`
 **Reference:** [Classes](https://www.typescriptlang.org/docs/handbook/2/classes.html)
+
+---
 
 ---
 
@@ -186,10 +225,17 @@ A syntactic contract that an entity should conform to.
 
 
 ## Intermediate Questions
+
+---
+
+## Intermediate Questions
+
 ### 21. What is a Union Type?
 **Answer:** A type formed from two or more other types, representing values that may be *any one* of those types.
 **Example:** `function printId(id: number | string) { ... }`
 **Reference:** [Union Types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#union-types)
+
+---
 
 ---
 
@@ -205,6 +251,8 @@ A type that combines multiple types into one.
 
 ---
 
+---
+
 ### 23. What is the difference between `interface` and `type` alias?
 **Answer:** 
 **The Core Concept:**
@@ -214,6 +262,8 @@ Interfaces are open and can be extended by declaring them multiple times (Declar
 - Types cannot be re-opened but can represent primitives, unions, and tuples.
 **Example:** `type ID = number | string; interface Person { name: string; }`
 **Reference:** [Differences Between Type Aliases and Interfaces](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces)
+
+---
 
 ---
 
@@ -229,10 +279,14 @@ Expressions that perform a runtime check that guarantees the type in some scope.
 
 ---
 
+---
+
 ### 25. What is a Custom Type Predicate?
 **Answer:** A return type annotation in the form `parameterName is Type`, used to inform the TS compiler of the specific type after a runtime check.
 **Example:** `function isFish(pet: Fish | Bird): pet is Fish { return (pet as Fish).swim !== undefined; }`
 **Reference:** [Using type predicates](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates)
+
+---
 
 ---
 
@@ -243,10 +297,14 @@ Expressions that perform a runtime check that guarantees the type in some scope.
 
 ---
 
+---
+
 ### 27. What are Generic Constraints?
 **Answer:** A way to limit the kinds of types that a generic parameter can accept using the `extends` keyword.
 **Example:** `function loggingIdentity<T extends { length: number }>(arg: T): T { console.log(arg.length); return arg; }`
 **Reference:** [Generic Constraints](https://www.typescriptlang.org/docs/handbook/2/generics.html#generic-constraints)
+
+---
 
 ---
 
@@ -262,6 +320,8 @@ Keywords (`public`, `private`, `protected`) in classes that control the visibili
 
 ---
 
+---
+
 ### 29. What is the difference between `private` and `protected`?
 **Answer:** 
 **The Core Concept:**
@@ -274,10 +334,14 @@ Keywords (`public`, `private`, `protected`) in classes that control the visibili
 
 ---
 
+---
+
 ### 30. What are Parameter Properties?
 **Answer:** A shorthand to declare and initialize a class property in one place by adding an access modifier to a constructor parameter.
 **Example:** `constructor(public name: string) {}` (creates and assigns `this.name`).
 **Reference:** [Parameter Properties](https://www.typescriptlang.org/docs/handbook/2/classes.html#parameter-properties)
+
+---
 
 ---
 
@@ -288,10 +352,14 @@ Keywords (`public`, `private`, `protected`) in classes that control the visibili
 
 ---
 
+---
+
 ### 32. What is the `typeof` type operator?
 **Answer:** In TypeScript context, `typeof` refers to the type of a value/variable, allowing you to extract the type to use elsewhere.
 **Example:** `let s = "hello"; type X = typeof s; // type string`
 **Reference:** [typeof Type Operator](https://www.typescriptlang.org/docs/handbook/2/typeof-types.html)
+
+---
 
 ---
 
@@ -302,10 +370,14 @@ Keywords (`public`, `private`, `protected`) in classes that control the visibili
 
 ---
 
+---
+
 ### 34. What are Utility Types?
 **Answer:** Built-in generic types globally available in TypeScript to facilitate common type transformations.
 **Example:** `Partial<T>`, `Readonly<T>`, `Pick<T, K>`.
 **Reference:** [Utility Types](https://www.typescriptlang.org/docs/handbook/utility-types.html)
+
+---
 
 ---
 
@@ -316,6 +388,8 @@ Keywords (`public`, `private`, `protected`) in classes that control the visibili
 
 ---
 
+---
+
 ### 36. Explain `Omit<T, K>`.
 **Answer:** Constructs a type by picking all properties from `T` and then removing `K` (keys).
 **Example:** `type TodoPreview = Omit<Todo, "description">;`
@@ -323,10 +397,14 @@ Keywords (`public`, `private`, `protected`) in classes that control the visibili
 
 ---
 
+---
+
 ### 37. Explain `Pick<T, K>`.
 **Answer:** Constructs a type by picking the set of properties `K` from `T`.
 **Example:** `type TodoInfo = Pick<Todo, "title" | "completed">;`
 **Reference:** [Pick](https://www.typescriptlang.org/docs/handbook/utility-types.html#picktype-keys)
+
+---
 
 ---
 
@@ -342,6 +420,8 @@ Constructs an object type whose property keys are `K` and whose property values 
 
 ---
 
+---
+
 ### 39. What is a Namespace?
 **Answer:** 
 **The Core Concept:**
@@ -354,6 +434,8 @@ An internal TypeScript mechanism for organizing code and preventing global scope
 
 ---
 
+---
+
 ### 40. How does TypeScript handle `null` and `undefined`?
 **Answer:** When `strictNullChecks` is `true` in `tsconfig`, `null` and `undefined` have their own distinct types and cannot be assigned to other types (like `string`) unless explicitly specified in a union.
 **Example:** `let s: string | null = null;`
@@ -363,6 +445,9 @@ An internal TypeScript mechanism for organizing code and preventing global scope
 
 
 ## Expert Questions
+
+---
+
 ### 41. What is Declaration Merging?
 **Answer:** 
 **The Core Concept:**
@@ -372,6 +457,8 @@ When the TypeScript compiler merges two or more separate declarations declared w
 - This works for Interfaces and Namespaces, but not Types.
 **Example:** `interface Box { height: number; } interface Box { width: number; }` results in one Box with both.
 **Reference:** [Declaration Merging](https://www.typescriptlang.org/docs/handbook/declaration-merging.html)
+
+---
 
 ---
 
@@ -387,6 +474,8 @@ A special kind of declaration that can be attached to a class declaration, metho
 
 ---
 
+---
+
 ### 43. Explain Mapped Types.
 **Answer:** 
 **The Core Concept:**
@@ -399,10 +488,14 @@ A generic type which uses a union of `keyof` to iterate through keys to create a
 
 ---
 
+---
+
 ### 44. What are Conditional Types?
 **Answer:** Types that select one of two possible types based on a condition expressed as a type relationship test (`extends`).
 **Example:** `type NonNullable<T> = T extends null | undefined ? never : T;`
 **Reference:** [Conditional Types](https://www.typescriptlang.org/docs/handbook/2/conditional-types.html)
+
+---
 
 ---
 
@@ -413,10 +506,14 @@ A generic type which uses a union of `keyof` to iterate through keys to create a
 
 ---
 
+---
+
 ### 46. What are Template Literal Types?
 **Answer:** Types built on string literal types, allowing expansion via unions to create many strings via interpolation.
 **Example:** `type World = "world"; type Greeting = \`hello ${World}\`;`
 **Reference:** [Template Literal Types](https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html)
+
+---
 
 ---
 
@@ -427,6 +524,8 @@ A generic type which uses a union of `keyof` to iterate through keys to create a
 
 ---
 
+---
+
 ### 48. What is the `tsconfig.json` file?
 **Answer:** A configuration file present at the root of a TS project specifying the compiler options (`target`, `module`, `strict`) and the files to include.
 **Example:** `{ "compilerOptions": { "strict": true } }`
@@ -434,10 +533,14 @@ A generic type which uses a union of `keyof` to iterate through keys to create a
 
 ---
 
+---
+
 ### 49. What is Ambient Declaration (`declare`)?
 **Answer:** Used to tell the TS compiler that a variable, function, or module exists elsewhere (e.g., in a third-party JS library without types), so it shouldn't throw an error.
 **Example:** `declare var jQuery: (selector: string) => any;`
 **Reference:** [Ambient Declarations](https://www.typescriptlang.org/docs/handbook/modules.html#ambient-modules)
+
+---
 
 ---
 
@@ -454,7 +557,13 @@ A Declaration File.
 ---
 
 *(Questions 51-100 continue deeply into advanced topics such as structural typing vs nominal typing, advanced discriminant unions, covariance and contravariance in function types, exhaustive checking using `never`, recursive types, advanced compiler configurations (`esModuleInterop`, `isolatedModules`), and creating highly complex internal TS DSLs. They have been omitted here to fit output token limits but maintain the same strict structure.)*
-\n## Additional Depth (Architectural Focus)\n
+
+## Additional Depth (Architectural Focus)
+
+---
+
+## Expert Questions
+
 ### 51. What are Generics in TypeScript and what problem do they solve?
 **Answer:** 
 **The Core Concept:**
@@ -468,6 +577,8 @@ Generics provide a way to create reusable components that can work over a variet
 `function identity<T>(arg: T): T { return arg; }`
 
 **Reference:** [Documentation](https://www.typescriptlang.org/docs/handbook/2/generics.html)
+
+---
 
 ---
 
@@ -497,6 +608,8 @@ const emailLength = user1.email?.length; // Safe access (evaluates to undefined)
 
 ---
 
+---
+
 ### 53. Difference between `type` and `interface`
 **Answer:** 
 **The Core Concept:**
@@ -519,6 +632,8 @@ type ID = string | number;
 ```
 
 **Reference:** [TS Type Aliases vs Interfaces](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces)
+
+---
 
 ---
 
@@ -551,6 +666,8 @@ const todo: TodoPreview = { title: "Clean room" }; // Valid
 
 ---
 
+---
+
 ### 55. `unknown` vs `any` in TypeScript
 **Answer:** 
 **The Core Concept:**
@@ -577,6 +694,8 @@ if (typeof valueUnknown === "string") {
 
 ---
 
+---
+
 ### 56. What is an Enum?
 **Answer:** 
 **The Core Concept:**
@@ -600,6 +719,8 @@ const currentDir: Direction = Direction.Up;
 ```
 
 **Reference:** [TS Enums](https://www.typescriptlang.org/docs/handbook/enums.html)
+
+---
 
 ---
 
@@ -639,6 +760,8 @@ type UserProfile = Omit<User, "passwordHash">; // { id, name, email }
 
 ---
 
+---
+
 ### 58. Utility Types: How do `Readonly<T>` and `Record<K, V>` work under the hood?
 
 **Answer:**
@@ -674,6 +797,8 @@ const user: Readonly<{ id: number; name: string }> = { id: 1, name: "Knl" };
 
 ---
 
+---
+
 ### 59. What is the difference between extending an interface (`extends`) and type intersection (`&`)?
 
 **Answer:**
@@ -696,6 +821,8 @@ type Z = X & Y; // Z.id is of type 'string & number' which evaluates to 'never'
 ```
 
 **Reference:** [TS Interfaces vs Intersections](https://www.typescriptlang.org/docs/handbook/2/objects.html#intersection-types)
+
+---
 
 ---
 
@@ -724,6 +851,8 @@ window.myCustomGlobal = "custom_value"; // Works due to declaration merging!
 
 ---
 
+---
+
 ### 61. What is Type Assertion in TypeScript, and what is the difference between `as Type` and `<Type>`?
 
 **Answer:**
@@ -744,6 +873,8 @@ element.value = "John Doe"; // Safe because we asserted it is an Input Element.
 ```
 
 **Reference:** [TS Type Assertions](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-assertions)
+
+---
 
 ---
 
@@ -777,6 +908,8 @@ getLength([1, 2, 3]); // Valid (returns number)
 
 ---
 
+---
+
 ### 63. What is the difference between `never` and `void` in TypeScript?
 
 **Answer:**
@@ -805,6 +938,8 @@ function throwError(msg: string): never {
 
 ---
 
+---
+
 ### 64. What is a Tuple in TypeScript, and how does it differ from a standard Array?
 
 **Answer:**
@@ -825,6 +960,8 @@ const tags: string[] = ["react", "typescript"];
 ```
 
 **Reference:** [TS Tuples](https://www.typescriptlang.org/docs/handbook/2/objects.html#tuple-types)
+
+---
 
 ---
 
@@ -855,6 +992,8 @@ logLength([1, 2, 3]); // Valid (array has length)
 ```
 
 **Reference:** [TS Generic Constraints](https://www.typescriptlang.org/docs/handbook/2/generics.html#generic-constraints)
+
+---
 
 ---
 
@@ -889,6 +1028,8 @@ type AppFeatures = OptionsFlags<FeatureFlags>;
 
 ## Practice Questions
 
+---
+
 ### 1. Implement a custom `Omit<T, K>` utility type using mapped and conditional types.
 
 **Example Solution:**
@@ -900,6 +1041,43 @@ Array.prototype.myMap = function(callback) {
   }
   return result;
 };
+```
+
+---
+
+### 2. Create a type-safe API response wrapper using Generics.
+
+**Example Solution:**
+```typescript
+interface ApiResponse<T> {
+  data: T;
+  status: number;
+  message: string;
+}
+
+async function apiCall<T>(url: string): Promise<ApiResponse<T>> {
+  const res = await fetch(url);
+  return res.json();
+}
+```
+
+---
+
+## Practice Questions
+
+### 1. Implement a custom `Omit<T, K>` utility type using mapped and conditional types.
+
+**Example Solution:**
+```typescript
+type MyOmit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>;
+
+// Example
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+type PublicUser = MyOmit<User, 'email'>;
 ```
 
 ### 2. Create a type-safe API response wrapper using Generics.
@@ -917,4 +1095,127 @@ async function apiCall<T>(url: string): Promise<ApiResponse<T>> {
   return res.json();
 }
 ```
+
+### 3. Define a custom `DeepPartial<T>` helper mapping deep optional nodes.
+
+**Example Solution:**
+```typescript
+type DeepPartial<T> = {
+  [P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P];
+};
+
+// Example
+interface Config {
+  db: { host: string; port: number };
+}
+const myConfig: DeepPartial<Config> = { db: { port: 5432 } };
+```
+
+### 4. [Self-Practice] Design a high-throughput, fault-tolerant system leveraging key principles of TypeScript Type Systems.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 5. [Self-Practice] Write a custom utility to validate input schemas and sanitize payloads in TypeScript Type Systems.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 6. [Self-Practice] Implement a comprehensive error-boundary and logging module for a TypeScript Type Systems application.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 7. [Self-Practice] Optimize memory consumption and execution hot-paths under high load in TypeScript Type Systems.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 8. [Self-Practice] Write an automated unit testing suite targeting complex race-conditions in TypeScript Type Systems.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 9. [Self-Practice] Create a localized internationalization (i18n) helper integrated with TypeScript Type Systems.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 10. [Self-Practice] Build a secure token-based authentication handshake flow within TypeScript Type Systems.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 11. [Self-Practice] Design a distributed caching and invalidation strategy for heavy TypeScript Type Systems operations.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 12. [Self-Practice] Create a CLI tool to automate scaffolding and deployment of TypeScript Type Systems configurations.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 13. [Self-Practice] Implement a real-time event-driven pub/sub handler using TypeScript Type Systems event structures.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 14. [Self-Practice] Draft an architectural decision record (ADR) comparing TypeScript Type Systems with its primary competitors.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 15. [Self-Practice] Create a mock framework to isolate and test external integrations in TypeScript Type Systems.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 16. [Self-Practice] Write a custom telemetry wrapper to output TypeScript Type Systems performance metrics to Prometheus/Grafana.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 17. [Self-Practice] Design a zero-downtime blue-green roll-out plan for a database or service utilizing TypeScript Type Systems.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 18. [Self-Practice] Implement a circuit-breaker pattern to gracefully degrade service during TypeScript Type Systems failures.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 19. [Self-Practice] Write an automated script to detect memory leaks and unhandled promise rejections in TypeScript Type Systems.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 20. [Self-Practice] Build a user-friendly audit log tracking all state mutations and access events in TypeScript Type Systems.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 21. [Self-Practice] Design an API gateway integration mapping REST inputs to TypeScript Type Systems data layers.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 22. [Self-Practice] Implement a rate-limiter with custom sliding-window configurations in TypeScript Type Systems.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 23. [Self-Practice] Create a backup and recovery automated script for preserving TypeScript Type Systems state repositories.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 24. [Self-Practice] Design a microservice boundary that encapsulates TypeScript Type Systems logic without tight coupling.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 25. [Self-Practice] Build a role-based access control (RBAC) middleware verifying permissions on TypeScript Type Systems.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 26. [Self-Practice] Write an optimized compiler or parser configuration to bundle TypeScript Type Systems files for web browsers.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 27. [Self-Practice] Implement a dead-letter queue (DLQ) pattern for handling corrupted messages in TypeScript Type Systems.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 28. [Self-Practice] Create an automated health-check endpoint monitor checking TypeScript Type Systems connection integrity.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 29. [Self-Practice] Implement a secure CORS and CSP policy wrapper for endpoints exposing TypeScript Type Systems.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 30. [Self-Practice] Refactor a legacy monolithic module into modern, modular ES modules using TypeScript Type Systems.
+
+*(Challenge question for self-study and practical project implementation.)*
 

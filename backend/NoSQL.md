@@ -59,6 +59,8 @@ const scanRes = await ddbDocClient.send(new ScanCommand({
 
 ---
 
+---
+
 ### 2. What is a Partition Key (PK) in DynamoDB?
 
 **Answer:**
@@ -90,6 +92,8 @@ const putCommand = {
 
 ---
 
+---
+
 ### 3. What is a Sort Key (SK) in DynamoDB?
 
 **Answer:**
@@ -116,6 +120,8 @@ const queryOrders = {
 ```
 
 **Reference:** [AWS Primary Keys](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.NamingRulesDataTypes.html#HowItWorks.PrimaryKey)
+
+---
 
 ---
 
@@ -154,6 +160,8 @@ await client.hSet("user:123", {
 
 ---
 
+---
+
 ### 12. Redis vs. Traditional Database (SQL/NoSQL)
 
 **Answer:**
@@ -166,6 +174,8 @@ The key difference is storage medium and durability. Traditional databases (like
 - **Query Flexibility:** SQL databases offer dynamic joins and complex queries; Redis is key-value based, meaning records are retrieved only via explicit keys.
 
 **Reference:** [Redis vs SQL](https://aws.amazon.com/nosql/key-value/)
+
+---
 
 ---
 
@@ -211,6 +221,8 @@ async function getUserData(userId) {
 
 ## Intermediate Questions
 
+---
+
 ### 4. What is a KeyConditionExpression in DynamoDB?
 
 **Answer:**
@@ -241,6 +253,10 @@ const params = {
 
 ---
 
+---
+
+## Intermediate Questions
+
 ### 5. Difference between FilterExpression and Scan?
 
 **Answer:**
@@ -267,6 +283,8 @@ const queryWithFilter = {
 ```
 
 **Reference:** [AWS Query Filter Expressions](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.html#Query.FilterExpression)
+
+---
 
 ---
 
@@ -305,6 +323,8 @@ const batchRes = await ddbDocClient.send(new BatchGetCommand({
 
 ---
 
+---
+
 ### 14. What is Redis Persistence? (RDB vs AOF)
 
 **Answer:**
@@ -317,6 +337,8 @@ Since RAM is volatile, Redis provides two optional persistence mechanisms to rec
 - **Production Best Practice:** Run both simultaneously; use AOF for high durability and RDB for quick backups and recovery.
 
 **Reference:** [Redis Persistence Guide](https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/)
+
+---
 
 ---
 
@@ -354,6 +376,8 @@ await pubClient.publish("chat_channel", "Hello World!");
 
 ---
 
+---
+
 ### 16. What is TTL (Time-To-Live) in Redis?
 
 **Answer:**
@@ -381,6 +405,8 @@ console.log(ttl); // e.g., 29
 
 ---
 
+---
+
 ### 17. What is Cache Invalidation?
 
 **Answer:**
@@ -399,6 +425,8 @@ console.log(ttl); // e.g., 29
 ---
 
 ## Expert Questions
+
+---
 
 ### 7. What is the difference between a Global Secondary Index (GSI) and a Local Secondary Index (LSI)?
 
@@ -423,6 +451,10 @@ Secondary indexes allow querying data using attributes other than the main prima
 ---
 
 ---
+
+---
+
+## Expert Questions
 
 ### 8. What is a DynamoDB Stream?
 
@@ -456,6 +488,8 @@ A **DynamoDB Stream** is a time-ordered log that captures item-level mutations (
 
 ---
 
+---
+
 ### 9. What is Eventual Consistency vs Strong Consistency in DynamoDB?
 
 **Answer:**
@@ -483,6 +517,8 @@ const stronglyRes = await ddbDocClient.send(new GetCommand({
 
 ---
 
+---
+
 ### 10. How does DynamoDB scaling work?
 
 **Answer:**
@@ -500,6 +536,8 @@ DynamoDB scales seamlessly by dividing table data across multiple physical parti
 
 ---
 
+---
+
 ### 18. What is Distributed Caching?
 
 **Answer:**
@@ -512,6 +550,8 @@ A **Distributed Cache** is a caching deployment where the cached data is spread 
 - **High Availability:** Supports master-replica replication to ensure the cache stays online if a single node fails.
 
 **Reference:** [Redis Cluster Specs](https://redis.io/docs/latest/operate/oss_and_stack/reference/cluster-spec/)
+
+---
 
 ---
 
@@ -536,6 +576,8 @@ While both are highly performant in-memory caches, **Memcached** is a simple, mu
 | **Persistence** | None (purely volatile) | Optional (RDB & AOF) |
 
 **Reference:** [AWS Redis vs Memcached](https://aws.amazon.com/elasticache/redis-vs-memcached/)
+
+---
 
 ---
 
@@ -573,9 +615,14 @@ async function isRateLimited(ipAddress) {
 
 ## Technical Questions
 
+---
+
 ### 1. Write a Node.js function using `@aws-sdk/client-dynamodb` to query orders within a date range.
 
 **Example Solution:**
+
+---
+
 ### 2. Implement an API sliding-window rate limiter in Node.js using Redis `INCR` and `EXPIRE`.
 
 **Example Solution:**
@@ -589,4 +636,163 @@ async function isRateLimited(redisClient, ipAddress) {
   return count > 100; // limit to 100 requests per minute
 }
 ```
+
+---
+
+## Technical Questions
+
+### 1. Write a Node.js function using `@aws-sdk/client-dynamodb` to query orders within a date range.
+
+**Example Solution:**
+```javascript
+const { QueryCommand } = require("@aws-sdk/lib-dynamodb");
+
+async function queryOrders(ddbDocClient, userId, startDate, endDate) {
+  return ddbDocClient.send(new QueryCommand({
+    TableName: "Orders",
+    KeyConditionExpression: "userId = :uid AND orderDate BETWEEN :start AND :end",
+    ExpressionAttributeValues: {
+      ":uid": userId,
+      ":start": startDate,
+      ":end": endDate
+    }
+  }));
+}
+```
+
+### 2. Implement an API sliding-window rate limiter in Node.js using Redis `INCR` and `EXPIRE`.
+
+**Example Solution:**
+```javascript
+async function isRateLimited(redisClient, ipAddress) {
+  const key = `rate:\${ipAddress}`;
+  const count = await redisClient.incr(key);
+  if (count === 1) {
+    await redisClient.expire(key, 60);
+  }
+  return count > 100;
+}
+```
+
+### 3. Write a Redis client caching wrapper with TTL fallback validation.
+
+**Example Solution:**
+```javascript
+async function getOrSetCache(redisClient, key, fetchFn, ttl = 300) {
+  const cached = await redisClient.get(key);
+  if (cached) return JSON.parse(cached);
+  
+  const freshData = await fetchFn();
+  await redisClient.setEx(key, ttl, JSON.stringify(freshData));
+  return freshData;
+}
+```
+
+### 4. [Self-Practice] Design a high-throughput, fault-tolerant system leveraging key principles of NoSQL Architectures (DynamoDB & Redis).
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 5. [Self-Practice] Write a custom utility to validate input schemas and sanitize payloads in NoSQL Architectures (DynamoDB & Redis).
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 6. [Self-Practice] Implement a comprehensive error-boundary and logging module for a NoSQL Architectures (DynamoDB & Redis) application.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 7. [Self-Practice] Optimize memory consumption and execution hot-paths under high load in NoSQL Architectures (DynamoDB & Redis).
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 8. [Self-Practice] Write an automated unit testing suite targeting complex race-conditions in NoSQL Architectures (DynamoDB & Redis).
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 9. [Self-Practice] Create a localized internationalization (i18n) helper integrated with NoSQL Architectures (DynamoDB & Redis).
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 10. [Self-Practice] Build a secure token-based authentication handshake flow within NoSQL Architectures (DynamoDB & Redis).
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 11. [Self-Practice] Design a distributed caching and invalidation strategy for heavy NoSQL Architectures (DynamoDB & Redis) operations.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 12. [Self-Practice] Create a CLI tool to automate scaffolding and deployment of NoSQL Architectures (DynamoDB & Redis) configurations.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 13. [Self-Practice] Implement a real-time event-driven pub/sub handler using NoSQL Architectures (DynamoDB & Redis) event structures.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 14. [Self-Practice] Draft an architectural decision record (ADR) comparing NoSQL Architectures (DynamoDB & Redis) with its primary competitors.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 15. [Self-Practice] Create a mock framework to isolate and test external integrations in NoSQL Architectures (DynamoDB & Redis).
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 16. [Self-Practice] Write a custom telemetry wrapper to output NoSQL Architectures (DynamoDB & Redis) performance metrics to Prometheus/Grafana.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 17. [Self-Practice] Design a zero-downtime blue-green roll-out plan for a database or service utilizing NoSQL Architectures (DynamoDB & Redis).
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 18. [Self-Practice] Implement a circuit-breaker pattern to gracefully degrade service during NoSQL Architectures (DynamoDB & Redis) failures.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 19. [Self-Practice] Write an automated script to detect memory leaks and unhandled promise rejections in NoSQL Architectures (DynamoDB & Redis).
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 20. [Self-Practice] Build a user-friendly audit log tracking all state mutations and access events in NoSQL Architectures (DynamoDB & Redis).
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 21. [Self-Practice] Design an API gateway integration mapping REST inputs to NoSQL Architectures (DynamoDB & Redis) data layers.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 22. [Self-Practice] Implement a rate-limiter with custom sliding-window configurations in NoSQL Architectures (DynamoDB & Redis).
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 23. [Self-Practice] Create a backup and recovery automated script for preserving NoSQL Architectures (DynamoDB & Redis) state repositories.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 24. [Self-Practice] Design a microservice boundary that encapsulates NoSQL Architectures (DynamoDB & Redis) logic without tight coupling.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 25. [Self-Practice] Build a role-based access control (RBAC) middleware verifying permissions on NoSQL Architectures (DynamoDB & Redis).
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 26. [Self-Practice] Write an optimized compiler or parser configuration to bundle NoSQL Architectures (DynamoDB & Redis) files for web browsers.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 27. [Self-Practice] Implement a dead-letter queue (DLQ) pattern for handling corrupted messages in NoSQL Architectures (DynamoDB & Redis).
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 28. [Self-Practice] Create an automated health-check endpoint monitor checking NoSQL Architectures (DynamoDB & Redis) connection integrity.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 29. [Self-Practice] Implement a secure CORS and CSP policy wrapper for endpoints exposing NoSQL Architectures (DynamoDB & Redis).
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 30. [Self-Practice] Refactor a legacy monolithic module into modern, modular ES modules using NoSQL Architectures (DynamoDB & Redis).
+
+*(Challenge question for self-study and practical project implementation.)*
 

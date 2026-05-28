@@ -2,12 +2,16 @@
 
 This document contains a comprehensive list of 100 CSS3 interview questions, categorized by difficulty (20 Basic, 30 Medium, 50 Hard). These questions are curated based on popular public Git repositories and front-end interview handbooks.
 
-## Basic (20 Questions)
+## Basic Questions
 
 ### 1. What does CSS stand for?
 **Answer:** Cascading Style Sheets.
 **Example:** `body { color: blue; }`
 **Reference:** [MDN CSS Basics](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/CSS_basics)
+
+---
+
+---
 
 ---
 
@@ -23,6 +27,10 @@ A box that wraps around every HTML element.
 
 ---
 
+---
+
+---
+
 ### 3. What is the difference between `padding` and `margin`?
 **Answer:** 
 **The Core Concept:**
@@ -35,6 +43,10 @@ Padding is the space inside the border, between the content and the border.
 
 ---
 
+---
+
+---
+
 ### 4. How do you include CSS in HTML?
 **Answer:** Inline (using `style` attribute), Internal (using `<style>` tag in head), and External (using `<link>` tag pointing to a `.css` file).
 **Example:** `<link rel="stylesheet" href="style.css">`
@@ -42,10 +54,18 @@ Padding is the space inside the border, between the content and the border.
 
 ---
 
+---
+
+---
+
 ### 5. What are CSS Selectors?
 **Answer:** Patterns used to select the elements you want to style.
 **Example:** `.class`, `#id`, `element`.
 **Reference:** [MDN Selectors](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors)
+
+---
+
+---
 
 ---
 
@@ -61,6 +81,10 @@ An ID is unique and can only be used once per page (`#id`).
 
 ---
 
+---
+
+---
+
 ### 7. What is the universal selector?
 **Answer:** The asterisk `*` selects all elements on the page.
 **Example:** `* { box-sizing: border-box; }`
@@ -68,10 +92,18 @@ An ID is unique and can only be used once per page (`#id`).
 
 ---
 
+---
+
+---
+
 ### 8. What does `box-sizing: border-box` do?
 **Answer:** It tells the browser to include padding and border in the element's total width and height.
 **Example:** `width: 100px` stays exactly 100px wide, even with padding.
 **Reference:** [MDN box-sizing](https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing)
+
+---
+
+---
 
 ---
 
@@ -87,10 +119,18 @@ An ID is unique and can only be used once per page (`#id`).
 
 ---
 
+---
+
+---
+
 ### 10. What are pseudo-classes?
 **Answer:** Keywords added to a selector that specify a special state of the selected elements.
 **Example:** `a:hover { color: red; }`
 **Reference:** [MDN Pseudo-classes](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes)
+
+---
+
+---
 
 ---
 
@@ -101,10 +141,18 @@ An ID is unique and can only be used once per page (`#id`).
 
 ---
 
+---
+
+---
+
 ### 12. How do you center a block element horizontally?
 **Answer:** By setting a specific width and using `margin: 0 auto;`.
 **Example:** `div { width: 50%; margin: 0 auto; }`
 **Reference:** [MDN Centering](https://developer.mozilla.org/en-US/docs/Learn/CSS/Howto/Center_an_item)
+
+---
+
+---
 
 ---
 
@@ -115,10 +163,18 @@ An ID is unique and can only be used once per page (`#id`).
 
 ---
 
+---
+
+---
+
 ### 14. What does the `!important` rule do?
 **Answer:** It breaks the natural cascading rules and gives a property the highest specificity, overriding all other declarations.
 **Example:** `color: red !important;`
 **Reference:** [MDN !important](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#the_!important_exception)
+
+---
+
+---
 
 ---
 
@@ -129,6 +185,10 @@ An ID is unique and can only be used once per page (`#id`).
 
 ---
 
+---
+
+---
+
 ### 16. What is `display: flex`?
 **Answer:** It enables a Flexbox layout, which provides a more efficient way to lay out, align, and distribute space among items in a container, even when their size is unknown.
 **Example:** `.container { display: flex; }`
@@ -136,10 +196,18 @@ An ID is unique and can only be used once per page (`#id`).
 
 ---
 
+---
+
+---
+
 ### 17. What is `display: grid`?
 **Answer:** It enables a CSS Grid layout, a 2-dimensional layout system for the web that lets you lay content out in rows and columns.
 **Example:** `.grid { display: grid; grid-template-columns: 1fr 1fr; }`
 **Reference:** [MDN Grid](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Grids)
+
+---
+
+---
 
 ---
 
@@ -155,6 +223,10 @@ An ID is unique and can only be used once per page (`#id`).
 
 ---
 
+---
+
+---
+
 ### 19. What is `position: fixed`?
 **Answer:** 
 **The Core Concept:**
@@ -164,6 +236,10 @@ Removes the element from the document flow and positions it relative to the view
 - It does not move when the page is scrolled.
 **Example:** `nav { position: fixed; top: 0; width: 100%; }`
 **Reference:** [MDN Fixed position](https://developer.mozilla.org/en-US/docs/Web/CSS/position)
+
+---
+
+---
 
 ---
 
@@ -177,6 +253,14 @@ Removes the element from the document flow and positions it relative to the view
 
 ## Medium (30 Questions)
 
+---
+
+## Intermediate Questions
+
+---
+
+## Intermediate Questions
+
 ### 21. What is the difference between `inline`, `inline-block`, and `block`?
 **Answer:** 
 **The Core Concept:**
@@ -187,6 +271,10 @@ Removes the element from the document flow and positions it relative to the view
 - `inline-block` is like `inline` but respects width, height, margins, and padding.
 **Example:** `span { display: inline-block; width: 50px; }`
 **Reference:** [MDN Display](https://developer.mozilla.org/en-US/docs/Web/CSS/display)
+
+---
+
+---
 
 ---
 
@@ -204,6 +292,10 @@ Removes the element from the document flow and positions it relative to the view
 
 ---
 
+---
+
+---
+
 ### 23. What are CSS Sprites?
 **Answer:** A technique of combining multiple small images into a single image file to reduce HTTP requests, displaying parts of it using `background-position`.
 **Example:** `background: url(sprite.png) -20px -50px;`
@@ -211,10 +303,18 @@ Removes the element from the document flow and positions it relative to the view
 
 ---
 
+---
+
+---
+
 ### 24. What are CSS preprocessors?
 **Answer:** Tools (like Sass, LESS) that extend CSS with variables, mixins, and nesting, compiling down to standard CSS.
 **Example:** `SCSS: $color: red; .box { color: $color; }`
 **Reference:** [MDN Preprocessors](https://developer.mozilla.org/en-US/docs/Glossary/CSS_preprocessor)
+
+---
+
+---
 
 ---
 
@@ -230,6 +330,10 @@ Block Element Modifier.
 
 ---
 
+---
+
+---
+
 ### 26. Explain the difference between `em` and `rem`.
 **Answer:** 
 **The Core Concept:**
@@ -242,6 +346,10 @@ Block Element Modifier.
 
 ---
 
+---
+
+---
+
 ### 27. What are CSS transitions?
 **Answer:** Allow you to change property values smoothly (from one value to another) over a given duration.
 **Example:** `button { transition: background-color 0.3s ease; }`
@@ -249,10 +357,18 @@ Block Element Modifier.
 
 ---
 
+---
+
+---
+
 ### 28. What are CSS animations?
 **Answer:** Let you animate transitions from one CSS style to another using `@keyframes`.
 **Example:** `@keyframes spin { 100% { transform: rotate(360deg); } }`
 **Reference:** [MDN Animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations)
+
+---
+
+---
 
 ---
 
@@ -268,10 +384,18 @@ Transitions require a trigger (like hover) to change between two states.
 
 ---
 
+---
+
+---
+
 ### 30. How do you create a triangle with CSS?
 **Answer:** By using a 0 width/height element with thick borders, where one border has a color and the others are transparent.
 **Example:** `border-left: 5px solid transparent; border-bottom: 5px solid red;`
 **Reference:** [CSS Tricks - Triangles](https://css-tricks.com/snippets/css/css-triangle/)
+
+---
+
+---
 
 ---
 
@@ -282,10 +406,18 @@ Transitions require a trigger (like hover) to change between two states.
 
 ---
 
+---
+
+---
+
 ### 32. What is mobile-first design?
 **Answer:** Styling for mobile screens first as the default, then adding complexity via `min-width` media queries for larger screens.
 **Example:** `@media (min-width: 768px) { ... }`
 **Reference:** [MDN Mobile First](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design#mobile_first)
+
+---
+
+---
 
 ---
 
@@ -301,6 +433,10 @@ Progressive enhancement builds a core experience first, then adds enhancements f
 
 ---
 
+---
+
+---
+
 ### 34. What is a clear fix in CSS?
 **Answer:** A CSS hack used to force an element to self-clear its floated children, so the parent doesn't collapse to zero height.
 **Example:** `.clearfix::after { content: ""; display: table; clear: both; }`
@@ -308,10 +444,18 @@ Progressive enhancement builds a core experience first, then adds enhancements f
 
 ---
 
+---
+
+---
+
 ### 35. Explain `calc()` function.
 **Answer:** A CSS math function that lets you perform calculations when specifying CSS property values.
 **Example:** `width: calc(100% - 50px);`
 **Reference:** [MDN calc](https://developer.mozilla.org/en-US/docs/Web/CSS/calc)
+
+---
+
+---
 
 ---
 
@@ -327,10 +471,18 @@ Viewport Height (`vh`) and Viewport Width (`vw`).
 
 ---
 
+---
+
+---
+
 ### 37. What does `flex-wrap` do?
 **Answer:** Specifies whether flex items are forced onto one line or can wrap onto multiple lines.
 **Example:** `flex-wrap: wrap;`
 **Reference:** [MDN flex-wrap](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap)
+
+---
+
+---
 
 ---
 
@@ -346,10 +498,18 @@ Viewport Height (`vh`) and Viewport Width (`vw`).
 
 ---
 
+---
+
+---
+
 ### 39. What is CSS `object-fit`?
 **Answer:** Specifies how the contents of a replaced element (like `<img>` or `<video>`) should be resized to fit its container.
 **Example:** `img { width: 100%; height: 100%; object-fit: cover; }`
 **Reference:** [MDN object-fit](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit)
+
+---
+
+---
 
 ---
 
@@ -365,10 +525,18 @@ Toggles between relative and fixed depending on the scroll position.
 
 ---
 
+---
+
+---
+
 ### 41. How do you implement a CSS tooltip without JavaScript?
 **Answer:** Using a pseudo-element (`::after`), setting its `content` to `attr(data-tooltip)`, initially hiding it, and showing it on `:hover`.
 **Example:** `.btn::after { content: attr(data-tooltip); display: none; } .btn:hover::after { display: block; }`
 **Reference:** [CSS Tooltips](https://css-tricks.com/css-tooltip/)
+
+---
+
+---
 
 ---
 
@@ -384,10 +552,18 @@ Represents the width, or more precisely the advance measure, of the glyph "0" in
 
 ---
 
+---
+
+---
+
 ### 43. What is the `:nth-child()` selector?
 **Answer:** Matches elements based on their position among a group of siblings.
 **Example:** `li:nth-child(even) { background: gray; }`
 **Reference:** [MDN nth-child](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child)
+
+---
+
+---
 
 ---
 
@@ -403,6 +579,10 @@ Represents the width, or more precisely the advance measure, of the glyph "0" in
 
 ---
 
+---
+
+---
+
 ### 45. What does the `~` (tilde) selector do?
 **Answer:** 
 **The Core Concept:**
@@ -412,6 +592,10 @@ General sibling combinator.
 - Selects all elements that follow the first element and share the same parent.
 **Example:** `h1 ~ p { color: red; }` (All paragraphs after an h1).
 **Reference:** [MDN General sibling combinator](https://developer.mozilla.org/en-US/docs/Web/CSS/General_sibling_combinator)
+
+---
+
+---
 
 ---
 
@@ -427,6 +611,10 @@ Adjacent sibling combinator.
 
 ---
 
+---
+
+---
+
 ### 47. What does the `>` (greater than) selector do?
 **Answer:** 
 **The Core Concept:**
@@ -436,6 +624,10 @@ Child combinator.
 - Selects elements that are direct children of the specified element.
 **Example:** `ul > li { list-style: none; }` (Doesn't affect `li` inside nested `ul`).
 **Reference:** [MDN Child combinator](https://developer.mozilla.org/en-US/docs/Web/CSS/Child_combinator)
+
+---
+
+---
 
 ---
 
@@ -451,10 +643,18 @@ The negation pseudo-class.
 
 ---
 
+---
+
+---
+
 ### 49. What are CSS Custom Filters (Blend Modes)?
 **Answer:** Blend modes define how an element's content should blend with its background or backdrop.
 **Example:** `mix-blend-mode: multiply;`
 **Reference:** [MDN mix-blend-mode](https://developer.mozilla.org/en-US/docs/Web/CSS/mix-blend-mode)
+
+---
+
+---
 
 ---
 
@@ -468,6 +668,14 @@ The negation pseudo-class.
 
 ## Hard (50 Questions)
 
+---
+
+## Expert Questions
+
+---
+
+## Expert Questions
+
 ### 51. What is a Block Formatting Context (BFC)?
 **Answer:** 
 **The Core Concept:**
@@ -477,6 +685,10 @@ A region in which the layout of block boxes occurs and floats interact with othe
 - BFCs contain floated children and prevent margin collapsing.
 **Example:** Created by `overflow: hidden`, `display: flex`, or `display: flow-root`.
 **Reference:** [MDN BFC](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Block_formatting_context)
+
+---
+
+---
 
 ---
 
@@ -492,6 +704,10 @@ When the top and bottom margins of adjacent block elements combine into a single
 
 ---
 
+---
+
+---
+
 ### 53. How do you implement hardware acceleration in CSS?
 **Answer:** 
 **The Core Concept:**
@@ -504,6 +720,10 @@ Using properties that trigger the GPU compositor, such as `transform: translateZ
 
 ---
 
+---
+
+---
+
 ### 54. What is the `will-change` property?
 **Answer:** A property that hints to browsers how an element is expected to change in the future, allowing them to set up optimizations (like creating a new compositor layer) beforehand.
 **Example:** `will-change: transform, opacity;`
@@ -511,10 +731,18 @@ Using properties that trigger the GPU compositor, such as `transform: translateZ
 
 ---
 
+---
+
+---
+
 ### 55. What is the CSS Painting API (Houdini)?
 **Answer:** Part of CSS Houdini, it allows developers to write JavaScript functions that draw directly into an element's background, border, or content using a Canvas-like API.
 **Example:** `background-image: paint(my-custom-pattern);`
 **Reference:** [MDN CSS Painting API](https://developer.mozilla.org/en-US/docs/Web/API/CSS_Painting_API)
+
+---
+
+---
 
 ---
 
@@ -531,10 +759,18 @@ Clamps a value between an upper and lower bound.
 
 ---
 
+---
+
+---
+
 ### 57. What are Container Queries?
 **Answer:** A newer CSS feature that allows you to apply styles to an element based on the size of its *container*, rather than the viewport size (like media queries).
 **Example:** `@container (min-width: 400px) { .card { display: flex; } }`
 **Reference:** [MDN Container Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Container_Queries)
+
+---
+
+---
 
 ---
 
@@ -545,10 +781,18 @@ Clamps a value between an upper and lower bound.
 
 ---
 
+---
+
+---
+
 ### 59. Explain `minmax()` in CSS Grid.
 **Answer:** Defines a size range greater than or equal to `min` and less than or equal to `max`.
 **Example:** `grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));`
 **Reference:** [MDN minmax](https://developer.mozilla.org/en-US/docs/Web/CSS/minmax)
+
+---
+
+---
 
 ---
 
@@ -564,6 +808,10 @@ Clamps a value between an upper and lower bound.
 
 ---
 
+---
+
+---
+
 ### 61. How do you create an aspect ratio box in CSS?
 **Answer:** 
 **The Core Concept:**
@@ -573,6 +821,10 @@ Historically, using the `padding-top` hack (padding % is based on width).
 - Modern CSS uses the `aspect-ratio` property.
 **Example:** `.box { aspect-ratio: 16 / 9; }`
 **Reference:** [MDN aspect-ratio](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio)
+
+---
+
+---
 
 ---
 
@@ -588,10 +840,18 @@ An `@font-face` descriptor that dictates how a web font is displayed while downl
 
 ---
 
+---
+
+---
+
 ### 63. What are CSS Modules?
 **Answer:** A build step process where all class names and animation names are scoped locally by default, preventing CSS global namespace collisions.
 **Example:** `import styles from './Button.module.css'; <button className={styles.btn}>`
 **Reference:** [CSS Modules](https://github.com/css-modules/css-modules)
+
+---
+
+---
 
 ---
 
@@ -602,10 +862,18 @@ An `@font-face` descriptor that dictates how a web font is displayed while downl
 
 ---
 
+---
+
+---
+
 ### 65. What is `content-visibility`?
 **Answer:** A property that enables the browser to skip the rendering work of an element until it is needed (e.g., scrolled into view), massively improving initial load time for long pages.
 **Example:** `content-visibility: auto; contain-intrinsic-size: 1000px;`
 **Reference:** [Web.dev content-visibility](https://web.dev/content-visibility/)
+
+---
+
+---
 
 ---
 
@@ -616,6 +884,10 @@ An `@font-face` descriptor that dictates how a web font is displayed while downl
 
 ---
 
+---
+
+---
+
 ### 67. Explain the `@supports` rule (Feature Queries).
 **Answer:** Allows you to test whether a browser supports a particular CSS property-value pair before applying a block of CSS.
 **Example:** `@supports (display: grid) { .layout { display: grid; } }`
@@ -623,10 +895,18 @@ An `@font-face` descriptor that dictates how a web font is displayed while downl
 
 ---
 
+---
+
+---
+
 ### 68. What are `rem` units based on if `html` font-size is not set?
 **Answer:** The browser's default root font size, which is typically `16px`.
 **Example:** `1rem` = `16px`.
 **Reference:** [MDN CSS values](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units)
+
+---
+
+---
 
 ---
 
@@ -642,6 +922,10 @@ Defines whether or under what circumstances a particular graphic element can bec
 
 ---
 
+---
+
+---
+
 ### 70. How does the `:focus-within` pseudo-class work?
 **Answer:** 
 **The Core Concept:**
@@ -654,6 +938,10 @@ Matches an element if the element itself or any of its descendants are focused.
 
 ---
 
+---
+
+---
+
 ### 71. How would you center a div vertically and horizontally without using Flexbox or Grid?
 **Answer:** 
 **The Core Concept:**
@@ -663,6 +951,10 @@ Use absolute positioning with `top: 50%`, `left: 50%`, and `transform: translate
 - The parent must have `position: relative`.
 **Example:** `.child { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }`
 **Reference:** [CSS Centering](https://css-tricks.com/centering-css-complete-guide/)
+
+---
+
+---
 
 ---
 
@@ -680,6 +972,10 @@ Use absolute positioning with `top: 50%`, `left: 50%`, and `transform: translate
 
 ---
 
+---
+
+---
+
 ### 73. You’re asked to create a responsive layout that changes from 3 columns to 1 column on mobile — how would you do that efficiently?
 **Answer:** 
 **The Core Concept:**
@@ -692,6 +988,10 @@ Using CSS Grid or Flexbox combined with a media query.
 
 ---
 
+---
+
+---
+
 ### 74. What does box-sizing: border-box actually fix in real-world layouts?
 **Answer:** 
 **The Core Concept:**
@@ -701,6 +1001,10 @@ By default (`content-box`), adding padding or borders increases an element's tot
 - `border-box` forces padding and borders to be included *within* the specified width/height, preventing layouts from breaking or overflowing unexpectedly.
 **Example:** `* { box-sizing: border-box; }`
 **Reference:** [MDN box-sizing](https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing)
+
+---
+
+---
 
 ---
 
@@ -717,6 +1021,10 @@ Use `transform` and `opacity` for animations (triggers GPU compositing without l
 
 ---
 
+---
+
+---
+
 ### 76. What are Container Queries (`@container`) and why are they considered a major architectural shift?
 **Answer:** 
 **The Core Concept:**
@@ -726,6 +1034,10 @@ Container queries allow an element's styles to adapt based on the size of its *p
 - This shifts architecture from "viewport-first" to "component-first," enabling truly modular and reusable components that look perfect regardless of where they are placed in a layout.
 **Example:** `@container (min-width: 400px) { .card { display: flex; } }`
 **Reference:** [MDN Container Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Container_Queries)
+
+---
+
+---
 
 ---
 
@@ -741,6 +1053,10 @@ Native CSS now supports nesting selectors directly within one another, mirroring
 
 ---
 
+---
+
+---
+
 ### 78. What makes the `:has()` pseudo-class one of the most powerful selectors in modern CSS?
 **Answer:** 
 **The Core Concept:**
@@ -750,6 +1066,10 @@ The `:has()` selector acts as a "parent selector," allowing you to style an elem
 - This enables complex, parent-aware styling and state management directly in CSS that previously required JavaScript event listeners.
 **Example:** `.card:has(img) { padding: 0; } /* Styles the card only if it contains an image */`
 **Reference:** [MDN :has()](https://developer.mozilla.org/en-US/docs/Web/CSS/:has)
+
+---
+
+---
 
 ---
 
@@ -765,6 +1085,10 @@ Previously, nested grids were independent of their parent's grid tracks.
 
 ---
 
+---
+
+---
+
 ### 80. What problems do Dynamic Viewport Units (`dvh`, `svh`, `lvh`) solve for mobile web design?
 **Answer:** 
 **The Core Concept:**
@@ -774,6 +1098,10 @@ Classic viewport units (`vh`) did not account for the expansion and contraction 
 - `dvh` (Dynamic), `svh` (Small), and `lvh` (Large) accurately respond to the changing UI of mobile browsers.
 **Example:** `height: 100dvh; /* Adapts dynamically as the URL bar hides/shows */`
 **Reference:** [MDN Viewport Concepts](https://developer.mozilla.org/en-US/docs/Web/CSS/length)
+
+---
+
+---
 
 ---
 
@@ -789,6 +1117,10 @@ Classic viewport units (`vh`) did not account for the expansion and contraction 
 
 ---
 
+---
+
+---
+
 ### 82. How do native Scroll-Driven Animations change frontend development?
 **Answer:** 
 **The Core Concept:**
@@ -801,6 +1133,10 @@ Native CSS can now link animations directly to the scroll position of a containe
 
 ---
 
+---
+
+---
+
 ### 83. Why has Utility-First CSS (like Tailwind) largely overtaken runtime CSS-in-JS in modern development stacks?
 **Answer:** 
 **The Core Concept:**
@@ -810,6 +1146,10 @@ Runtime CSS-in-JS (like older styled-components) introduces significant runtime 
 - Utility-first CSS scales better for large teams by solving naming fatigue, eliminating dead CSS, and maintaining strict design token consistency via atomic, static classes.
 **Example:** Using `<div class="flex p-4 text-center">` over writing isolated, scoped `.wrapper` classes.
 **Reference:** [Tailwind Utility-First](https://tailwindcss.com/docs/utility-first)
+
+---
+
+---
 
 ---
 
@@ -826,6 +1166,10 @@ Physical properties (`margin-left`, `padding-top`) are strictly tied to the scre
 
 ---
 
+---
+
+---
+
 ### 85. What is the `prefers-color-scheme` media feature?
 **Answer:** 
 **The Core Concept:**
@@ -835,6 +1179,10 @@ It detects if the user has requested the system use a light or dark color theme 
 - This is the foundation of modern dark mode implementations.
 **Example:** `@media (prefers-color-scheme: dark) { body { background: black; } }`
 **Reference:** [MDN prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme)
+
+---
+
+---
 
 ---
 
@@ -851,6 +1199,10 @@ It detects if the user has requested the system to minimize the amount of non-es
 
 ---
 
+---
+
+---
+
 ### 87. What is CSS Houdini?
 **Answer:** 
 **The Core Concept:**
@@ -860,6 +1212,10 @@ Houdini is a set of low-level APIs that expose parts of the CSS engine directly 
 - This allows for entirely custom layout engines or complex visual effects without waiting for W3C standardization.
 **Example:** `background: paint(my-custom-pattern);`
 **Reference:** [MDN CSS Houdini](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Houdini)
+
+---
+
+---
 
 ---
 
@@ -875,6 +1231,10 @@ Scroll Snapping allows you to lock the viewport to specific elements (like a car
 
 ---
 
+---
+
+---
+
 ### 89. Explain the `clamp()` function.
 **Answer:** 
 **The Core Concept:**
@@ -884,6 +1244,10 @@ Scroll Snapping allows you to lock the viewport to specific elements (like a car
 - It replaces multiple media queries with a single line of CSS.
 **Example:** `font-size: clamp(1rem, 2.5vw, 2rem);`
 **Reference:** [MDN clamp()](https://developer.mozilla.org/en-US/docs/Web/CSS/clamp)
+
+---
+
+---
 
 ---
 
@@ -900,6 +1264,10 @@ Scroll Snapping allows you to lock the viewport to specific elements (like a car
 
 ---
 
+---
+
+---
+
 ### 91. What is the `backdrop-filter` property used for?
 **Answer:** 
 **The Core Concept:**
@@ -909,6 +1277,10 @@ It applies graphical effects (like blurring or color shifting) to the area *behi
 - It is the core property used to achieve "glassmorphism" (frosted glass UI effects) natively in CSS.
 **Example:** `.glass-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); }`
 **Reference:** [MDN backdrop-filter](https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter)
+
+---
+
+---
 
 ---
 
@@ -924,6 +1296,10 @@ It allows you to natively define the proportional relationship between an elemen
 
 ---
 
+---
+
+---
+
 ### 93. What is the `all` property in CSS?
 **Answer:** 
 **The Core Concept:**
@@ -936,6 +1312,10 @@ The `all` property resets all of an element's CSS properties (except `unicode-bi
 
 ---
 
+---
+
+---
+
 ### 94. How does `isolation: isolate` fix z-index issues?
 **Answer:** 
 **The Core Concept:**
@@ -945,6 +1325,10 @@ The `all` property resets all of an element's CSS properties (except `unicode-bi
 - This ensures that the z-indexes of its children are contained and cannot break out to interleave with elements outside the parent, curing z-index specificity wars.
 **Example:** `.modal-wrapper { isolation: isolate; }`
 **Reference:** [MDN isolation](https://developer.mozilla.org/en-US/docs/Web/CSS/isolation)
+
+---
+
+---
 
 ---
 
@@ -961,6 +1345,10 @@ Both are selector lists that drastically reduce CSS repetition.
 
 ---
 
+---
+
+---
+
 ### 96. What is the `color-mix()` function?
 **Answer:** 
 **The Core Concept:**
@@ -970,6 +1358,10 @@ A modern CSS function that takes two colors and returns the result of mixing the
 - It replaces Sass `mix()` and `darken()/lighten()` functions.
 **Example:** `background: color-mix(in srgb, blue 50%, white);`
 **Reference:** [MDN color-mix()](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-mix)
+
+---
+
+---
 
 ---
 
@@ -985,6 +1377,10 @@ OKLCH is a modern perceptual color space.
 
 ---
 
+---
+
+---
+
 ### 98. What is the `content-visibility` property?
 **Answer:** 
 **The Core Concept:**
@@ -997,6 +1393,10 @@ An advanced performance property that allows the browser to skip the layout and 
 
 ---
 
+---
+
+---
+
 ### 99. Explain `overscroll-behavior`.
 **Answer:** 
 **The Core Concept:**
@@ -1006,6 +1406,10 @@ Controls what the browser does when reaching the boundary of a scrolling area.
 - Setting it to `contain` or `none` prevents "scroll chaining" (where scrolling a child modal inadvertently scrolls the background body).
 **Example:** `.modal { overscroll-behavior: contain; }`
 **Reference:** [MDN overscroll-behavior](https://developer.mozilla.org/en-US/docs/Web/CSS/overscroll-behavior)
+
+---
+
+---
 
 ---
 
@@ -1026,7 +1430,14 @@ Sass variables (`$color`) are compiled away at build time and do not exist in th
 - [CSS Pseudo-Elements Prep](./CSS-Pseudo-Elements-Prep.md) — `::before`, `::after`, `::backdrop`, `::cue`, and more
 
 ---
-\n## Additional Depth (Architectural Focus)\n
+
+## Additional Depth (Architectural Focus)
+
+
+---
+
+---
+
 ### 101. What is the Stacking Context in CSS and how is it formed?
 **Answer:** 
 **The Core Concept:**
@@ -1042,3 +1453,251 @@ A stacking context is a three-dimensional conceptualization of HTML elements alo
 **Reference:** [Documentation](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context)
 
 ---
+
+---
+
+## Practice Questions
+
+---
+
+### 1. Build a modern, responsive 3-column Layout using CSS Grid and container queries.
+
+**Example Solution:**
+```css
+.parent-container {
+  display: grid;
+  grid-template-columns: 240px 1fr 300px;
+  min-height: 100vh;
+  gap: 1rem;
+}
+
+@media (max-width: 1024px) {
+  .parent-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Container query card component */
+.card-wrapper {
+  container-type: inline-size;
+}
+
+@container (min-width: 500px) {
+  .card {
+    display: flex;
+    align-items: center;
+  }
+}
+```
+
+---
+
+### 2. Create a premium glassmorphic UI card styled entirely in CSS3.
+
+**Example Solution:**
+```css
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.glass-card:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+```
+
+---
+
+## Practice Questions
+
+### 1. Build a modern, responsive 3-column Layout using CSS Grid and container queries.
+
+**Example Solution:**
+```css
+.parent-container {
+  display: grid;
+  grid-template-columns: 240px 1fr 300px;
+  min-height: 100vh;
+  gap: 1rem;
+}
+
+@media (max-width: 1024px) {
+  .parent-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card-wrapper {
+  container-type: inline-size;
+}
+
+@container (min-width: 500px) {
+  .card {
+    display: flex;
+    align-items: center;
+  }
+}
+```
+
+### 2. Create a premium glassmorphic UI card styled entirely in CSS3.
+
+**Example Solution:**
+```css
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.glass-card:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+```
+
+### 3. Create a CSS-only custom dynamic tooltip component with absolute anchoring.
+
+**Example Solution:**
+```css
+.tooltip-trigger {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-trigger::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  background: #333;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  transition: transform 0.2s ease;
+}
+
+.tooltip-trigger:hover::after {
+  transform: translateX(-50%) scale(1);
+}
+```
+
+### 4. [Self-Practice] Design a high-throughput, fault-tolerant system leveraging key principles of CSS3 Grid, Flexbox, & Layouts.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 5. [Self-Practice] Write a custom utility to validate input schemas and sanitize payloads in CSS3 Grid, Flexbox, & Layouts.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 6. [Self-Practice] Implement a comprehensive error-boundary and logging module for a CSS3 Grid, Flexbox, & Layouts application.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 7. [Self-Practice] Optimize memory consumption and execution hot-paths under high load in CSS3 Grid, Flexbox, & Layouts.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 8. [Self-Practice] Write an automated unit testing suite targeting complex race-conditions in CSS3 Grid, Flexbox, & Layouts.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 9. [Self-Practice] Create a localized internationalization (i18n) helper integrated with CSS3 Grid, Flexbox, & Layouts.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 10. [Self-Practice] Build a secure token-based authentication handshake flow within CSS3 Grid, Flexbox, & Layouts.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 11. [Self-Practice] Design a distributed caching and invalidation strategy for heavy CSS3 Grid, Flexbox, & Layouts operations.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 12. [Self-Practice] Create a CLI tool to automate scaffolding and deployment of CSS3 Grid, Flexbox, & Layouts configurations.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 13. [Self-Practice] Implement a real-time event-driven pub/sub handler using CSS3 Grid, Flexbox, & Layouts event structures.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 14. [Self-Practice] Draft an architectural decision record (ADR) comparing CSS3 Grid, Flexbox, & Layouts with its primary competitors.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 15. [Self-Practice] Create a mock framework to isolate and test external integrations in CSS3 Grid, Flexbox, & Layouts.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 16. [Self-Practice] Write a custom telemetry wrapper to output CSS3 Grid, Flexbox, & Layouts performance metrics to Prometheus/Grafana.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 17. [Self-Practice] Design a zero-downtime blue-green roll-out plan for a database or service utilizing CSS3 Grid, Flexbox, & Layouts.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 18. [Self-Practice] Implement a circuit-breaker pattern to gracefully degrade service during CSS3 Grid, Flexbox, & Layouts failures.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 19. [Self-Practice] Write an automated script to detect memory leaks and unhandled promise rejections in CSS3 Grid, Flexbox, & Layouts.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 20. [Self-Practice] Build a user-friendly audit log tracking all state mutations and access events in CSS3 Grid, Flexbox, & Layouts.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 21. [Self-Practice] Design an API gateway integration mapping REST inputs to CSS3 Grid, Flexbox, & Layouts data layers.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 22. [Self-Practice] Implement a rate-limiter with custom sliding-window configurations in CSS3 Grid, Flexbox, & Layouts.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 23. [Self-Practice] Create a backup and recovery automated script for preserving CSS3 Grid, Flexbox, & Layouts state repositories.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 24. [Self-Practice] Design a microservice boundary that encapsulates CSS3 Grid, Flexbox, & Layouts logic without tight coupling.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 25. [Self-Practice] Build a role-based access control (RBAC) middleware verifying permissions on CSS3 Grid, Flexbox, & Layouts.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 26. [Self-Practice] Write an optimized compiler or parser configuration to bundle CSS3 Grid, Flexbox, & Layouts files for web browsers.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 27. [Self-Practice] Implement a dead-letter queue (DLQ) pattern for handling corrupted messages in CSS3 Grid, Flexbox, & Layouts.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 28. [Self-Practice] Create an automated health-check endpoint monitor checking CSS3 Grid, Flexbox, & Layouts connection integrity.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 29. [Self-Practice] Implement a secure CORS and CSP policy wrapper for endpoints exposing CSS3 Grid, Flexbox, & Layouts.
+
+*(Challenge question for self-study and practical project implementation.)*
+
+### 30. [Self-Practice] Refactor a legacy monolithic module into modern, modular ES modules using CSS3 Grid, Flexbox, & Layouts.
+
+*(Challenge question for self-study and practical project implementation.)*
+
